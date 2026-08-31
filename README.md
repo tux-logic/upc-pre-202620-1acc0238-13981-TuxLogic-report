@@ -1,6 +1,5 @@
 <div align="center">
-  <img src="https://github.com/tux-logic/upc-pre-202620-1acc0238-13981-TuxLogic-report/blob/main/Resources/UPC_logo.png?raw=true
-  " alt="Logo-UPC" width="150">
+  <img src="https://github.com/tux-logic/upc-pre-202620-1acc0238-13981-TuxLogic-report/blob/main/Resources/UPC_logo.png?raw_true" alt="Logo-UPC" width="150">
 
  Universidad Peruana de Ciencias Aplicadas
 
