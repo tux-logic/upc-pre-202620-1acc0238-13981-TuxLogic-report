@@ -1,4 +1,4 @@
-# Registro de Versiones
+= Registro de Versiones
 
 | Versión | Fecha | Autor | Descripción de modificación |
 | --- | --- | --- | --- |

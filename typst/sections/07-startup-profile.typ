@@ -1,21 +1,20 @@
-## 1.1. Startup Profile
+== 1.1. Startup Profile
 
-### 1.1.1. Descripción de la Startup
+=== 1.1.1. Descripción de la Startup
 
 TuxLogic es una iniciativa tecnológica concebida y desarrollada por estudiantes de la carrera de Ingeniería de Software de la Universidad Peruana de Ciencias Aplicadas (UPC). Nuestra propuesta se materializa a través de ShiftIq, un ecosistema digital diseñado para transformar el modelo operativo tradicional de los talleres automotrices en el Perú, impulsando una transición estructural desde un esquema de mantenimiento reactivo hacia un modelo predictivo, preventivo e inteligente.
 
 Para articular esta propuesta de valor, ShiftIq integra una arquitectura multiplataforma compuesta por aplicaciones web y móviles sincronizadas con dispositivos de diagnóstico a bordo. A través de esta integración de hardware, el sistema recolecta telemetría y códigos de diagnóstico de fallas (DTC) en tiempo real, los cuales son procesados de manera segura para anticipar incidencias mecánicas, optimizar los cronogramas de intervención técnica y traducir métricas complejas en información comprensible tanto para el personal técnico como para el conductor.
 
-**Misión:**
+*Misión:* \
 La misión de TuxLogic como empresa es innovar en sector del mantenimiento y servicio automotriz en el país mediante una plataforma tecnológica integral que facilite la transición hacia un mantenimiento preventivo y predictivo basado en datos. En TuxLogic buscamos profesionalizar la administración de los talleres mecánicos, optimizar sus procesos operativos y comerciales, y fortalecer la confianza y transparencia en la relación con los conductores.
 
-**Visión:**
+*Visión:* \
 En TuxLogic, tenemos la visión de consolidarnos como la plataforma referente en el mercado nacional y regional en soluciones de software para la gestión de talleres mecánicos y el monitoreo vehicular inteligente, promoviendo la rentabilidad de las empresas del sector, la extensión de la vida útil del parque automotor y una mayor seguridad vial.
 
 
-### 1.1.2. Perfiles de integrantes del equipo
+=== 1.1.2. Perfiles de integrantes del equipo
 
-```{=typst}
 #v(0.5em)
 #grid(
   columns: (1fr),
@@ -181,4 +180,3 @@ En TuxLogic, tenemos la visión de consolidarnos como la plataforma referente en
     ]
   )
 )
-```
