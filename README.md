@@ -26,50 +26,21 @@ Bienvenidos al repositorio oficial del **Informe del Trabajo Final** del equipo 
 
 ## Equipo TuxLogic
 
-<table align="center">
-  <tr>
-    <td align="center" width="20%">
-      <a href="https://github.com/AlanMamaniV">
-        <img src="https://github.com/AlanMamaniV.png" width="95px;" style="border-radius:50%; border: 3px solid #38bdf8; padding: 4px; background: #0f172a;" alt="Alan Jaivi Mamani Vilca"/><br />
-        <br />
-        <sub><b>Mamani Vilca, Alan Jaivi</b></sub>
-      </a><br />
-      <sub><code>u20241e299</code></sub>
-    </td>
-    <td align="center" width="20%">
-      <a href="https://github.com/MarkOne-dev">
-        <img src="https://github.com/MarkOne-dev.png" width="95px;" style="border-radius:50%; border: 3px solid #38bdf8; padding: 4px; background: #0f172a;" alt="Aldo Jeanfranco Machacca Soto"/><br />
-        <br />
-        <sub><b>Machacca Soto, Aldo</b></sub>
-      </a><br />
-      <sub><code>u202419485</code></sub>
-    </td>
-    <td align="center" width="20%">
-      <a href="https://github.com/Dhilsen18">
-        <img src="https://github.com/Dhilsen18.png" width="95px;" style="border-radius:50%; border: 3px solid #38bdf8; padding: 4px; background: #0f172a;" alt="Dhilsen Armil Mallqui Vilca"/><br />
-        <br />
-        <sub><b>Mallqui Vilca, Dhilsen</b></sub>
-      </a><br />
-      <sub><code>U202319440</code></sub>
-    </td>
-    <td align="center" width="20%">
-      <a href="https://github.com/Kosevy">
-        <img src="https://github.com/Kosevy.png" width="95px;" style="border-radius:50%; border: 3px solid #38bdf8; padding: 4px; background: #0f172a;" alt="Diego Antonio Ramos Hinostroza"/><br />
-        <br />
-        <sub><b>Ramos Hinostroza, Diego</b></sub>
-      </a><br />
-      <sub><code>u202224130</code></sub>
-    </td>
-    <td align="center" width="20%">
-      <a href="https://github.com/jarethvidal">
-        <img src="https://github.com/jarethvidal.png" width="95px;" style="border-radius:50%; border: 3px solid #38bdf8; padding: 4px; background: #0f172a;" alt="Jareth Beycker Vidal Malaga"/><br />
-        <br />
-        <sub><b>Vidal Malaga, Jareth</b></sub>
-      </a><br />
-      <sub><code>u202316878</code></sub>
-    </td>
-  </tr>
-</table>
+<p align="center">
+  <a href="https://github.com/AlanMamaniV"><img src="https://github.com/AlanMamaniV.png" width="80" alt="Mamani Vilca, Alan Jaivi"/></a>&nbsp;&nbsp;
+  <a href="https://github.com/MarkOne-dev"><img src="https://github.com/MarkOne-dev.png" width="80" alt="Machacca Soto, Aldo Jeanfranco"/></a>&nbsp;&nbsp;
+  <a href="https://github.com/Dhilsen18"><img src="https://github.com/Dhilsen18.png" width="80" alt="Mallqui Vilca, Dhilsen Armil"/></a>&nbsp;&nbsp;
+  <a href="https://github.com/Kosevy"><img src="https://github.com/Kosevy.png" width="80" alt="Ramos Hinostroza, Diego Antonio"/></a>&nbsp;&nbsp;
+  <a href="https://github.com/jarethvidal"><img src="https://github.com/jarethvidal.png" width="80" alt="Vidal Malaga, Jareth Beycker"/></a>
+</p>
+
+| Integrante | Código | Perfil de GitHub |
+| :--- | :---: | :---: |
+| **Mamani Vilca, Alan Jaivi** | `u20241e299` | [@AlanMamaniV](https://github.com/AlanMamaniV) |
+| **Machacca Soto, Aldo Jeanfranco** | `u202419485` | [@MarkOne-dev](https://github.com/MarkOne-dev) |
+| **Mallqui Vilca, Dhilsen Armil** | `U202319440` | [@Dhilsen18](https://github.com/Dhilsen18) |
+| **Ramos Hinostroza, Diego Antonio** | `u202224130` | [@Kosevy](https://github.com/Kosevy) |
+| **Vidal Malaga, Jareth Beycker** | `u202316878` | [@jarethvidal](https://github.com/jarethvidal) |
 
 ---
 
