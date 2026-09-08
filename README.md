@@ -9,12 +9,10 @@
 
 ## 📁 Estructura del Repositorio (Módulos)
 
-El repositorio está organizado en dos módulos independientes según el formato de trabajo:
-
 ```text
 upc-pre-202620-1acc0238-13981-TuxLogic-report/
-├── assets/                                  # Recursos gráficos y diagramas compartidos
-├── markdown/                                # Módulo 1: Redacción puramente en Markdown (GFM)
+├── assets/                                  # Recursos gráficos compartidos
+├── markdown/                                # Módulo 1: Markdown limpio (GFM) sin sintaxis Typst
 │   ├── 01-cover.md
 │   ├── 02-report-version-log.md
 │   ├── 03-collaboration-insights.md
@@ -30,48 +28,34 @@ upc-pre-202620-1acc0238-13981-TuxLogic-report/
 │   ├── 13-requirements-specification.md
 │   ├── 14-strategic-domain-driven-design.md
 │   └── 15-tactical-domain-driven-design.md
-├── typst/                                   # Módulo 2: Fuente nativa Typst (Maquetación PDF)
-│   ├── main.typ                             # Ensamblador principal del documento PDF
-│   ├── header.typ                           # Configuración de estilos, encabezados y fuentes UPC
-│   ├── template.typ                         # Plantilla Typst para exportación
-│   └── sections/                            # Secciones individuales en sintaxis Typst (.typ)
-│       ├── 01-cover.typ
-│       ├── 02-version-log.typ
-│       ├── 03-collaboration-insights.typ
-│       ├── 04-student-outcome.typ
-│       ├── 05-table-of-contents.typ
-│       ├── 06-smart-goals.typ
-│       ├── 07-startup-profile.typ
-│       ├── 08-solution-profile.typ
-│       ├── 09-target-segments.typ
-│       ├── 10-competitors.typ
-│       ├── 11-interviews.typ
-│       ├── 12-needfinding.typ
-│       ├── 13-requirements-specification.typ
-│       ├── 14-strategic-domain-driven-design.typ
-│       └── 15-tactical-domain-driven-design.typ
-├── informe_final.pdf                        # Documento PDF compilado final
-└── README.md                                # Documentación del repositorio
+├── typst/                                   # Módulo 2: Código original para motor Typst (vía Pandoc)
+│   ├── template.typ                         # Plantilla Typst con marcador $body$
+│   ├── header.typ                           # Configuración de estilos y encabezados UPC
+│   ├── 1-cover.md                           # Archivos originales con bloques {=typst}
+│   ├── 2-report-version-log.md
+│   ├── 3-project-report-collaboration-insights.md
+│   ├── 4-student-outcome.md
+│   ├── 5-content.md
+│   ├── 6-smart-goals.md
+│   ├── 7-startup-profile.md
+│   ├── 8-solution-profile.md
+│   ├── 9-target-segments.md
+│   ├── 10-competitors.md
+│   ├── 11-interviews.md
+│   ├── 12-needfinding.md
+│   ├── 13-requirements-specification.md
+│   ├── 14-strategic-level-domain-driven-design.md
+│   └── 15-tactical-level-domain-driven-design.md
+├── informe_final.pdf                        # PDF compilado final
+└── README.md
 ```
 
 ---
 
-## 🚀 Compilación del Informe en PDF (Módulo Typst)
+## 🚀 Compilación del PDF (Pandoc + Motor Typst)
 
-Para generar el PDF `informe_final.pdf` desde el módulo Typst, ejecuta el siguiente comando desde la raíz del proyecto:
-
-```bash
-typst compile --root . typst/main.typ informe_final.pdf
-```
-
-Para activar la recompilación automática en tiempo real mientras editas:
+Para compilar el informe `informe_final.pdf` a partir del módulo `typst/`, ejecuta:
 
 ```bash
-typst watch --root . typst/main.typ informe_final.pdf
+pandoc typst/1-cover.md typst/2-report-version-log.md typst/4-student-outcome.md typst/5-content.md typst/6-smart-goals.md typst/7-startup-profile.md typst/8-solution-profile.md typst/9-target-segments.md typst/10-competitors.md typst/11-interviews.md typst/12-needfinding.md typst/13-requirements-specification.md typst/14-strategic-level-domain-driven-design.md typst/15-tactical-level-domain-driven-design.md --pdf-engine=typst --template=typst/template.typ -o informe_final.pdf
 ```
-
----
-
-## ✍️ Módulo Markdown (GFM)
-
-La carpeta `markdown/` contiene la versión en Markdown estándar (GitHub Flavored Markdown) del informe. Esta carpeta no contiene bloque alguno de código Typst (`{=typst}`), siendo totalmente portátil para lectura en GitHub, Obsidian o cualquier visor Markdown.
