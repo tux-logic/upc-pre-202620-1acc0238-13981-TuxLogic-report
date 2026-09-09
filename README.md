@@ -4,10 +4,11 @@
 
 <p align="center">
   <a href="informe_final.pdf" download>
-    <img src="https://img.shields.io/badge/Descargar_PDF-Informe_Final-b91c1c?style=for-the-badge&logo=adobeacrobatreader&logoColor=white" alt="Descargar PDF" />
+    <img src="assets/btn-pdf.svg" alt="Descargar Informe PDF" height="58" />
   </a>
-  &nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;
   <a href="markdown/01-cover.md">
-    <img src="https://img.shields.io/badge/Modulo_Markdown-Ver_Informe-1e3a8a?style=for-the-badge&logo=markdown&logoColor=white" alt="Módulo Markdown" />
+    <img src="assets/btn-markdown.svg" alt="Ver Informe Markdown" height="58" />
   </a>
 </p>
+

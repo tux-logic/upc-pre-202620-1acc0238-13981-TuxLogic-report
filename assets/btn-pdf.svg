@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 64" width="290" height="64">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="pdfBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#180e1b"/>
+      <stop offset="50%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#1e0a0a"/>
+    </linearGradient>
+
+    <!-- Border Glow Gradient -->
+    <linearGradient id="pdfBorderGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f87171" stop-opacity="0.9"/>
+      <stop offset="50%" stop-color="#ef4444" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#dc2626" stop-opacity="0.9"/>
+      <animate attributeName="x1" values="0%;100%;0%" dur="4s" repeatCount="indefinite" />
+      <animate attributeName="x2" values="100%;200%;100%" dur="4s" repeatCount="indefinite" />
+    </linearGradient>
+
+    <!-- Icon Badge Gradient -->
+    <linearGradient id="pdfIconGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#991b1b"/>
+    </linearGradient>
+
+    <!-- Glowing Drop Shadow Filter -->
+    <filter id="pdfGlowFilter" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#ef4444" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#pdfGlowFilter)">
+    <!-- Card Container -->
+    <rect x="3" y="3" width="284" height="58" rx="16" fill="url(#pdfBgGrad)" stroke="url(#pdfBorderGrad)" stroke-width="1.8" />
+
+    <!-- Subtle Inner Highlight -->
+    <rect x="4" y="4" width="282" height="28" rx="14" fill="#ffffff" fill-opacity="0.04" />
+
+    <!-- Icon Container Badge -->
+    <g transform="translate(14, 12)">
+      <rect x="0" y="0" width="40" height="40" rx="11" fill="url(#pdfIconGrad)" />
+      <rect x="0" y="0" width="40" height="40" rx="11" fill="none" stroke="#fca5a5" stroke-opacity="0.3" stroke-width="1" />
+      
+      <!-- Authentic PDF Document Vector Icon -->
+      <g transform="translate(10, 8)" fill="#ffffff">
+        <path d="M2 2C2 0.89543 2.89543 0 4 0H12L18 6V18C18 19.1046 17.1046 20 16 20H4C2.89543 20 2 19.1046 2 18V2Z" fill-opacity="0.2" />
+        <path d="M12 0V6H18L12 0Z" fill="#ffffff" fill-opacity="0.6" />
+        <path d="M4 2C2.89543 2 2 2.89543 2 4V18C2 19.1046 2.89543 20 4 20H16C17.1046 20 18 19.1046 18 18V6L12 0H4Z" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- Arrow Down Download Symbol inside Page -->
+        <path d="M10 7V13M10 13L7.5 10.5M10 13L12.5 10.5" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="6" y1="15.5" x2="14" y2="15.5" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" />
+      </g>
+    </g>
+
+    <!-- Text Header & Subtitle -->
+    <text x="64" y="27" font-family="'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="800" fill="#ffffff" letter-spacing="0.6">
+      DESCARGAR INFORME PDF
+    </text>
+    <text x="64" y="43" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="500" fill="#fca5a5" opacity="0.9">
+      Documento Oficial PDF • Compilado Typst
+    </text>
+
+    <!-- Action Arrow Icon on Right -->
+    <g transform="translate(254, 23)" opacity="0.85">
+      <circle cx="9" cy="9" r="11" fill="#ef4444" fill-opacity="0.15" />
+      <path d="M6.5 5L10.5 9L6.5 13" stroke="#fca5a5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+        <animateTransform attributeName="transform" type="translate" values="0,0; 2,0; 0,0" dur="1.8s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1; 0.4 0 0.6 1" />
+      </path>
+    </g>
+  </g>
+</svg>
