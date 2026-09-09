@@ -255,39 +255,41 @@ El *Empathy Mapping* profundiza en lo que cada persona **dice, piensa, hace y si
 El *Big Picture EventStorming* es una técnica colaborativa que ordena en una línea de tiempo los **eventos de dominio** (hechos en pasado) del negocio automotriz digitalizado por ShiftIq. Permite ver el flujo completo —desde la telemetría hasta la orden de trabajo— e identificar *hotspots* (fricciones, dudas o riesgos) antes de especificar requerimientos móviles.
 
 **Figura 14**  
-*Big Picture EventStorming de ShiftIq — vista general (Parte 1)*
+*Big Picture EventStorming — Segmento Objetivo 1 (flujo de servicio: presupuesto, pago, navegación y calificación)*
 
-![](assets/big-picture-eventstorming-1.png)
+![](assets/big-picture-eventstorming-1.jpg)
 
 **Figura 15**  
-*Big Picture EventStorming de ShiftIq — vista general (Parte 2)*
+*Big Picture EventStorming — Segmento Objetivo 2 (flujo núcleo: vinculación OBD2, telemetría, diagnóstico, cita y gestión del taller)*
 
-![](assets/big-picture-eventstorming-2.png)
+![](assets/big-picture-eventstorming-2.jpg)
 
 #### Flujo macro de eventos de dominio (síntesis)
 
-1. **VehículoVinculado** — el conductor empareja el dongle OBD2 con la app móvil.
-2. **TelemetriaRecibida** — la app/dispositivo envía lecturas al backend.
-3. **CodigoDTCDetectado** — se identifica una falla o anomalía.
-4. **AlertaPreventivaEmitida** — notificación push al conductor (y aviso al taller afiliado).
-5. **SeveridadEvaluada** — el sistema clasifica Bajo / Medio / Crítico en lenguaje comprensible.
-6. **CitaSolicitada** — el conductor agenda desde la app.
-7. **CitaConfirmada** — el administrador del taller acepta en su app de gestión.
-8. **OrdenTrabajoCreada** — se genera el documento digital del servicio.
-9. **DiagnosticoValidadoEnTaller** — el mecánico contrasta/completa el hallazgo.
-10. **ServicioCompletado** — reparación o mantenimiento ejecutado.
-11. **HistorialActualizado** — el vehículo queda con registro unificado.
-12. **RecordatorioProgramado** — se agenda el siguiente preventivo por fecha/km.
+**Tablero 1 — servicio y cierre (Figura 14)**
+
+1. **PresupuestoRecibido** — el conductor revisa en la app el desglose de costos sin jerga técnica.
+2. **PagoProcesado** — aprueba el presupuesto y paga o adelanta vía pasarela (Yape, Plin o bancos).
+3. **RutaAlTallerIniciada** — inicia navegación optimizada con Google Maps / Waze.
+4. **ServicioFinalizadoYCalificado** — recoge el vehículo, califica el servicio y consulta historial/comprobante digital.
+
+**Tablero 2 — monitoreo y operación (Figura 15)**
+
+5. **VehiculoVinculado** — el conductor empareja el dongle OBD2 con la app móvil.
+6. **TelemetriaRecibida** — el dispositivo envía velocidad, RPM, temperatura y códigos de error.
+7. **CodigoDTCDetectado** / **SeveridadEvaluada** — diagnóstico automático; si es crítico, push inmediato.
+8. **CitaReservada** — el conductor agenda mantenimiento en el calendario de bahías.
+9. **AgendaGestionada** — el dueño/administrador del taller asigna bahías y registra el servicio.
+10. **HistorialClinicoActualizado** — queda el historial de reparaciones, repuestos y mantenimientos.
 
 #### Hotspots identificados
 
-* Fricción al instalar/mantener el OBD2 conectado (abandono temprano de la app).
-* Cobertura de red irregular → necesidad de **cola offline** en móvil y sync diferido.
-* Interpretación errónea o alarmista de DTC → riesgo ético y de churn.
-* Talleres acostumbrados al papel → curva de adopción del tablero móvil.
-* Confianza en el precio estimado mostrado in-app.
-
-> **Pendiente:** aún faltan las imágenes `assets/big-picture-eventstorming-1.png` y `assets/big-picture-eventstorming-2.png`. Cuando las tengas, avísame y las enlazo.
+* Consumo excesivo de datos móviles al mantener telemetría continua.
+* Conectividad inestable en zonas de Lima → necesidad de **cola offline** y sync diferido.
+* Resistencia al cambio frente a sistemas de gestión complejos en el taller.
+* Duda del conductor si no entiende ítems del presupuesto digital.
+* Retrasos o inasistencia a la cita programada.
+* Regla de aplanamiento de demanda: incentivos cuando el taller tiene baja ocupación.
 
 ---
 
