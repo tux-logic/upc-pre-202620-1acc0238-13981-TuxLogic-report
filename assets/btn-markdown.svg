@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 64" width="290" height="64">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="mdBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a192f"/>
+      <stop offset="50%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#082f49"/>
+    </linearGradient>
+
+    <!-- Border Glow Gradient -->
+    <linearGradient id="mdBorderGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.9"/>
+      <stop offset="50%" stop-color="#0284c7" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#0ea5e9" stop-opacity="0.9"/>
+      <animate attributeName="x1" values="0%;100%;0%" dur="4s" repeatCount="indefinite" />
+      <animate attributeName="x2" values="100%;200%;100%" dur="4s" repeatCount="indefinite" />
+    </linearGradient>
+
+    <!-- Icon Badge Gradient -->
+    <linearGradient id="mdIconGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+
+    <!-- Glowing Drop Shadow Filter -->
+    <filter id="mdGlowFilter" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#38bdf8" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#mdGlowFilter)">
+    <!-- Card Container -->
+    <rect x="3" y="3" width="284" height="58" rx="16" fill="url(#mdBgGrad)" stroke="url(#mdBorderGrad)" stroke-width="1.8" />
+
+    <!-- Subtle Inner Highlight -->
+    <rect x="4" y="4" width="282" height="28" rx="14" fill="#ffffff" fill-opacity="0.04" />
+
+    <!-- Icon Container Badge -->
+    <g transform="translate(14, 12)">
+      <rect x="0" y="0" width="40" height="40" rx="11" fill="url(#mdIconGrad)" />
+      <rect x="0" y="0" width="40" height="40" rx="11" fill="none" stroke="#7dd3fc" stroke-opacity="0.3" stroke-width="1" />
+      
+      <!-- Authentic Markdown Symbol & Book Vector Icon -->
+      <g transform="translate(8, 10)" fill="#ffffff">
+        <!-- Book/Markdown Icon -->
+        <path d="M2 3C2 2.44772 2.44772 2 3 2H8C9.65685 2 11 3.34315 11 5V18C11 16.8954 10.1046 16 9 16H3C2.44772 16 2 15.5523 2 15V3Z" fill-opacity="0.2" />
+        <path d="M22 3C22 2.44772 21.5523 2 21 2H16C14.3431 2 13 3.34315 13 5V18C13 16.8954 13.8954 16 15 16H21C21.5523 16 22 15.5523 22 15V3Z" fill-opacity="0.2" />
+        <!-- Markdown M Symbol -->
+        <path d="M4 5V13M4 5L7 9L10 5M10 5V13M14 11H19M16.5 8.5L19 11L16.5 13.5" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+      </g>
+    </g>
+
+    <!-- Text Header & Subtitle -->
+    <text x="64" y="27" font-family="'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="800" fill="#ffffff" letter-spacing="0.6">
+      VER INFORME ONLINE
+    </text>
+    <text x="64" y="43" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="500" fill="#7dd3fc" opacity="0.9">
+      Módulo Markdown • Lectura Directa GFM
+    </text>
+
+    <!-- Action Arrow Icon on Right -->
+    <g transform="translate(254, 23)" opacity="0.85">
+      <circle cx="9" cy="9" r="11" fill="#38bdf8" fill-opacity="0.15" />
+      <path d="M6.5 5L10.5 9L6.5 13" stroke="#7dd3fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+        <animateTransform attributeName="transform" type="translate" values="0,0; 2,0; 0,0" dur="1.8s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1; 0.4 0 0.6 1" />
+      </path>
+    </g>
+  </g>
+</svg>
