@@ -30,26 +30,11 @@ Con la finalidad de aislar los componentes estructurales de esta problemática, 
 *Diagrama de Ishikawa: Adopción predominante de un modelo de mantenimiento reactivo en Lima*  
 ![](../assets/diagrama-ishikawa-1.png)
 
-* **Métodos:** Falta de planes de mantenimiento preventivo protocolizados; ausencia de historiales técnicos unificados por vehículo.
-* **Mano de obra:** Diagnóstico empírico basado en inspección visual o auditiva; escasa capacitación técnica en digitalización de talleres.
-* **Maquinaria / Tecnología:** Equipamiento de escaneo automotriz costoso, desconectado de la nube y limitado al espacio físico del taller; falta de telemetría remota.
-* **Medición:** Monitoreo manual del kilometraje sujeto a olvido del usuario; carencia de indicadores de desgaste en tiempo real.
-* **Medio ambiente / Mercado:** Informalidad generalizada del sector mecánico; percepción del mantenimiento preventivo como un gasto prescindible en vez de una inversión de seguridad.
-
 **Figura 5**  
 *Diagrama de Ishikawa: Baja fidelización y pérdida de recurrencia en talleres automotrices independientes*  
 ![](../assets/diagrama-ishikawa-2.png)
 
-* **Comunicación:** Lenguaje técnico inaccesible y opaco para el conductor; contacto esporádico limitado a contingencias mecánicas.
-* **Procesos:** Tiempos de espera impredecibles en cotizaciones y entregas; ausencia de agendamiento digital estructurado.
-* **Gestión de Datos:** Inexistencia de registros de clientes en bases de datos relacionales; gestión basada en notas en papel o mensajería informal.
-* **Confianza:** Temor del cliente a cobros inflados o sustitución no autorizada de repuestos; asimetría de información técnica.
-
 Adicionalmente, se delimitó el alcance operativo mediante el análisis de las 5W’s y 2H’s:
-
-**Figura 7**  
-*Diagrama 5W's + 2H's - Ecosistema ShiftIq*  
-*(Insertar diagrama de caracterización)*
 
 * **Who (Quién):** Afecta a los dueños y administradores de talleres automotrices independientes y a los conductores de vehículos particulares de Lima Metropolitana.
 * **What (Qué):** Pérdidas económicas por ineficiencia operativa en talleres y sobrecostos por fallas vehiculares graves derivadas de la falta de diagnóstico temprano.
@@ -153,24 +138,24 @@ Sin embargo, los conductores posponen el mantenimiento debido a la desconfianza 
     <tr>
         <td valign="top">
             <div align="center"><br><b>Business Problem</b></div><br>
-            <p>El modelo actual de mantenimiento automotriz en Lima es reactivo, lo que provoca que más de 38,000 talleres independientes experimenten pérdidas operativas de entre el 30% y el 40% debido a la falta de herramientas digitales y baja fidelización de clientes[cite: 1]. A la par, la desatención preventiva genera sobrecostos a los conductores y deriva en 1,190 siniestros viales anuales atribuibles a fallas mecánicas evitables[cite: 1].<br><br>¿Cómo podríamos facilitar un ecosistema digital y móvil que conecte la telemetría vehicular con la administración del taller para transformar el mantenimiento reactivo en un modelo preventivo, oportuno y confiable?</p><br>
+            <p>El modelo actual de mantenimiento automotriz en Lima es reactivo, lo que provoca que más de 38,000 talleres independientes experimenten pérdidas operativas de entre el 30% y el 40% debido a la falta de herramientas digitales y baja fidelización de clientes. A la par, la desatención preventiva genera sobrecostos a los conductores y deriva en 1,190 siniestros viales anuales atribuibles a fallas mecánicas evitables.<br><br>¿Cómo podríamos facilitar un ecosistema digital y móvil que conecte la telemetría vehicular con la administración del taller para transformar el mantenimiento reactivo en un modelo preventivo, oportuno y confiable?</p><br>
         </td>
         <td rowspan="2" valign="top">
             <div align="center"><br><b>Solutions</b></div><br>
             <ul>
-                <li>Desarrollar una aplicación móvil nativa para el conductor que se vincule vía Bluetooth con dispositivos OBD2, mostrando el estado de salud vehicular y alertas en lenguaje comprensible[cite: 1].</li><br>
-                <li>Implementar un motor de interpretación que traduzca códigos de diagnóstico de fallas (DTC) y telemetría a advertencias claras con nivel de criticidad.</li><br>
-                <li>Construir un módulo de gestión operativa y móvil para talleres que centralice la recepción de telemetría, el control de órdenes de trabajo y la programación de servicios preventivos[cite: 1].</li><br>
-                <li>Integrar un sistema de notificaciones push proactivas con cálculo de costos estimados y botón de agendamiento directo de citas hacia el taller afiliado[cite: 1].</li><br>
+                <li>Desarrollar una aplicación móvil nativa para el conductor que se vincule vía Bluetooth con dispositivos OBD2, mostrando el estado de salud vehicular y alertas en lenguaje comprensible.</li><br>
+                <li>Implementar un motor de interpretación que traduzca códigos de diagnóstico de fallas (DTC) y telemetría a advertencias claras con nivel de criticidad.</li>
+                <li>Construir un módulo de gestión operativa y móvil para talleres que centralice la recepción de telemetría, el control de órdenes de trabajo y la programación de servicios preventivos.</li><br>
+                <li>Integrar un sistema de notificaciones push proactivas con cálculo de costos estimados y botón de agendamiento directo de citas hacia el taller afiliado.</li><br>
             </ul><br>
         </td>
         <td valign="top">
             <div align="center"><br><b>Business Outcomes</b></div><br>
             <ul>
-                <li>Reducir las pérdidas operativas de los talleres afiliados a menos del 18% al término de 6 meses de operación[cite: 1].</li><br>
-                <li>Alcanzar una tasa de conversión de alertas OBD2 a citas confirmadas igual o superior al 35% en los primeros 7 días[cite: 1].</li><br>
-                <li>Lograr una retención de usuarios conductores en la app móvil mayor o igual al 60% a los 60 días de registro[cite: 1].</li><br>
-                <li>Mantener una tasa de renovación mensual de suscripciones SaaS por parte de los talleres superior al 85% al finalizar el primer trimestre[cite: 1].</li>
+                <li>Reducir las pérdidas operativas de los talleres afiliados a menos del 18% al término de 6 meses de operación.</li><br>
+                <li>Alcanzar una tasa de conversión de alertas OBD2 a citas confirmadas igual o superior al 35% en los primeros 7 días.</li><br>
+                <li>Lograr una retención de usuarios conductores en la app móvil mayor o igual al 60% a los 60 días de registro.</li><br>
+                <li>Mantener una tasa de renovación mensual de suscripciones SaaS por parte de los talleres superior al 85% al finalizar el primer trimestre.</li>
             </ul><br>
         </td>
     </tr>
@@ -178,36 +163,36 @@ Sin embargo, los conductores posponen el mantenimiento debido a la desconfianza 
         <td valign="top">
             <div align="center"><br><b>Users</b></div><br>
             <ul>
-                <li><b>Dueños o administradores de talleres automotrices independientes en Lima:</b> Negocios que atienden de 5 a 30 vehículos por semana y buscan modernizar su operación manual[cite: 1].</li><br>
-                <li><b>Conductores de vehículos particulares de Lima:</b> Propietarios de vehículos livianos con baja alfabetización mecánica que postergan revisiones por falta de tiempo o desconfianza diagnóstica[cite: 1].</li>
+                <li><b>Dueños o administradores de talleres automotrices independientes en Lima:</b> Negocios que atienden de 5 a 30 vehículos por semana y buscan modernizar su operación manual.</li><br>
+                <li><b>Conductores de vehículos particulares de Lima:</b> Propietarios de vehículos livianos con baja alfabetización mecánica que postergan revisiones por falta de tiempo o desconfianza diagnóstica.</li>
             </ul><br>
         </td>
         <td valign="top">
             <div align="center"><br><b>User Outcomes & Benefits</b></div><br>
             <ul>
-                <li><b>Talleres:</b> Control integral de la agenda y órdenes de servicio desde el móvil, reducción de tiempos muertos y capacidad de contactar al cliente con respaldo de datos técnicos objetivos[cite: 1].</li><br>
-                <li><b>Conductores:</b> Monitoreo transparente del estado real del vehículo sin jerga técnica, prevención de averías mecánicas críticas y ahorro económico en correctivos de emergencia[cite: 1].</li><br>
-                <li><b>Ambos:</b> Relación comercial transparente y libre de asimetrías de información durante el presupuesto y la ejecución de mantenimientos[cite: 1].</li>
+                <li><b>Talleres:</b> Control integral de la agenda y órdenes de servicio desde el móvil, reducción de tiempos muertos y capacidad de contactar al cliente con respaldo de datos técnicos objetivos.</li><br>
+                <li><b>Conductores:</b> Monitoreo transparente del estado real del vehículo sin jerga técnica, prevención de averías mecánicas críticas y ahorro económico en correctivos de emergencia.</li><br>
+                <li><b>Ambos:</b> Relación comercial transparente y libre de asimetrías de información durante el presupuesto y la ejecución de mantenimientos.</li>
             </ul><br>
         </td>
     </tr>
     <tr>
         <td valign="top">
             <div align="center"><br><b>Hypotheses</b></div><br>
-            <p>Creemos que el ecosistema ShiftIq incrementará la adopción del mantenimiento preventivo y optimizará la rentabilidad de los talleres independientes al sincronizar alertas diagnósticas OBD2 con un canal directo de reserva técnica[cite: 1].<br><br>Sabremos que esto es cierto cuando al menos el 50% de las citas registradas en la plataforma se originen proactivamente por alertas mecánicas y más del 65% de los conductores activos mantenga el dispositivo OBD2 sincronizado durante su segundo mes de uso[cite: 1].</p><br>
+            <p>Creemos que el ecosistema ShiftIq incrementará la adopción del mantenimiento preventivo y optimizará la rentabilidad de los talleres independientes al sincronizar alertas diagnósticas OBD2 con un canal directo de reserva técnica.<br><br>Sabremos que esto es cierto cuando al menos el 50% de las citas registradas en la plataforma se originen proactivamente por alertas mecánicas y más del 65% de los conductores activos mantenga el dispositivo OBD2 sincronizado durante su segundo mes de uso.</p><br>
         </td>
         <td valign="top">
             <div align="center"><br><b>What's the most important thing we need to learn first?</b></div><br>
             <ul>
-                <li>Validar si los conductores están dispuestos a conservar el dispositivo OBD2 conectado permanentemente en sus vehículos a cambio de telemetría en su smartphone[cite: 1].</li><br>
-                <li>Identificar si los administradores de talleres independientes encuentran viable y rápida la adopción de una interfaz móvil para gestionar citas y órdenes frente a sus libretas físicas[cite: 1].</li><br>
-                <li>Determinar si una notificación push con costo estimado y nivel de urgencia reduce significativamente la fricción de agendamiento en el conductor[cite: 1].</li>
+                <li>Validar si los conductores están dispuestos a conservar el dispositivo OBD2 conectado permanentemente en sus vehículos a cambio de telemetría en su smartphone.</li><br>
+                <li>Identificar si los administradores de talleres independientes encuentran viable y rápida la adopción de una interfaz móvil para gestionar citas y órdenes frente a sus libretas físicas.</li><br>
+                <li>Determinar si una notificación push con costo estimado y nivel de urgencia reduce significativamente la fricción de agendamiento en el conductor.</li>
             </ul><br>
         </td>
         <td valign="top">
             <div align="center"><br><b>What's the least amount of work we need to do to learn the next most important thing?</b></div><br>
             <ul>
-                <li>Desplegar una prueba piloto de 30 días con 5 talleres independientes y 30 conductores en Lima utilizando el MVP móvil vinculado a emuladores y dongles OBD2 estándar[cite: 1].</li><br>
+                <li>Desplegar una prueba piloto de 30 días con 5 talleres independientes y 30 conductores en Lima utilizando el MVP móvil vinculado a emuladores y dongles OBD2 estándar.</li><br>
                 <li>Evaluar el comportamiento y tiempo de respuesta de los conductores ante el envío de alertas diagnósticas simuladas y reales.</li><br>
                 <li>Aplicar entrevistas breves y métricas in-app para medir la facilidad de uso y la tasa de agendamiento efectivo post-alerta.</li>
             </ul><br>
