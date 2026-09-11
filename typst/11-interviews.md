@@ -1,0 +1,361 @@
+## 2.2. Entrevistas
+
+### 2.2.1. Diseño de entrevistas
+
+
+
+### 2.2.2. Registro de entrevistas
+
+**Segmento objetivo 1:**
+
+<table>
+<thead>
+  <tr>
+    <th colspan="2">Entrevista #1<br></th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Nombre</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Apellidos</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Edad</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Distrito</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Aplicaciones Usadas</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Tecnologías</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Browsers</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Entrevistador</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Evidencia</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Link</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Duración<br></td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Resumen</td>
+    <td>...</td>
+  </tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+  <tr>
+    <th colspan="2">Entrevista #2<br></th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Nombre</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Apellidos</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Edad</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Distrito</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Aplicaciones Usadas</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Tecnologías</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Browsers</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Entrevistador</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Evidencia</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Link</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Duración<br></td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Resumen</td>
+    <td>...</td>
+  </tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+  <tr>
+    <th colspan="2">Entrevista #3<br></th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Nombre</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Apellidos</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Edad</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Distrito</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Aplicaciones Usadas</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Tecnologías</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Browsers</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Entrevistador</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Evidencia</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Link</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Duración<br></td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Resumen</td>
+    <td>...</td>
+  </tr>
+</tbody>
+</table>
+
+**Segmento objetivo 2:**
+
+<table>
+<thead>
+  <tr>
+    <th colspan="2">Entrevista #1<br></th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Nombre</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Apellidos</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Edad</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Distrito</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Aplicaciones Usadas</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Tecnologías</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Browsers</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Entrevistador</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Evidencia</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Link</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Duración<br></td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Resumen</td>
+    <td>...</td>
+  </tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+  <tr>
+    <th colspan="2">Entrevista #2<br></th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Nombre</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Apellidos</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Edad</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Distrito</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Aplicaciones Usadas</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Tecnologías</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Browsers</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Entrevistador</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Evidencia</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Link</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Duración<br></td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Resumen</td>
+    <td>...</td>
+  </tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+  <tr>
+    <th colspan="2">Entrevista #3<br></th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Nombre</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Apellidos</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Edad</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Distrito</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Aplicaciones Usadas</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Tecnologías</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Browsers</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Entrevistador</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Evidencia</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Link</td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Duración<br></td>
+    <td>...</td>
+  </tr>
+  <tr>
+    <td>Resumen</td>
+    <td>...</td>
+  </tr>
+</tbody>
+</table>
+
+### 2.2.3. Análisis de entrevistas
