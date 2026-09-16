@@ -59,6 +59,8 @@ Extract all Mermaid blocks from the Bounded Context dictionary and compile them 
      )
    ]
    ```
+5. **Diagram Image Scaling Rule for Large Diagrams:**
+   - If a diagram is visually very large, tall, or wide (such as large ERDs, complex C4 component diagrams, or extensive domain model diagrams), **scale down the image width** (e.g., set `width: 75%`, `width: 80%` or `width: 85%` instead of `95%` or `100%`) so it fits harmoniously on the page without overflowing or taking up disproportionate space.
 
 --------------------------------------------------------------------------------
 
