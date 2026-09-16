@@ -101,7 +101,7 @@ Este cuestionario busca explorar las conductas de mantenimiento, las barreras co
 
 ### 2.2.2. Registro de entrevistas
 
-**Segmento objetivo 1:**
+**Segmento Objetivo 1: Dueños o Administradores de Talleres Automotrices Independientes (B2B)**
 
 <table>
 <thead>
@@ -286,7 +286,7 @@ Este cuestionario busca explorar las conductas de mantenimiento, las barreras co
 </tbody>
 </table>
 
-**Segmento objetivo 2:**
+**Segmento Objetivo 2: Conductores de Vehículos Particulares en Lima (B2C)**
 
 <table>
 <thead>
