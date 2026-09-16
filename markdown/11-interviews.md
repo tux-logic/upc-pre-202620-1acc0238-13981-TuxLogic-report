@@ -207,7 +207,7 @@ Este cuestionario busca explorar las conductas de mantenimiento, las barreras co
   <tr>
     <td>Evidencia</td>
     <td>
-      <img src="../assets/chapter2/interviews/interview-seg-1-2.png" alt="Evidencia de la entrevista" width="500">
+      <img src="../assets/chapter2/interviews/interview-seg-1-2.png" alt="Evidencia de la entrevista">
     </td>
   </tr>
   <tr>
