@@ -2961,6 +2961,445 @@ Descomposición del Container API en sus componentes principales para el Bounded
   )
 ]
 
+
+
+=== 2.6.7. Bounded Context: Fleet (Appointments & Registrations)
+
+El Bounded Context *Fleet* administra las citas programadas de atención mecánica (`Appointment`) en las distintas sucursales del taller, así como el registro y vinculación multi-tenant de clientes (`CustomerRegistration`) y empleados técnicos (`EmployeeRegistration`) con las sucursales del sistema. Interactúa mediante un Anti-Corruption Layer (ACL) con el Bounded Context *Core* para validar la existencia de clientes, empleados y sucursales.
+
+#v(0.5em)
+
+==== 2.6.7.1. Domain Layer (Capa de Dominio)
+
+La Capa de Dominio define las reglas de agendamiento de citas mecánicas, duraciones estimadas predeterminadas (1 hora), métodos *Factory* para instanciación de agregados, validaciones de solapamiento de horarios en la capa de aplicación y la adscripción de clientes y empleados a las sedes activas del taller.
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/fleet/fleet-domain-layer.svg", width: 80%)
+    ),
+    caption: [Diagrama de la Capa de Dominio -- Fleet]
+  )
+]
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.7.1.1. Value Objects, Enums & Exceptions]
+]
+#v(0.3em)
+
+#grid(
+  columns: (1fr, 1fr),
+  gutter: 10pt,
+  block(
+    fill: rgb("#f8fafc"),
+    stroke: 0.5pt + rgb("#cbd5e1"),
+    radius: 4pt,
+    inset: 8pt,
+    width: 100%
+  )[
+    #text(weight: "bold", fill: rgb("#1e3a8a"))[Enum: `AppointmentStatus`] \
+    #text(size: 9.5pt, fill: rgb("#475569"))[*Valores:* `PENDING`, `COMPLETED`, `CANCELED`] \
+    *Propósito:* Representa el estado del ciclo de vida de una cita programada.
+  ],
+  block(
+    fill: rgb("#f8fafc"),
+    stroke: 0.5pt + rgb("#cbd5e1"),
+    radius: 4pt,
+    inset: 8pt,
+    width: 100%
+  )[
+    #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `AppointmentSummary`] \
+    #text(size: 9.5pt, fill: rgb("#475569"))[`(String value)`] \
+    *Propósito:* Notas explicativas o resumen del motivo técnico de la cita. Max `2000` chars.
+  ]
+)
+
+#v(0.4em)
+
+#grid(
+  columns: (1fr, 1fr),
+  gutter: 10pt,
+  block(
+    fill: rgb("#f8fafc"),
+    stroke: 0.5pt + rgb("#cbd5e1"),
+    radius: 4pt,
+    inset: 8pt,
+    width: 100%
+  )[
+    #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `CustomerRegistrationStatus`] \
+    #text(size: 9.5pt, fill: rgb("#475569"))[`(String value)`] \
+    *Constantes:* `ACTIVE` ("ACTIVE"), `INACTIVE` ("INACTIVE"). No nulo ni en blanco.
+  ],
+  block(
+    fill: rgb("#f8fafc"),
+    stroke: 0.5pt + rgb("#cbd5e1"),
+    radius: 4pt,
+    inset: 8pt,
+    width: 100%
+  )[
+    #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `EmployeeRegistrationStatus`] \
+    #text(size: 9.5pt, fill: rgb("#475569"))[`(String value)`] \
+    *Constantes:* `ACTIVE` ("ACTIVE"), `INACTIVE` ("INACTIVE"). No nulo ni en blanco.
+  ]
+)
+
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.7.1.2. Aggregates & Entities]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[`Appointment` (Aggregate Root)] \
+  #text(size: 9.5pt, fill: rgb("#475569"))[*Tipo:* Raíz de Agregado (`extends AbstractDomainAggregateRoot<Appointment>`)] \
+  *Propósito:* Cita de servicio agendada para un cliente y vehículo en una sucursal específica. \
+  #v(4pt)
+  *Atributos:* `id` (`UUID`), `branchId` (`BranchId`), `customerId` (`CustomerId`), `vehicleId` (`VehicleId`), `scheduledStart` (`LocalDateTime`), `scheduledEnd` (`LocalDateTime`), `status` (`AppointmentStatus`), `notes` (`AppointmentSummary`). \
+  #v(4pt)
+  *Reglas de Negocio:* Al crearse calcula automáticamente `scheduledEnd = scheduledStart + 1 hora`. Inicia en estado `PENDING`. Emite `AppointmentCreatedEvent`.
+]
+
+#v(0.4em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[`CustomerRegistration` (Aggregate Root)] \
+  #text(size: 9.5pt, fill: rgb("#475569"))[*Tipo:* Raíz de Agregado (`extends AbstractDomainAggregateRoot<CustomerRegistration>`)] \
+  *Propósito:* Registro de asociación de un cliente (`CustomerId`) con una sucursal (`BranchId`). \
+  #v(4pt)
+  *Atributos:* `id` (`CustomerId`), `customerId` (`UUID`), `branchId` (`BranchId`), `status` (`CustomerRegistrationStatus`). \
+  #v(4pt)
+  *Reglas de Negocio:* Inicia en estado `ACTIVE`. Método `deactivate()` cambia a `INACTIVE` y setea `deletedAt`. Emite `CustomerRegistrationCreatedEvent`.
+]
+
+#v(0.4em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[`EmployeeRegistration` (Aggregate Root)] \
+  #text(size: 9.5pt, fill: rgb("#475569"))[*Tipo:* Raíz de Agregado (`extends AbstractDomainAggregateRoot<EmployeeRegistration>`)] \
+  *Propósito:* Registro de adscripción de un empleado (`EmployeeId`) a una sucursal con especialidad técnica y salario. \
+  #v(4pt)
+  *Atributos:* `id` (`EmployeeId`), `employeeId` (`UUID`), `branchId` (`BranchId`), `speciality` (`String`), `specialityName` (`String`), `salary` (`BigDecimal`), `status` (`EmployeeRegistrationStatus`). \
+  #v(4pt)
+  *Reglas de Negocio:* Permite actualizar especialidad y salario. `deactivate()` deshabilita la adscripción. Emite `EmployeeRegistrationCreatedEvent`.
+]
+
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.7.1.4. Domain Repositories (Interfaces)]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[Interfaces de Repositorio del Dominio Fleet:] \
+  - `AppointmentRepository`: `save(Appointment)`, `findById(UUID)`, `existsById(UUID)`, `deleteById(UUID)`, `existsByScheduledStartLessThanAndScheduledEndGreaterThan(...)`, `findByBranchId(...)`, `findByCustomerId(...)`, `findByVehicleId(...)`, `findByBranchIdAndStatus(...)`.
+  - `CustomerRegistrationRepository`: `save(...)`, `findById(...)`, `findByCustomerId(...)`, `findByCustomerIdAndBranchId(...)`, `findByBranchIdAndStatus(...)`, `existsByCustomerIdAndBranchId(...)`.
+  - `EmployeeRegistrationRepository`: `save(...)`, `findById(...)`, `findByEmployeeId(...)`, `findByBranchId(...)`, `findByBranchIdAndStatus(...)`, `existsByEmployeeIdAndBranchId(...)`.
+]
+
+#v(0.5em)
+
+==== 2.6.7.2. Application Layer (Capa de Aplicación)
+
+La Capa de Aplicación expone la ejecución de casos de uso mediante servicios de comando y consulta.
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/fleet/fleet-app-layer.svg", width: 95%)
+    ),
+    caption: [Diagrama de la Capa de Aplicación -- Fleet]
+  )
+]
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.7.2.1. Commands & Queries (DTOs de Aplicación)]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[Comandos de Escritura (CQRS Commands):] \
+  - `CreateAppointmentCommand(BranchId, CustomerId, VehicleId, LocalDateTime, AppointmentSummary)`
+  - `UpdateAppointmentCommand(UUID, BranchId, CustomerId, VehicleId, LocalDateTime, AppointmentStatus, AppointmentSummary)`
+  - `DeleteAppointmentCommand(UUID appointmentId)`
+  - `CreateCustomerRegistrationCommand(CustomerId, BranchId)`
+  - `UpdateCustomerRegistrationCommand(UUID registrationId, CustomerRegistrationStatus)`
+  - `DeleteCustomerRegistrationCommand(UUID registrationId)`
+  - `CreateEmployeeRegistrationCommand(EmployeeId, BranchId, String, String, BigDecimal)`
+  - `UpdateEmployeeRegistrationCommand(EmployeeId, String, String, BigDecimal)`
+  - `DeleteEmployeeRegistrationCommand(EmployeeId registrationId)`
+
+  #v(8pt)
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[Consultas y DTOs de Resultado (CQRS Queries & ACL Outbound):] \
+  - `AppointmentQueryService` (búsquedas por ID, sucursal, cliente, vehículo y estado).
+  - `GetCustomerRegistrationByCustomerIdQuery(UUID customerId)`
+  - `GetEmployeeRegistrationByIdQuery`, `GetEmployeeRegistrationByEmployeeIdQuery`
+  - `GetEmployeeRegistrationsByBranchIdQuery`, `GetEmployeeRegistrationsByBranchIdAndStatusQuery`
+  - *Outbound Services (ACL):* `ExternalCoreService` (valida Clientes/Empleados/Sucursales en Core), `ExternalVehicleService` (valida Vehículos).
+]
+
+#v(0.5em)
+
+==== 2.6.7.3. Interface Layer (Capa de Interfaz / REST)
+
+Exposición RESTful para agendamiento de citas y registros de clientes/empleados por sucursal.
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/fleet/fleet-interface-layer.svg", width: 95%)
+    ),
+    caption: [Diagrama de la Capa de Interfaz -- Fleet]
+  )
+]
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.7.3.1. Endpoints & REST Controllers]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[`AppointmentsController` (`/api/v1/appointments`)] \
+  - `POST /api/v1/appointments`: Agenda una nueva cita mecánica.
+  - `GET /api/v1/appointments`: Obtiene citas filtradas opcionalmente por `branchId`, `status`, `customerId` o `vehicleId`.
+  - `GET /api/v1/appointments/{appointmentId}`: Obtiene el detalle de una cita específica.
+  - `PUT /api/v1/appointments/{appointmentId}` / `DELETE /api/v1/appointments/{appointmentId}`: Edición y soft-delete.
+
+  #v(6pt)
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[`CustomerRegistrationsController` (`/api/v1/customer-registrations`)] \
+  - `POST /api/v1/customer-registrations`: Vincula a un cliente con una sucursal.
+  - `GET /api/v1/customer-registrations?customerId={customerId}` / `?branchId={branchId}&status={status}`: Consultas.
+  - `PUT /api/v1/customer-registrations/{id}` / `DELETE /api/v1/customer-registrations/{id}`: Edición y desactivación.
+
+  #v(6pt)
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[`EmployeeRegistrationsController` (`/api/v1/employee-registrations`)] \
+  - `POST /api/v1/employee-registrations`: Adscribe a un empleado técnico a una sucursal.
+  - `GET /api/v1/employee-registrations?branchId={branchId}&status={status}` / `{id}`: Consultas de adscripción.
+  - `PUT /api/v1/employee-registrations/{id}` / `DELETE /api/v1/employee-registrations/{id}`: Actualización y desactivación.
+]
+
+#v(0.5em)
+
+==== 2.6.7.4. Infrastructure Layer (Capa de Infraestructura)
+
+Mapeo relacional JPA a PostgreSQL 18 con soporte de eliminación lógica (`@SQLDelete` seteando `deleted_at`).
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/fleet/fleet-infra-layer.svg", width: 80%)
+    ),
+    caption: [Diagrama de la Capa de Infraestructura -- Fleet]
+  )
+]
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.7.4.1. Mapeo de Entidades Relacionales (JPA)]
+]
+#v(0.3em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 9.5pt, fill: rgb("#334155"))[Tabla: `appointments` (`AppointmentPersistenceEntity`)]
+]
+#v(0.2em)
+#align(center)[
+  #table(
+    columns: (auto, auto, 1fr),
+    align: (left, center, left),
+    table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
+    [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
+    [*`branch_id`*], [`UUID`], [`NOT NULL`],
+    [*`customer_id`*], [`UUID`], [`NOT NULL`],
+    [*`vehicle_id`*], [`UUID`], [`NOT NULL`],
+    [*`status`*], [`VARCHAR(20)`], [`NOT NULL (PENDING, COMPLETED, CANCELED)`],
+    [*`scheduled_start`*], [`TIMESTAMP`], [`NOT NULL`],
+    [*`scheduled_end`*], [`TIMESTAMP`], [`NOT NULL, CHECK (scheduled_end > scheduled_start)`],
+    [*`notes`*], [`TEXT`], [`NULLABLE (AppointmentSummaryAttributeConverter)`],
+    [*`created_by`*], [`UUID`], [`NOT NULL`],
+    [*`updated_by`*], [`UUID`], [`NOT NULL`],
+    [*`created_at`*], [`TIMESTAMP`], [`NOT NULL`],
+    [*`updated_at`*], [`TIMESTAMP`], [`NOT NULL`],
+    [*`deleted_at`*], [`TIMESTAMP`], [`NULLABLE (Soft Delete)`],
+    [*`version`*], [`BIGINT`], [`NOT NULL`]
+  )
+]
+
+#v(0.4em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 9.5pt, fill: rgb("#334155"))[Tabla: `customer_registrations` (`CustomerRegistrationPersistenceEntity`)]
+]
+#v(0.2em)
+#align(center)[
+  #table(
+    columns: (auto, auto, 1fr),
+    align: (left, center, left),
+    table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
+    [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
+    [*`customer_id`*], [`UUID`], [`NOT NULL`],
+    [*`branch_id`*], [`UUID`], [`NOT NULL`],
+    [*`status`*], [`VARCHAR(20)`], [`NOT NULL (ACTIVE, INACTIVE)`],
+    [*`created_at`*], [`TIMESTAMP`], [`NOT NULL`],
+    [*`updated_at`*], [`TIMESTAMP`], [`NOT NULL`],
+    [*`deleted_at`*], [`TIMESTAMP`], [`NULLABLE (Soft Delete)`],
+    [*`version`*], [`BIGINT`], [`NOT NULL`]
+  )
+]
+
+#v(0.4em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 9.5pt, fill: rgb("#334155"))[Tabla: `employee_registrations` (`EmployeeRegistrationPersistenceEntity`)]
+]
+#v(0.2em)
+#align(center)[
+  #table(
+    columns: (auto, auto, 1fr),
+    align: (left, center, left),
+    table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
+    [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
+    [*`employee_id`*], [`UUID`], [`NOT NULL`],
+    [*`branch_id`*], [`UUID`], [`NOT NULL`],
+    [*`speciality`*], [`VARCHAR(50)`], [`NOT NULL`],
+    [*`speciality_name`*], [`VARCHAR(50)`], [`NULLABLE`],
+    [*`salary`*], [`NUMERIC(10,2)`], [`NOT NULL, CHECK (salary >= 0)`],
+    [*`status`*], [`VARCHAR(20)`], [`NOT NULL (ACTIVE, INACTIVE)`],
+    [*`created_at`*], [`TIMESTAMP`], [`NOT NULL`],
+    [*`updated_at`*], [`TIMESTAMP`], [`NOT NULL`],
+    [*`deleted_at`*], [`TIMESTAMP`], [`NULLABLE (Soft Delete)`],
+    [*`version`*], [`BIGINT`], [`NOT NULL`]
+  )
+]
+
+#v(0.5em)
+
+==== 2.6.7.5. Software Architecture Component Level Diagrams (C4 Model - Level 3)
+
+Descomposición del Container API en sus componentes principales para el Bounded Context *Fleet*.
+
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.7.5.1. C4 Model Component Diagram]
+]
+#v(0.3em)
+
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/fleet/fleet-c4-component.svg", width: 80%)
+    ),
+    caption: [Diagrama de Componentes C4 Nivel 3 -- Fleet]
+  )
+]
+#v(0.5em)
+
+==== 2.6.7.6. Code Level Diagrams
+
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.7.6.1. Domain Layer Class Diagram]
+]
+#v(0.3em)
+
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/fleet/fleet-code-domain.svg", width: 80%)
+    ),
+    caption: [Diagrama de Clases del Dominio UML -- Fleet]
+  )
+]
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.7.6.2. Database Design Diagram (PostgreSQL 18)]
+]
+#v(0.3em)
+
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/fleet/fleet-erd.svg", width: 60%)
+    ),
+    caption: [Diagrama de Base de Datos Relacional ER -- Fleet]
+  )
+]
+
 ```
 
 ```

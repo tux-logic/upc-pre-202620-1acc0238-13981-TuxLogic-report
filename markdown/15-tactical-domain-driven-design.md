@@ -1733,4 +1733,205 @@ Descomposición del Container API en sus componentes principales para el Bounded
 
 ##### 2.6.6.6.2. PostgreSQL 18 Entity Relationship Diagram (ERD)
 
-![Diagrama de Base de Datos Relacional ER -- Core](../assets/core/core-erd.svg)
+
+
+---
+
+### 2.6.7. Bounded Context: Fleet (Appointments & Registrations)
+
+El Bounded Context Fleet administra las citas programadas de atención mecánica (`Appointment`) en las distintas sucursales del taller, así como el registro y vinculación multi-tenant de clientes (`CustomerRegistration`) y empleados técnicos (`EmployeeRegistration`) con las sucursales del sistema. Interactúa mediante un Anti-Corruption Layer (ACL) con el Bounded Context Core para validar la existencia de clientes, empleados y sucursales.
+
+---
+
+#### 2.6.7.1. Domain Layer (Capa de Dominio)
+
+La Capa de Dominio define las reglas de agendamiento de citas mecánicas, duraciones estimadas predeterminadas (1 hora), métodos Factory para instanciación de agregados, validaciones de solapamiento de horarios en la capa de aplicación y la adscripción de clientes y empleados a las sedes activas del taller.
+
+![Diagrama de la Capa de Dominio -- Fleet](../assets/fleet/fleet-domain-layer.svg)
+
+---
+
+##### 2.6.7.1.1. Value Objects, Enums & Exceptions
+
+* **Enumeración: `AppointmentStatus`**
+  * `PENDING`: Cita agendada pendiente de recepción en el taller.
+  * `COMPLETED`: Cita completada.
+  * `CANCELED`: Cita cancelada.
+* **Record Value Object: `CustomerRegistrationStatus(String value)`**
+  * **Constantes Estáticas:** `ACTIVE` ("ACTIVE"), `INACTIVE` ("INACTIVE").
+  * **Validación:** El estado no puede ser nulo ni estar en blanco.
+* **Record Value Object: `EmployeeRegistrationStatus(String value)`**
+  * **Constantes Estáticas:** `ACTIVE` ("ACTIVE"), `INACTIVE` ("INACTIVE").
+  * **Validación:** El estado no puede ser nulo ni estar en blanco.
+* **Record Value Object: `AppointmentSummary(String value)`**
+  * **Propósito:** Notas explicativas o resumen del motivo de la cita técnica.
+  * **Validaciones:** No puede ser nulo ni en blanco. Longitud máxima: `2000` caracteres (`fleet.error.appointmentsSummary.tooLong`).
+
+---
+
+##### 2.6.7.1.2. Aggregates & Entities
+
+* **Aggregate Root: `Appointment`**
+  * **Hereda de:** `AbstractDomainAggregateRoot<Appointment>`
+  * **Propósito:** Cita de servicio agendada para un cliente y vehículo en una sucursal específica.
+  * **Reglas de Negocio:** Al crearse, calcula automáticamente `scheduledEnd = scheduledStart + 1 hora`. Inicia por defecto con estado `PENDING`. Registra el evento de dominio `AppointmentCreatedEvent`.
+* **Aggregate Root: `CustomerRegistration`**
+  * **Hereda de:** `AbstractDomainAggregateRoot<CustomerRegistration>`
+  * **Propósito:** Registro de asociación de un cliente (`CustomerId`) con una sucursal (`BranchId`).
+  * **Reglas de Negocio:** Inicia en estado `ACTIVE`. `deactivate()`: Cambia el estado a `INACTIVE` y marca la fecha de borrado `deletedAt`.
+* **Aggregate Root: `EmployeeRegistration`**
+  * **Hereda de:** `AbstractDomainAggregateRoot<EmployeeRegistration>`
+  * **Propósito:** Registro de adscripción de un empleado (`EmployeeId`) a una sucursal con especialidad técnica y salario asignado.
+  * **Reglas de Negocio:** Permite actualizar especialidad, código de especialidad y salario. `deactivate()`: Cambia el estado a `INACTIVE` y setea `deletedAt`.
+
+---
+
+##### 2.6.7.1.3. Domain Events
+
+* `AppointmentCreatedEvent`: Emitido cuando se agenda una nueva cita.
+* `CustomerRegistrationCreatedEvent`: Emitido al registrar a un cliente en una sucursal.
+* `EmployeeRegistrationCreatedEvent`: Emitido al adscribir un empleado técnico a una sucursal.
+
+---
+
+##### 2.6.7.1.4. Domain Repositories (Interfaces)
+
+* **`AppointmentRepository`:** `save(Appointment)`, `findById(UUID)`, `existsById(UUID)`, `deleteById(UUID)`, `existsByScheduledStartLessThanAndScheduledEndGreaterThan(LocalDateTime, LocalDateTime)`, `existsByIdNotAndScheduledStartLessThanAndScheduledEndGreaterThan(UUID, LocalDateTime, LocalDateTime)`, `findByBranchId(BranchId)`, `findByCustomerId(CustomerId)`, `findByVehicleId(VehicleId)`, `findByBranchIdAndStatus(BranchId, AppointmentStatus)`.
+* **`CustomerRegistrationRepository`:** `save(CustomerRegistration)`, `findById(UUID)`, `findByCustomerId(UUID)`, `findByCustomerIdAndBranchId(UUID, UUID)`, `findByBranchIdAndStatus(BranchId, CustomerRegistrationStatus)`, `existsByCustomerIdAndBranchId(UUID, UUID)`.
+* **`EmployeeRegistrationRepository`:** `save(EmployeeRegistration)`, `findById(EmployeeId)`, `findByEmployeeId(UUID)`, `findByBranchId(BranchId)`, `findByBranchIdAndStatus(BranchId, EmployeeRegistrationStatus)`, `existsByEmployeeIdAndBranchId(UUID, UUID)`.
+
+---
+
+#### 2.6.7.2. Application Layer (Capa de Aplicación)
+
+La Capa de Aplicación expone la ejecución de casos de uso mediante servicios de comando y consulta.
+
+![Diagrama de la Capa de Aplicación -- Fleet](../assets/fleet/fleet-app-layer.svg)
+
+---
+
+##### 2.6.7.2.1. Commands & Queries (DTOs de Aplicación)
+
+* **Commands (Comandos de Escritura):**
+  * `CreateAppointmentCommand(BranchId branchId, CustomerId customerId, VehicleId vehicleId, LocalDateTime scheduledStart, AppointmentSummary notes)`
+  * `UpdateAppointmentCommand(UUID appointmentId, BranchId branchId, CustomerId customerId, VehicleId vehicleId, LocalDateTime scheduledStart, AppointmentStatus status, AppointmentSummary notes)`
+  * `DeleteAppointmentCommand(UUID appointmentId)`
+  * `CreateCustomerRegistrationCommand(CustomerId customerId, BranchId branchId)`
+  * `UpdateCustomerRegistrationCommand(UUID registrationId, CustomerRegistrationStatus status)`
+  * `DeleteCustomerRegistrationCommand(UUID registrationId)`
+  * `CreateEmployeeRegistrationCommand(EmployeeId employeeId, BranchId branchId, String speciality, String specialityName, BigDecimal salary)`
+  * `UpdateEmployeeRegistrationCommand(EmployeeId registrationId, String speciality, String specialityName, BigDecimal salary)`
+  * `DeleteEmployeeRegistrationCommand(EmployeeId registrationId)`
+* **Queries & Responses (Consultas y DTOs de Resultado):**
+  * *(AppointmentQueryService opera directamente con parámetros sobrecargados `UUID appointmentId`, `BranchId branchId`, `CustomerId customerId`, `VehicleId vehicleId` y `AppointmentStatus status`)*
+  * *(CustomerRegistrationQueryService opera con parámetros sobrecargados `BranchId branchId`, `CustomerRegistrationStatus status`, `UUID registrationId` y la query `GetCustomerRegistrationByCustomerIdQuery`)*
+  * `GetCustomerRegistrationByCustomerIdQuery(UUID customerId)`
+  * `GetEmployeeRegistrationByIdQuery(EmployeeId registrationId)`
+  * `GetEmployeeRegistrationByEmployeeIdQuery(UUID employeeId)`
+  * `GetEmployeeRegistrationsByBranchIdQuery(BranchId branchId)`
+  * `GetEmployeeRegistrationsByBranchIdAndStatusQuery(BranchId branchId, EmployeeRegistrationStatus status)`
+
+---
+
+##### 2.6.7.2.2. Outbound Services (ACL)
+
+* `ExternalCoreService`: Valida la existencia de Clientes, Empleados y Sucursales delegando al Bounded Context Core.
+* `ExternalVehicleService`: Valida la existencia de Vehículos.
+
+---
+
+#### 2.6.7.3. Interface Layer (Capa de Interfaz / REST)
+
+Exposición RESTful para agendamiento de citas y registros de clientes/empleados por sucursal.
+
+![Diagrama de la Capa de Interfaces -- Fleet](../assets/fleet/fleet-interface-layer.svg)
+
+---
+
+##### 2.6.7.3.1. Endpoints & REST Controllers
+
+* **`AppointmentsController` (`/api/v1/appointments`)**
+  * `POST /api/v1/appointments`: Agenda una nueva cita mecánica.
+  * `GET /api/v1/appointments`: Obtiene citas filtradas opcionalmente por `branchId`, `status`, `customerId` o `vehicleId`.
+  * `GET /api/v1/appointments/{appointmentId}`: Obtiene el detalle de una cita específica.
+  * `PUT /api/v1/appointments/{appointmentId}`: Actualiza horario, estado o notas de una cita.
+  * `DELETE /api/v1/appointments/{appointmentId}`: Eliminación lógica (soft-delete) de una cita.
+* **`CustomerRegistrationsController` (`/api/v1/customer-registrations`)**
+  * `POST /api/v1/customer-registrations`: Vincula a un cliente con una sucursal.
+  * `GET /api/v1/customer-registrations?customerId={customerId}`: Obtiene el registro de un cliente por su ID.
+  * `GET /api/v1/customer-registrations?branchId={branchId}&status={status}`: Obtiene registros por sucursal y estado.
+  * `PUT /api/v1/customer-registrations/{id}`: Actualiza el estado del registro.
+  * `DELETE /api/v1/customer-registrations/{id}`: Desactiva el registro de un cliente.
+* **`EmployeeRegistrationsController` (`/api/v1/employee-registrations`)**
+  * `POST /api/v1/employee-registrations`: Adscribe a un empleado técnico a una sucursal.
+  * `GET /api/v1/employee-registrations?branchId={branchId}&status={status}`: Consulta lista de empleados técnicos adscritos.
+  * `GET /api/v1/employee-registrations/{id}`: Obtiene registro por ID.
+  * `GET /api/v1/employee-registrations?employeeId={employeeId}`: Obtiene registro por ID de empleado.
+  * `PUT /api/v1/employee-registrations/{id}`: Actualiza especialidad o salario del empleado.
+  * `DELETE /api/v1/employee-registrations/{id}`: Desactiva la adscripción del empleado técnico.
+
+---
+
+#### 2.6.7.4. Infrastructure Layer (Capa de Infraestructura)
+
+Mapeo relacional JPA a PostgreSQL 18 con soporte de eliminación lógica (`@SQLDelete` seteando `deleted_at`).
+
+![Diagrama de la Capa de Infraestructura -- Fleet](../assets/fleet/fleet-infra-layer.svg)
+
+---
+
+##### 2.6.7.4.1. Mapeo de Entidades Relacionales (JPA)
+
+* **`appointments`** (`AppointmentPersistenceEntity`):
+  * `id` (UUID, PK, heredado de `AuditableAbstractPersistenceEntity`)
+  * `branch_id` (UUID, NOT NULL)
+  * `customer_id` (UUID, NOT NULL)
+  * `vehicle_id` (UUID, NOT NULL)
+  * `status` (VARCHAR(20), NOT NULL)
+  * `scheduled_start` (TIMESTAMP, NOT NULL)
+  * `scheduled_end` (TIMESTAMP, NOT NULL)
+  * `notes` (TEXT, `AppointmentSummaryAttributeConverter`)
+  * `deleted_at` (TIMESTAMP), `created_by` (UUID), `updated_by` (UUID)
+  * `created_at`, `updated_at`, `version` (heredados de `AuditableAbstractPersistenceEntity`)
+* **`customer_registrations`** (`CustomerRegistrationPersistenceEntity`):
+  * `id` (UUID, PK, heredado de `AuditableAbstractPersistenceEntity`)
+  * `customer_id` (UUID, NOT NULL)
+  * `branch_id` (UUID, NOT NULL)
+  * `status` (VARCHAR(20), NOT NULL)
+  * `deleted_at` (TIMESTAMP)
+  * `created_at`, `updated_at`, `version` (heredados de `AuditableAbstractPersistenceEntity`)
+* **`employee_registrations`** (`EmployeeRegistrationPersistenceEntity`):
+  * `id` (UUID, PK, heredado de `AuditableAbstractPersistenceEntity`)
+  * `employee_id` (UUID, NOT NULL)
+  * `branch_id` (UUID, NOT NULL)
+  * `speciality` (VARCHAR(50), NOT NULL)
+  * `speciality_name` (VARCHAR(50))
+  * `salary` (DECIMAL(10,2), NOT NULL)
+  * `status` (VARCHAR(20), NOT NULL)
+  * `deleted_at` (TIMESTAMP)
+  * `created_at`, `updated_at`, `version` (heredados de `AuditableAbstractPersistenceEntity`)
+
+---
+
+#### 2.6.7.5. Software Architecture Component Level Diagrams (C4 Model - Level 3)
+
+Descomposición del Container API en sus componentes principales para el Bounded Context **Fleet**.
+
+##### 2.6.7.5.1. C4 Model Component Diagram
+
+![Diagrama de Componentes C4 Nivel 3 -- Fleet](../assets/fleet/fleet-c4-component.svg)
+
+---
+
+#### 2.6.7.6. Code Level Diagrams
+
+##### 2.6.7.6.1. Domain Layer Class Diagram
+
+![Diagrama de Clases del Dominio UML -- Fleet](../assets/fleet/fleet-code-domain.svg)
+
+---
+
+##### 2.6.7.6.2. PostgreSQL 18 Entity Relationship Diagram (ERD)
+
+![Diagrama de Base de Datos Relacional ER -- Fleet](../assets/fleet/fleet-erd.svg)
+
