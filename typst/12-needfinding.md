@@ -300,23 +300,35 @@ Se define el glosario de términos del dominio ShiftIq / TuxLogic. Este *Ubiquit
 **Tabla 9**  
 *Ubiquitous Language — ecosistema ShiftIq*
 
-| Término (EN) | Equivalente (ES) | Definición | Segmentos / contexto |
-| :--- | :--- | :--- | :--- |
-| **Workshop Owner** | Dueño del taller | Responsable de decisiones administrativas y operativas del taller independiente. | Taller |
-| **Workshop Admin** | Administrador de taller | Usuario que gestiona agenda, órdenes y alertas desde la app/web del taller. | Taller |
-| **Mechanic** | Mecánico | Técnico que ejecuta el servicio físico sobre el vehículo. | Taller / Operaciones |
-| **Driver** | Conductor | Propietario o usuario habitual del vehículo que recibe alertas y agenda citas en la app móvil. | Conductor |
-| **OBD2 Dongle / Scanner** | Dispositivo / escáner OBD2 | Hardware IoT conectado al puerto de diagnóstico del vehículo para capturar telemetría. | Telemetría |
-| **Telemetry** | Telemetría | Datos técnicos transmitidos desde el vehículo (sensores, estado, códigos). | App móvil / Backend |
-| **DTC** | Código de falla (DTC) | Código alfanumérico estandarizado que identifica una falla detectada por la ECU. | Diagnóstico |
-| **Preventive Alert** | Alerta preventiva | Notificación push proactiva basada en telemetría/DTC, expresada en lenguaje natural. | Conductor / Taller |
-| **Severity Level** | Nivel de severidad | Clasificación Bajo / Medio / Crítico asociada a una alerta. | UX móvil |
-| **Work Order** | Orden de trabajo | Registro digital del servicio: hallazgos, repuestos, estado y responsables. | Taller |
-| **Appointment** | Cita / agendamiento | Reserva de franja horaria para mantenimiento o reparación, creada desde la app. | Ambos |
-| **Vehicle Health** | Salud del vehículo | Representación simplificada del estado general mostrada al conductor en la app. | Conductor |
-| **Predictive Maintenance** | Mantenimiento predictivo | Intervención anticipada basada en datos antes de una avería crítica. | Dominio |
-| **Service History** | Historial de servicio | Línea de tiempo de intervenciones y lecturas asociadas a un vehículo. | Ambos |
-| **Offline Sync** | Sincronización offline | Persistencia local en el dispositivo móvil y envío diferido al restablecer conectividad. | App móvil |
-| **Consent / Privacy** | Consentimiento / privacidad | Autorización explícita del usuario para recolectar y tratar telemetría y datos personales. | Ética / Términos |
+```{=typst}
+#v(0.5em)
+#align(center)[
+  #table(
+    columns: (95pt, 85pt, 1fr, 70pt),
+    align: (left, left, left, left),
+    stroke: 0.4pt + rgb("#cbd5e1"),
+    fill: (x, y) => if y == 0 { rgb("#1e3a8a") } else if calc.even(y) { rgb("#f8fafc") } else { rgb("#ffffff") },
+    inset: (x: 6pt, y: 5pt),
+    table.header([*Término (EN)*], [*Equivalente (ES)*], [*Definición*], [*Segmentos*]),
+    [*Workshop Owner*], [Dueño del taller], [Responsable de decisiones administrativas y operativas del taller independiente.], [Taller],
+    [*Workshop Admin*], [Administrador de taller], [Usuario que gestiona agenda, órdenes y alertas desde la app/web del taller.], [Taller],
+    [*Mechanic*], [Mecánico], [Técnico que ejecuta el servicio físico sobre el vehículo.], [Taller / Operaciones],
+    [*Driver*], [Conductor], [Propietario o usuario habitual del vehículo que recibe alertas y agenda citas en la app móvil.], [Conductor],
+    [*OBD2 Dongle / Scanner*], [Dispositivo / escáner OBD2], [Hardware IoT conectado al puerto de diagnóstico del vehículo para capturar telemetría.], [Telemetría],
+    [*Telemetry*], [Telemetría], [Datos técnicos transmitidos desde el vehículo (sensores, estado, códigos).], [App móvil / Backend],
+    [*DTC*], [Código de falla (DTC)], [Código alfanumérico estandarizado que identifica una falla detectada por la ECU.], [Diagnóstico],
+    [*Preventive Alert*], [Alerta preventiva], [Notificación push proactiva basada en telemetría/DTC, expresada en lenguaje natural.], [Conductor / Taller],
+    [*Severity Level*], [Nivel de severidad], [Clasificación Bajo / Medio / Crítico asociada a una alerta.], [UX móvil],
+    [*Work Order*], [Orden de trabajo], [Registro digital del servicio: hallazgos, repuestos, estado y responsables.], [Taller],
+    [*Appointment*], [Cita / agendamiento], [Reserva de franja horaria para mantenimiento o reparación, creada desde la app.], [Ambos],
+    [*Vehicle Health*], [Salud del vehículo], [Representación simplificada del estado general mostrada al conductor en la app.], [Conductor],
+    [*Predictive Maintenance*], [Mantenimiento predictivo], [Intervención anticipada basada en datos antes de una avería crítica.], [Dominio],
+    [*Service History*], [Historial de servicio], [Línea de tiempo de intervenciones y lecturas asociadas a un vehículo.], [Ambos],
+    [*Offline Sync*], [Sincronización offline], [Persistencia local en el dispositivo móvil y envío diferido al restablecer conectividad.], [App móvil],
+    [*Consent / Privacy*], [Consentimiento / privacidad], [Autorización explícita del usuario para recolectar y tratar telemetría y datos personales.], [Ética / Términos],
+  )
+]
+#v(0.5em)
+```
 
 Este lenguaje ubicuo alimenta las siguientes etapas del informe (especificación de requerimientos, DDD estratégico/táctico y diseño de la experiencia móvil), asegurando que taller y conductor hablen el mismo vocabulario que el equipo de ingeniería de TuxLogic.

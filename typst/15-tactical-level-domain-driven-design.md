@@ -19,7 +19,7 @@ La Capa de Dominio del Shared Kernel encapsula los tipos de valor reutilizables 
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/shared/domain-layer-diagram.png", width: 95%)
+      image("assets/shared/domain-layer-diagram.svg", width: 95%)
     ),
     caption: [Diagrama de la Capa de Dominio -- Shared Kernel]
   )
@@ -48,42 +48,22 @@ La Capa de Dominio del Shared Kernel encapsula los tipos de valor reutilizables 
 
 ===== 1.2. Shared Value Objects & Records
 
-#grid(
-  columns: (1fr, 1fr),
-  gutter: 10pt,
-  block(
-    fill: rgb("#f8fafc"),
-    stroke: 0.5pt + rgb("#cbd5e1"),
-    radius: 4pt,
-    inset: 8pt,
-    width: 100%
-  )[
-    #text(weight: "bold", fill: rgb("#b91c1c"))[Record: `Money(BigDecimal amount)`] \
-    *Propósito:* Value Object inmutable para montos monetarios. \
-    *Invariantes & Validaciones:*
-    - No nulo (`operations.error.money.required`).
-    - No negativo (`operations.error.money.cannotBeNegative`).
-    - Redondeo a 2 decimales (`HALF_UP`). \
-    *Operaciones:* `plus`, `minus`, `multiply`, `isGreaterThan`, `isLessThan`. \
-    *Constantes:* `ZERO` (`BigDecimal.ZERO`).
-  ],
-  block(
-    fill: rgb("#f8fafc"),
-    stroke: 0.5pt + rgb("#cbd5e1"),
-    radius: 4pt,
-    inset: 8pt,
-    width: 100%
-  )[
-    #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `BranchId(UUID value)`] \
-    *Propósito:* Identificador fuertemente tipado para sucursales. \
-    *Validación:* No permite valores nulos (`shared.error.branchId.required`).
-
-    #v(4pt)
-    #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `CustomerId(UUID value)`] \
-    *Propósito:* Identificador fuertemente tipado para clientes. \
-    *Validación:* No permite valores nulos (`shared.error.customerId.required`).
-  ]
-)
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#b91c1c"))[Record: `Money(BigDecimal amount)`] \
+  *Propósito:* Value Object inmutable para montos monetarios. \
+  *Invariantes & Validaciones:*
+  - No puede ser nulo (`operations.error.money.required`).
+  - No puede ser negativo (`operations.error.money.cannotBeNegative`).
+  - Redondeo automático a 2 decimales (`HALF_UP`). \
+  *Operaciones:* `plus(Money)`, `minus(Money)`, `multiply(int)`, `multiply(BigDecimal)`, `isGreaterThan(Money)`, `isLessThan(Money)`. \
+  *Constantes:* `ZERO` (`BigDecimal.ZERO`).
+]
 
 #v(6pt)
 
@@ -97,14 +77,14 @@ La Capa de Dominio del Shared Kernel encapsula los tipos de valor reutilizables 
     inset: 8pt,
     width: 100%
   )[
-    #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `VehicleId(UUID value)`] \
-    *Propósito:* Identificador fuertemente tipado para vehículos. \
-    *Validación:* No permite valores nulos (`shared.error.vehicleId.required`).
+    #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `BranchId(UUID value)`] \
+    *Propósito:* Identificador fuertemente tipado para sucursales. \
+    *Validación:* No nulo (`shared.error.branchId.required`).
 
-    #v(4pt)
-    #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `Mileage(Integer value)`] \
-    *Propósito:* Kilometraje de vehículos. \
-    *Validación:* No nulo y no negativo.
+    #v(6pt)
+    #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `CustomerId(UUID value)`] \
+    *Propósito:* Identificador fuertemente tipado para clientes. \
+    *Validación:* No nulo (`shared.error.customerId.required`).
   ],
   block(
     fill: rgb("#f8fafc"),
@@ -113,11 +93,30 @@ La Capa de Dominio del Shared Kernel encapsula los tipos de valor reutilizables 
     inset: 8pt,
     width: 100%
   )[
-    #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `Address(String value)`] \
-    *Propósito:* Dirección física formateada. \
-    *Validación:* No vacía/nula (`operations.error.address.notBlank`) y máx. 100 caracteres.
+    #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `VehicleId(UUID value)`] \
+    *Propósito:* Identificador fuertemente tipado para vehículos. \
+    *Validación:* No nulo (`shared.error.vehicleId.required`).
+
+    #v(6pt)
+    #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `Mileage(Integer value)`] \
+    *Propósito:* Kilometraje de vehículos. \
+    *Validación:* No nulo y no negativo.
   ]
 )
+
+#v(6pt)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 8pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `Address(String value)`] \
+  *Propósito:* Dirección física formateada. \
+  *Validación:* No vacía ni nula (`operations.error.address.notBlank`) y longitud máxima de 100 caracteres.
+]
 
 #v(0.5em)
 
@@ -141,7 +140,7 @@ Manejo global de excepciones (`@RestControllerAdvice`), ensambladores universale
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/shared/interface-layer-diagram.png", width: 95%)
+      image("assets/shared/interface-layer-diagram.svg", width: 95%)
     ),
     caption: [Diagrama de la Capa de Interfaz -- Shared Kernel]
   )
@@ -179,7 +178,7 @@ La Capa de Aplicación del Shared Kernel provee la estructura funcional `Result<
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/shared/application-layer-diagram.png", width: 95%)
+      image("assets/shared/application-layer-diagram.svg", width: 95%)
     ),
     caption: [Diagrama de la Capa de Aplicación -- Shared Kernel]
   )
@@ -188,39 +187,38 @@ La Capa de Aplicación del Shared Kernel provee la estructura funcional `Result<
 
 ===== 3.1. Functional Result Pattern & Error Specification
 
-#grid(
-  columns: (1fr, 1fr),
-  gutter: 10pt,
-  block(
-    fill: rgb("#f8fafc"),
-    stroke: 0.5pt + rgb("#cbd5e1"),
-    radius: 4pt,
-    inset: 8pt,
-    width: 100%
-  )[
-    #text(weight: "bold", fill: rgb("#1e3a8a"))[Sealed Interface: `Result<T, E>`] \
-    *Permite:* `Result.Success<T, E>`, `Result.Failure<T, E>`. \
-    *Métodos Principales:*
-    - `static success(T value)` / `static failure(E error)`
-    - `fold(onSuccess, onFailure)`
-    - `isSuccess()`, `isFailure()`, `success()`, `failure()`.
-  ],
-  block(
-    fill: rgb("#f8fafc"),
-    stroke: 0.5pt + rgb("#cbd5e1"),
-    radius: 4pt,
-    inset: 8pt,
-    width: 100%
-  )[
-    #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `ApplicationError(code, message, details)`] \
-    *Métodos Estáticos de Fábrica:*
-    - `validationError(field, reason)`
-    - `notFound(resourceType, identifier)`
-    - `businessRuleViolation(rule, reason)`
-    - `conflict(resource, reason)`
-    - `unexpected(context, reason)`
-  ]
-)
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[Sealed Interface: `Result<T, E>`] \
+  *Permite:* `Result.Success<T, E>`, `Result.Failure<T, E>`. \
+  *Métodos Principales:*
+  - `static success(T value)` / `static failure(E error)`: Métodos de fábrica.
+  - `fold(onSuccess, onFailure)`: Evaluación funcional pattern-matching.
+  - `isSuccess()`, `isFailure()`, `success()`, `failure()`.
+]
+
+#v(6pt)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `ApplicationError(code, message, details)`] \
+  *Métodos Estáticos de Fábrica:*
+  - `validationError(field, reason)`
+  - `notFound(resourceType, identifier)`
+  - `businessRuleViolation(rule, reason)`
+  - `conflict(resource, reason)`
+  - `unexpected(context, reason)`
+]
 
 #v(0.5em)
 
@@ -236,7 +234,7 @@ Clase base relacional auditada JPA (`AuditableAbstractPersistenceEntity`), conve
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/shared/infrastracture-layer-diagram.png", width: 95%)
+      image("assets/shared/infrastracture-layer-diagram.svg", width: 95%)
     ),
     caption: [Diagrama de la Capa de Infraestructura -- Shared Kernel]
   )
@@ -291,7 +289,7 @@ Descomposición del Container REST API resaltando los componentes del *Shared Ke
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/shared/component-diagram-share.png", width: 95%)
+      image("assets/shared/component-diagram-share.svg", width: 95%)
     ),
     caption: [Component Diagram (C4 Level 3) -- Shared Kernel]
   )
@@ -312,7 +310,7 @@ Representación detallada de clases del módulo Shared Kernel en formato UML, ab
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/shared/domain-shared-kernel-class-diagram.png", width: 95%)
+      image("assets/shared/domain-shared-kernel-class-diagram.svg", width: 95%)
     ),
     caption: [Diagrama de Clases del Dominio UML -- Shared Kernel]
   )
