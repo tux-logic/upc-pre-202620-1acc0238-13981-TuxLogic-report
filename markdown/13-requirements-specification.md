@@ -856,3 +856,71 @@ Given que el stock cae al mínimo, when se evalúa el umbral, then el sistema em
 
 
 ### 2.4.3. Product Backlog
+
+**Orden de User Stories y Technical Stories**
+
+El Product Backlog prioriza las historias según valor de negocio y dependencias técnicas. Las Technical Stories se intercalan junto a las User Stories que habilitan. Los *Bounded Contexts* corresponden a los identificados en el diseño estratégico de ShiftIq. *Vehicle Intelligence* abrevia *Vehicle Intelligence & Diagnostics*.
+
+<table style="width:100%; border-collapse: collapse;">
+<tr><th style="text-align:left;">Orden</th><th style="text-align:left;">ID</th><th style="text-align:left;">User Story / Technical Story</th><th style="text-align:left;">Story Points</th><th style="text-align:left;">Bounded Context</th></tr>
+<tr><td>01</td><td>US001</td><td>Registro de taller y dueño</td><td>5</td><td>Workshop Management</td></tr>
+<tr><td>02</td><td>TS002</td><td>Endpoints de autenticación</td><td>5</td><td>Identity & Access</td></tr>
+<tr><td>03</td><td>US002</td><td>Inicio de sesión</td><td>3</td><td>Identity & Access</td></tr>
+<tr><td>04</td><td>US003</td><td>Inicio de sesión con Google</td><td>3</td><td>Identity & Access</td></tr>
+<tr><td>05</td><td>US004</td><td>Recuperación de contraseña</td><td>5</td><td>Identity & Access</td></tr>
+<tr><td>06</td><td>US035</td><td>Actualización de correo electrónico</td><td>2</td><td>Identity & Access</td></tr>
+<tr><td>07</td><td>US036</td><td>Cambio de contraseña autenticado</td><td>2</td><td>Identity & Access</td></tr>
+<tr><td>08</td><td>US034</td><td>Consulta de perfiles y roles</td><td>2</td><td>Identity & Access</td></tr>
+<tr><td>09</td><td>TS003</td><td>Endpoints de talleres, dueños y sucursales</td><td>5</td><td>Workshop Management</td></tr>
+<tr><td>10</td><td>US005</td><td>Gestión de empleados y roles</td><td>5</td><td>Workshop Management</td></tr>
+<tr><td>11</td><td>US006</td><td>Gestión de sucursales</td><td>3</td><td>Workshop Management</td></tr>
+<tr><td>12</td><td>US007</td><td>Asignación y cancelación de suscripción por sucursal</td><td>5</td><td>Workshop Management</td></tr>
+<tr><td>13</td><td>US033</td><td>Actualización de datos del taller</td><td>2</td><td>Workshop Management</td></tr>
+<tr><td>14</td><td>US032</td><td>Gestión de clientes del taller</td><td>3</td><td>Workshop Management</td></tr>
+<tr><td>15</td><td>TS004</td><td>Endpoints de inventario de productos</td><td>5</td><td>Inventory Management</td></tr>
+<tr><td>16</td><td>US008</td><td>Alta de producto en catálogo</td><td>3</td><td>Inventory Management</td></tr>
+<tr><td>17</td><td>US009</td><td>Actualización y baja de producto</td><td>3</td><td>Inventory Management</td></tr>
+<tr><td>18</td><td>US010</td><td>Ingreso de lote y ajuste de stock</td><td>5</td><td>Inventory Management</td></tr>
+<tr><td>19</td><td>TS009</td><td>Listado filtrado de productos por sucursal</td><td>3</td><td>Inventory Management</td></tr>
+<tr><td>20</td><td>US011</td><td>Gestión del catálogo de servicios</td><td>3</td><td>Service Operations</td></tr>
+<tr><td>21</td><td>TS008</td><td>Endpoints de vehículos y dispositivos OBD2</td><td>5</td><td>Vehicle Intelligence</td></tr>
+<tr><td>22</td><td>US017</td><td>Registro de vehículo</td><td>3</td><td>Vehicle Intelligence</td></tr>
+<tr><td>23</td><td>US021</td><td>Alta de dispositivo OBD2</td><td>3</td><td>Vehicle Intelligence</td></tr>
+<tr><td>24</td><td>US018</td><td>Vinculación de dispositivo OBD2 a vehículo</td><td>5</td><td>Vehicle Intelligence</td></tr>
+<tr><td>25</td><td>US020</td><td>Desvinculación de dispositivo OBD2</td><td>3</td><td>Vehicle Intelligence</td></tr>
+<tr><td>26</td><td>US025</td><td>Actualización de estado de registro OBD2</td><td>3</td><td>Vehicle Intelligence</td></tr>
+<tr><td>27</td><td>TS001</td><td>Endpoint de ingesta de telemetría OBD2</td><td>8</td><td>Vehicle Intelligence</td></tr>
+<tr><td>28</td><td>US019</td><td>Consulta de telemetría del vehículo</td><td>5</td><td>Vehicle Intelligence</td></tr>
+<tr><td>29</td><td>US023</td><td>Consulta de alertas DTC</td><td>5</td><td>Vehicle Intelligence</td></tr>
+<tr><td>30</td><td>US022</td><td>Actualización de datos del vehículo</td><td>2</td><td>Vehicle Intelligence</td></tr>
+<tr><td>31</td><td>US024</td><td>Listado de vehículos por cliente</td><td>2</td><td>Vehicle Intelligence</td></tr>
+<tr><td>32</td><td>TS007</td><td>Endpoints de citas y registros de flota</td><td>5</td><td>Fleet & Appointments</td></tr>
+<tr><td>33</td><td>US026</td><td>Creación de cita de servicio</td><td>5</td><td>Fleet & Appointments</td></tr>
+<tr><td>34</td><td>US027</td><td>Actualización de cita de servicio</td><td>3</td><td>Fleet & Appointments</td></tr>
+<tr><td>35</td><td>US028</td><td>Cancelación de cita de servicio</td><td>2</td><td>Fleet & Appointments</td></tr>
+<tr><td>36</td><td>US029</td><td>Consulta de citas de la sucursal</td><td>2</td><td>Fleet & Appointments</td></tr>
+<tr><td>37</td><td>US030</td><td>Registro de cliente en flota</td><td>3</td><td>Fleet & Appointments</td></tr>
+<tr><td>38</td><td>US031</td><td>Registro de empleado en flota</td><td>3</td><td>Fleet & Appointments</td></tr>
+<tr><td>39</td><td>TS005</td><td>Endpoints de órdenes de trabajo y tareas</td><td>8</td><td>Service Operations</td></tr>
+<tr><td>40</td><td>US012</td><td>Creación de Orden de Trabajo</td><td>5</td><td>Service Operations</td></tr>
+<tr><td>41</td><td>US048</td><td>Agregar tarea a la orden de trabajo</td><td>3</td><td>Service Operations</td></tr>
+<tr><td>42</td><td>US013</td><td>Asignación de mecánico a tarea</td><td>3</td><td>Service Operations</td></tr>
+<tr><td>43</td><td>US014</td><td>Inicio y finalización de tarea</td><td>5</td><td>Service Operations</td></tr>
+<tr><td>44</td><td>US015</td><td>Consumo de repuestos en una tarea</td><td>5</td><td>Service Operations</td></tr>
+<tr><td>45</td><td>TS010</td><td>Integración de eventos de stock entre Operations e Inventory</td><td>8</td><td>Inventory Management</td></tr>
+<tr><td>46</td><td>US047</td><td>Actualización de detalles de la orden</td><td>3</td><td>Service Operations</td></tr>
+<tr><td>47</td><td>US049</td><td>Eliminar tarea de la orden de trabajo</td><td>2</td><td>Service Operations</td></tr>
+<tr><td>48</td><td>US046</td><td>Completar orden de trabajo</td><td>3</td><td>Service Operations</td></tr>
+<tr><td>49</td><td>US050</td><td>Consulta de órdenes de trabajo</td><td>2</td><td>Service Operations</td></tr>
+<tr><td>50</td><td>US016</td><td>Marcar Orden de Trabajo como pagada</td><td>3</td><td>Service Operations</td></tr>
+<tr><td>51</td><td>TS006</td><td>Endpoints de cotizaciones, vouchers y checkout</td><td>8</td><td>Billing & Payments</td></tr>
+<tr><td>52</td><td>US037</td><td>Creación de cotización</td><td>5</td><td>Billing & Payments</td></tr>
+<tr><td>53</td><td>US040</td><td>Actualización de descuento en cotización</td><td>2</td><td>Billing & Payments</td></tr>
+<tr><td>54</td><td>US038</td><td>Aprobación de cotización</td><td>3</td><td>Billing & Payments</td></tr>
+<tr><td>55</td><td>US039</td><td>Cancelación de cotización</td><td>2</td><td>Billing & Payments</td></tr>
+<tr><td>56</td><td>US041</td><td>Generación de comprobante de pago</td><td>5</td><td>Billing & Payments</td></tr>
+<tr><td>57</td><td>US043</td><td>Registro de pago parcial en comprobante</td><td>5</td><td>Billing & Payments</td></tr>
+<tr><td>58</td><td>US042</td><td>Checkout con pago inmediato</td><td>5</td><td>Billing & Payments</td></tr>
+<tr><td>59</td><td>US044</td><td>Pago con Stripe</td><td>8</td><td>Billing & Payments</td></tr>
+<tr><td>60</td><td>US045</td><td>Consulta de comprobantes por sucursal</td><td>2</td><td>Billing & Payments</td></tr>
+</table>

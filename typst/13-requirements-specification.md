@@ -1221,3 +1221,81 @@
 
 
 ### 2.4.3. Product Backlog
+
+```{=typst}
+#text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[Orden de User Stories y Technical Stories]
+
+#v(0.4em)
+#text(size: 9.5pt)[El Product Backlog prioriza las historias según valor de negocio y dependencias técnicas. Las Technical Stories se intercalan junto a las User Stories que habilitan. Los _Bounded Contexts_ corresponden a los identificados en el diseño estratégico de ShiftIq. _Vehicle Intelligence_ abrevia _Vehicle Intelligence & Diagnostics_.]
+
+#v(0.6em)
+#text(size: 8.5pt)[
+#table(
+  columns: (36pt, 48pt, 1fr, 52pt, 110pt),
+  align: (center, left, left, center, left),
+  inset: (x: 5pt, y: 4pt),
+  table.header([*Orden*], [*ID*], [*User Story / Technical Story*], [*Story Points*], [*Bounded Context*]),
+  [01], [US001], [Registro de taller y dueño], [5], [Workshop Management],
+  [02], [TS002], [Endpoints de autenticación], [5], [Identity & Access],
+  [03], [US002], [Inicio de sesión], [3], [Identity & Access],
+  [04], [US003], [Inicio de sesión con Google], [3], [Identity & Access],
+  [05], [US004], [Recuperación de contraseña], [5], [Identity & Access],
+  [06], [US035], [Actualización de correo electrónico], [2], [Identity & Access],
+  [07], [US036], [Cambio de contraseña autenticado], [2], [Identity & Access],
+  [08], [US034], [Consulta de perfiles y roles], [2], [Identity & Access],
+  [09], [TS003], [Endpoints de talleres, dueños y sucursales], [5], [Workshop Management],
+  [10], [US005], [Gestión de empleados y roles], [5], [Workshop Management],
+  [11], [US006], [Gestión de sucursales], [3], [Workshop Management],
+  [12], [US007], [Asignación y cancelación de suscripción por sucursal], [5], [Workshop Management],
+  [13], [US033], [Actualización de datos del taller], [2], [Workshop Management],
+  [14], [US032], [Gestión de clientes del taller], [3], [Workshop Management],
+  [15], [TS004], [Endpoints de inventario de productos], [5], [Inventory Management],
+  [16], [US008], [Alta de producto en catálogo], [3], [Inventory Management],
+  [17], [US009], [Actualización y baja de producto], [3], [Inventory Management],
+  [18], [US010], [Ingreso de lote y ajuste de stock], [5], [Inventory Management],
+  [19], [TS009], [Listado filtrado de productos por sucursal], [3], [Inventory Management],
+  [20], [US011], [Gestión del catálogo de servicios], [3], [Service Operations],
+  [21], [TS008], [Endpoints de vehículos y dispositivos OBD2], [5], [Vehicle Intelligence],
+  [22], [US017], [Registro de vehículo], [3], [Vehicle Intelligence],
+  [23], [US021], [Alta de dispositivo OBD2], [3], [Vehicle Intelligence],
+  [24], [US018], [Vinculación de dispositivo OBD2 a vehículo], [5], [Vehicle Intelligence],
+  [25], [US020], [Desvinculación de dispositivo OBD2], [3], [Vehicle Intelligence],
+  [26], [US025], [Actualización de estado de registro OBD2], [3], [Vehicle Intelligence],
+  [27], [TS001], [Endpoint de ingesta de telemetría OBD2], [8], [Vehicle Intelligence],
+  [28], [US019], [Consulta de telemetría del vehículo], [5], [Vehicle Intelligence],
+  [29], [US023], [Consulta de alertas DTC], [5], [Vehicle Intelligence],
+  [30], [US022], [Actualización de datos del vehículo], [2], [Vehicle Intelligence],
+  [31], [US024], [Listado de vehículos por cliente], [2], [Vehicle Intelligence],
+  [32], [TS007], [Endpoints de citas y registros de flota], [5], [Fleet & Appointments],
+  [33], [US026], [Creación de cita de servicio], [5], [Fleet & Appointments],
+  [34], [US027], [Actualización de cita de servicio], [3], [Fleet & Appointments],
+  [35], [US028], [Cancelación de cita de servicio], [2], [Fleet & Appointments],
+  [36], [US029], [Consulta de citas de la sucursal], [2], [Fleet & Appointments],
+  [37], [US030], [Registro de cliente en flota], [3], [Fleet & Appointments],
+  [38], [US031], [Registro de empleado en flota], [3], [Fleet & Appointments],
+  [39], [TS005], [Endpoints de órdenes de trabajo y tareas], [8], [Service Operations],
+  [40], [US012], [Creación de Orden de Trabajo], [5], [Service Operations],
+  [41], [US048], [Agregar tarea a la orden de trabajo], [3], [Service Operations],
+  [42], [US013], [Asignación de mecánico a tarea], [3], [Service Operations],
+  [43], [US014], [Inicio y finalización de tarea], [5], [Service Operations],
+  [44], [US015], [Consumo de repuestos en una tarea], [5], [Service Operations],
+  [45], [TS010], [Integración de eventos de stock entre Operations e Inventory], [8], [Inventory Management],
+  [46], [US047], [Actualización de detalles de la orden], [3], [Service Operations],
+  [47], [US049], [Eliminar tarea de la orden de trabajo], [2], [Service Operations],
+  [48], [US046], [Completar orden de trabajo], [3], [Service Operations],
+  [49], [US050], [Consulta de órdenes de trabajo], [2], [Service Operations],
+  [50], [US016], [Marcar Orden de Trabajo como pagada], [3], [Service Operations],
+  [51], [TS006], [Endpoints de cotizaciones, vouchers y checkout], [8], [Billing & Payments],
+  [52], [US037], [Creación de cotización], [5], [Billing & Payments],
+  [53], [US040], [Actualización de descuento en cotización], [2], [Billing & Payments],
+  [54], [US038], [Aprobación de cotización], [3], [Billing & Payments],
+  [55], [US039], [Cancelación de cotización], [2], [Billing & Payments],
+  [56], [US041], [Generación de comprobante de pago], [5], [Billing & Payments],
+  [57], [US043], [Registro de pago parcial en comprobante], [5], [Billing & Payments],
+  [58], [US042], [Checkout con pago inmediato], [5], [Billing & Payments],
+  [59], [US044], [Pago con Stripe], [8], [Billing & Payments],
+  [60], [US045], [Consulta de comprobantes por sucursal], [2], [Billing & Payments],
+)
+]
+```
+
