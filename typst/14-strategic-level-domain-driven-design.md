@@ -395,7 +395,6 @@ La interacción más relevante se presenta alrededor del proceso de servicio aut
 ┌───────────────────────────┐ ┌──────────────────────────┐
 │   Inventory Management    │ │    Billing & Payments    │
 └───────────────────────────┘ └──────────────────────────┘
-```
 
 ### 2.5.3. Software Architecture
 

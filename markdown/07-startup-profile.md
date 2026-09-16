@@ -16,21 +16,18 @@ En TuxLogic, tenemos la visión de consolidarnos como la plataforma referente en
 ### 1.1.2. Perfiles de integrantes del equipo
 
 #### 1. Mamani Vilca, Alan Jaivi (`u20241e299`)
-* **Rol:** Estudiante de Ingeniería de Software -- Desarrollo & UI/UX
 * **Descripción:** Estudiante de Ingeniería de Software de la Universidad Peruana de Ciencias Aplicadas (UPC). Enfocado en el diseño e implementación de interfaces de usuario intuitivas y el desarrollo frontend para aplicaciones móviles y plataformas web.
 
 #### 2. Machacca Soto, Aldo Jeanfranco (`u202419485`)
-* **Rol:** Estudiante de Ingeniería de Software -- Backend Developer & AI Architecture
+<img src="../assets/equipment/aldo-machacca-soto.png" alt="Machacca Soto, Aldo Jeanfranco" width="120" />
+
 * **Descripción:** Estudiante de Ingeniería de Software centrado en el diseño, desarrollo y mantenimiento de soluciones tecnológicas eficientes, escalables y de calidad. Especializado en el desarrollo backend y la arquitectura de APIs bajo Domain-Driven Design (DDD) con Java (Spring Boot), Python, C++, JavaScript y TypeScript, junto con React y Next.js. Experiencia en gestión de bases de datos optimizadas, procesos de despliegue e integración de agentes de inteligencia artificial en flujos de trabajo.
 
 #### 3. Mallqui Vilca, Dhilsen Armil (`U202319440`)
-* **Rol:** Estudiante de Ingeniería de Software -- QA & Análisis de Requerimientos
 * **Descripción:** Estudiante de Ingeniería de Software de la Universidad Peruana de Ciencias Aplicadas (UPC). Con habilidades orientadas al análisis de procesos, aseguramiento de la calidad de software (QA) y diseño funcional de soluciones tecnológicas orientadas al usuario.
 
 #### 4. Ramos Hinostroza, Diego Antonio (`u202224130`)
-* **Rol:** Estudiante de Ingeniería de Software -- Backend & DevOps
 * **Descripción:** Estudiante de sexto ciclo de Ingeniería de Software en la UPC. Cuenta con dominio en diseño de arquitectura, desarrollo backend y consumo de servicios web. Experiencia en construcción e integración de APIs REST utilizando Java (Spring Boot), C# y Python, modelado de bases de datos relacionales y NoSQL, estructuración de comunicación cliente-servidor en apps móviles, Docker y Git.
 
 #### 5. Vidal Malaga, Jareth Beycker (`u202316878`)
-* **Rol:** Estudiante de Ingeniería de Software -- Mobile & Frontend Developer
 * **Descripción:** Estudiante de Ingeniería de Software de la Universidad Peruana de Ciencias Aplicadas (UPC). Especializado en la implementación de aplicaciones móviles y soluciones de interacción para usuario en entornos multiplataforma.

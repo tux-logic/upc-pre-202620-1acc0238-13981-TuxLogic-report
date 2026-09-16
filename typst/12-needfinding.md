@@ -300,7 +300,7 @@ Se define el glosario de términos del dominio ShiftIq / TuxLogic. Este *Ubiquit
 **Tabla 9**  
 *Ubiquitous Language — ecosistema ShiftIq*
 
-```{=typst}
+``` {=typst}
 #v(0.5em)
 #align(center)[
   #table(

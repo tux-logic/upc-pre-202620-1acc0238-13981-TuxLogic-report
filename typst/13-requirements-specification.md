@@ -2,7 +2,7 @@
 
 ### 2.4.1. User Stories
 
-```{=typst}
+``` {=typst}
 #let story-header = (x, y) => if y == 0 { rgb("#1e3a8a") } else if calc.even(y) { rgb("#f8fafc") } else { rgb("#ffffff") }
 #let section-fill = rgb("#e2e8f0")
 

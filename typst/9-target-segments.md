@@ -54,5 +54,3 @@ Este patrón conductual confirma que la vinculación pasiva mediante Bluetooth L
 
 **Fuente de referencia:**  
 Chávez, J. y Moreno, D. (2023). *Mejorar la disponibilidad en horas operativas de los equipos del departamento de mantenimiento y reparaciones utilizando el pilar de mejora enfocada de TPM* [Tesis de Licenciatura, Universidad Peruana de Ciencias Aplicadas]. Repositorio Académico UPC .
-
-<div style='page-break-after: always'></div>
