@@ -152,7 +152,7 @@ Manejo global de excepciones (`@RestControllerAdvice`), ensambladores universale
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/shared/interface-layer-diagram.svg", width: 95%)
+      image("assets/shared/interface-layer-diagram.svg", width: 100%)
     ),
     caption: [Diagrama de la Capa de Interfaz -- Shared Kernel]
   )
@@ -321,7 +321,7 @@ Descomposición del Container REST API resaltando los componentes del *Shared Ke
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/shared/component-diagram-share.svg", width: 95%)
+      image("assets/shared/component-diagram-share.svg", width: 80%)
     ),
     caption: [Component Diagram (C4 Level 3) -- Shared Kernel]
   )
@@ -346,7 +346,7 @@ Representación detallada de clases del módulo Shared Kernel en formato UML, ab
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/shared/domain-shared-kernel-class-diagram.svg", width: 95%)
+      image("assets/shared/domain-shared-kernel-class-diagram.svg", width: 80%)
     ),
     caption: [Diagrama de Clases del Dominio UML -- Shared Kernel]
   )
@@ -779,7 +779,7 @@ Descomposición estructural del container REST API para el Bounded Context de IA
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/iam/c4-component-diagram.svg", width: 95%)
+      image("assets/iam/c4-component-diagram.svg", width: 80%)
     ),
     caption: [Diagrama de Componentes C4 Nivel 3 -- IAM]
   )
@@ -800,7 +800,7 @@ Descomposición estructural del container REST API para el Bounded Context de IA
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/iam/class-diagram.svg", width: 95%)
+      image("assets/iam/class-diagram.svg", width: 80%)
     ),
     caption: [Diagrama de Clases del Dominio UML -- IAM]
   )
@@ -819,7 +819,7 @@ Descomposición estructural del container REST API para el Bounded Context de IA
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/iam/database-er-diagram.svg", width: 95%)
+      image("assets/iam/database-er-diagram.svg", width: 80%)
     ),
     caption: [Diagrama de Base de Datos Relacional ER -- IAM]
   )
@@ -908,7 +908,7 @@ La Capa de Dominio encapsula el modelo de negocio inmutable, asegurando transici
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/operations/domain-layer-diagram.svg", width: 95%)
+      image("assets/operations/domain-layer-diagram.svg", width: 80%)
     ),
     caption: [Diagrama de la Capa de Dominio -- Operations]
   )
@@ -1225,7 +1225,7 @@ La Capa de Dominio encapsula el modelo de negocio inmutable, asegurando transici
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/operations/c4-component-diagram.svg", width: 95%)
+      image("assets/operations/c4-component-diagram.svg", width: 80%)
     ),
     caption: [Diagrama de Componentes C4 Nivel 3 -- Operations]
   )
@@ -1246,7 +1246,7 @@ La Capa de Dominio encapsula el modelo de negocio inmutable, asegurando transici
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/operations/class-diagram.svg", width: 95%)
+      image("assets/operations/class-diagram.svg", width: 80%)
     ),
     caption: [Diagrama de Clases del Dominio UML -- Operations]
   )
@@ -1265,7 +1265,7 @@ La Capa de Dominio encapsula el modelo de negocio inmutable, asegurando transici
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/operations/database-er-diagram.svg", width: 95%)
+      image("assets/operations/database-er-diagram.svg", width: 80%)
     ),
     caption: [Diagrama de Base de Datos Relacional ER -- Operations]
   )
@@ -1336,7 +1336,7 @@ La Capa de Dominio define las reglas inmutables del inventario, gestionando el s
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/inventory/inventory-domain-layer.svg", width: 95%)
+      image("assets/inventory/inventory-domain-layer.svg", width: 80%)
     ),
     caption: [Diagrama de la Capa de Dominio -- Inventory]
   )
@@ -1669,7 +1669,7 @@ Mapeo ORM relacional a PostgreSQL 18 con Spring Data JPA y configuración de Job
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/inventory/inventory-infra-layer.svg", width: 95%)
+      image("assets/inventory/inventory-infra-layer.svg", width: 30%)
     ),
     caption: [Diagrama de la Capa de Infraestructura -- Inventory]
   )
@@ -1775,7 +1775,7 @@ El siguiente diagrama C4 descompone el Container API en sus componentes principa
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/inventory/inventory-c4-component.svg", width: 95%)
+      image("assets/inventory/inventory-c4-component.svg", width: 80%)
     ),
     caption: [Diagrama de Componentes C4 Nivel 3 -- Inventory]
   )
@@ -1819,7 +1819,7 @@ El siguiente diagrama C4 descompone el Container API en sus componentes principa
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/inventory/inventory-code-domain.svg", width: 95%)
+      image("assets/inventory/inventory-code-domain.svg", width: 80%)
     ),
     caption: [Diagrama de Clases del Dominio UML -- Inventory]
   )
@@ -1838,9 +1838,498 @@ El siguiente diagrama C4 descompone el Container API en sus componentes principa
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/inventory/inventory-erd.svg", width: 95%)
+      image("assets/inventory/inventory-erd.svg", width: 80%)
     ),
     caption: [Diagrama de Base de Datos Relacional ER -- Inventory]
+  )
+]
+
+#v(0.8em)
+
+=== 2.6.5. Bounded Context: IoT (Telemetry, Vehicles & OBD-II Devices)
+
+El *Bounded Context `IoT`* administra la identidad telemática de los vehículos (`Vehicle`), la vinculación con sus conductores/propietarios (`VehicleRegistration`), el inventario y estado operativo de escáneres telemáticos OBD2 (`Obd2Device`), el emparejamiento activo entre escáneres y vehículos (`Obd2DeviceRegistration`), la ingesta remota de ráfagas telemáticas (`TelemetrySnapshot`), y la gestión inmutable de alertas por códigos de error computarizados (`DtcAlert` / Diagnostic Trouble Codes).
+
+#v(0.5em)
+
+==== 2.6.5.1. Domain Layer (Capa de Dominio)
+
+La Capa de Dominio rige las reglas de lectura e ingesta telemática, constructores de dominio para la instanciación garantizada de Agregados (`Vehicle`, `Obd2Device`, `TelemetrySnapshot`), el servicio de contexto `ActiveRegistrationContextService`, la vinculación inmutable de dispositivos OBD2 con vehículos, las alertas automáticas según la gravedad de los códigos DTC (LOW, MEDIUM, HIGH, CRITICAL) y la validación de vin/placa vehicular.
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/iot/iot-domain-layer.svg", width: 80%)
+    ),
+    caption: [Diagrama de la Capa de Dominio -- IoT]
+  )
+]
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.5.1.1. Value Objects, Enums & Exceptions]
+]
+#v(0.3em)
+
+#grid(
+  columns: (1fr, 1fr),
+  gutter: 10pt,
+  block(
+    fill: rgb("#f8fafc"),
+    stroke: 0.5pt + rgb("#cbd5e1"),
+    radius: 4pt,
+    inset: 8pt,
+    width: 100%
+  )[
+    #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `Obd2DeviceStatus`] \
+    *Propósito:* Estado de disponibilidad física de un escáner OBD2 en la sucursal. \
+    *Valores:* `AVAILABLE`, `LINKED`, `NOT_AVAILABLE`.
+  ],
+  block(
+    fill: rgb("#f8fafc"),
+    stroke: 0.5pt + rgb("#cbd5e1"),
+    radius: 4pt,
+    inset: 8pt,
+    width: 100%
+  )[
+    #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `Obd2RegistrationStatus`] \
+    *Propósito:* Estado del acoplamiento entre un escáner OBD2 y un vehículo. \
+    *Valores:* `ACTIVE`, `INACTIVE`.
+  ],
+  block(
+    fill: rgb("#f8fafc"),
+    stroke: 0.5pt + rgb("#cbd5e1"),
+    radius: 4pt,
+    inset: 8pt,
+    width: 100%
+  )[
+    #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `VehicleRegistrationStatus`] \
+    *Propósito:* Estado de la vinculación entre un usuario conductor y un vehículo. \
+    *Valores:* `ACTIVE`, `PREVIOUS`.
+  ],
+  block(
+    fill: rgb("#f8fafc"),
+    stroke: 0.5pt + rgb("#cbd5e1"),
+    radius: 4pt,
+    inset: 8pt,
+    width: 100%
+  )[
+    #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `DtcAlertSeverity`] \
+    *Propósito:* Severidad del código de error de diagnóstico telemático. \
+    *Valores:* `LOW`, `MEDIUM`, `HIGH`, `CRITICAL`.
+  ]
+)
+
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.5.1.2. Aggregates & Entities]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  - *Aggregate Root `Vehicle`:* Representa un automóvil del parque vehicular. Valida placa, marca, modelo, VIN y año (1900 a año actual + 1). Emite `VehicleDetailsUpdatedEvent`.
+  - *Aggregate Root `VehicleRegistration`:* Enlace entre un conductor (`userId`) y vehículo (`vehicleId`). Método `deactivateRegistration()` emite `VehicleRegistrationDeactivatedEvent`.
+  - *Aggregate Root `Obd2Device`:* Dispositivo físico de diagnóstico registrado en sucursal. Métodos `ping()`, `markAsLinked()`, `markAsAvailable()`. Emite `Obd2DeviceStatusChangedEvent`.
+  - *Aggregate Root `Obd2DeviceRegistration`:* Emparejamiento activo escáner-vehículo. Método `deactivate()` emite `Obd2DeviceRegistrationDeactivatedEvent`.
+  - *Aggregate Root `TelemetrySnapshot`:* Captura puntual e inmutable de parámetros de motor (RPM, temperatura, velocidad km/h, odómetro, combustible %).
+  - *Aggregate Root `DtcAlert`:* Alerta de falla computarizada generada por el escáner (código DTC, descripción y severidad). Emite `DtcAlertTriggeredEvent`.
+]
+
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.5.1.3. Domain Events]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  - `VehicleDetailsUpdatedEvent`: Notifica actualización de datos de un vehículo.
+  - `VehicleRegistrationDeactivatedEvent`: Notifica desvinculación de un conductor con un vehículo.
+  - `Obd2DeviceStatusChangedEvent`: Notifica cambios de estado de un escáner OBD2 (AVAILABLE / LINKED).
+  - `Obd2DeviceRegistrationDeactivatedEvent`: Notifica la desvinculación de un escáner OBD2 de un vehículo.
+  - `DtcAlertTriggeredEvent`: Notifica la detección de una falla telemática DTC en tiempo real.
+]
+
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.5.1.4. Domain Repositories (Interfaces)]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  - *`VehicleRepository`:* `save()`, `findById()`, `findByVin()`, `findByPlateNumber()`, `delete()`, `findAllByIds()`.
+  - *`VehicleRegistrationRepository`:* `save()`, `findActiveByVehicleId()`, `findAllActiveByUserId()`, `findAllActiveByUserIds()`.
+  - *`Obd2DeviceRepository`:* `save()`, `findById()`, `findByMacAddress()`, `existsByMacAddress()`, `delete()`, `findAllByBranchId()`, `findAllByBranchIdAndStatus()`.
+  - *`Obd2DeviceRegistrationRepository`:* `save()`, `findById()`, `findActiveByObd2DeviceId()`, `findActiveByVehicleId()`, `findAllByBranchIdAndStatus()`, `findVehicleIdsWithActiveRegistration()`.
+  - *`TelemetrySnapshotRepository`:* `save()`, `saveAll()`, `findById()`, `findLatestByRegistrationId()`, `findAllByRegistrationId()`, `findAllByRegistrationIdAndCreatedAtGreaterThanEqual()`.
+  - *`DtcAlertRepository`:* `save()`, `saveAll()`, `findAllByRegistrationId()`, `findAllByRegistrationIdAndCreatedAtGreaterThanEqual()`.
+]
+
+#v(0.5em)
+
+==== 2.6.5.2. Application Layer (Capa de Aplicación)
+
+La Capa de Aplicación expone la ingesta de telemetría, emparejamiento de escáneres y consulta de alertas de motor.
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/iot/iot-app-layer.svg", width: 95%)
+    ),
+    caption: [Diagrama de la Capa de Aplicación -- IoT]
+  )
+]
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.5.2.1. Commands & Queries (DTOs de Aplicación)]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[Comandos de Escritura (CQRS Commands):] \
+  - `RegisterVehicleCommand`, `UpdateVehicleCommand`, `DeleteVehicleCommand`
+  - `CreateObd2DeviceCommand`, `UpdateObd2DeviceCommand`, `DeleteObd2DeviceCommand`
+  - `LinkObd2DeviceToVehicleCommand`, `DeactivateObd2DeviceRegistrationCommand`
+  - `IngestTelemetryBatchCommand`
+
+  #v(8pt)
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[Consultas y DTOs de Resultado (CQRS Queries):] \
+  - `GetVehicleByIdQuery`, `GetActiveVehiclesByCustomerIdQuery`, `GetVehiclesAvailableForLinkingQuery`
+  - `GetObd2DeviceByIdQuery`, `GetObd2DevicesByBranchIdQuery`, `GetAvailableObd2DevicesQuery`
+  - `GetObd2DeviceRegistrationsByBranchIdAndStatusQuery`
+  - `GetLatestTelemetrySnapshotQuery`, `GetTelemetrySnapshotHistoryQuery`, `GetTelemetrySnapshotsByRegistrationIdQuery`, `GetVehicleTelemetrySnapshotHistoryQuery`
+  - `GetDtcAlertsByRegistrationIdQuery`, `GetVehicleDtcAlertHistoryQuery`
+]
+
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.5.2.2. Command Failure ADTs (Sealed Interfaces)]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  - `VehicleCommandFailure`: `NotFound`, `InvalidState`, `Duplicate`
+  - `Obd2DeviceCommandFailure`: `NotFound`, `InvalidState`, `Duplicate`
+  - `Obd2DeviceRegistrationCommandFailure`: `NotFound`, `InvalidState`
+  - `TelemetryCommandFailure`: `NotFound`, `InvalidState`
+]
+
+#v(0.5em)
+
+==== 2.6.5.3. Interface Layer (Capa de Interfaz / REST)
+
+Exposición RESTful para ingesta telemática, alertas de motor y catálogo de vehículos.
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/iot/iot-interface-layer.svg", width: 95%)
+    ),
+    caption: [Diagrama de la Capa de Interfaz -- IoT]
+  )
+]
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.5.3.1. Endpoints & REST Controllers]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  - *`VehiclesController` (`/api/v1/vehicles`):* `GET /` (filtro catálogo), `GET /{id}`, `POST /` (registro), `PUT /{id}`, `DELETE /{id}`, `GET /{vehicleId}/telemetry-snapshots`, `GET /{vehicleId}/dtc-alerts`.
+  - *`CustomerVehiclesController` (`/api/v1/customers/{customerId}/vehicles`):* `GET /` (vehículos activos del cliente).
+  - *`Obd2DevicesController` (`/api/v1/obd2-devices`):* `POST /`, `GET /{id}`, `DELETE /{id}`, `PUT /{id}`, `GET /` (filtro sucursal), `GET /{id}/telemetry-snapshots/latest`, `GET /{id}/telemetry-snapshots`.
+  - *`Obd2DeviceRegistrationsController` (`/api/v1/obd2-device-registrations`):* `POST /` (vincular), `PATCH /{id}` (desactivar), `GET /` (listar sucursal/estado), `GET /{id}/telemetry-snapshots`, `GET /{id}/dtc-alerts`.
+  - *`TelemetryBatchesController` (`/api/v1/telemetry-batches`):* `POST /` (ingesta masiva de hardware OBD2).
+]
+
+#v(0.5em)
+
+==== 2.6.5.4. Infrastructure Layer (Capa de Infraestructura)
+
+Mapeo relacional JPA a PostgreSQL 18 con adaptadores de repositorio, ensambladores de persistencia y listeners de eventos de dominio.
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/iot/iot-infra-layer.svg", width: 80%)
+    ),
+    caption: [Diagrama de la Capa de Infraestructura -- IoT]
+  )
+]
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.5.4.1. Mapeo de Entidades Relacionales (JPA)]
+]
+#v(0.3em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 9.5pt, fill: rgb("#334155"))[Tabla: `vehicles` (`VehiclePersistenceEntity`)]
+]
+#v(0.2em)
+#align(center)[
+  #table(
+    columns: (auto, auto, 1fr),
+    align: (left, center, left),
+    table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
+    [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
+    [*`plate_number`*], [`VARCHAR(20)`], [`NOT NULL`],
+    [*`brand`*], [`VARCHAR(50)`], [`NOT NULL`],
+    [*`model`*], [`VARCHAR(50)`], [`NOT NULL`],
+    [*`year`*], [`INTEGER`], [`NOT NULL`],
+    [*`vin`*], [`VARCHAR(50)`], [`NOT NULL`],
+    [*`created_at`*], [`TIMESTAMP`], [`NOT NULL`],
+    [*`updated_at`*], [`TIMESTAMP`], [`NOT NULL`],
+    [*`deleted_at`*], [`TIMESTAMP`], [`NULLABLE (Soft Delete)`],
+    [*`version`*], [`BIGINT`], [`NOT NULL`],
+  )
+]
+
+#v(0.6em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 9.5pt, fill: rgb("#334155"))[Tabla: `vehicle_registrations` (`VehicleRegistrationPersistenceEntity`)]
+]
+#v(0.2em)
+#align(center)[
+  #table(
+    columns: (auto, auto, 1fr),
+    align: (left, center, left),
+    table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
+    [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
+    [*`user_id`*], [`UUID`], [`NOT NULL`],
+    [*`vehicle_id`*], [`UUID`], [`NOT NULL, FOREIGN KEY -> vehicles(id)`],
+    [*`status`*], [`VARCHAR(20)`], [`NOT NULL (ACTIVE / PREVIOUS)`],
+    [*`deleted_at`*], [`TIMESTAMP`], [`NULLABLE (Soft Delete)`],
+  )
+]
+
+#v(0.6em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 9.5pt, fill: rgb("#334155"))[Tabla: `obd2_devices` (`Obd2DevicePersistenceEntity`)]
+]
+#v(0.2em)
+#align(center)[
+  #table(
+    columns: (auto, auto, 1fr),
+    align: (left, center, left),
+    table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
+    [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
+    [*`branch_id`*], [`UUID`], [`NOT NULL, FOREIGN KEY -> branches(id)`],
+    [*`mac_address`*], [`VARCHAR(50)`], [`NOT NULL, UNIQUE`],
+    [*`last_ping`*], [`TIMESTAMP`], [`NULLABLE`],
+    [*`status`*], [`VARCHAR(20)`], [`NOT NULL (AVAILABLE / LINKED)`],
+  )
+]
+
+#v(0.6em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 9.5pt, fill: rgb("#334155"))[Tabla: `obd2_device_registrations` (`Obd2DeviceRegistrationPersistenceEntity`)]
+]
+#v(0.2em)
+#align(center)[
+  #table(
+    columns: (auto, auto, 1fr),
+    align: (left, center, left),
+    table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
+    [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
+    [*`obd2_device_id`*], [`UUID`], [`NOT NULL, FOREIGN KEY -> obd2_devices(id)`],
+    [*`branch_id`*], [`UUID`], [`NOT NULL, FOREIGN KEY -> branches(id)`],
+    [*`vehicle_id`*], [`UUID`], [`NOT NULL, FOREIGN KEY -> vehicles(id)`],
+    [*`status`*], [`VARCHAR(20)`], [`NOT NULL (ACTIVE / INACTIVE)`],
+    [*`deleted_at`*], [`TIMESTAMP`], [`NULLABLE (Soft Delete)`],
+  )
+]
+
+#v(0.6em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 9.5pt, fill: rgb("#334155"))[Tabla: `telemetry_snapshots` (`TelemetrySnapshotPersistenceEntity`)]
+]
+#v(0.2em)
+#align(center)[
+  #table(
+    columns: (auto, auto, 1fr),
+    align: (left, center, left),
+    table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
+    [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
+    [*`obd2_device_registration_id`*], [`UUID`], [`NOT NULL, FOREIGN KEY -> obd2_device_registrations(id)`],
+    [*`branch_id`*], [`UUID`], [`NOT NULL`],
+    [*`rpm`*], [`INTEGER`], [`NOT NULL`],
+    [*`temperature`*], [`INTEGER`], [`NOT NULL`],
+    [*`speed_kmh`*], [`DOUBLE PRECISION`], [`NOT NULL`],
+    [*`odometer_km`*], [`INTEGER`], [`NOT NULL`],
+    [*`fuel_level_percent`*], [`DOUBLE PRECISION`], [`NOT NULL`],
+    [*`created_at`*], [`TIMESTAMP`], [`NOT NULL`],
+  )
+]
+
+#v(0.6em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 9.5pt, fill: rgb("#334155"))[Tabla: `dtc_alerts` (`DtcAlertPersistenceEntity`)]
+]
+#v(0.2em)
+#align(center)[
+  #table(
+    columns: (auto, auto, 1fr),
+    align: (left, center, left),
+    table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
+    [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
+    [*`telemetry_snapshot_id`*], [`UUID`], [`NOT NULL, FOREIGN KEY -> telemetry_snapshots(id)`],
+    [*`branch_id`*], [`UUID`], [`NOT NULL`],
+    [*`dtc_code`*], [`VARCHAR(20)`], [`NOT NULL`],
+    [*`description`*], [`TEXT`], [`NULLABLE`],
+    [*`severity`*], [`VARCHAR(20)`], [`NOT NULL (LOW/MEDIUM/HIGH/CRITICAL)`],
+    [*`created_at`*], [`TIMESTAMP`], [`NOT NULL`],
+  )
+]
+
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.5.4.2. Adapters & Infrastructure Components]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  - *Persistence Adapters:* `VehicleRepositoryImpl`, `VehicleRegistrationRepositoryImpl`, `Obd2DeviceRepositoryImpl`, `Obd2DeviceRegistrationRepositoryImpl`, `TelemetrySnapshotRepositoryImpl`, `DtcAlertRepositoryImpl`.
+  - *Assemblers de Persistencia:* `VehiclePersistenceAssembler`, `VehicleRegistrationPersistenceAssembler`, `Obd2DevicePersistenceAssembler`, `Obd2DeviceRegistrationPersistenceAssembler`, `TelemetrySnapshotPersistenceAssembler`, `DtcAlertPersistenceAssembler`.
+  - *Outbound Services / Ports:* `CustomerDirectoryPortImpl` (ACL para validación de clientes en Core), `ActiveRegistrationContextServiceImpl` (resolución de contexto activo escáner-vehículo).
+  - *Event Listeners:* `DtcAlertEventListener` (escucha `DtcAlertTriggeredEvent` para integración con Órdenes de Trabajo).
+]
+
+#v(0.5em)
+
+==== 2.6.5.5. Software Architecture Component Level Diagrams (C4 Model - Level 3)
+
+Descomposición del Container API en sus componentes principales para el Bounded Context *IoT*.
+
+#v(0.5em)
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.5.5.1. C4 Model Component Diagram (Container: Spring Boot REST API -- IoT)]
+]
+#v(0.3em)
+
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/iot/iot-c4-component.svg", width: 80%)
+    ),
+    caption: [Diagrama de Componentes C4 Nivel 3 -- IoT]
+  )
+]
+#v(0.5em)
+
+==== 2.6.5.6. Bounded Context Software Architecture Code Level Diagrams
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.5.6.1. Domain Layer Class Diagram]
+]
+#v(0.3em)
+
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/iot/iot-code-domain.svg", width: 80%)
+    ),
+    caption: [Diagrama de Clases del Dominio UML -- IoT]
+  )
+]
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.5.6.2. Database Design Diagram (PostgreSQL 18)]
+]
+#v(0.3em)
+
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/iot/iot-erd.svg", width: 60%)
+    ),
+    caption: [Diagrama de Base de Datos Relacional ER -- IoT]
   )
 ]
 
