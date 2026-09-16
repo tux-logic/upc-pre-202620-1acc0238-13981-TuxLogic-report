@@ -398,10 +398,64 @@ La interacción más relevante se presenta alrededor del proceso de servicio aut
 
 #### 2.5.3.1. Software Architecture Context Level Diagrams
 
+Según el Modelo C4 de Simon Brown, el **Diagrama de Contexto del Sistema** ofrece la vista de mayor nivel de abstracción, representando el sistema como una caja negra. En ShiftIQ, este nivel muestra la plataforma como sistema central y sus interacciones con los usuarios principales, el dispositivo IoT del vehículo y los servicios externos utilizados para mensajería, pagos y facturación electrónica.
 
+![Diagrama de Contexto del Sistema — ShiftIQ Platform](../assets/chapter2/strategic-level-DDD/software-architecture/c4-system-context.svg)
+
+**Figura 41.** Diagrama de Contexto del Sistema — ShiftIQ Platform.
+
+#### Elementos y Relaciones
+
+- **Mechanic / Admin:** Usuario administrativo y técnico que gestiona talleres, sucursales, vehículos y genera reportes operativos.
+- **Final Client:** Cliente dueño del vehículo que monitorea el estado del mantenimiento en tiempo real y gestiona sus citas.
+- **Dispositivo OBD-II IoT:** Componente de hardware que transmite parámetros del vehículo y códigos de diagnóstico DTC.
+- **ShiftIQ Platform:** Sistema central que integra la gestión de talleres, vehículos, telemetría, órdenes de trabajo y facturación.
+- **Messaging Service:** Servicio externo utilizado para el envío de notificaciones y comprobantes por correo electrónico.
+- **Stripe Payment Gateway:** Pasarela externa utilizada para el procesamiento de pagos digitales.
+- **Factos SUNAT API:** Servicio externo utilizado para la emisión y validación de comprobantes electrónicos.
+- **Relaciones principales:** Los usuarios interactúan con ShiftIQ mediante interfaces web y móviles, el dispositivo OBD-II transmite información telemática hacia la plataforma y ShiftIQ se comunica con los servicios externos para mensajería, pagos y facturación.
+
+---
 
 #### 2.5.3.2. Software Architecture Container Level Diagrams
 
+El **Diagrama de Contenedores** abre la caja negra del sistema para mostrar sus principales unidades ejecutables y responsabilidades tecnológicas. En ShiftIQ se representan la Landing Page, la aplicación web SPA, la aplicación móvil, la API RESTful y la base de datos PostgreSQL, junto con sus principales mecanismos de comunicación y las integraciones con servicios externos.
 
+![Diagrama de Contenedores — ShiftIQ Platform](../assets/chapter2/strategic-level-DDD/software-architecture/c4-container-diagram.svg)
+
+**Figura 42.** Diagrama de Contenedores — ShiftIQ Platform.
+
+#### Elementos y Relaciones
+
+- **Landing Page:** Sitio web de presentación del producto que proporciona información comercial y redirige hacia la aplicación principal.
+- **Web Application (SPA):** Interfaz web desarrollada en Angular para la gestión del taller, flota y seguimiento de los vehículos.
+- **Mobile App:** Aplicación nativa Android desarrollada en Kotlin para mecánicos y clientes.
+- **API RESTful:** Backend desarrollado con Java 21 y Spring Boot 3 que contiene la lógica de negocio y los siete Bounded Contexts.
+- **Database:** Base de datos PostgreSQL utilizada para la persistencia de la información del sistema.
+- **Messaging Service:** Servicio externo utilizado para el envío de notificaciones y facturas por correo electrónico.
+- **Relaciones principales:** Las aplicaciones web y móvil consumen los servicios de la API RESTful mediante HTTPS. El dispositivo OBD-II transmite telemetría y códigos DTC al backend. La API persiste información en PostgreSQL y se comunica con los servicios externos de mensajería, pagos y facturación.
+
+---
 
 #### 2.5.3.3. Software Architecture Deployment Diagrams
+
+El **Diagrama de Despliegue** representa la distribución física y tecnológica de ShiftIQ en su infraestructura. Esta vista muestra cómo los componentes definidos en los niveles anteriores se despliegan sobre dispositivos de usuario, servidores web, servidores de aplicación, contenedores Docker y servicios externos en la nube.
+
+![Diagrama de Despliegue — ShiftIQ Platform Infrastructure](../assets/chapter2/strategic-level-DDD/software-architecture/c4-deployment-diagram.svg)
+
+**Figura 43.** Diagrama de Despliegue — ShiftIQ Platform Infrastructure.
+
+#### Elementos y Relaciones
+
+- **Web Browser:** Dispositivo utilizado para acceder a la Landing Page y a la Web Application.
+- **Smartphone Android:** Dispositivo donde se ejecuta la aplicación móvil desarrollada en Kotlin.
+- **Módulo IoT OBD-II:** Hardware instalado en el vehículo que transmite información telemática.
+- **Servidor Web / CDN Hosting:** Infraestructura encargada de distribuir los archivos estáticos de la Landing Page y la aplicación web.
+- **Cloud Application Host:** Servidor que aloja el entorno de ejecución de la aplicación backend.
+- **Docker Engine:** Entorno de contenedores donde se ejecutan el backend y la base de datos.
+- **API RESTful Backend:** Aplicación Spring Boot que ejecuta los siete Bounded Contexts.
+- **Database:** Contenedor PostgreSQL encargado de la persistencia de los datos.
+- **Servicios externos:** Servicios cloud utilizados para mensajería, procesamiento de pagos y facturación electrónica.
+- **Relaciones principales:** Los navegadores acceden al servidor web mediante HTTPS, mientras que la aplicación web y móvil consumen la API RESTful. El dispositivo OBD-II transmite información al backend. La API se conecta con PostgreSQL mediante JDBC y con los servicios externos mediante HTTPS y SMTP.
+
+---
