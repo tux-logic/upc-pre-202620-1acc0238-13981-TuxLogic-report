@@ -159,7 +159,91 @@ Por tanto, esta actividad establece **los límites candidatos del dominio**, per
 
 #### 2.5.1.2. Domain Message Flows Modeling
 
+Una vez reconocidos los siete Candidate Bounded Contexts, se realizó el **Domain Message Flows Modeling** con el propósito de representar cómo estos contextos colaboran para ejecutar los principales procesos del dominio.
 
+Los flujos se construyeron utilizando los elementos identificados durante el EventStorming, principalmente **Commands, Events, Actors, Aggregates, Read Models y External Systems**.
+
+Se definieron seis flujos principales.
+
+##### Flow 1 — Vehicle Intelligence & Diagnostics
+
+Representa el proceso de registro y monitoreo del vehículo, incluyendo la vinculación del dispositivo OBD2, recepción de telemetría y generación de información de diagnóstico.
+
+![Domain Message Flow — Vehicle Intelligence & Diagnostics](../assets/chapter2/strategic-level-DDD/event-storming/Flow-1-Vehicle-Intelligence-&-Diagnostics.png)
+
+**Figura 27.** Domain Message Flow — Vehicle Intelligence & Diagnostics.
+
+Este flujo representa una de las capacidades centrales de ShiftIq, ya que conecta la información obtenida del vehículo con el proceso de diagnóstico y seguimiento de su condición.
+
+---
+
+##### Flow 2 — Appointment & Service
+
+Representa la transición desde la planificación de una atención hasta la recepción del vehículo para iniciar el servicio.
+
+![Domain Message Flow — Appointment & Service](../assets/chapter2/strategic-level-DDD/event-storming/Flow-2-Appointment-&-Service.png)
+
+**Figura 28.** Domain Message Flow — Appointment & Service.
+
+Este flujo muestra principalmente la interacción entre **Fleet & Appointments** y **Service Operations**, evidenciando que la cita constituye un punto de conexión entre la planificación y la ejecución del servicio.
+
+---
+
+##### Flow 3 — Work Order & Inventory
+
+Representa la ejecución de una orden de trabajo y la utilización de productos necesarios para realizar las tareas del servicio.
+
+![Domain Message Flow — Work Order & Inventory](../assets/chapter2/strategic-level-DDD/event-storming/Flow-3-Work-Order-&-Inventory.png)
+
+**Figura 29.** Domain Message Flow — Work Order & Inventory.
+
+El flujo evidencia la colaboración entre **Service Operations** e **Inventory Management**, particularmente cuando una tarea requiere reservar o utilizar productos.
+
+---
+
+##### Flow 4 — Quotation & Payment
+
+Representa el proceso que comienza con la elaboración de una cotización y continúa con su aprobación y procesamiento del pago.
+
+![Domain Message Flow — Quotation & Payment](../assets/chapter2/strategic-level-DDD/event-storming/Flow-4-Quotation-&-Payment.png)
+
+**Figura 30.** Domain Message Flow — Quotation & Payment.
+
+Este flujo permite representar la colaboración entre el proceso operativo del servicio y **Billing & Payments**, incluyendo la intervención de los mecanismos externos de pago cuando corresponde.
+
+---
+
+##### Flow 5 — Workshop Management
+
+Representa las operaciones relacionadas con la configuración y administración de la información del taller, sus sucursales, clientes y empleados.
+
+![Domain Message Flow — Workshop Management](../assets/chapter2/strategic-level-DDD/event-storming/Flow-5-Workshop-Management.png)
+
+**Figura 31.** Domain Message Flow — Workshop Management.
+
+El flujo representa las principales operaciones administrativas que permiten mantener disponible la información necesaria para los demás procesos del sistema.
+
+---
+
+##### Flow 6 — Identity & Access
+
+Representa el ciclo de acceso de los usuarios a la plataforma, desde el registro hasta la autenticación y gestión de sus credenciales.
+
+![Domain Message Flow — Identity & Access](../assets/chapter2/strategic-level-DDD/event-storming/Flow-6-Identity-&-Access.png)
+
+**Figura 32.** Domain Message Flow — Identity & Access.
+
+Este flujo delimita las responsabilidades de **Identity & Access** frente a los demás contextos que requieren información sobre el usuario autenticado.
+
+---
+
+##### Resultado del Domain Message Flows Modeling
+
+Los seis flujos permiten observar que los Candidate Bounded Contexts **colaboran mediante mensajes**, en lugar de funcionar como componentes completamente aislados.
+
+De esta forma, los flujos muestran las principales interacciones del dominio y permiten comprobar que un mismo proceso de negocio puede atravesar más de un contexto. Por ejemplo, la ejecución de un servicio puede involucrar **Fleet & Appointments, Service Operations, Inventory Management y Billing & Payments**.
+
+Los Domain Message Flows constituyen así el vínculo entre el descubrimiento de los contextos y su formalización mediante los Canvas.
 
 #### 2.5.1.3. Bounded Context Canvases
 
