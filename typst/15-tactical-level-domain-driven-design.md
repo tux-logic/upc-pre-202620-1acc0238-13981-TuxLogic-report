@@ -3400,6 +3400,432 @@ Descomposición del Container API en sus componentes principales para el Bounded
   )
 ]
 
+
+
+=== 2.6.8. Bounded Context: Billing (Quotes, Vouchers & Payments)
+
+El Bounded Context *Billing* gestiona el ciclo de vida financiero posterior a la prestación de servicios en el taller automotriz. Comprende la cotización preliminar de órdenes de trabajo (`Quote`), la emisión de comprobantes de pago electrónicos autorizados por SUNAT (`Voucher`: Facturas/Boletas) mediante la integración con la API externa *Factos*, el registro y amortización de pagos multicanal (`Payment`), la integración de cobros con tarjeta mediante *Stripe*, y los flujos de facturación inmediata (*Checkout*).
+
+#v(0.5em)
+
+==== 2.6.8.1. Domain Layer (Capa de Dominio)
+
+La Capa de Dominio encapsula el cálculo estricto de subtotales, impuestos (IGV 18%), descuentos porcentuales, montos totales mediante métodos *Factory*, reglas financieras encapsuladas en los Agregados `Quote` y `Voucher`, transiciones de estado inmutables, la validación del saldo deudor de comprobantes y la emisión de eventos de dominio financieros.
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/billing/billing-domain-layer.svg", width: 80%)
+    ),
+    caption: [Diagrama de la Capa de Dominio -- Billing]
+  )
+]
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.8.1.1. Value Objects, Enums & Exceptions]
+]
+#v(0.3em)
+
+#grid(
+  columns: (1fr, 1fr),
+  gutter: 10pt,
+  block(
+    fill: rgb("#f8fafc"),
+    stroke: 0.5pt + rgb("#cbd5e1"),
+    radius: 4pt,
+    inset: 8pt,
+    width: 100%
+  )[
+    #text(weight: "bold", fill: rgb("#1e3a8a"))[Enum: `QuoteStatus`] \
+    #text(size: 9.5pt, fill: rgb("#475569"))[*Valores:* `DRAFT`, `APPROVED`, `CANCELED`] \
+    *Propósito:* Ciclo de vida de la cotización preliminar. `APPROVED` es requisito obligatorio para emitir `Voucher`.
+  ],
+  block(
+    fill: rgb("#f8fafc"),
+    stroke: 0.5pt + rgb("#cbd5e1"),
+    radius: 4pt,
+    inset: 8pt,
+    width: 100%
+  )[
+    #text(weight: "bold", fill: rgb("#1e3a8a"))[Enum: `VoucherType`] \
+    #text(size: 9.5pt, fill: rgb("#475569"))[*Valores:* `RECEIPT`, `INVOICE`] \
+    *Propósito:* Tipo de comprobante fiscal SUNAT (`RECEIPT`: Boleta B001 para DNI; `INVOICE`: Factura F001 para RUC).
+  ]
+)
+
+#v(0.4em)
+
+#grid(
+  columns: (1fr, 1fr),
+  gutter: 10pt,
+  block(
+    fill: rgb("#f8fafc"),
+    stroke: 0.5pt + rgb("#cbd5e1"),
+    radius: 4pt,
+    inset: 8pt,
+    width: 100%
+  )[
+    #text(weight: "bold", fill: rgb("#1e3a8a"))[Enum: `VoucherStatus`] \
+    #text(size: 9.5pt, fill: rgb("#475569"))[*Valores:* `PENDING`, `PARTIALLY_PAID`, `PAID`, `CANCELED`] \
+    *Propósito:* Estado de saldo deudor. Al saldar 100%, emite `VoucherPaidEvent`.
+  ],
+  block(
+    fill: rgb("#f8fafc"),
+    stroke: 0.5pt + rgb("#cbd5e1"),
+    radius: 4pt,
+    inset: 8pt,
+    width: 100%
+  )[
+    #text(weight: "bold", fill: rgb("#1e3a8a"))[Enum: `PaymentMethod`] \
+    #text(size: 9.5pt, fill: rgb("#475569"))[*Valores:* `CASH`, `CREDIT_CARD`, `DEBIT_CARD`, `BANK_TRANSFER`] \
+    *Propósito:* Canal transaccional del abono registrado.
+  ]
+)
+
+#v(0.4em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 8pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[Excepciones y Fallos del Dominio Financiero:] \
+  - *`QuoteCommandFailure`:* `WORK_ORDER_NOT_FOUND`, `INVALID_QUOTE_DATA`, `QUOTE_ALREADY_EXISTS_FOR_WORK_ORDER`, `QUOTE_NOT_FOUND`, `INVALID_QUOTE_STATE`.
+  - *`VoucherCommandFailure`:* `QUOTE_NOT_FOUND`, `QUOTE_NOT_APPROVED`, `INVALID_VOUCHER_DATA`, `ISSUER_NOT_FOUND`, `FACTOS_ISSUANCE_FAILED`, `VOUCHER_NOT_FOUND`, `VOUCHER_ALREADY_PAID`, `VOUCHER_CANCELED`, `PAYMENT_EXCEEDS_TOTAL_DEBT`, `PAYMENT_NOT_FOUND`.
+]
+
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.8.1.2. Aggregates & Entities]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[`Quote` (Aggregate Root)] \
+  #text(size: 9.5pt, fill: rgb("#475569"))[*Tipo:* Raíz de Agregado (`extends AbstractDomainAggregateRoot<Quote>`)] \
+  *Propósito:* Representa la cotización de servicios y repuestos de una Orden de Trabajo. \
+  #v(4pt)
+  *Atributos:* `id` (`UUID`), `workOrderId` (`UUID`), `branchId` (`BranchId`), `subtotalAmount` (`Money`), `discountPercentage` (`Double`), `totalAmount` (`Money`), `status` (`QuoteStatus`). \
+  #v(4pt)
+  *Reglas de Negocio:* Aplica descuento porcentual sobre el subtotal (`0%` a `100%`) para calcular `totalAmount = subtotal * (1 - discount/100)`. La aprobación `approve()` requiere estar previamente en `DRAFT`.
+]
+
+#v(0.4em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[`Voucher` (Aggregate Root) & `Payment` (Entity)] \
+  - *`Voucher`:* Agregado principal de facturación (`quoteId`, `type`, `customerDocumentType`, `customerDocumentNumber`, `customerName`, `totalAmount`, `status`, `externalInvoiceId`, `pdfUrl`, `payments`).
+  - *`Payment`:* Entidad de abono (`id`, `amount`, `method`, `branchId`, `paidAt`).
+  - *Reglas de Negocio:* `addPayment(...)` valida que el monto no exceda la deuda restante. Transiciona automáticamente a `PARTIALLY_PAID` o `PAID`. Al cubrir el 100% emite `VoucherPaidEvent`. `removePayment(UUID)` elimina abonos y recalcula dinámicamente el estado.
+]
+
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.8.1.4. Domain Repositories (Interfaces)]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[Interfaces de Repositorio del Dominio Billing:] \
+  - `QuoteRepository`: `save(Quote)`, `findById(UUID)`, `findAllByBranchId(BranchId)`, `existsByWorkOrderId(UUID)`.
+  - `VoucherRepository`: `save(Voucher)`, `findById(UUID)`, `findByBranchId(BranchId)`.
+]
+
+#v(0.5em)
+
+==== 2.6.8.2. Application Layer (Capa de Aplicación)
+
+La Capa de Aplicación expone la ejecución de casos de uso mediante servicios de comando (`QuoteCommandService`, `VoucherCommandService`, `StripePaymentCommandService`) y servicios de consulta (`QuoteQueryService`, `VoucherQueryService`).
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/billing/billing-app-layer.svg", width: 95%)
+    ),
+    caption: [Diagrama de la Capa de Aplicación -- Billing]
+  )
+]
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.8.2.1. Commands, Queries & Outbound Gateways (DTOs & Ports)]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[Comandos de Escritura (CQRS Commands):] \
+  - `CreateQuoteCommand(workOrderId, branchId, discountPercentage)`, `UpdateQuoteDiscountCommand(...)`, `ApproveQuoteCommand(...)`, `CancelQuoteCommand(...)`
+  - `GenerateVoucherCommand(quoteId, type, customerDocumentType, customerDocumentNumber, customerName)`
+  - `AddPaymentCommand(voucherId, amount, method)`, `RemovePaymentCommand(voucherId, paymentId)`
+  - `ProcessCheckoutCommand(...)`, `ProcessStripeCheckoutCommand(...)`
+
+  #v(8pt)
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[Consultas & Outbound Gateways (CQRS Queries & Ports):] \
+  - `GetQuoteByIdQuery`, `GetQuotesByBranchIdQuery`, `GetVoucherByIdQuery`, `GetVouchersByBranchIdQuery`
+  - *`FactosGateway`:* `issueVoucher(issuerRuc, documentType, customerDocumentType, customerDocumentNumber, customerName, items)`
+  - *`StripeGateway` / `PaymentGateway`:* `createStripePaymentIntent(amount, currency, description)`, `getStripePaymentIntent(paymentIntentId)`
+]
+
+#v(0.5em)
+
+==== 2.6.8.3. Interface Layer (Capa de Interfaz / REST & Events)
+
+Exposición RESTful e integración de listeners para eventos internos de facturación.
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/billing/billing-interface-layer.svg", width: 95%)
+    ),
+    caption: [Diagrama de la Capa de Interfaz -- Billing]
+  )
+]
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.8.3.1. Endpoints & REST Controllers]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[`QuotesController` (`/api/v1/quotes`)] \
+  - `POST /api/v1/quotes`: Registra cotización basada en Orden de Trabajo.
+  - `GET /api/v1/quotes?branchId={branchId}` / `GET /api/v1/quotes/{id}`: Consultas.
+  - `PUT /api/v1/quotes/{id}`: Actualiza descuento en `DRAFT`.
+  - `POST /api/v1/quotes/{id}/approvals`: Aprueba cotización.
+  - `POST /api/v1/quotes/{id}/cancellations`: Anula cotización.
+
+  #v(6pt)
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[`VouchersController` & `CheckoutsController`] \
+  - `POST /api/v1/vouchers`: Emisión de Boleta/Factura vía Factos API SUNAT.
+  - `GET /api/v1/vouchers?branchId={branchId}` / `{voucherId}`: Consultas de comprobantes y sus abonos.
+  - `POST /api/v1/vouchers/{voucherId}/payments`: Registro de abonos parciales/totales.
+  - `POST /api/v1/checkouts` & `POST /api/v1/checkouts/stripe`: Flujos de cobro inmediato y checkout con Stripe.
+
+  #v(6pt)
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[`StripePaymentsController` & Event Listener] \
+  - `POST /api/v1/payments/stripe/payment-intents`: Genera `PaymentIntent` para tarjetas en app web/móvil.
+  - `VoucherPaidListener`: Escucha `VoucherPaidEvent` para auditoría y finalización de la Orden de Trabajo.
+]
+
+#v(0.5em)
+
+==== 2.6.8.4. Infrastructure Layer (Capa de Infraestructura)
+
+Mapeo relacional JPA a tablas PostgreSQL 18 e integración de clientes HTTP REST (`FactosGatewayImpl` y `StripeGatewayImpl`).
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/billing/billing-infra-layer.svg", width: 80%)
+    ),
+    caption: [Diagrama de la Capa de Infraestructura -- Billing]
+  )
+]
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.8.4.1. Mapeo de Entidades Relacionales (JPA)]
+]
+#v(0.3em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 9.5pt, fill: rgb("#334155"))[Tabla: `quotes` (`QuotePersistenceEntity`)]
+]
+#v(0.2em)
+#align(center)[
+  #table(
+    columns: (auto, auto, 1fr),
+    align: (left, center, left),
+    table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
+    [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
+    [*`work_order_id`*], [`UUID`], [`NOT NULL, UNIQUE`],
+    [*`branch_id`*], [`UUID`], [`NOT NULL`],
+    [*`subtotal_amount`*], [`DECIMAL`], [`NOT NULL, CHECK (subtotal_amount >= 0)`],
+    [*`discount_percentage`*], [`DOUBLE PRECISION`], [`NOT NULL, CHECK (0 <= discount <= 100)`],
+    [*`total_amount`*], [`DECIMAL`], [`NOT NULL, CHECK (total_amount >= 0)`],
+    [*`status`*], [`VARCHAR(20)`], [`NOT NULL (DRAFT, APPROVED, CANCELED)`],
+    [*`created_by`*], [`UUID`], [`NOT NULL`],
+    [*`updated_by`*], [`UUID`], [`NOT NULL`],
+    [*`created_at`*], [`TIMESTAMP`], [`NOT NULL`],
+    [*`updated_at`*], [`TIMESTAMP`], [`NOT NULL`],
+    [*`deleted_at`*], [`TIMESTAMP`], [`NULLABLE (Soft Delete)`],
+    [*`version`*], [`BIGINT`], [`NOT NULL`]
+  )
+]
+
+#v(0.4em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 9.5pt, fill: rgb("#334155"))[Tabla: `vouchers` (`VoucherPersistenceEntity`)]
+]
+#v(0.2em)
+#align(center)[
+  #table(
+    columns: (auto, auto, 1fr),
+    align: (left, center, left),
+    table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
+    [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
+    [*`quote_id`*], [`UUID`], [`NOT NULL`],
+    [*`type`*], [`VARCHAR(20)`], [`NOT NULL (RECEIPT, INVOICE)`],
+    [*`customer_document_type`*], [`VARCHAR(20)`], [`NOT NULL`],
+    [*`customer_document_number`*], [`VARCHAR(20)`], [`NOT NULL`],
+    [*`customer_name`*], [`VARCHAR(150)`], [`NOT NULL`],
+    [*`total_amount`*], [`DECIMAL(10,2)`], [`NOT NULL, CHECK (total_amount >= 0)`],
+    [*`status`*], [`VARCHAR(20)`], [`NOT NULL (PENDING, PARTIALLY_PAID, PAID, CANCELED)`],
+    [*`external_invoice_id`*], [`UUID`], [`NOT NULL`],
+    [*`pdf_url`*], [`VARCHAR(500)`], [`NULLABLE`],
+    [*`created_at`*], [`TIMESTAMP`], [`NOT NULL`],
+    [*`updated_at`*], [`TIMESTAMP`], [`NOT NULL`],
+    [*`deleted_at`*], [`TIMESTAMP`], [`NULLABLE (Soft Delete)`],
+    [*`version`*], [`BIGINT`], [`NOT NULL`]
+  )
+]
+
+#v(0.4em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 9.5pt, fill: rgb("#334155"))[Tabla: `payments` (`PaymentPersistenceEntity`)]
+]
+#v(0.2em)
+#align(center)[
+  #table(
+    columns: (auto, auto, 1fr),
+    align: (left, center, left),
+    table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
+    [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
+    [*`voucher_id`*], [`UUID`], [`NOT NULL, FOREIGN KEY (vouchers.id)`],
+    [*`amount`*], [`DECIMAL`], [`NOT NULL, CHECK (amount > 0)`],
+    [*`currency`*], [`VARCHAR(3)`], [`NOT NULL DEFAULT 'PEN'`],
+    [*`method`*], [`VARCHAR(20)`], [`NOT NULL (CASH, CREDIT_CARD, DEBIT_CARD, BANK_TRANSFER)`],
+    [*`branch_id`*], [`UUID`], [`NOT NULL`],
+    [*`paid_at`*], [`TIMESTAMP`], [`NOT NULL`]
+  )
+]
+
+#v(0.5em)
+
+==== 2.6.8.5. Software Architecture Component Level Diagrams (C4 Model - Level 3)
+
+Descomposición del Container API en sus componentes principales para el Bounded Context *Billing*.
+
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.8.5.1. C4 Model Component Diagram]
+]
+#v(0.3em)
+
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/billing/billing-c4-component.svg", width: 80%)
+    ),
+    caption: [Diagrama de Componentes C4 Nivel 3 -- Billing]
+  )
+]
+#v(0.5em)
+
+==== 2.6.8.6. Code Level Diagrams
+
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.8.6.1. Domain Layer Class Diagram]
+]
+#v(0.3em)
+
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/billing/billing-code-domain.svg", width: 80%)
+    ),
+    caption: [Diagrama de Clases del Dominio UML -- Billing]
+  )
+]
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.8.6.2. Database Design Diagram (PostgreSQL 18)]
+]
+#v(0.3em)
+
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/billing/billing-erd.svg", width: 60%)
+    ),
+    caption: [Diagrama de Base de Datos Relacional ER -- Billing]
+  )
+]
+
 ```
 
 ```
