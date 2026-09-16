@@ -304,7 +304,7 @@ Se define el glosario de términos del dominio ShiftIq / TuxLogic. Este *Ubiquit
 #v(0.5em)
 #align(center)[
   #table(
-    columns: (95pt, 85pt, 1fr, 70pt),
+    columns: (auto, auto, 1fr, auto),
     align: (left, left, left, left),
     stroke: 0.4pt + rgb("#cbd5e1"),
     fill: (x, y) => if y == 0 { rgb("#1e3a8a") } else if calc.even(y) { rgb("#f8fafc") } else { rgb("#ffffff") },
