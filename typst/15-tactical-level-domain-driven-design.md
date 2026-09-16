@@ -19,7 +19,7 @@ La Capa de Dominio del Shared Kernel encapsula los tipos de valor reutilizables 
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/shared/domain-layer-diagram.svg", width: 95%)
+      image("assets/shared/domain-layer-diagram.png", width: 95%)
     ),
     caption: [Diagrama de la Capa de Dominio -- Shared Kernel]
   )
@@ -141,7 +141,7 @@ Manejo global de excepciones (`@RestControllerAdvice`), ensambladores universale
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/shared/interface-layer-diagram.svg", width: 95%)
+      image("assets/shared/interface-layer-diagram.png", width: 95%)
     ),
     caption: [Diagrama de la Capa de Interfaz -- Shared Kernel]
   )
@@ -179,7 +179,7 @@ La Capa de Aplicación del Shared Kernel provee la estructura funcional `Result<
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/shared/application-layer-diagram.svg", width: 95%)
+      image("assets/shared/application-layer-diagram.png", width: 95%)
     ),
     caption: [Diagrama de la Capa de Aplicación -- Shared Kernel]
   )
@@ -236,7 +236,7 @@ Clase base relacional auditada JPA (`AuditableAbstractPersistenceEntity`), conve
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/shared/infrastracture-layer-diagram.svg", width: 95%)
+      image("assets/shared/infrastracture-layer-diagram.png", width: 95%)
     ),
     caption: [Diagrama de la Capa de Infraestructura -- Shared Kernel]
   )
@@ -291,7 +291,7 @@ Descomposición del Container REST API resaltando los componentes del *Shared Ke
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/shared/component-diagram-share.svg", width: 95%)
+      image("assets/shared/component-diagram-share.png", width: 95%)
     ),
     caption: [Component Diagram (C4 Level 3) -- Shared Kernel]
   )
@@ -312,7 +312,7 @@ Representación detallada de clases del módulo Shared Kernel en formato UML, ab
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/shared/domain-shared-kernel-class-diagram.svg", width: 95%)
+      image("assets/shared/domain-shared-kernel-class-diagram.png", width: 95%)
     ),
     caption: [Diagrama de Clases del Dominio UML -- Shared Kernel]
   )
