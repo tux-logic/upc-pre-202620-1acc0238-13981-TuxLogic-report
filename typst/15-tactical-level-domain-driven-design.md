@@ -28,7 +28,7 @@ La Capa de Dominio del Shared Kernel encapsula los tipos de valor reutilizables 
 
 
 #v(0.5em)
-#text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[1.1. Base Aggregates & Abstract Entities]
+#text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.1.1.1. Base Aggregates & Abstract Entities]
 #v(0.3em)
 
 
@@ -52,7 +52,7 @@ La Capa de Dominio del Shared Kernel encapsula los tipos de valor reutilizables 
 
 
 #v(0.5em)
-#text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[1.2. Shared Value Objects & Records]
+#text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.1.1.2. Shared Value Objects & Records]
 #v(0.3em)
 
 
@@ -130,7 +130,7 @@ La Capa de Dominio del Shared Kernel encapsula los tipos de valor reutilizables 
 
 
 #v(0.5em)
-#text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[1.3. Cross-Context Domain Events]
+#text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.1.1.3. Cross-Context Domain Events]
 #v(0.3em)
 
 
@@ -161,7 +161,7 @@ Manejo global de excepciones (`@RestControllerAdvice`), ensambladores universale
 
 
 #v(0.5em)
-#text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.1. Infrastructure REST Utilities & Cross-Cutting Exception Handlers]
+#text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.1.2.1. Infrastructure REST Utilities & Cross-Cutting Exception Handlers]
 #v(0.3em)
 
 
@@ -203,7 +203,7 @@ La Capa de Aplicación del Shared Kernel provee la estructura funcional `Result<
 
 
 #v(0.5em)
-#text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[3.1. Functional Result Pattern & Error Specification]
+#text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.1.3.1. Functional Result Pattern & Error Specification]
 #v(0.3em)
 
 
@@ -263,7 +263,7 @@ Clase base relacional auditada JPA (`AuditableAbstractPersistenceEntity`), conve
 
 
 #v(0.5em)
-#text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[4.1. JPA MappedSuperclass & Persistence Base]
+#text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.1.4.1. JPA MappedSuperclass & Persistence Base]
 #v(0.3em)
 
 
@@ -287,7 +287,7 @@ Clase base relacional auditada JPA (`AuditableAbstractPersistenceEntity`), conve
 
 
 #v(0.5em)
-#text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[4.2. JPA Custom Attribute Converters]
+#text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.1.4.2. JPA Custom Attribute Converters]
 #v(0.3em)
 
 
@@ -299,7 +299,7 @@ Clase base relacional auditada JPA (`AuditableAbstractPersistenceEntity`), conve
 
 
 #v(0.5em)
-#text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[4.3. Multi-Tenancy Security & Auditing]
+#text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.1.4.3. Multi-Tenancy Security & Auditing]
 #v(0.3em)
 
 
@@ -393,6 +393,8 @@ Este documento presenta la especificación exhaustiva, formal y técnica de los 
 #v(1em)
 
 #v(1em)
+
+#v(1em)
 === 2.6.2. Bounded Context: Identity & Access Management (IAM)
 
 El Bounded Context de *Identity & Access Management (IAM)* constituye la piedra angular de seguridad, identidad y control de acceso de la plataforma *ShiftIQ*. Su responsabilidad primordial radica en centralizar el ciclo de vida de las identidades de usuario, garantizando:
@@ -424,7 +426,7 @@ La Capa de Dominio encierra la lógica de negocio pura, las invariantes operativ
 #v(0.5em)
 
 #block(sticky: true)[
-  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[1.1. Aggregates & Entities]
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.2.1.1. Aggregates & Entities]
 ]
 #v(0.3em)
 
@@ -482,7 +484,7 @@ La Capa de Dominio encierra la lógica de negocio pura, las invariantes operativ
 #v(0.5em)
 
 #block(sticky: true)[
-  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[1.2. Value Objects & Records]
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.2.1.2. Value Objects & Records]
 ]
 #v(0.3em)
 
@@ -518,7 +520,7 @@ La Capa de Dominio encierra la lógica de negocio pura, las invariantes operativ
 #v(0.5em)
 
 #block(sticky: true)[
-  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[1.3. Enumerations]
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.2.1.3. Enumerations]
 ]
 #v(0.3em)
 
@@ -552,7 +554,7 @@ La Capa de Dominio encierra la lógica de negocio pura, las invariantes operativ
 #v(0.5em)
 
 #block(sticky: true)[
-  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[1.4. Domain Repositories (Interfaces)]
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.2.1.4. Domain Repositories (Interfaces)]
 ]
 #v(0.3em)
 
@@ -572,7 +574,7 @@ La Capa de Dominio encierra la lógica de negocio pura, las invariantes operativ
 #v(0.5em)
 
 #block(sticky: true)[
-  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[1.5. Domain Events]
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.2.1.5. Domain Events]
 ]
 #v(0.3em)
 
@@ -611,7 +613,7 @@ La Capa de Aplicación orquesta los casos de uso del Bounded Context. Recibe com
 #v(0.5em)
 
 #block(sticky: true)[
-  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.1. Commands & Queries (DTOs de Aplicación)]
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.2.2.1. Commands & Queries (DTOs de Aplicación)]
 ]
 #v(0.3em)
 
@@ -639,7 +641,7 @@ La Capa de Aplicación orquesta los casos de uso del Bounded Context. Recibe com
 #v(0.5em)
 
 #block(sticky: true)[
-  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.2. Application Services]
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.2.2.2. Application Services]
 ]
 #v(0.3em)
 
@@ -662,7 +664,7 @@ La Capa de Aplicación orquesta los casos de uso del Bounded Context. Recibe com
 #v(0.5em)
 
 #block(sticky: true)[
-  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.3. Outbound Port Interfaces]
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.2.2.3. Outbound Port Interfaces]
 ]
 #v(0.3em)
 
@@ -700,7 +702,7 @@ La Capa de Interfaces expone los controladores REST HTTP bajo la convención de 
 #v(0.5em)
 
 #block(sticky: true)[
-  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[3.1. REST Controllers & DTO Resources]
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.2.3.1. REST Controllers & DTO Resources]
 ]
 #v(0.3em)
 
@@ -746,7 +748,7 @@ La Capa de Infraestructura implementa la persistencia física en PostgreSQL 18 c
 #v(0.5em)
 
 #block(sticky: true)[
-  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[4.1. Persistence & Security Adapters]
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.2.4.1. Persistence & Security Adapters]
 ]
 #v(0.3em)
 
@@ -787,7 +789,7 @@ Descomposición estructural del container REST API para el Bounded Context de IA
 ==== 2.6.2.6. Bounded Context Software Architecture Code Level Diagrams
 
 #block(sticky: true)[
-  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[6.1. Domain Layer Class Diagram]
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.2.6.1. Domain Layer Class Diagram]
 ]
 
 #v(0.5em)
@@ -806,7 +808,7 @@ Descomposición estructural del container REST API para el Bounded Context de IA
 #v(0.5em)
 
 #block(sticky: true)[
-  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[6.2. Database Design Diagram (PostgreSQL 18)]
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.2.6.2. Database Design Diagram (PostgreSQL 18)]
 ]
 
 #v(0.5em)

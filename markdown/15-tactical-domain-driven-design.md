@@ -12,7 +12,7 @@ La Capa de Dominio del Shared Kernel encapsula los tipos de valor reutilizables 
 
 ![Domain Layer - Shared Kernel](../assets/shared/domain-layer-diagram.svg)
 
-##### 1.1. Base Aggregates & Abstract Entities
+##### 2.6.1.1.1. Base Aggregates & Abstract Entities
 
 ###### `AbstractDomainAggregateRoot<T extends AbstractDomainAggregateRoot<T>>`
 * **Tipo:** Clase Abstracta (`extends AbstractAggregateRoot<T>`).
@@ -22,7 +22,7 @@ La Capa de Dominio del Shared Kernel encapsula los tipos de valor reutilizables 
   * `+domainEvents()`: Retorna la colección no modificable de eventos registrados.
   * `+clearDomainEvents()`: Limpia la lista de eventos tras su publicación exitosa por los adaptadores de repositorio.
 
-##### 1.2. Shared Value Objects & Records
+##### 2.6.1.1.2. Shared Value Objects & Records
 
 ###### Record: `Money(BigDecimal amount)`
 * **Propósito:** Value Object inmutable para representación precisa de montos monetarios.
@@ -53,7 +53,7 @@ La Capa de Dominio del Shared Kernel encapsula los tipos de valor reutilizables 
 * **Propósito:** Kilometraje de vehículos.
 * **Validación:** No nulo (`operations.error.mileage.required`) y no negativo (`operations.error.mileage.cannotBeNegative`).
 
-##### 1.3. Cross-Context Domain Events
+##### 2.6.1.1.3. Cross-Context Domain Events
 
 * **`ProductReservedEvent(Object source, BranchId branchId, UUID productId, Integer quantity)`**: Notifica la reserva temporal de repuestos emitida desde `Operations` hacia `Inventory`.
 * **`ProductReservationCanceledEvent(Object source, BranchId branchId, UUID productId, Integer quantity)`**: Notifica la liberación de reservas de stock al modificar o cancelar tareas de ordenes de trabajo.
@@ -67,7 +67,7 @@ Manejo global de excepciones (`@RestControllerAdvice`), ensambladores universale
 
 ![Interface Layer - Shared Kernel](../assets/shared/interface-layer-diagram.svg)
 
-##### 2.1. Infrastructure REST Utilities & Cross-Cutting Exception Handlers
+##### 2.6.1.2.1. Infrastructure REST Utilities & Cross-Cutting Exception Handlers
 
 ###### `GlobalExceptionHandler` (`@RestControllerAdvice`)
 * Centraliza las excepciones no capturadas a nivel REST.
@@ -84,7 +84,7 @@ La Capa de Aplicación del Shared Kernel provee la estructura funcional `Result<
 
 ![Application Layer - Shared Kernel](../assets/shared/application-layer-diagram.svg)
 
-##### 3.1. Functional Result Pattern & Error Specification
+##### 2.6.1.3.1. Functional Result Pattern & Error Specification
 
 ###### Sealed Interface: `Result<T, E>`
 * **Permite:** `Result.Success<T, E>`, `Result.Failure<T, E>`.
@@ -109,7 +109,7 @@ Clase base relacional auditada JPA (`AuditableAbstractPersistenceEntity`), conve
 
 ![Infrastructure Layer - Shared Kernel](../assets/shared/infrastracture-layer-diagram.svg)
 
-##### 4.1. JPA MappedSuperclass & Persistence Base
+##### 2.6.1.4.1. JPA MappedSuperclass & Persistence Base
 
 ###### `@MappedSuperclass`: `AuditableAbstractPersistenceEntity`
 * **Anotaciones:** `@EntityListeners(AuditingEntityListener.class)`.
@@ -119,13 +119,13 @@ Clase base relacional auditada JPA (`AuditableAbstractPersistenceEntity`), conve
   * `@LastModifiedDate Instant updatedAt`
   * `@Version Long version`
 
-##### 4.2. JPA Custom Attribute Converters
+##### 2.6.1.4.2. JPA Custom Attribute Converters
 
 * **`MoneyAttributeConverter`**: Mapea `Money` ↔ `DECIMAL(12,2)`.
 * **`MileageAttributeConverter`**: Mapea `Mileage` ↔ `INTEGER`.
 * **`AddressAttributeConverter`**: Mapea `Address` ↔ `VARCHAR(100)`.
 
-##### 4.3. Multi-Tenancy Security & Auditing
+##### 2.6.1.4.3. Multi-Tenancy Security & Auditing
 
 * **`MultiTenancySecurityService`**: Bean `@Service("multiTenancySecurityService")` expuesto para expresiones SpEL (`@PreAuthorize`) que valida si el usuario autenticado posee permisos sobre el `branchId`, `userId` o `workshopId` de la petición.
 * **`UserSecurityService`**: Bean `@Service("userSecurityService")` para verificación de identidad propia en SpEL (prevención de IDOR).
@@ -195,7 +195,7 @@ La Capa de Dominio encierra la lógica de negocio pura, las invariantes operativ
 
 ![Diagrama de la Capa de Dominio -- IAM](../assets/iam/domain-layer-diagram.svg)
 
-##### 1.1. Aggregates & Entities
+##### 2.6.2.1.1. Aggregates & Entities
 
 ##### Class: `User`
 * **Tipo:** Aggregate Root (extiende de `AbstractDomainAggregateRoot<User>`).
@@ -299,7 +299,7 @@ La Capa de Dominio encierra la lógica de negocio pura, las invariantes operativ
 
 ---
 
-##### 1.4. Domain Repositories (Interfaces)
+##### 2.6.2.1.4. Domain Repositories (Interfaces)
 
 ##### Interface: `UserRepository`
 * **Propósito:** Define el contrato formal de persistencia del agregado `User`. En la base de código real, sus métodos de consulta utilizan tipos primitivos/estándar (`UUID`, `String`) y `save()` retorna `void`:
@@ -325,7 +325,7 @@ La Capa de Aplicación orquesta los casos de uso del Bounded Context. Recibe com
 
 ![Diagrama de la Capa de Aplicación -- IAM](../assets/iam/application-layer-diagram.svg)
 
-##### 2.1. Commands & Queries (DTOs de Aplicación)
+##### 2.6.2.2.1. Commands & Queries (DTOs de Aplicación)
 
 *  **`SignUpCommand(EmailAddress email, Password password)`**: Comando con Value Objects para dar de alta una nueva cuenta.
 *  **`SignInCommand(EmailAddress email, Password password)`**: Credenciales para autenticación local.
@@ -399,7 +399,7 @@ La Capa de Interfaces expone los controladores REST HTTP bajo la convención de 
 
 ![Diagrama de la Capa de Interfaces -- IAM](../assets/iam/interface-layer-diagram.svg)
 
-##### 3.1. REST Controllers
+##### 2.6.2.3.1. REST Controllers & DTO Resources
 
 ##### Class: `AuthenticationController`
 * **Ruta Base:** `/api/v1/authentication`
@@ -461,7 +461,7 @@ La Capa de Infraestructura implementa la persistencia física en PostgreSQL 18 c
 
 ![Diagrama de la Capa de Infraestructura -- IAM](../assets/iam/infrastructure-layer-diagram.svg)
 
-##### 4.1. Persistence (JPA Entities, Repositories & Assemblers)
+##### 2.6.2.4.1. Persistence & Security Adapters
 
 ##### Class: `AuditableAbstractPersistenceEntity`
 * **Tipo:** `@MappedSuperclass` con listener `@EntityListeners(AuditingEntityListener.class)`.
@@ -613,7 +613,7 @@ En esta sección, el equipo explica y presenta el **Component Diagram de C4 Mode
 
 En esta sección se presentan y explican los diagramas de máximo nivel de detalle técnico sobre la implementación de componentes en el Bounded Context de **IAM**, divididos en el **Diagrama de Clases del Domain Layer** y el **Diagrama de Base de Datos Relacional**.
 
-##### 6.1. Bounded Context Domain Layer Class Diagrams
+##### 2.6.2.6.1. Domain Layer Class Diagram
 
 En esta sección se presenta el **Class Diagram de UML** para las clases que componen el **Domain Layer** del Bounded Context de IAM, reflejando fielmente las clases, métodos, tipos de retorno y parámetros del código fuente real:
 
@@ -627,7 +627,7 @@ En esta sección se presenta el **Class Diagram de UML** para las clases que com
 
 ---
 
-##### 6.2. Bounded Context Database Diagram
+##### 2.6.2.6.2. Database Design Diagram (PostgreSQL 18)
 
 El siguiente diagrama Entidad-Relación (**Database Diagram**) describe con exactitud el esquema relacional desplegado en **PostgreSQL 18** para soportar la persistencia de información de los objetos de **IAM**. Se especifican tablas, columnas, tipos de datos físicos, constraints (`PRIMARY KEY`, `FOREIGN KEY`, `UNIQUE`, `NOT NULL`) y relaciones de cardinalidad:
 

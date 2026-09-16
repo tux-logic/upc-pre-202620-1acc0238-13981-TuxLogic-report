@@ -182,7 +182,26 @@ Group application DTOs into a single clean block with two internal sections:
 
 --------------------------------------------------------------------------------
 
-## 7. Report Compilation & Verification Command
+## 8. Hierarchical Subheader Numbering Rule
+
+Never restart subheaders from `1.1.` inside a sub-layer. Every subheader must follow the strict hierarchical path of the document tree:
+
+- **Top Section:** `2.6. Tactical-Level Domain-Driven Design`
+- **Bounded Context:** `2.6.1. Bounded Context: Shared Kernel` / `2.6.2. Bounded Context: Identity & Access Management (IAM)`
+- **Layer Header:** `2.6.1.1. Domain Layer` / `2.6.2.1. Domain Layer`
+- **Sub-layer Headers:**
+  - `2.6.1.1.1. Base Aggregates & Abstract Entities`
+  - `2.6.1.1.2. Shared Value Objects & Records`
+  - `2.6.1.1.3. Cross-Context Domain Events`
+  - `2.6.2.1.1. Aggregates & Entities`
+  - `2.6.2.1.2. Value Objects & Records`
+  - `2.6.2.1.3. Enumerations`
+  - `2.6.2.1.4. Domain Repositories (Interfaces)`
+  - `2.6.2.1.5. Domain Events`
+
+--------------------------------------------------------------------------------
+
+## 9. Report Compilation & Verification Command
 
 After updating the Bounded Context in both files, run the full Pandoc/Typst compilation command:
 
