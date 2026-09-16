@@ -45,6 +45,117 @@ El resultado de estas tres actividades constituyó la base para la siguiente eta
 #### 2.5.1.1. Candidate Context Discovery
 
 
+El **Candidate Context Discovery** tuvo como objetivo identificar agrupaciones coherentes de responsabilidades dentro del dominio. Para ello se analizaron conjuntamente los eventos refinados, comandos, actores, agregados, modelos de lectura, políticas y relaciones identificadas durante el EventStorming.
+
+Es importante señalar que los **Bounded Contexts candidatos no fueron definidos únicamente a partir de los nombres de los paquetes del backend**. Primero se identificaron las agrupaciones funcionales que emergieron del comportamiento del dominio y posteriormente se contrastaron con la estructura existente del sistema.
+
+Como resultado se reconocieron **siete Candidate Bounded Contexts**:
+
+1. **Identity & Access**
+2. **Workshop Management**
+3. **Fleet & Appointments**
+4. **Vehicle Intelligence & Diagnostics**
+5. **Service Operations**
+6. **Inventory Management**
+7. **Billing & Payments**
+
+![Candidate Context Discovery — Reconocimiento de los Candidate Bounded Contexts](../assets/chapter2/strategic-level-DDD/event-storming/candidate-context-discovery.jpg)
+
+**Figura 19.** Candidate Context Discovery — Reconocimiento de los Candidate Bounded Contexts de ShiftIq.
+
+A continuación, se describe la responsabilidad de cada contexto identificado.
+
+##### 1. Identity & Access
+
+Este contexto concentra las responsabilidades relacionadas con la identidad y el acceso de los usuarios. Incluye procesos de registro, autenticación, recuperación de contraseña y actualización de credenciales.
+
+Su correspondencia con el backend se evidencia en el módulo `iam`, donde se encuentra el agregado `User`, comandos como `SignUpCommand`, `SignInCommand`, `ResetPasswordCommand` y comandos para actualizar las credenciales. También existen servicios relacionados con correo, hashing y tokens.
+
+![Candidate Bounded Context — Identity & Access](../assets/chapter2/strategic-level-DDD/event-storming/candidate-context-identity-access.png)
+
+**Figura 20.** Candidate Bounded Context — Identity & Access.
+
+---
+
+##### 2. Workshop Management
+
+Este contexto gestiona la información organizacional del taller, incluyendo talleres, sucursales, propietarios, clientes y empleados.
+
+La correspondencia con el backend se encuentra en el módulo `core`, donde existen eventos como `WorkshopCreatedEvent`, `BranchCreatedEvent`, `CustomerCreatedEvent`, `EmployeeCreatedEvent` y `OwnerCreatedEvent`, además de sus respectivas consultas.
+
+![Candidate Bounded Context — Workshop Management](../assets/chapter2/strategic-level-DDD/event-storming/candidate-context-workshop-management.png)
+
+**Figura 21.** Candidate Bounded Context — Workshop Management.
+
+---
+
+##### 3. Fleet & Appointments
+
+Este contexto concentra la gestión de citas y registros asociados a clientes y empleados, funcionando como punto de coordinación entre la planificación del servicio y las operaciones del taller.
+
+El backend contiene `Appointment` y comandos relacionados con su creación, actualización y eliminación, además de `AppointmentCreatedEvent`. También dispone de recursos y servicios de consulta asociados.
+
+![Candidate Bounded Context — Fleet & Appointments](../assets/chapter2/strategic-level-DDD/event-storming/candidate-context-fleet-appointments.png)
+
+**Figura 22.** Candidate Bounded Context — Fleet & Appointments.
+
+---
+
+##### 4. Vehicle Intelligence & Diagnostics
+
+Este contexto concentra las capacidades relacionadas con el vehículo, dispositivos OBD2, telemetría y diagnóstico. Su propósito dentro del dominio es transformar los datos técnicos del vehículo en información útil para el seguimiento de su condición.
+
+Esta agrupación se relaciona con el flujo identificado previamente de vehículo vinculado, telemetría recibida, detección de DTC y evaluación de severidad.
+
+Además, el lenguaje ubicuo del proyecto incorpora explícitamente términos como **Vehicle, OBD2 Dongle, Telemetry, DTC, Preventive Alert y Severity Level**.
+
+![Candidate Bounded Context — Vehicle Intelligence & Diagnostics](../assets/chapter2/strategic-level-DDD/event-storming/candidate-context-vehicle-intelligence-diagnostics.png)
+
+**Figura 23.** Candidate Bounded Context — Vehicle Intelligence & Diagnostics.
+
+---
+
+##### 5. Service Operations
+
+Este contexto gestiona la ejecución de los servicios mediante órdenes de trabajo, tareas y asignación de mecánicos.
+
+La estructura del backend contiene comandos para crear órdenes de trabajo, agregar tareas, asignar mecánicos, iniciar y completar tareas, así como eventos como `TaskStartedEvent`, `TaskCompletedEvent`, `TaskReopenedEvent` y `WorkOrderCompletedEvent`.
+
+![Candidate Bounded Context — Service Operations](../assets/chapter2/strategic-level-DDD/event-storming/candidate-context-service-operations.png)
+
+**Figura 24.** Candidate Bounded Context — Service Operations.
+
+---
+
+##### 6. Inventory Management
+
+Este contexto administra los productos y existencias necesarias para la ejecución de los servicios. Incluye productos, lotes, reservas, liberaciones, movimientos de stock y evaluación de niveles mínimos.
+
+La estructura contiene el agregado `Product`, la entidad `ProductBatch`, comandos de productos y eventos como `ProductCreatedEvent`, `StockReservedEvent`, `StockReleasedEvent`, `StockMovementAppliedEvent` y eventos relacionados con bajo stock.
+
+![Candidate Bounded Context — Inventory Management](../assets/chapter2/strategic-level-DDD/event-storming/candidate-context-inventory-management.png)
+
+**Figura 25.** Candidate Bounded Context — Inventory Management.
+
+---
+
+##### 7. Billing & Payments
+
+Este contexto concentra las responsabilidades relacionadas con cotizaciones, pagos y comprobantes asociados al servicio.
+
+La estructura del backend contiene elementos de cotización y facturación, incluyendo `Quote`, `Voucher`, `Payment` y comandos relacionados con la creación y aprobación de cotizaciones, checkout y procesamiento de pagos.
+
+![Candidate Bounded Context — Billing & Payments](../assets/chapter2/strategic-level-DDD/event-storming/candidate-context-billing-payments.png)
+
+**Figura 26.** Candidate Bounded Context — Billing & Payments.
+
+---
+
+##### Resultado del Candidate Context Discovery
+
+Como resultado, se obtuvieron **siete agrupaciones de responsabilidad**, que posteriormente fueron utilizadas para construir los flujos de interacción y los Bounded Context Canvases.
+
+Por tanto, esta actividad establece **los límites candidatos del dominio**, pero no constituye todavía la definición definitiva de las relaciones entre ellos. Estas relaciones se desarrollan en el siguiente apartado mediante el **Domain Message Flows Modeling**.
 
 #### 2.5.1.2. Domain Message Flows Modeling
 
