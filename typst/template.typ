@@ -41,6 +41,7 @@
 
 // Numeración manejada manualmente desde los títulos Markdown
 #set heading(numbering: none)
+#show heading: set block(sticky: true)
 
 #show heading.where(level: 1): it => {
   v(1.2em)
@@ -66,7 +67,14 @@
   v(0.4em)
 }
 
-// Diseños de Tabla Estilo UPC
+// Diseños de Tabla Estilo UPC con Esquinas Redondeadas
+#show table: it => block(
+  radius: 5pt,
+  stroke: 0.4pt + rgb("#cbd5e1"),
+  clip: true,
+  it
+)
+
 #set table(
   stroke: 0.4pt + rgb("#cbd5e1"),
   fill: (x, y) => if y == 0 { rgb("#1e3a8a") } else if calc.even(y) { rgb("#f8fafc") } else { rgb("#ffffff") },

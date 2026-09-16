@@ -1,184 +1,10 @@
-## 2.6. Tactical-Level Domain-Driven Design
-
-### 2.6.1. Bounded Context: Shared Kernel
-
-El **Shared Kernel** (`shared`) provee la infraestructura transversal, las abstracciones de dominio compartidas, los Value Objects reutilizables, la gestión de eventos de dominio cross-context, el patrón funcional de manejo de errores (`Result<T, E>`), la seguridad multi-tenant por sucursal (`MultiTenancySecurityService`), el mapeo relacional base auditado (`AuditableAbstractPersistenceEntity`) y el manejo centralizado de excepciones REST en la plataforma **ShiftIQ**.
-
----
-
-#### 2.6.1.1. Domain Layer
-
-La Capa de Dominio del Shared Kernel encapsula los tipos de valor reutilizables entre múltiples Bounded Contexts, la abstracción base para raíces de agregado (`AbstractDomainAggregateRoot`), y los eventos de dominio de integración que comunican el flujo entre módulos sin acoplamiento directo de infraestructura.
-
-![Domain Layer - Shared Kernel](../assets/shared/domain-layer-diagram.svg)
-
-##### 1.1. Base Aggregates & Abstract Entities
-
-###### `AbstractDomainAggregateRoot<T extends AbstractDomainAggregateRoot<T>>`
-* **Tipo:** Clase Abstracta (`extends AbstractAggregateRoot<T>`).
-* **Propósito:** Provee soporte inmutable para registro y despacho de Eventos de Dominio sin acoplar el modelo a JPA ni a frameworks de persistencia.
-* **Métodos:**
-  * `#registerDomainEvent(Object event)`: Registra un evento de dominio para ser publicado tras persistir el agregado.
-  * `+domainEvents()`: Retorna la colección no modificable de eventos registrados.
-  * `+clearDomainEvents()`: Limpia la lista de eventos tras su publicación exitosa por los adaptadores de repositorio.
-
-##### 1.2. Shared Value Objects & Records
-
-###### Record: `Money(BigDecimal amount)`
-* **Propósito:** Value Object inmutable para representación precisa de montos monetarios.
-* **Invariantes & Validaciones:**
-  * No puede ser nulo (`operations.error.money.required`).
-  * No puede ser negativo (`operations.error.money.cannotBeNegative`).
-  * Redondeo automático a 2 decimales (`HALF_UP`).
-* **Operaciones:** `plus(Money)`, `minus(Money)`, `multiply(int)`, `multiply(BigDecimal)`, `isGreaterThan(Money)`, `isLessThan(Money)`.
-* **Constantes:** `ZERO` (`BigDecimal.ZERO`).
-
-###### Record: `BranchId(UUID value)`
-* **Propósito:** Identificador fuertemente tipado para sucursales del taller.
-* **Validación:** No permite valores nulos (`shared.error.branchId.required`).
-
-###### Record: `CustomerId(UUID value)`
-* **Propósito:** Identificador fuertemente tipado para clientes.
-* **Validación:** No permite valores nulos (`shared.error.customerId.required`).
-
-###### Record: `VehicleId(UUID value)`
-* **Propósito:** Identificador fuertemente tipado para vehículos.
-* **Validación:** No permite valores nulos (`shared.error.vehicleId.required`).
-
-###### Record: `Address(String value)`
-* **Propósito:** Dirección física formateada.
-* **Validación:** No puede estar vacía/nula (`operations.error.address.notBlank`) y longitud máxima de 100 caracteres (`operations.error.address.tooLong`).
-
-###### Record: `Mileage(Integer value)`
-* **Propósito:** Kilometraje de vehículos.
-* **Validación:** No nulo (`operations.error.mileage.required`) y no negativo (`operations.error.mileage.cannotBeNegative`).
-
-##### 1.3. Cross-Context Domain Events
-
-* **`ProductReservedEvent(Object source, BranchId branchId, UUID productId, Integer quantity)`**: Notifica la reserva temporal de repuestos emitida desde `Operations` hacia `Inventory`.
-* **`ProductReservationCanceledEvent(Object source, BranchId branchId, UUID productId, Integer quantity)`**: Notifica la liberación de reservas de stock al modificar o cancelar tareas de ordenes de trabajo.
-* **`PaymentProcessedEvent(UUID workOrderId)`**: Notifica el procesamiento exitoso de pago de una orden de trabajo desde `Billing`.
-
----
-
-#### 2.6.1.2. Interface Layer
-
-Manejo global de excepciones (`@RestControllerAdvice`), ensambladores universales de respuestas HTTP e internacionalización (`MessageSource`).
-
-![Interface Layer - Shared Kernel](../assets/shared/interface-layer-diagram.svg)
-
-##### 2.1. Infrastructure REST Utilities & Cross-Cutting Exception Handlers
-
-###### `GlobalExceptionHandler` (`@RestControllerAdvice`)
-* Centraliza las excepciones no capturadas a nivel REST.
-* Traduce `@Valid` binding errors (`MethodArgumentNotValidException`), `IllegalArgumentException`, `AccessDeniedException` y `RuntimeException` a respuestas `ErrorResource` internacionalizadas mediante `messages.properties`.
-
-###### `ErrorResponseAssembler` & `ResponseEntityAssembler`
-* Mapea códigos de error (`VALIDATION_ERROR`, `NOT_FOUND`, `CONFLICT`, `ACCESS_DENIED`) a los códigos de estado HTTP correspondientes (`400`, `404`, `409`, `403`, `500`).
-
----
-
-#### 2.6.1.3. Application Layer
-
-La Capa de Aplicación del Shared Kernel provee la estructura funcional `Result<T, E>` para manejo de errores sin excepciones de control de flujo, y el modelo canónico de errores de aplicación `ApplicationError`.
-
-![Application Layer - Shared Kernel](../assets/shared/application-layer-diagram.svg)
-
-##### 3.1. Functional Result Pattern & Error Specification
-
-###### Sealed Interface: `Result<T, E>`
-* **Permite:** `Result.Success<T, E>`, `Result.Failure<T, E>`.
-* **Métodos Principales:**
-  * `static success(T value)` / `static failure(E error)`: Métodos de fábrica.
-  * `fold(onSuccess, onFailure)`: Evaluación funcional pattern-matching.
-  * `isSuccess()`, `isFailure()`, `success()`, `failure()`.
-
-###### Record: `ApplicationError(String code, String message, String details)`
-* **Métodos Estáticos de Fábrica:**
-  * `validationError(field, reason)`
-  * `notFound(resourceType, identifier)`
-  * `businessRuleViolation(rule, reason)`
-  * `conflict(resource, reason)`
-  * `unexpected(context, reason)`
-
----
-
-#### 2.6.1.4. Infrastructure Layer
-
-Clase base relacional auditada JPA (`AuditableAbstractPersistenceEntity`), conversores de atributos (`AttributeConverter`), seguridad multi-tenant por sucursal y configuraciones transversales.
-
-![Infrastructure Layer - Shared Kernel](../assets/shared/infrastracture-layer-diagram.svg)
-
-##### 4.1. JPA MappedSuperclass & Persistence Base
-
-###### `@MappedSuperclass`: `AuditableAbstractPersistenceEntity`
-* **Anotaciones:** `@EntityListeners(AuditingEntityListener.class)`.
-* **Atributos Heredados:**
-  * `@Id @GeneratedValue(strategy = GenerationType.UUID) UUID id`
-  * `@CreatedDate Instant createdAt`
-  * `@LastModifiedDate Instant updatedAt`
-  * `@Version Long version`
-
-##### 4.2. JPA Custom Attribute Converters
-
-* **`MoneyAttributeConverter`**: Mapea `Money` ↔ `DECIMAL(12,2)`.
-* **`MileageAttributeConverter`**: Mapea `Mileage` ↔ `INTEGER`.
-* **`AddressAttributeConverter`**: Mapea `Address` ↔ `VARCHAR(100)`.
-
-##### 4.3. Multi-Tenancy Security & Auditing
-
-* **`MultiTenancySecurityService`**: Bean `@Service("multiTenancySecurityService")` expuesto para expresiones SpEL (`@PreAuthorize`) que valida si el usuario autenticado posee permisos sobre el `branchId`, `userId` o `workshopId` de la petición.
-* **`UserSecurityService`**: Bean `@Service("userSecurityService")` para verificación de identidad propia en SpEL (prevención de IDOR).
-* **`SnakeCaseWithPluralizedTablePhysicalNamingStrategy`**: Convierte los nombres de entidades de CamelCase a `snake_case` pluralizado para PostgreSQL (ej. `WorkOrder` ➔ `work_orders`).
-
----
-
-#### 2.6.1.5. Bounded Context Software Architecture Component Level Diagrams
-
-Descomposición del Container REST API resaltando los componentes del **Shared Kernel** que prestan servicio transversal a todos los Bounded Contexts.
-
-![Component Level Diagram - Shared Kernel](../assets/shared/component-diagram-share.svg)
-
----
-
-#### 2.6.1.6. Bounded Context Software Architecture Code Level Diagrams
-
-##### 2.6.1.6.1. Bounded Context Domain Layer Class Diagrams
-
-Representación detallada de clases del módulo Shared Kernel en formato UML, abarcando las clases abstractas, Value Objects, Records, Eventos de Dominio, interfaces selladas y utilitarios transversales.
-
-![Domain Class Diagram - Shared Kernel](../assets/shared/domain-shared-kernel-class-diagram.svg)
-
-##### 2.6.1.6.2. Bounded Context Database Design Diagram
-
-Estructura de la tabla relacional base heredada por las entidades persistentes mediante la estrategia `@MappedSuperclass` de JPA en PostgreSQL:
-
-| Columna | Tipo de Dato | Constraints / Descripción |
-| :--- | :--- | :--- |
-| **`id`** | `UUID` | `PRIMARY KEY, DEFAULT gen_random_uuid()` |
-| **`created_at`** | `TIMESTAMP` | `NOT NULL, DEFAULT CURRENT_TIMESTAMP` |
-| **`updated_at`** | `TIMESTAMP` | `NOT NULL, DEFAULT CURRENT_TIMESTAMP` |
-| **`version`** | `BIGINT` | `NOT NULL, DEFAULT 0` (Control de concurrencia optimista) |
-
----
-
+# Diccionario de Arquitectura DDD por Capas y Especificación de Diseño (Bounded Contexts)
 
 Este documento presenta la especificación exhaustiva, formal y técnica de los **Bounded Contexts** implementados en el ecosistema **ShiftIQ Platform**. Cada contexto se estructura rigurosamente bajo los lineamientos del **Domain-Driven Design (DDD) Táctico** y los principios de la **Arquitectura Limpia / Hexagonal**, alineado al 100% con la base de código real. Incluye diagramas de arquitectura en **C4 Model (Nivel 3: Componentes)**, diagramas a nivel de código (**UML Class Diagrams** y **Database ER Diagrams**), y el **Diccionario de Clases por Capas** con atributos tipados, signaturas completas de métodos, visibilidad, reglas de negocio, invariantes y relaciones estructurales entre componentes a través de las cuatro capas fundamentales: **Domain Layer**, **Application Layer**, **Interface Layer** e **Infrastructure Layer**.
 
 ---
 
-Este documento presenta la especificación exhaustiva, formal y técnica de los **Bounded Contexts** implementados en el ecosistema **ShiftIQ Platform**. Cada contexto se estructura rigurosamente bajo los lineamientos del **Domain-Driven Design (DDD) Táctico** y los principios de la **Arquitectura Limpia / Hexagonal**, alineado al 100% con la base de código real. Incluye diagramas de arquitectura en **C4 Model (Nivel 3: Componentes)**, diagramas a nivel de código (**UML Class Diagrams** y **Database ER Diagrams**), y el **Diccionario de Clases por Capas** con atributos tipados, signaturas completas de métodos, visibilidad, reglas de negocio, invariantes y relaciones estructurales entre componentes a través de las cuatro capas fundamentales: **Domain Layer**, **Application Layer**, **Interface Layer** e **Infrastructure Layer**.
-
----
-
-Este documento presenta la especificación exhaustiva, formal y técnica de los **Bounded Contexts** implementados en el ecosistema **ShiftIQ Platform**. Cada contexto se estructura rigurosamente bajo los lineamientos del **Domain-Driven Design (DDD) Táctico** y los principios de la **Arquitectura Limpia / Hexagonal**, alineado al 100% con la base de código real. Incluye diagramas de arquitectura en **C4 Model (Nivel 3: Componentes)**, diagramas a nivel de código (**UML Class Diagrams** y **Database ER Diagrams**), y el **Diccionario de Clases por Capas** con atributos tipados, signaturas completas de métodos, visibilidad, reglas de negocio, invariantes y relaciones estructurales entre componentes a través de las cuatro capas fundamentales: **Domain Layer**, **Application Layer**, **Interface Layer** e **Infrastructure Layer**.
-
----
-
-Este documento presenta la especificación exhaustiva, formal y técnica de los **Bounded Contexts** implementados en el ecosistema **ShiftIQ Platform**. Cada contexto se estructura rigurosamente bajo los lineamientos del **Domain-Driven Design (DDD) Táctico** y los principios de la **Arquitectura Limpia / Hexagonal**, alineado al 100% con la base de código real. Incluye diagramas de arquitectura en **C4 Model (Nivel 3: Componentes)**, diagramas a nivel de código (**UML Class Diagrams** y **Database ER Diagrams**), y el **Diccionario de Clases por Capas** con atributos tipados, signaturas completas de métodos, visibilidad, reglas de negocio, invariantes y relaciones estructurales entre componentes a través de las cuatro capas fundamentales: **Domain Layer**, **Application Layer**, **Interface Layer** e **Infrastructure Layer**.
-
-
-### 2.6.2. Bounded Context: Identity & Access Management (IAM)
+# Bounded Context: Identity & Access Management (IAM)
 
 El Bounded Context de **Identity & Access Management (IAM)** constituye la piedra angular de seguridad, identidad y control de acceso de la plataforma ShiftIQ. Su responsabilidad primordial radica en centralizar el ciclo de vida de las identidades de usuario, garantizando:
 - La confidencialidad y almacenamiento seguro de credenciales mediante hashing criptográfico BCrypt.
@@ -189,15 +15,178 @@ El Bounded Context de **Identity & Access Management (IAM)** constituye la piedr
 
 ---
 
-#### 2.6.2.1. Domain Layer (Capa de Dominio)
+## 1. Domain Layer (Capa de Dominio)
 
 La Capa de Dominio encierra la lógica de negocio pura, las invariantes operativas y las reglas del sistema de identidad, manteniéndose completamente agnóstica de frameworks web, motores de bases de datos o librerías de persistencia. En esta capa se definen Agregados, Entidades, Value Objects, Servicios de Dominio, Fábricas (Factories/Creation Constructors) e Interfaces de Repositorio.
 
-![Diagrama de la Capa de Dominio -- IAM](../assets/iam/domain-layer-diagram.svg)
+```mermaid
+classDiagram
+    direction TB
 
-##### 1.1. Aggregates & Entities
+    class AbstractDomainAggregateRoot~T~ {
+        <<abstract>>
+        -List~Object~ domainEvents
+        #registerDomainEvent(Object event) void
+        +clearDomainEvents() void
+        +domainEvents() Collection~Object~
+    }
 
-##### Class: `User`
+    class User {
+        <<Aggregate Root>>
+        -UserId id
+        -EmailAddress email
+        -Password password
+        -GoogleId googleId
+        -UserStatus status
+        -Roles role
+        -Set~UUID~ branchIds
+        -Instant createdAt
+        -Instant updatedAt
+        -Instant deletedAt
+        -Long version
+        +User()
+        +User(EmailAddress email, Password password)
+        +User(EmailAddress email, Password password, GoogleId googleId)
+        +User(UserId id, EmailAddress email, Password password, GoogleId googleId, UserStatus status, Roles role, Set~UUID~ branchIds, Instant createdAt, Instant updatedAt, Instant deletedAt, Long version)
+        +assignRole(Roles role) void
+        +assignBranch(UUID branchId) void
+        +removeBranch(UUID branchId) void
+        +deactivate() void
+        +changePassword(Password newPassword) void
+        +changeEmail(EmailAddress newEmail) void
+        +linkGoogleAccount(GoogleId googleId) void
+        +getId() UserId
+        +getEmail() EmailAddress
+        +getPassword() Password
+        +getGoogleId() GoogleId
+        +getStatus() UserStatus
+        +getRole() Roles
+        +getBranchIds() Set~UUID~
+        +getCreatedAt() Instant
+        +getUpdatedAt() Instant
+        +getDeletedAt() Instant
+        +getVersion() Long
+    }
+
+    class PasswordRecoveryToken {
+        <<Entity>>
+        -UUID id
+        -String tokenHash
+        -Instant createdAt
+        -Instant expiresAt
+        -boolean isUsed
+        -UUID userId
+        +PasswordRecoveryToken()
+        +PasswordRecoveryToken(String tokenHash, UUID userId, long expirationMinutes)
+        +PasswordRecoveryToken(UUID id, String tokenHash, UUID userId, Instant createdAt, Instant expiresAt, boolean isUsed)
+        +isValid() boolean
+        +markAsUsed() void
+        +getId() UUID
+        +getTokenHash() String
+        +getUserId() UUID
+        +getCreatedAt() Instant
+        +getExpiresAt() Instant
+        +isUsed() boolean
+    }
+
+    class UserId {
+        <<Value Object (Record)>>
+        -UUID value
+        +UserId(UUID value)
+        +value() UUID
+    }
+
+    class EmailAddress {
+        <<Value Object (Record)>>
+        -String value
+        +EmailAddress(String value)
+        +value() String
+    }
+
+    class Password {
+        <<Value Object (Record)>>
+        -String value
+        +Password(String value)
+        +value() String
+    }
+
+    class GoogleId {
+        <<Value Object (Record)>>
+        -String value
+        +GoogleId(String value)
+        +value() String
+    }
+
+    class UserStatus {
+        <<Enumeration>>
+        ACTIVE
+        INACTIVE
+    }
+
+    class Roles {
+        <<Enumeration>>
+        ROLE_USER
+        ROLE_ADMIN
+        ROLE_EMPLOYEE
+        ROLE_OWNER
+    }
+
+    class UserRepository {
+        <<Interface>>
+        +save(User user)* void
+        +findById(UUID id)* Optional~User~
+        +findByEmail(String email)* Optional~User~
+        +existsByEmail(String email)* boolean
+    }
+
+    class PasswordRecoveryTokenRepository {
+        <<Interface>>
+        +save(PasswordRecoveryToken token)* void
+        +findByTokenHash(String tokenHash)* Optional~PasswordRecoveryToken~
+    }
+
+    class UserSignedUpEvent {
+        <<Domain Event>>
+        +UUID userId
+        +String email
+    }
+
+    class UserPasswordChangedEvent {
+        <<Domain Event>>
+        +UUID userId
+    }
+
+    class UserEmailChangedEvent {
+        <<Domain Event>>
+        +UUID userId
+        +String oldEmail
+        +String newEmail
+    }
+
+    class UserDeactivatedEvent {
+        <<Domain Event>>
+        +UUID userId
+    }
+
+    AbstractDomainAggregateRoot <|-- User : extends
+    User "1" *-- "1" UserId : identity
+    User "1" *-- "1" EmailAddress : primary credential
+    User "1" *-- "0..1" Password : hash credential
+    User "1" *-- "0..1" GoogleId : federated subject
+    User "1" *-- "1" UserStatus : account state
+    User "1" *-- "1" Roles : security authority
+    User "1" o-- "0..*" PasswordRecoveryToken : references
+    UserRepository ..> User : manages
+    PasswordRecoveryTokenRepository ..> PasswordRecoveryToken : manages
+    User ..> UserSignedUpEvent : emits
+    User ..> UserPasswordChangedEvent : emits
+    User ..> UserEmailChangedEvent : emits
+    User ..> UserDeactivatedEvent : emits
+```
+
+### 1.1. Aggregates & Entities
+
+#### 📌 Class: `User`
 * **Tipo:** Aggregate Root (extiende de `AbstractDomainAggregateRoot<User>`).
 * **Propósito:** Raíz de consistencia del agregado de usuario en IAM. Encapsula las credenciales, el estado vital de la cuenta, el rol de autorización RBAC, las asociaciones a sucursales de taller y las transiciones de estado, garantizando la publicación atómica de eventos de dominio ante cambios relevantes.
 * **Documentación de Atributos:**
@@ -229,7 +218,7 @@ La Capa de Dominio encierra la lógica de negocio pura, las invariantes operativ
 
 ---
 
-##### Class: `PasswordRecoveryToken`
+#### 📌 Class: `PasswordRecoveryToken`
 * **Tipo:** Entity interna de dominio.
 * **Propósito:** Representa un token temporal y efímero generado para validar solicitudes de restablecimiento de contraseña.
 * **Documentación de Atributos:**
@@ -247,32 +236,32 @@ La Capa de Dominio encierra la lógica de negocio pura, las invariantes operativ
 
 ---
 
-##### 1.2. Value Objects
+### 1.2. Value Objects
 
-##### Class: `UserId`
+#### 📌 Class: `UserId`
 * **Tipo:** Value Object (Java Record).
 * **Propósito:** Tipado fuerte para el identificador único del usuario (`UUID`).
 * **Atributos:** `value: UUID`.
 * **Métodos:** Constructor canónico con validación de no-nulidad (`"iam.error.userId.required"`).
 
-##### Class: `EmailAddress`
+#### 📌 Class: `EmailAddress`
 * **Tipo:** Value Object (Java Record).
 * **Propósito:** Valida y encapsula una dirección de correo electrónico según la expresión regular `^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$`.
 * **Atributos:** `value: String`.
 * **Métodos:** Constructor con validación de patrón (`"iam.error.email.invalidFormat"`) y no-nulidad (`"iam.error.email.required"`).
 
-##### Class: `Password`
+#### 📌 Class: `Password`
 * **Tipo:** Value Object (Java Record).
 * **Propósito:** Encapsula la contraseña en formato hash, asegurando que el dominio nunca maneje texto plano.
 * **Atributos:** `value: String`.
 * **Métodos:** Valida no-nulidad ni espacio en blanco (`"iam.error.password.required"`).
 
-##### Class: `GoogleId`
+#### 📌 Class: `GoogleId`
 * **Tipo:** Value Object (Java Record).
 * **Propósito:** Encapsula el identificador federado del sujeto provisto por Google (`sub`).
 * **Atributos:** `value: String`.
 
-##### Enum: `Roles`
+#### 📌 Enum: `Roles`
 * **Tipo:** Value Object (Enumeration).
 * **Propósito:** Define los roles canónicos de seguridad existentes en la base de código real:
 * **Valores:**
@@ -281,7 +270,7 @@ La Capa de Dominio encierra la lógica de negocio pura, las invariantes operativ
   * `ROLE_EMPLOYEE`: Personal operativo o técnico del taller automotriz.
   * `ROLE_OWNER`: Propietario del taller automotriz y titular de la suscripción.
 
-##### Enum: `UserStatus`
+#### 📌 Enum: `UserStatus`
 * **Tipo:** Value Object (Enumeration).
 * **Propósito:** Modela el estado de la cuenta en el ciclo de vida:
 * **Valores:**
@@ -290,18 +279,18 @@ La Capa de Dominio encierra la lógica de negocio pura, las invariantes operativ
 
 ---
 
-##### 1.3. Domain Events
+### 1.3. Domain Events
 
-*  **`UserSignedUpEvent(Object source, UUID userId, String email)`**: Publicado al crearse una nueva cuenta de usuario.
-*  **`UserPasswordChangedEvent(Object source, UUID userId)`**: Publicado al modificarse la contraseña del usuario.
-*  **`UserEmailChangedEvent(Object source, UUID userId, String oldEmail, String newEmail)`**: Publicado tras la actualización de correo electrónico.
-*  **`UserDeactivatedEvent(Object source, UUID userId)`**: Publicado al ejecutarse la baja lógica de la cuenta.
+* 🟧 **`UserSignedUpEvent(Object source, UUID userId, String email)`**: Publicado al crearse una nueva cuenta de usuario.
+* 🟧 **`UserPasswordChangedEvent(Object source, UUID userId)`**: Publicado al modificarse la contraseña del usuario.
+* 🟧 **`UserEmailChangedEvent(Object source, UUID userId, String oldEmail, String newEmail)`**: Publicado tras la actualización de correo electrónico.
+* 🟧 **`UserDeactivatedEvent(Object source, UUID userId)`**: Publicado al ejecutarse la baja lógica de la cuenta.
 
 ---
 
-##### 1.4. Domain Repositories (Interfaces)
+### 1.4. Domain Repositories (Interfaces)
 
-##### Interface: `UserRepository`
+#### 📌 Interface: `UserRepository`
 * **Propósito:** Define el contrato formal de persistencia del agregado `User`. En la base de código real, sus métodos de consulta utilizan tipos primitivos/estándar (`UUID`, `String`) y `save()` retorna `void`:
 * **Métodos:**
   * `void save(User user)`: Persiste o actualiza el usuario en la base de datos y despacha sus eventos de dominio acumulados mediante `ApplicationEventPublisher`.
@@ -310,7 +299,7 @@ La Capa de Dominio encierra la lógica de negocio pura, las invariantes operativ
   * `boolean existsByEmail(String email)`: Comprueba si existe un usuario activo con dicho correo.
 * **Relaciones:** Implementado en infraestructura por `UserRepositoryImpl`.
 
-##### Interface: `PasswordRecoveryTokenRepository`
+#### 📌 Interface: `PasswordRecoveryTokenRepository`
 * **Propósito:** Contrato para el almacenamiento y consulta de tokens de recuperación de contraseñas.
 * **Métodos:**
   * `void save(PasswordRecoveryToken token)`: Persiste o actualiza el token de recuperación.
@@ -319,30 +308,109 @@ La Capa de Dominio encierra la lógica de negocio pura, las invariantes operativ
 
 ---
 
-#### 2.6.2.2. Application Layer (Capa de Aplicación)
+## 2. Application Layer (Capa de Aplicación)
 
 La Capa de Aplicación orquesta los casos de uso del Bounded Context. Recibe comandos y consultas, coordina los agregados del dominio, ejecuta validaciones de unicidad y delega en servicios de infraestructura (hashing, tokens, email y Google OAuth).
 
-![Diagrama de la Capa de Aplicación -- IAM](../assets/iam/application-layer-diagram.svg)
+```mermaid
+classDiagram
+    direction TB
 
-##### 2.1. Commands & Queries (DTOs de Aplicación)
+    class UserCommandService {
+        <<Interface>>
+        +handle(SignUpCommand command)* Optional~User~
+        +handle(SignInCommand command)* Optional~AuthenticatedUser~
+        +handle(GoogleSignInCommand command)* Optional~AuthenticatedUser~
+        +handle(UpdateUserEmailCommand command)* Optional~AuthenticatedUser~
+        +handle(UpdateUserPasswordCommand command)* Optional~User~
+    }
 
-*  **`SignUpCommand(EmailAddress email, Password password)`**: Comando con Value Objects para dar de alta una nueva cuenta.
-*  **`SignInCommand(EmailAddress email, Password password)`**: Credenciales para autenticación local.
-*  **`GoogleSignInCommand(String idToken)`**: Token de identidad emitido por Google Identity Services.
-*  **`GeneratePasswordRecoveryTokenCommand(EmailAddress email)`**: Solicitud de token de recuperación.
-*  **`ResetPasswordCommand(String token, Password newPassword)`**: Token plano recibido por email y Value Object de la nueva contraseña.
-*  **`UpdateUserEmailCommand(UserId userId, EmailAddress newEmail)`**: Parámetros para actualizar el correo electrónico.
-*  **`UpdateUserPasswordCommand(UserId userId, Password currentPassword, Password newPassword)`**: Parámetros para cambiar la clave verificando la actual.
-*  **`GetUserByIdQuery(UserId userId)`**: Consulta inmutable de usuario por su identificador.
-*  **`GetUserByEmailQuery(EmailAddress email)`**: Consulta de usuario por dirección de correo.
-*  **`AuthenticatedUser(User user, String token)`**: Modelo de resultado de autenticación que encapsula el agregado `User` y el token JWT emitido.
+    class UserCommandServiceImpl {
+        -UserRepository userRepository
+        -HashingService hashingService
+        -TokenService tokenService
+        -GoogleIdTokenVerifier googleVerifier
+        +handle(...)
+    }
+
+    class PasswordRecoveryCommandService {
+        <<Interface>>
+        +handle(GeneratePasswordRecoveryTokenCommand command)* void
+        +handle(ResetPasswordCommand command)* void
+    }
+
+    class PasswordRecoveryCommandServiceImpl {
+        -UserRepository userRepository
+        -PasswordRecoveryTokenRepository tokenRepository
+        -EmailService emailService
+        -HashingService hashingService
+        -int tokenExpirationMinutes
+        -hashToken(String rawToken) String
+        +handle(...)
+    }
+
+    class UserQueryService {
+        <<Interface>>
+        +handle(GetUserByIdQuery query)* Optional~User~
+        +handle(GetUserByEmailQuery query)* Optional~User~
+    }
+
+    class UserQueryServiceImpl {
+        -UserRepository userRepository
+        +handle(...)
+    }
+
+    class HashingService {
+        <<Interface (Outbound)>>
+        +encode(CharSequence rawPassword)* String
+        +matches(CharSequence rawPassword, String encodedPassword)* boolean
+    }
+
+    class TokenService {
+        <<Interface (Outbound)>>
+        +generateToken(String username)* String
+        +getUsernameFromToken(String token)* String
+        +validateToken(String token)* boolean
+    }
+
+    class EmailService {
+        <<Interface (Outbound)>>
+        +sendPasswordRecoveryEmail(String to, String token)* void
+    }
+
+    UserCommandService <|.. UserCommandServiceImpl
+    PasswordRecoveryCommandService <|.. PasswordRecoveryCommandServiceImpl
+    UserQueryService <|.. UserQueryServiceImpl
+
+    UserCommandServiceImpl --> UserRepository : uses
+    UserCommandServiceImpl --> HashingService : uses
+    UserCommandServiceImpl --> TokenService : uses
+
+    PasswordRecoveryCommandServiceImpl --> UserRepository : uses
+    PasswordRecoveryCommandServiceImpl --> PasswordRecoveryTokenRepository : uses
+    PasswordRecoveryCommandServiceImpl --> EmailService : uses
+
+    UserQueryServiceImpl --> UserRepository : uses
+```
+
+### 2.1. Commands & Queries (DTOs de Aplicación)
+
+* 🟦 **`SignUpCommand(EmailAddress email, Password password)`**: Comando con Value Objects para dar de alta una nueva cuenta.
+* 🟦 **`SignInCommand(EmailAddress email, Password password)`**: Credenciales para autenticación local.
+* 🟦 **`GoogleSignInCommand(String idToken)`**: Token de identidad emitido por Google Identity Services.
+* 🟦 **`GeneratePasswordRecoveryTokenCommand(EmailAddress email)`**: Solicitud de token de recuperación.
+* 🟦 **`ResetPasswordCommand(String token, Password newPassword)`**: Token plano recibido por email y Value Object de la nueva contraseña.
+* 🟦 **`UpdateUserEmailCommand(UserId userId, EmailAddress newEmail)`**: Parámetros para actualizar el correo electrónico.
+* 🟦 **`UpdateUserPasswordCommand(UserId userId, Password currentPassword, Password newPassword)`**: Parámetros para cambiar la clave verificando la actual.
+* 🟩 **`GetUserByIdQuery(UserId userId)`**: Consulta inmutable de usuario por su identificador.
+* 🟩 **`GetUserByEmailQuery(EmailAddress email)`**: Consulta de usuario por dirección de correo.
+* 🟩 **`AuthenticatedUser(User user, String token)`**: Modelo de resultado de autenticación que encapsula el agregado `User` y el token JWT emitido.
 
 ---
 
-##### 2.2. Command Services & Handlers
+### 2.2. Command Services & Handlers
 
-##### Interface: `UserCommandService` / Class: `UserCommandServiceImpl`
+#### 📌 Interface: `UserCommandService` / Class: `UserCommandServiceImpl`
 * **Propósito:** Orquestador de mutaciones de usuario en IAM.
 * **Dependencias inyectadas:** `UserRepository`, `HashingService`, `TokenService`, `GoogleIdTokenVerifier` (configurado con `@Value("${google.client.id}")`).
 * **Documentación de Métodos:**
@@ -357,7 +425,7 @@ La Capa de Aplicación orquesta los casos de uso del Bounded Context. Recibe com
   * `Optional<User> handle(UpdateUserPasswordCommand command)`:
     * *Lógica:* Localiza al usuario por ID. Comprueba la contraseña actual mediante `hashingService.matches()`; si no coincide, lanza `"iam.error.currentPassword.invalid"`. Encripta la nueva clave, llama a `user.changePassword(newPasswordVO)`, guarda con `userRepository.save(user)` y retorna `Optional.of(user)`.
 
-##### Interface: `PasswordRecoveryCommandService` / Class: `PasswordRecoveryCommandServiceImpl`
+#### 📌 Interface: `PasswordRecoveryCommandService` / Class: `PasswordRecoveryCommandServiceImpl`
 * **Propósito:** Orquestador del flujo de recuperación y reseteo de contraseñas.
 * **Dependencias inyectadas:** `UserRepository`, `PasswordRecoveryTokenRepository`, `EmailService`, `HashingService`, `@Value("${password.recovery.token.expiration.minutes:60}") int tokenExpirationMinutes`.
 * **Documentación de Métodos:**
@@ -369,9 +437,9 @@ La Capa de Aplicación orquesta los casos de uso del Bounded Context. Recibe com
 
 ---
 
-##### 2.3. Query Services
+### 2.3. Query Services
 
-##### Interface: `UserQueryService` / Class: `UserQueryServiceImpl`
+#### 📌 Interface: `UserQueryService` / Class: `UserQueryServiceImpl`
 * **Propósito:** Consultas de lectura pura sobre usuarios.
 * **Métodos:**
   * `Optional<User> handle(GetUserByIdQuery query)`: Invoca `userRepository.findById(query.userId().value())`.
@@ -379,7 +447,7 @@ La Capa de Aplicación orquesta los casos de uso del Bounded Context. Recibe com
 
 ---
 
-##### 2.4. Outbound Services Interfaces
+### 2.4. Outbound Services Interfaces
 
 * **`HashingService`**:
   * `String encode(CharSequence rawPassword)`: Encripta la contraseña.
@@ -393,15 +461,59 @@ La Capa de Aplicación orquesta los casos de uso del Bounded Context. Recibe com
 
 ---
 
-#### 2.6.2.3. Interface Layer (Capa de Interfaces)
+## 3. Interface Layer (Capa de Interfaces)
 
 La Capa de Interfaces expone los controladores REST HTTP bajo la convención de URLs reales del sistema. Transforma peticiones JSON entrantes en comandos/queries y mapea los resultados del dominio a Resources DTOs.
 
-![Diagrama de la Capa de Interfaces -- IAM](../assets/iam/interface-layer-diagram.svg)
+```mermaid
+classDiagram
+    direction TB
 
-##### 3.1. REST Controllers
+    class AuthenticationController {
+        <<REST Controller>>
+        -UserCommandService userCommandService
+        -PasswordRecoveryCommandService passwordRecoveryCommandService
+        +signIn(SignInResource resource) ResponseEntity~AuthenticatedUserResource~
+        +googleSignIn(GoogleSignInResource resource) ResponseEntity~AuthenticatedUserResource~
+        +forgotPassword(PasswordRecoveryResource resource) ResponseEntity~Void~
+        +resetPassword(ResetPasswordResource resource) ResponseEntity~Void~
+    }
 
-##### Class: `AuthenticationController`
+    class UsersController {
+        <<REST Controller>>
+        -UserCommandService userCommandService
+        -UserQueryService userQueryService
+        -UserSecurityService userSecurityService
+        +signUp(SignUpResource resource) ResponseEntity~UserResource~
+        +getUserById(UUID userId) ResponseEntity~UserResource~
+        +getUserByEmail(String email) ResponseEntity~UserResource~
+        +updateUserEmail(UUID userId, UpdateUserEmailResource resource) ResponseEntity~AuthenticatedUserResource~
+        +updateUserPassword(UUID userId, UpdateUserPasswordResource resource) ResponseEntity~?~
+    }
+
+    class UserResource {
+        <<DTO Response (Record)>>
+        +UUID id
+        +String email
+        +String role
+    }
+
+    class AuthenticatedUserResource {
+        <<DTO Response (Record)>>
+        +UUID id
+        +String email
+        +String role
+        +String token
+    }
+
+    AuthenticationController ..> AuthenticatedUserResource : returns
+    UsersController ..> UserResource : returns
+    UsersController ..> AuthenticatedUserResource : returns
+```
+
+### 3.1. REST Controllers
+
+#### 📌 Class: `AuthenticationController`
 * **Ruta Base:** `/api/v1/authentication`
 * **Anotaciones:** `@RestController`, `@RequestMapping("/api/v1/authentication")`, `@Tag(name = "Authentication")`.
 * **Endpoints y Métodos:**
@@ -414,7 +526,7 @@ La Capa de Interfaces expone los controladores REST HTTP bajo la convención de 
   * `POST /password-resets` (`resetPassword`):
     * Recibe `@Valid @RequestBody ResetPasswordResource`. Transforma a `ResetPasswordCommand`, delega en `passwordRecoveryCommandService.handle()` y retorna `200 OK` vacío (`ResponseEntity.ok().build()`).
 
-##### Class: `UsersController`
+#### 📌 Class: `UsersController`
 * **Ruta Base:** `/api/v1/users`
 * **Anotaciones:** `@RestController`, `@RequestMapping("/api/v1/users")`, `@Tag(name = "Users")`, `@PreAuthorize("isAuthenticated()")`.
 * **Endpoints y Métodos:**
@@ -431,7 +543,7 @@ La Capa de Interfaces expone los controladores REST HTTP bajo la convención de 
 
 ---
 
-##### 3.2. Resources (DTOs) & Assemblers
+### 3.2. Resources (DTOs) & Assemblers
 
 * **`UserResource(UUID id, String email, String role)`**: Record inmutable de respuesta para datos públicos de usuario.
 * **`AuthenticatedUserResource(UUID id, String email, String role, String token)`**: Record inmutable de respuesta que incluye el token Bearer JWT tras el login exitoso.
@@ -455,15 +567,90 @@ La Capa de Interfaces expone los controladores REST HTTP bajo la convención de 
 
 ---
 
-#### 2.6.2.4. Infrastructure Layer (Capa de Infraestructura)
+## 4. Infrastructure Layer (Capa de Infraestructura)
 
 La Capa de Infraestructura implementa la persistencia física en PostgreSQL 18 con Spring Data JPA, el filtrado de seguridad con Spring Security, el hashing BCrypt y la integración con SMTP y Google Identity Services.
 
-![Diagrama de la Capa de Infraestructura -- IAM](../assets/iam/infrastructure-layer-diagram.svg)
+```mermaid
+classDiagram
+    direction TB
 
-##### 4.1. Persistence (JPA Entities, Repositories & Assemblers)
+    class UserRepository {
+        <<Domain Interface>>
+    }
 
-##### Class: `AuditableAbstractPersistenceEntity`
+    class UserRepositoryImpl {
+        <<Adapter>>
+        -UserPersistenceRepository userPersistenceRepository
+        -ApplicationEventPublisher eventPublisher
+        +save(User user) void
+        +findById(UUID id) Optional~User~
+        +findByEmail(String email) Optional~User~
+        +existsByEmail(String email) boolean
+    }
+
+    class UserPersistenceEntity {
+        <<JPA Entity>>
+        -String email
+        -String passwordHash
+        -String googleId
+        -UserStatus status
+        -Roles role
+        -Set~UUID~ branchIds
+        -Instant deletedAt
+    }
+
+    class AuditableAbstractPersistenceEntity {
+        <<MappedSuperclass>>
+        -UUID id
+        -Instant createdAt
+        -Instant updatedAt
+        -Long version
+    }
+
+    class UserPersistenceRepository {
+        <<Spring Data JPA>>
+        +findByEmail(String email) Optional~UserPersistenceEntity~
+        +existsByEmail(String email) boolean
+        +findByIdAndNotDeleted(UUID id) Optional~UserPersistenceEntity~
+    }
+
+    class BCryptHashingService {
+        <<Interface>>
+    }
+
+    class HashingServiceImpl {
+        <<Service>>
+        -PasswordEncoder passwordEncoder
+        +encode(CharSequence rawPassword) String
+        +matches(...) boolean
+    }
+
+    class BearerTokenService {
+        <<Interface>>
+        +getBearerTokenFrom(HttpServletRequest request) String
+        +generateToken(Authentication authentication) String
+    }
+
+    class TokenServiceImpl {
+        <<Service>>
+        -String secret
+        -long expirationDays
+        +generateToken(String username) String
+        +validateToken(String token) boolean
+        +getUsernameFromToken(String token) String
+    }
+
+    UserRepository <|.. UserRepositoryImpl
+    UserRepositoryImpl --> UserPersistenceRepository : delegates to
+    AuditableAbstractPersistenceEntity <|-- UserPersistenceEntity : extends
+    BCryptHashingService <|.. HashingServiceImpl
+    BearerTokenService <|.. TokenServiceImpl
+```
+
+### 4.1. Persistence (JPA Entities, Repositories & Assemblers)
+
+#### 📌 Class: `AuditableAbstractPersistenceEntity`
 * **Tipo:** `@MappedSuperclass` con listener `@EntityListeners(AuditingEntityListener.class)`.
 * **Propósito:** Provee los campos comunes de identidad, auditoría y control de concurrencia optimista para las entidades relacionales de la plataforma:
   * `@Id @GeneratedValue(strategy = GenerationType.UUID) @Column(columnDefinition = "uuid", updatable = false, nullable = false) private UUID id;`
@@ -471,7 +658,7 @@ La Capa de Infraestructura implementa la persistencia física en PostgreSQL 18 c
   * `@LastModifiedDate @Column(name = "updated_at", nullable = false) private Instant updatedAt;`
   * `@Version @Column(name = "version") private Long version;`
 
-##### Class: `UserPersistenceEntity`
+#### 📌 Class: `UserPersistenceEntity`
 * **Tipo:** Entidad JPA (`@Entity`, `@Table(name = "users")`) que extiende de `AuditableAbstractPersistenceEntity`.
 * **Mapeo de Columnas:**
   * `@Column(name = "email", nullable = false, unique = true, length = 100) private String email;`
@@ -482,7 +669,7 @@ La Capa de Infraestructura implementa la persistencia física en PostgreSQL 18 c
   * `@ElementCollection(fetch = FetchType.EAGER) @CollectionTable(name = "user_branches", joinColumns = @JoinColumn(name = "user_id")) @Column(name = "branch_id") private Set<UUID> branchIds;`
   * `@Column(name = "deleted_at") private Instant deletedAt;`
 
-##### Class: `PasswordRecoveryTokenPersistenceEntity`
+#### 📌 Class: `PasswordRecoveryTokenPersistenceEntity`
 * **Tipo:** Entidad JPA (`@Entity`, `@Table(name = "password_recovery_tokens")`).
 * **Mapeo de Columnas:**
   * `@Id @Column(columnDefinition = "uuid", updatable = false, nullable = false) private UUID id;`
@@ -492,14 +679,14 @@ La Capa de Infraestructura implementa la persistencia física en PostgreSQL 18 c
   * `@Column(name = "expires_at", nullable = false, updatable = false) private Instant expiresAt;`
   * `@Column(name = "is_used", nullable = false) private boolean isUsed = false;`
 
-##### Interface: `UserPersistenceRepository`
+#### 📌 Interface: `UserPersistenceRepository`
 * **Tipo:** Interfaz de Spring Data JPA (`JpaRepository<UserPersistenceEntity, UUID>`).
 * **Consultas JPQL con soporte Soft-Delete:**
   * `@Query("SELECT u FROM UserPersistenceEntity u WHERE u.email = :email AND u.deletedAt IS NULL") Optional<UserPersistenceEntity> findByEmail(@Param("email") String email);`
   * `@Query("SELECT COUNT(u) > 0 FROM UserPersistenceEntity u WHERE u.email = :email AND u.deletedAt IS NULL") boolean existsByEmail(@Param("email") String email);`
   * `@Query("SELECT u FROM UserPersistenceEntity u WHERE u.id = :id AND u.deletedAt IS NULL") Optional<UserPersistenceEntity> findByIdAndNotDeleted(@Param("id") UUID id);`
 
-##### Class: `UserRepositoryImpl`
+#### 📌 Class: `UserRepositoryImpl`
 * **Tipo:** Adaptador de repositorio que implementa `com.tuxlogic.shiftiq.platform.iam.domain.repositories.UserRepository`.
 * **Lógica:**
   * En `save(User user)`: Busca o crea `UserPersistenceEntity`, mapea con `UserPersistenceAssembler.toEntity(user, entity)`, persiste vía `userPersistenceRepository.save(entity)`, itera sobre `user.domainEvents()` publicándolos mediante `eventPublisher.publishEvent()` y limpia los eventos con `user.clearDomainEvents()`.
@@ -507,20 +694,20 @@ La Capa de Infraestructura implementa la persistencia física en PostgreSQL 18 c
   * En `findByEmail(String email)`: Invoca `userPersistenceRepository.findByEmail(email).map(UserPersistenceAssembler::toDomain)`.
   * En `existsByEmail(String email)`: Invoca `userPersistenceRepository.existsByEmail(email)`.
 
-##### Class: `PasswordRecoveryTokenRepositoryImpl`
+#### 📌 Class: `PasswordRecoveryTokenRepositoryImpl`
 * **Tipo:** Adaptador que implementa `PasswordRecoveryTokenRepository`.
 * **Lógica:**
   * En `save(PasswordRecoveryToken token)`: Mapea a `PasswordRecoveryTokenPersistenceEntity` y guarda mediante `tokenPersistenceRepository.save()`.
   * En `findByTokenHash(String tokenHash)`: Busca en la base de datos y mapea a dominio mediante `PasswordRecoveryTokenPersistenceAssembler.toDomain()`.
 
-##### Classes: `UserPersistenceAssembler` y `PasswordRecoveryTokenPersistenceAssembler`
+#### 📌 Classes: `UserPersistenceAssembler` y `PasswordRecoveryTokenPersistenceAssembler`
 * Mapeadores estáticos que transfieren datos bidireccionalmente entre los agregados de dominio y las entidades JPA relacionales.
 
 ---
 
-##### 4.2. Security & Authorization (Spring Security, JWT & RBAC)
+### 4.2. Security & Authorization (Spring Security, JWT & RBAC)
 
-##### Class: `WebSecurityConfiguration`
+#### 📌 Class: `WebSecurityConfiguration`
 * **Anotaciones:** `@Configuration`, `@EnableMethodSecurity`.
 * **Cadena de Filtros (`SecurityFilterChain`):**
   * Deshabilita CSRF (`csrf.disable()`) por ser una API REST stateless.
@@ -533,50 +720,111 @@ La Capa de Infraestructura implementa la persistencia física en PostgreSQL 18 c
   * **Rutas Protegidas:** `anyRequest().authenticated()`.
   * Registra `BearerAuthorizationRequestFilter` antes de `UsernamePasswordAuthenticationFilter`.
 
-##### Class: `BearerAuthorizationRequestFilter`
+#### 📌 Class: `BearerAuthorizationRequestFilter`
 * **Propósito:** `OncePerRequestFilter` que extrae el token Bearer de la cabecera HTTP `Authorization`, lo valida con `tokenService.validateToken(token)`, extrae el email (`getUsernameFromToken`), carga los detalles con `userDetailsService.loadUserByUsername(email)` y establece la autenticación mediante `UsernamePasswordAuthenticationTokenBuilder.build(userDetails, request)` en `SecurityContextHolder`.
 
-##### Class: `UsernamePasswordAuthenticationTokenBuilder`
+#### 📌 Class: `UsernamePasswordAuthenticationTokenBuilder`
 * **Propósito:** Clase utilitaria con método estático `build(UserDetails principal, HttpServletRequest request)` que instancia `UsernamePasswordAuthenticationToken` asignando los detalles web (`WebAuthenticationDetailsSource`).
 
-##### Class: `UserSecurityService`
+#### 📌 Class: `UserSecurityService`
 * **Ubicación:** `com.tuxlogic.shiftiq.platform.shared.infrastructure.security.UserSecurityService`.
 * **Propósito:** Servicio de seguridad inyectado en expresiones SpEL (`@PreAuthorize("@userSecurityService.isCurrentUser(#userId)")`) para verificar en tiempo de ejecución si el usuario autenticado coincide con el propietario del recurso solicitado, asegurando aislamiento de datos multi-tenant.
 
-##### Class: `UserDetailsServiceImpl` y `UserDetailsImpl`
+#### 📌 Class: `UserDetailsServiceImpl` y `UserDetailsImpl`
 * **`UserDetailsImpl`**: Implementa `UserDetails` de Spring Security. Contiene `id: UUID`, `username: String`, `password: String`, `authorities: Collection<GrantedAuthority>`, `branchIds: Set<UUID>`, y `enabled: boolean` (calculado mediante `user.getStatus() == UserStatus.ACTIVE`).
 * **`UserDetailsServiceImpl`**: Carga el usuario mediante `userRepository.findByEmail(username)` y construye el `UserDetailsImpl`.
 
-##### Class: `UnauthorizedRequestHandlerEntryPoint`
+#### 📌 Class: `UnauthorizedRequestHandlerEntryPoint`
 * **Propósito:** Implementa `AuthenticationEntryPoint`. Intercepta peticiones no autenticadas ejecutando `response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized request detected")`.
 
 ---
 
-##### 4.3. Outbound Services Implementation
+### 4.3. Outbound Services Implementation
 
-##### Interface: `BCryptHashingService` / Class: `HashingServiceImpl`
+#### 📌 Interface: `BCryptHashingService` / Class: `HashingServiceImpl`
 * **`BCryptHashingService`**: Interfaz de infraestructura que extiende tanto de `HashingService` (puerto de aplicación) como de `org.springframework.security.crypto.password.PasswordEncoder`.
 * **`HashingServiceImpl`**: Servicio anotado con `@Service` que delega en una instancia de `BCryptPasswordEncoder` para encriptar y verificar contraseñas con sal aleatoria.
 
-##### Interface: `BearerTokenService` / Class: `TokenServiceImpl`
+#### 📌 Interface: `BearerTokenService` / Class: `TokenServiceImpl`
 * **`BearerTokenService`**: Interfaz de infraestructura que extiende de `TokenService` y agrega los métodos `String getBearerTokenFrom(HttpServletRequest request)` y `String generateToken(Authentication authentication)`.
 * **`TokenServiceImpl`**: Implementación basada en la librería **JJWT** (`io.jsonwebtoken`). Firma tokens HMAC-SHA256 (`subject(username)`, sin claims extra de `userId`/`role`/`status` en el JWT crudo) utilizando la clave secreta `authorization.jwt.secret` y la vigencia configurada en `authorization.jwt.expiration.days`.
 
-##### Class: `SmtpEmailService`
+#### 📌 Class: `SmtpEmailService`
 * **Propósito:** Implementación del puerto `EmailService` mediante `org.springframework.mail.javamail.JavaMailSender`.
 * **Lógica:** Implementa `sendPasswordRecoveryEmail(String to, String token)` creando un `SimpleMailMessage` con el remitente configurado en `spring.mail.username`, el asunto localizado internacionalizado mediante `MessageSource` (`email.recovery.subject`, con fallback *"Recuperación de Contraseña - Atelier"*) y el cuerpo del mensaje internacionalizado (`email.recovery.body`) conteniendo la URL base del frontend (`app.frontend.url`) y el token de recuperación.
 
 ---
 
-#### 2.6.2.5. C4 Model Component Diagram
+## 5. Bounded Context Software Architecture Component Level Diagrams
 
 En esta sección, el equipo explica y presenta el **Component Diagram de C4 Model (Nivel 3)** para el Container **Spring Boot REST API** en el Bounded Context de **IAM**. Este diagrama refleja la descomposición estructural del container para identificar sus bloques de construcción principales, sus interacciones internas y las conexiones con clientes externos y servicios de terceros.
 
-##### 5.1. C4 Model Component Diagram (Container: Spring Boot REST API — IAM)
+### 5.1. C4 Model Component Diagram (Container: Spring Boot REST API — IAM)
 
-![Diagrama de Componentes C4 Nivel 3 -- IAM](../assets/iam/c4-component-diagram.svg)
+```mermaid
+graph TB
+    subgraph Client_Tier ["Frontend / Mobile Clients Tier"]
+        ClientApp["ShiftIQ WebApp / Mobile Client<br><i>[TypeScript / Flutter]</i><br>Consume endpoints REST vía HTTPS."]
+    end
 
-##### 5.2. Descomposición y Responsabilidad de Componentes
+    subgraph External_Tier ["External Supporting Systems"]
+        GoogleAuth["Google Identity Services<br><i>[OAuth 2.0 / IdP]</i><br>Proveedor de identidad federado."]
+        SmtpServer["SMTP Mail Server (Gmail)<br><i>[Port 587 / TLS]</i><br>Despacho de correos transaccionales."]
+        PostgreSql["PostgreSQL 18 Database<br><i>[Relational DB / Port 5432]</i><br>Almacenamiento persistente relacional."]
+    end
+
+    subgraph IAM_Container ["Container: Spring Boot REST API — IAM Bounded Context"]
+        SecurityFilter["BearerAuthorizationRequestFilter<br><b>[Component: Spring Security Filter]</b><br>Intercepta peticiones HTTP, extrae el token Bearer y autentica la sesión en el SecurityContext."]
+        AuthCtrl["AuthenticationController<br><b>[Component: Spring MVC REST Controller]</b><br>Expone endpoints para sign-in, Google OAuth, password-recoveries y password-resets."]
+        UserCtrl["UsersController<br><b>[Component: Spring MVC REST Controller]</b><br>Expone endpoints para sign-up (/api/v1/users), consulta y actualización de credenciales."]
+        UserSecService["UserSecurityService<br><b>[Component: Security Evaluation Service]</b><br>Evalúa reglas @PreAuthorize para control de acceso sobre recursos del usuario."]
+        
+        UserCmdService["UserCommandService<br><b>[Component: Application Service]</b><br>Orquesta casos de uso de registro, login local/federado y actualización de email/password."]
+        UserQueryService["UserQueryService<br><b>[Component: Application Service]</b><br>Gestiona lecturas y consultas de usuarios por ID o email."]
+        PassRecoveryService["PasswordRecoveryCommandService<br><b>[Component: Application Service]</b><br>Gestiona la emisión, hashing SHA-256 y validación de tokens de recuperación (TTL 60 min)."]
+        
+        TokenServiceComp["BearerTokenService (TokenServiceImpl)<br><b>[Component: Security Utility]</b><br>Genera, firma criptográficamente con JJWT y valida tokens de acceso Bearer JWT."]
+        HashingServiceComp["BCryptHashingService (HashingServiceImpl)<br><b>[Component: Security Utility]</b><br>Aplica hashing con sal y coteja contraseñas en texto plano."]
+        EmailServiceComp["SmtpEmailService<br><b>[Component: Outbound Adapter]</b><br>Formatea y despacha emails con enlaces y tokens de recuperación."]
+        
+        UserRepoAdapter["UserRepositoryImpl<br><b>[Component: Infrastructure Adapter]</b><br>Implementa UserRepository, persiste con JPA y publica domain events con ApplicationEventPublisher."]
+        PassTokenRepoAdapter["PasswordRecoveryTokenRepositoryImpl<br><b>[Component: Infrastructure Adapter]</b><br>Implementa PasswordRecoveryTokenRepository."]
+        
+        UserJpaRepo["UserPersistenceRepository<br><b>[Component: Spring Data JPA]</b><br>Interface de persistencia SQL con queries JPQL que filtran deletedAt IS NULL."]
+        PassTokenJpaRepo["PasswordRecoveryTokenPersistenceRepository<br><b>[Component: Spring Data JPA]</b><br>Interface de persistencia SQL para tokens de recuperación."]
+    end
+
+    ClientApp -->|"1. Envía peticiones HTTP / JSON<br>[JSON / HTTPS]"| SecurityFilter
+    SecurityFilter -->|"2. Valida firma y vigencia de JWT"| TokenServiceComp
+    SecurityFilter -->|"3. Petición autenticada / autorizada"| AuthCtrl
+    SecurityFilter -->|"3. Petición autenticada / autorizada"| UserCtrl
+
+    UserCtrl -->|"Verifica propiedad del recurso (@PreAuthorize)"| UserSecService
+
+    AuthCtrl -->|"Invoca login / Google login"| UserCmdService
+    AuthCtrl -->|"Invoca recuperación y reseteo"| PassRecoveryService
+    UserCtrl -->|"Invoca consultas de lectura"| UserQueryService
+    UserCtrl -->|"Invoca registro (sign-up) y mutaciones"| UserCmdService
+
+    UserCmdService -->|"Hashea contraseñas con sal"| HashingServiceComp
+    UserCmdService -->|"Emite JWT de sesión"| TokenServiceComp
+    UserCmdService -->|"Valida tokens federados con GoogleIdTokenVerifier"| GoogleAuth
+    UserCmdService -->|"Persiste y consulta estado de usuarios"| UserRepoAdapter
+
+    PassRecoveryService -->|"Persiste estado de tokens"| PassTokenRepoAdapter
+    PassRecoveryService -->|"Despacha email de recuperación"| EmailServiceComp
+    EmailServiceComp -->|"Envía correos vía TLS/SMTP (puerto 587)"| SmtpServer
+
+    UserQueryService -->|"Consulta agregados de usuarios"| UserRepoAdapter
+
+    UserRepoAdapter -->|"Operaciones CRUD SQL"| UserJpaRepo
+    PassTokenRepoAdapter -->|"Operaciones CRUD SQL"| PassTokenJpaRepo
+
+    UserJpaRepo -->|"Lectura / Escritura JDBC"| PostgreSql
+    PassTokenJpaRepo -->|"Lectura / Escritura JDBC"| PostgreSql
+```
+
+### 5.2. Descomposición y Responsabilidad de Componentes
 
 1. **`BearerAuthorizationRequestFilter` (Spring Security Filter)**:
    - *Qué es:* Filtro interceptor HTTP `OncePerRequestFilter`.
@@ -609,17 +857,180 @@ En esta sección, el equipo explica y presenta el **Component Diagram de C4 Mode
 
 ---
 
-#### 2.6.2.6. Bounded Context Software Architecture Code Level Diagrams
+## 6. Bounded Context Software Architecture Code Level Diagrams
 
 En esta sección se presentan y explican los diagramas de máximo nivel de detalle técnico sobre la implementación de componentes en el Bounded Context de **IAM**, divididos en el **Diagrama de Clases del Domain Layer** y el **Diagrama de Base de Datos Relacional**.
 
-##### 6.1. Bounded Context Domain Layer Class Diagrams
+### 6.1. Bounded Context Domain Layer Class Diagrams
 
 En esta sección se presenta el **Class Diagram de UML** para las clases que componen el **Domain Layer** del Bounded Context de IAM, reflejando fielmente las clases, métodos, tipos de retorno y parámetros del código fuente real:
 
-![Diagrama de Clases del Dominio UML -- IAM](../assets/iam/class-diagram.svg)
+```mermaid
+classDiagram
+    direction TB
 
-###### Explicación del Diagrama de Clases del Dominio:
+    class AbstractDomainAggregateRoot~T~ {
+        <<abstract>>
+        -List~Object~ domainEvents
+        #registerDomainEvent(Object event) void
+        +clearDomainEvents() void
+        +domainEvents() Collection~Object~
+    }
+
+    class User {
+        <<Aggregate Root>>
+        -UserId id
+        -EmailAddress email
+        -Password password
+        -GoogleId googleId
+        -UserStatus status
+        -Roles role
+        -Set~UUID~ branchIds
+        -Instant createdAt
+        -Instant updatedAt
+        -Instant deletedAt
+        -Long version
+        +User()
+        +User(EmailAddress email, Password password)
+        +User(EmailAddress email, Password password, GoogleId googleId)
+        +User(UserId id, EmailAddress email, Password password, GoogleId googleId, UserStatus status, Roles role, Set~UUID~ branchIds, Instant createdAt, Instant updatedAt, Instant deletedAt, Long version)
+        +assignRole(Roles role) void
+        +assignBranch(UUID branchId) void
+        +removeBranch(UUID branchId) void
+        +deactivate() void
+        +changePassword(Password newPassword) void
+        +changeEmail(EmailAddress newEmail) void
+        +linkGoogleAccount(GoogleId googleId) void
+        +getId() UserId
+        +getEmail() EmailAddress
+        +getPassword() Password
+        +getGoogleId() GoogleId
+        +getStatus() UserStatus
+        +getRole() Roles
+        +getBranchIds() Set~UUID~
+        +getCreatedAt() Instant
+        +getUpdatedAt() Instant
+        +getDeletedAt() Instant
+        +getVersion() Long
+    }
+
+    class PasswordRecoveryToken {
+        <<Entity>>
+        -UUID id
+        -String tokenHash
+        -Instant createdAt
+        -Instant expiresAt
+        -boolean isUsed
+        -UUID userId
+        +PasswordRecoveryToken()
+        +PasswordRecoveryToken(String tokenHash, UUID userId, long expirationMinutes)
+        +PasswordRecoveryToken(UUID id, String tokenHash, UUID userId, Instant createdAt, Instant expiresAt, boolean isUsed)
+        +isValid() boolean
+        +markAsUsed() void
+        +getId() UUID
+        +getTokenHash() String
+        +getUserId() UUID
+        +getCreatedAt() Instant
+        +getExpiresAt() Instant
+        +isUsed() boolean
+    }
+
+    class UserId {
+        <<Value Object (Record)>>
+        -UUID value
+        +UserId(UUID value)
+        +value() UUID
+    }
+
+    class EmailAddress {
+        <<Value Object (Record)>>
+        -String value
+        +EmailAddress(String value)
+        +value() String
+    }
+
+    class Password {
+        <<Value Object (Record)>>
+        -String value
+        +Password(String value)
+        +value() String
+    }
+
+    class GoogleId {
+        <<Value Object (Record)>>
+        -String value
+        +GoogleId(String value)
+        +value() String
+    }
+
+    class UserStatus {
+        <<Enumeration>>
+        +ACTIVE
+        +INACTIVE
+    }
+
+    class Roles {
+        <<Enumeration>>
+        +ROLE_USER
+        +ROLE_ADMIN
+        +ROLE_EMPLOYEE
+        +ROLE_OWNER
+    }
+
+    class UserRepository {
+        <<Interface>>
+        +save(User user)* void
+        +findById(UUID id)* Optional~User~
+        +findByEmail(String email)* Optional~User~
+        +existsByEmail(String email)* boolean
+    }
+
+    class PasswordRecoveryTokenRepository {
+        <<Interface>>
+        +save(PasswordRecoveryToken token)* void
+        +findByTokenHash(String tokenHash)* Optional~PasswordRecoveryToken~
+    }
+
+    class UserSignedUpEvent {
+        <<Domain Event>>
+        +UUID userId
+        +String email
+    }
+
+    class UserPasswordChangedEvent {
+        <<Domain Event>>
+        +UUID userId
+    }
+
+    class UserEmailChangedEvent {
+        <<Domain Event>>
+        +UUID userId
+        +String oldEmail
+        +String newEmail
+    }
+
+    class UserDeactivatedEvent {
+        <<Domain Event>>
+        +UUID userId
+    }
+
+    AbstractDomainAggregateRoot <|-- User : extends
+    User "1" *-- "1" UserId : identity
+    User "1" *-- "1" EmailAddress : primary credential
+    User "1" *-- "0..1" Password : hash credential
+    User "1" *-- "0..1" GoogleId : federated subject
+    User "1" *-- "1" UserStatus : current state
+    User "1" *-- "1" Roles : security authority
+    User "1" o-- "0..*" PasswordRecoveryToken : manages recovery
+    UserRepository ..> User : manages "0..*"
+    PasswordRecoveryTokenRepository ..> PasswordRecoveryToken : manages "0..*"
+    User ..> UserSignedUpEvent : emits
+    User ..> UserPasswordChangedEvent : emits
+    User ..> UserEmailChangedEvent : emits
+    User ..> UserDeactivatedEvent : emits
+```
+
+#### Explicación del Diagrama de Clases del Dominio:
 - **`User` como Aggregate Root**: Encapsula todas las invariantes de identidad. No permite mutaciones directas de estado (los atributos son privados `-`), exponiendo únicamente métodos de negocio que validan las reglas y registran Domain Events protegidos mediante `#registerDomainEvent()`.
 - **Value Objects**: Garantizan inmutabilidad y auto-validación desde su instanciación (`UserId`, `EmailAddress`, `Password`, `GoogleId`).
 - **Enumeración `Roles`**: Define estrictamente los 4 roles soportados por el backend: `ROLE_USER`, `ROLE_ADMIN`, `ROLE_EMPLOYEE` y `ROLE_OWNER`.
@@ -627,13 +1038,44 @@ En esta sección se presenta el **Class Diagram de UML** para las clases que com
 
 ---
 
-##### 6.2. Bounded Context Database Diagram
+### 6.2. Bounded Context Database Diagram
 
 El siguiente diagrama Entidad-Relación (**Database Diagram**) describe con exactitud el esquema relacional desplegado en **PostgreSQL 18** para soportar la persistencia de información de los objetos de **IAM**. Se especifican tablas, columnas, tipos de datos físicos, constraints (`PRIMARY KEY`, `FOREIGN KEY`, `UNIQUE`, `NOT NULL`) y relaciones de cardinalidad:
 
-![Diagrama de Base de Datos Relacional ER -- IAM](../assets/iam/database-er-diagram.svg)
+```mermaid
+erDiagram
+    users ||--o{ user_branches : "1 a muchos (sedes autorizadas)"
+    users ||--o{ password_recovery_tokens : "1 a muchos (solicitudes de recuperacion)"
 
-###### Explicación Técnica de la Base de Datos y Normalización:
+    users {
+        uuid id PK "Identificador unico universal (UUID), NOT NULL"
+        varchar(100) email UK "Correo electronico unico del usuario, NOT NULL"
+        varchar(255) password_hash "Hash criptografico de la contrasena BCrypt, NOT NULL"
+        varchar(255) google_id UK "Identificador federado de Google OAuth, NULLABLE"
+        varchar(20) status "Estado vital de la cuenta: ACTIVE / INACTIVE, NOT NULL"
+        varchar(30) role "Rol de seguridad: ROLE_USER / ROLE_ADMIN / ROLE_EMPLOYEE / ROLE_OWNER, NOT NULL"
+        timestamp_with_time_zone created_at "Fecha y hora de registro en UTC, NOT NULL"
+        timestamp_with_time_zone updated_at "Fecha de ultima actualizacion en UTC, NOT NULL"
+        timestamp_with_time_zone deleted_at "Fecha de baja logica (soft-delete), NULLABLE"
+        bigint version "Version de control para concurrencia optimista, NOT NULL"
+    }
+
+    user_branches {
+        uuid user_id PK,FK "Clave foranea que referencia a users(id), NOT NULL"
+        uuid branch_id PK "Identificador de la sede fisica (BranchId), NOT NULL"
+    }
+
+    password_recovery_tokens {
+        uuid id PK "Identificador unico del token, NOT NULL"
+        varchar(255) token_hash "Hash SHA-256 del token emitido, NOT NULL"
+        uuid user_id FK "Clave foranea que referencia a users(id), NOT NULL"
+        timestamp_with_time_zone created_at "Fecha de emision del token, NOT NULL"
+        timestamp_with_time_zone expires_at "Fecha de caducidad (TTL = 60 min), NOT NULL"
+        boolean is_used "Bandera de consumo: FALSE por defecto, NOT NULL"
+    }
+```
+
+#### Explicación Técnica de la Base de Datos y Normalización:
 1. **Tabla `users`**:
    - **Primary Key:** `id` de tipo `uuid` generado en la capa de persistencia (`@GeneratedValue(strategy = GenerationType.UUID)`).
    - **Columna `password_hash`:** Almacena la contraseña hasheada con BCrypt (`NOT NULL`).
