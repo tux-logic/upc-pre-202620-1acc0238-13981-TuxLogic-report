@@ -421,25 +421,25 @@ El siguiente diagrama C4 descompone el Container API en sus componentes principa
 ```mermaid
 graph TB
     subgraph Client_Tier ["Frontend / Mobile Clients Tier"]
-        ClientApp["ShiftIQ WebApp / Mobile Client<br><i>[TypeScript / Flutter]</i><br>Gestión de catálogo de repuestos, lotes y alertas de stock."]
+        ClientApp["ShiftIQ WebApp / Mobile Client<br>[TypeScript / Flutter]<br>Gestión de catálogo de repuestos, lotes y alertas de stock."]
     end
 
     subgraph External_DB ["Database Tier"]
-        PostgreSql["PostgreSQL 16 Database<br><i>[Relational DB / Port 5432]</i><br>Tablas: products, product_batches."]
+        PostgreSql["PostgreSQL 16 Database<br>[Relational DB / Port 5432]<br>Tablas: products, product_batches."]
     end
 
     subgraph Inventory_Container ["Container: Spring Boot REST API — Inventory Bounded Context"]
-        ProductsCtrl["ProductsController<br><b>[Spring REST Controller]</b><br>Endpoints REST para catálogo, lotes y ajustes de inventario."]
-        StockListener["InventoryStockListener<br><b>[Domain Event Listener]</b><br>Escucha eventos de reserva/cancelación de stock emitidos por Operations."]
-        StockJob["MinimumStockAlertEvaluationJob<br><b>[Scheduled Task / Job]</b><br>Evalúa periódicamente productos por debajo del stock mínimo."]
+        ProductsCtrl["ProductsController<br>[Spring REST Controller]<br>Endpoints REST para catálogo, lotes y ajustes de inventario."]
+        StockListener["InventoryStockListener<br>[Domain Event Listener]<br>Escucha eventos de reserva/cancelación de stock emitidos por Operations."]
+        StockJob["MinimumStockAlertEvaluationJob<br>[Scheduled Task / Job]<br>Evalúa periódicamente productos por debajo del stock mínimo."]
 
-        MultiTenancySecService["MultiTenancySecurityService<br><b>[Security Component]</b><br>Validación de autorización multi-tenant por sucursal."]
+        MultiTenancySecService["MultiTenancySecurityService<br>[Security Component]<br>Validación de autorización multi-tenant por sucursal."]
 
-        ProdCmdService["ProductCommandService<br><b>[Application Service]</b><br>Orquesta creación, actualización, lotes y eliminación de productos."]
-        ProdQueryService["ProductQueryService<br><b>[Application Service]</b><br>Lectura de productos por sucursal con filtros dinámicos."]
+        ProdCmdService["ProductCommandService<br>[Application Service]<br>Orquesta creación, actualización, lotes y eliminación de productos."]
+        ProdQueryService["ProductQueryService<br>[Application Service]<br>Lectura de productos por sucursal con filtros dinámicos."]
 
-        ProdRepoAdapter["ProductRepositoryAdapter<br><b>[Infrastructure Adapter]</b><br>Persistencia JPA y mapeo bidireccional entre agregados y entidades JPA."]
-        ProdJpaRepo["ProductJpaRepository<br><b>[Spring Data JPA]</b>"]
+        ProdRepoAdapter["ProductRepositoryAdapter<br>[Infrastructure Adapter]<br>Persistencia JPA y mapeo bidireccional entre agregados y entidades JPA."]
+        ProdJpaRepo["ProductJpaRepository<br>[Spring Data JPA]"]
     end
 
     ClientApp -->|"HTTPS / REST"| ProductsCtrl

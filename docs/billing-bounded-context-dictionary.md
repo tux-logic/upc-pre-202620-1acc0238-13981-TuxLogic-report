@@ -459,35 +459,35 @@ Descomposición del Container API en sus componentes principales para el Bounded
 ```mermaid
 graph TB
     subgraph Client_Tier ["Frontend / Mobile Clients Tier"]
-        ClientApp["ShiftIQ WebApp / Mobile Client<br><i>[TypeScript / Flutter]</i><br>Pasarela de pago en caja, emisión de comprobantes y cobros Stripe."]
+        ClientApp["ShiftIQ WebApp / Mobile Client<br>[TypeScript / Flutter]<br>Pasarela de pago en caja, emisión de comprobantes y cobros Stripe."]
     end
 
     subgraph External_Services ["External Services Tier"]
-        FactosAPI["Factos Electronic Invoicing API<br><i>[REST Service]</i><br>Proveedor autorizado SUNAT para emisión de comprobantes CPE."]
-        StripeAPI["Stripe Payments API<br><i>[REST Service]</i><br>Pasarela de procesamientos de tarjetas de crédito/débito."]
+        FactosAPI["Factos Electronic Invoicing API<br>[REST Service]<br>Proveedor autorizado SUNAT para emisión de comprobantes CPE."]
+        StripeAPI["Stripe Payments API<br>[REST Service]<br>Pasarela de procesamientos de tarjetas de crédito/débito."]
     end
 
     subgraph External_DB ["Database Tier"]
-        PostgreSql["PostgreSQL 16 Database<br><i>[Relational DB / Port 5432]</i><br>Tablas: quotes, vouchers, payments."]
+        PostgreSql["PostgreSQL 16 Database<br>[Relational DB / Port 5432]<br>Tablas: quotes, vouchers, payments."]
     end
 
     subgraph Billing_Container ["Container: Spring Boot REST API — Billing Bounded Context"]
-        QuotesCtrl["QuotesController<br><b>[Spring REST Controller]</b><br>Endpoints para gestión de cotizaciones y aprobaciones."]
-        VouchersCtrl["VouchersController<br><b>[Spring REST Controller]</b><br>Endpoints para generación de comprobantes y pagos."]
-        CheckoutsCtrl["CheckoutsController<br><b>[Spring REST Controller]</b><br>Flujos completos de checkout inmediato."]
-        StripePaymentsCtrl["StripePaymentsController<br><b>[Spring REST Controller]</b><br>Generación de PaymentIntents de tarjeta."]
+        QuotesCtrl["QuotesController<br>[Spring REST Controller]<br>Endpoints para gestión de cotizaciones y aprobaciones."]
+        VouchersCtrl["VouchersController<br>[Spring REST Controller]<br>Endpoints para generación de comprobantes y pagos."]
+        CheckoutsCtrl["CheckoutsController<br>[Spring REST Controller]<br>Flujos completos de checkout inmediato."]
+        StripePaymentsCtrl["StripePaymentsController<br>[Spring REST Controller]<br>Generación de PaymentIntents de tarjeta."]
 
-        VoucherListener["VoucherPaidListener<br><b>[Domain Event Listener]</b><br>Escucha pagos completos de comprobantes."]
+        VoucherListener["VoucherPaidListener<br>[Domain Event Listener]<br>Escucha pagos completos de comprobantes."]
 
-        QuoteCmdService["QuoteCommandService<br><b>[Application Service]</b><br>Gestión de cotizaciones y descuentos."]
-        VoucherCmdService["VoucherCommandService<br><b>[Application Service]</b><br>Generación de comprobantes, abonos y checkouts."]
-        StripePaymentCmdService["StripePaymentCommandService<br><b>[Application Service]</b><br>Creación y verificación de cobros en Stripe."]
+        QuoteCmdService["QuoteCommandService<br>[Application Service]<br>Gestión de cotizaciones y descuentos."]
+        VoucherCmdService["VoucherCommandService<br>[Application Service]<br>Generación de comprobantes, abonos y checkouts."]
+        StripePaymentCmdService["StripePaymentCommandService<br>[Application Service]<br>Creación y verificación de cobros en Stripe."]
 
-        FactosClient["FactosGatewayImpl<br><b>[Outbound ACL Adapter]</b><br>Emisión electrónica de facturas F001 / boletas B001 en SUNAT."]
-        StripeClient["StripeGatewayImpl<br><b>[Outbound ACL Adapter]</b><br>Cliente API oficial de Stripe."]
+        FactosClient["FactosGatewayImpl<br>[Outbound ACL Adapter]<br>Emisión electrónica de facturas F001 / boletas B001 en SUNAT."]
+        StripeClient["StripeGatewayImpl<br>[Outbound ACL Adapter]<br>Cliente API oficial de Stripe."]
 
-        QuoteRepoAdapter["QuoteRepositoryImpl<br><b>[Infrastructure Adapter]</b>"]
-        VoucherRepoAdapter["VoucherRepositoryImpl<br><b>[Infrastructure Adapter]</b>"]
+        QuoteRepoAdapter["QuoteRepositoryImpl<br>[Infrastructure Adapter]"]
+        VoucherRepoAdapter["VoucherRepositoryImpl<br>[Infrastructure Adapter]"]
     end
 
     ClientApp -->|"HTTPS / REST"| QuotesCtrl

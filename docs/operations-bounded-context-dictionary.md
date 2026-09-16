@@ -552,30 +552,30 @@ El siguiente diagrama C4 descompone el Container API en sus componentes principa
 ```mermaid
 graph TB
     subgraph Client_Tier ["Frontend / Mobile Clients Tier"]
-        ClientApp["ShiftIQ WebApp / Mobile Client<br><i>[TypeScript / Flutter]</i><br>Gestión de órdenes de trabajo, tablero Kanban de tareas y servicios."]
+        ClientApp["ShiftIQ WebApp / Mobile Client<br>[TypeScript / Flutter]<br>Gestión de órdenes de trabajo, tablero Kanban de tareas y servicios."]
     end
 
     subgraph External_DB ["Database Tier"]
-        PostgreSql["PostgreSQL 16 Database<br><i>[Relational DB / Port 5432]</i><br>Tablas: work_orders, work_order_tasks, work_order_task_products, services."]
+        PostgreSql["PostgreSQL 16 Database<br>[Relational DB / Port 5432]<br>Tablas: work_orders, work_order_tasks, work_order_task_products, services."]
     end
 
     subgraph Operations_Container ["Container: Spring Boot REST API — Operations Bounded Context"]
-        WorkOrdersCtrl["WorkOrdersController<br><b>[Spring REST Controller]</b><br>Endpoints para la gestión global del ciclo de vida de órdenes."]
-        TasksCtrl["WorkOrderTasksController<br><b>[Spring REST Controller]</b><br>Endpoints para el tablero Kanban de mecánicos y repuestos de tareas."]
-        ServicesCtrl["ServicesController<br><b>[Spring REST Controller]</b><br>Gestión del catálogo de servicios del taller."]
+        WorkOrdersCtrl["WorkOrdersController<br>[Spring REST Controller]<br>Endpoints para la gestión global del ciclo de vida de órdenes."]
+        TasksCtrl["WorkOrderTasksController<br>[Spring REST Controller]<br>Endpoints para el tablero Kanban de mecánicos y repuestos de tareas."]
+        ServicesCtrl["ServicesController<br>[Spring REST Controller]<br>Gestión del catálogo de servicios del taller."]
 
-        MultiTenancySecService["MultiTenancySecurityService<br><b>[Security Component]</b><br>Validación de seguridad multi-tenant por sucursal."]
+        MultiTenancySecService["MultiTenancySecurityService<br>[Security Component]<br>Validación de seguridad multi-tenant por sucursal."]
 
-        WOCmdService["WorkOrderCommandService<br><b>[Application Service]</b><br>Orquesta comandos de órdenes, transiciones de estado y cálculo de totales."]
-        WOQueryService["WorkOrderQueryService<br><b>[Application Service]</b><br>Lectura de órdenes filtradas por sucursal, vehículo o tarea."]
-        SvcCmdService["ServiceCommandService<br><b>[Application Service]</b><br>Orquesta creación y edición de servicios."]
-        SvcQueryService["ServiceQueryService<br><b>[Application Service]</b><br>Lecturas del catálogo de servicios."]
+        WOCmdService["WorkOrderCommandService<br>[Application Service]<br>Orquesta comandos de órdenes, transiciones de estado y cálculo de totales."]
+        WOQueryService["WorkOrderQueryService<br>[Application Service]<br>Lectura de órdenes filtradas por sucursal, vehículo o tarea."]
+        SvcCmdService["ServiceCommandService<br>[Application Service]<br>Orquesta creación y edición de servicios."]
+        SvcQueryService["ServiceQueryService<br>[Application Service]<br>Lecturas del catálogo de servicios."]
 
-        WORepoAdapter["WorkOrderRepositoryImpl<br><b>[Infrastructure Adapter]</b><br>Persistencia JPA y publicación de Domain Events."]
-        SvcRepoAdapter["ServiceRepositoryImpl<br><b>[Infrastructure Adapter]</b><br>Persistencia JPA de servicios."]
+        WORepoAdapter["WorkOrderRepositoryImpl<br>[Infrastructure Adapter]<br>Persistencia JPA y publicación de Domain Events."]
+        SvcRepoAdapter["ServiceRepositoryImpl<br>[Infrastructure Adapter]<br>Persistencia JPA de servicios."]
 
-        WOJpaRepo["WorkOrderPersistenceRepository<br><b>[Spring Data JPA]</b>"]
-        SvcJpaRepo["ServicePersistenceRepository<br><b>[Spring Data JPA]</b>"]
+        WOJpaRepo["WorkOrderPersistenceRepository<br>[Spring Data JPA]"]
+        SvcJpaRepo["ServicePersistenceRepository<br>[Spring Data JPA]"]
     end
 
     ClientApp -->|"HTTPS / REST"| WorkOrdersCtrl
