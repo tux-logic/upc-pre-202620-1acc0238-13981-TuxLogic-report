@@ -764,34 +764,34 @@ En esta sección, el equipo explica y presenta el **Component Diagram de C4 Mode
 ```mermaid
 graph TB
     subgraph Client_Tier ["Frontend / Mobile Clients Tier"]
-        ClientApp["ShiftIQ WebApp / Mobile Client<br><i>[TypeScript / Flutter]</i><br>Consume endpoints REST vía HTTPS."]
+        ClientApp["ShiftIQ WebApp / Mobile Client<br>[TypeScript / Flutter]<br>Consume endpoints REST vía HTTPS."]
     end
 
     subgraph External_Tier ["External Supporting Systems"]
-        GoogleAuth["Google Identity Services<br><i>[OAuth 2.0 / IdP]</i><br>Proveedor de identidad federado."]
-        SmtpServer["SMTP Mail Server (Gmail)<br><i>[Port 587 / TLS]</i><br>Despacho de correos transaccionales."]
-        PostgreSql["PostgreSQL 18 Database<br><i>[Relational DB / Port 5432]</i><br>Almacenamiento persistente relacional."]
+        GoogleAuth["Google Identity Services<br>[OAuth 2.0 / IdP]<br>Proveedor de identidad federado."]
+        SmtpServer["SMTP Mail Server (Gmail)<br>[Port 587 / TLS]<br>Despacho de correos transaccionales."]
+        PostgreSql["PostgreSQL 18 Database<br>[Relational DB / Port 5432]<br>Almacenamiento persistente relacional."]
     end
 
     subgraph IAM_Container ["Container: Spring Boot REST API — IAM Bounded Context"]
-        SecurityFilter["BearerAuthorizationRequestFilter<br><b>[Component: Spring Security Filter]</b><br>Intercepta peticiones HTTP, extrae el token Bearer y autentica la sesión en el SecurityContext."]
-        AuthCtrl["AuthenticationController<br><b>[Component: Spring MVC REST Controller]</b><br>Expone endpoints para sign-in, Google OAuth, password-recoveries y password-resets."]
-        UserCtrl["UsersController<br><b>[Component: Spring MVC REST Controller]</b><br>Expone endpoints para sign-up (/api/v1/users), consulta y actualización de credenciales."]
-        UserSecService["UserSecurityService<br><b>[Component: Security Evaluation Service]</b><br>Evalúa reglas @PreAuthorize para control de acceso sobre recursos del usuario."]
+        SecurityFilter["BearerAuthorizationRequestFilter<br>[Component: Spring Security Filter]<br>Intercepta peticiones HTTP, extrae el token Bearer y autentica la sesión en el SecurityContext."]
+        AuthCtrl["AuthenticationController<br>[Component: Spring MVC REST Controller]<br>Expone endpoints para sign-in, Google OAuth, password-recoveries y password-resets."]
+        UserCtrl["UsersController<br>[Component: Spring MVC REST Controller]<br>Expone endpoints para sign-up (/api/v1/users), consulta y actualización de credenciales."]
+        UserSecService["UserSecurityService<br>[Component: Security Evaluation Service]<br>Evalúa reglas @PreAuthorize para control de acceso sobre recursos del usuario."]
         
-        UserCmdService["UserCommandService<br><b>[Component: Application Service]</b><br>Orquesta casos de uso de registro, login local/federado y actualización de email/password."]
-        UserQueryService["UserQueryService<br><b>[Component: Application Service]</b><br>Gestiona lecturas y consultas de usuarios por ID o email."]
-        PassRecoveryService["PasswordRecoveryCommandService<br><b>[Component: Application Service]</b><br>Gestiona la emisión, hashing SHA-256 y validación de tokens de recuperación (TTL 60 min)."]
+        UserCmdService["UserCommandService<br>[Component: Application Service]<br>Orquesta casos de uso de registro, login local/federado y actualización de email/password."]
+        UserQueryService["UserQueryService<br>[Component: Application Service]<br>Gestiona lecturas y consultas de usuarios por ID o email."]
+        PassRecoveryService["PasswordRecoveryCommandService<br>[Component: Application Service]<br>Gestiona la emisión, hashing SHA-256 y validación de tokens de recuperación (TTL 60 min)."]
         
-        TokenServiceComp["BearerTokenService (TokenServiceImpl)<br><b>[Component: Security Utility]</b><br>Genera, firma criptográficamente con JJWT y valida tokens de acceso Bearer JWT."]
-        HashingServiceComp["BCryptHashingService (HashingServiceImpl)<br><b>[Component: Security Utility]</b><br>Aplica hashing con sal y coteja contraseñas en texto plano."]
-        EmailServiceComp["SmtpEmailService<br><b>[Component: Outbound Adapter]</b><br>Formatea y despacha emails con enlaces y tokens de recuperación."]
+        TokenServiceComp["BearerTokenService (TokenServiceImpl)<br>[Component: Security Utility]<br>Genera, firma criptográficamente con JJWT y valida tokens de acceso Bearer JWT."]
+        HashingServiceComp["BCryptHashingService (HashingServiceImpl)<br>[Component: Security Utility]<br>Aplica hashing con sal y coteja contraseñas en texto plano."]
+        EmailServiceComp["SmtpEmailService<br>[Component: Outbound Adapter]<br>Formatea y despacha emails con enlaces y tokens de recuperación."]
         
-        UserRepoAdapter["UserRepositoryImpl<br><b>[Component: Infrastructure Adapter]</b><br>Implementa UserRepository, persiste con JPA y publica domain events con ApplicationEventPublisher."]
-        PassTokenRepoAdapter["PasswordRecoveryTokenRepositoryImpl<br><b>[Component: Infrastructure Adapter]</b><br>Implementa PasswordRecoveryTokenRepository."]
+        UserRepoAdapter["UserRepositoryImpl<br>[Component: Infrastructure Adapter]<br>Implementa UserRepository, persiste con JPA y publica domain events con ApplicationEventPublisher."]
+        PassTokenRepoAdapter["PasswordRecoveryTokenRepositoryImpl<br>[Component: Infrastructure Adapter]<br>Implementa PasswordRecoveryTokenRepository."]
         
-        UserJpaRepo["UserPersistenceRepository<br><b>[Component: Spring Data JPA]</b><br>Interface de persistencia SQL con queries JPQL que filtran deletedAt IS NULL."]
-        PassTokenJpaRepo["PasswordRecoveryTokenPersistenceRepository<br><b>[Component: Spring Data JPA]</b><br>Interface de persistencia SQL para tokens de recuperación."]
+        UserJpaRepo["UserPersistenceRepository<br>[Component: Spring Data JPA]<br>Interface de persistencia SQL con queries JPQL que filtran deletedAt IS NULL."]
+        PassTokenJpaRepo["PasswordRecoveryTokenPersistenceRepository<br>[Component: Spring Data JPA]<br>Interface de persistencia SQL para tokens de recuperación."]
     end
 
     ClientApp -->|"1. Envía peticiones HTTP / JSON<br>[JSON / HTTPS]"| SecurityFilter

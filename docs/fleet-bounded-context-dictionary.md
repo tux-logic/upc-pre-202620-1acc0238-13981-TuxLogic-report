@@ -417,26 +417,26 @@ Descomposición del Container API en sus componentes principales para el Bounded
 ```mermaid
 graph TB
     subgraph Client_Tier ["Frontend / Mobile Clients Tier"]
-        ClientApp["ShiftIQ WebApp / Mobile Client<br><i>[TypeScript / Flutter]</i><br>Agendamiento de citas mecánicas y gestión de sucursales."]
+        ClientApp["ShiftIQ WebApp / Mobile Client<br>[TypeScript / Flutter]<br>Agendamiento de citas mecánicas y gestión de sucursales."]
     end
 
     subgraph External_DB ["Database Tier"]
-        PostgreSql["PostgreSQL 16 Database<br><i>[Relational DB / Port 5432]</i><br>Tablas: appointments, customer_registrations, employee_registrations."]
+        PostgreSql["PostgreSQL 16 Database<br>[Relational DB / Port 5432]<br>Tablas: appointments, customer_registrations, employee_registrations."]
     end
 
     subgraph Fleet_Container ["Container: Spring Boot REST API — Fleet Bounded Context"]
-        ApptCtrl["AppointmentsController<br><b>[Spring REST Controller]</b><br>Endpoints REST para agendamiento y reprogramación de citas."]
-        CustRegCtrl["CustomerRegistrationsController<br><b>[Spring REST Controller]</b><br>Asociación de clientes por sucursal."]
-        EmpRegCtrl["EmployeeRegistrationsController<br><b>[Spring REST Controller]</b><br>Adscripción de empleados técnicos por sucursal."]
+        ApptCtrl["AppointmentsController<br>[Spring REST Controller]<br>Endpoints REST para agendamiento y reprogramación de citas."]
+        CustRegCtrl["CustomerRegistrationsController<br>[Spring REST Controller]<br>Asociación de clientes por sucursal."]
+        EmpRegCtrl["EmployeeRegistrationsController<br>[Spring REST Controller]<br>Adscripción de empleados técnicos por sucursal."]
 
-        ApptCmdService["AppointmentCommandService<br><b>[Application Service]</b><br>Orquestación de alta, edición y cancelación de citas."]
-        ApptQueryService["AppointmentQueryService<br><b>[Application Service]</b><br>Consultas multicriterio de citas."]
+        ApptCmdService["AppointmentCommandService<br>[Application Service]<br>Orquestación de alta, edición y cancelación de citas."]
+        ApptQueryService["AppointmentQueryService<br>[Application Service]<br>Consultas multicriterio de citas."]
 
-        CoreACL["ExternalCoreServiceImpl<br><b>[Outbound ACL Service]</b><br>Validación de existencia de Clientes/Empleados/Sucursales en Core."]
+        CoreACL["ExternalCoreServiceImpl<br>[Outbound ACL Service]<br>Validación de existencia de Clientes/Empleados/Sucursales en Core."]
 
-        ApptRepoAdapter["AppointmentRepositoryAdapter<br><b>[Infrastructure Adapter]</b>"]
-        CustRegRepoAdapter["CustomerRegistrationRepositoryAdapter<br><b>[Infrastructure Adapter]</b>"]
-        EmpRegRepoAdapter["EmployeeRegistrationRepositoryAdapter<br><b>[Infrastructure Adapter]</b>"]
+        ApptRepoAdapter["AppointmentRepositoryAdapter<br>[Infrastructure Adapter]"]
+        CustRegRepoAdapter["CustomerRegistrationRepositoryAdapter<br>[Infrastructure Adapter]"]
+        EmpRegRepoAdapter["EmployeeRegistrationRepositoryAdapter<br>[Infrastructure Adapter]"]
     end
 
     ClientApp -->|"HTTPS / REST"| ApptCtrl

@@ -360,20 +360,20 @@ Descomposición del Container REST API resaltando los componentes del **Shared K
 ```mermaid
 graph TB
     subgraph Client_Tier ["Frontend / Mobile Clients Tier"]
-        ClientApp["ShiftIQ WebApp / Mobile Client<br><i>[TypeScript / Flutter]</i>"]
+        ClientApp["ShiftIQ WebApp / Mobile Client<br>[TypeScript / Flutter]"]
     end
 
     subgraph External_DB ["Database Tier"]
-        PostgreSql["PostgreSQL 18 Database<br><i>[Relational DB / Port 5432]</i>"]
+        PostgreSql["PostgreSQL 18 Database<br>[Relational DB / Port 5432]"]
     end
 
     subgraph Shared_Kernel_Container ["Container: Spring Boot REST API — Shared Kernel Components"]
-        GlobalExHandler["GlobalExceptionHandler<br><b>[Spring @RestControllerAdvice]</b><br>Traducción unificada de errores a JSON internacionalizado."]
-        MultiTenancySec["MultiTenancySecurityService<br><b>[Security Component]</b><br>Validación SpEL de sucursal/taller por JWT."]
-        UserSec["UserSecurityService<br><b>[Security Component]</b><br>Protección contra vulnerabilidades IDOR."]
-        ResAssembler["ResponseEntityAssembler / ErrorResponseAssembler<br><b>[Rest Assembler]</b>"]
-        JpaAuditing["AuditableAbstractPersistenceEntity & Converters<br><b>[JPA Persistence Kernel]</b>"]
-        PhysicalNaming["SnakeCaseWithPluralizedTablePhysicalNamingStrategy<br><b>[Hibernate Strategy]</b>"]
+        GlobalExHandler["GlobalExceptionHandler<br>[Spring @RestControllerAdvice]<br>Traducción unificada de errores a JSON internacionalizado."]
+        MultiTenancySec["MultiTenancySecurityService<br>[Security Component]<br>Validación SpEL de sucursal/taller por JWT."]
+        UserSec["UserSecurityService<br>[Security Component]<br>Protección contra vulnerabilidades IDOR."]
+        ResAssembler["ResponseEntityAssembler / ErrorResponseAssembler<br>[Rest Assembler]"]
+        JpaAuditing["AuditableAbstractPersistenceEntity & Converters<br>[JPA Persistence Kernel]"]
+        PhysicalNaming["SnakeCaseWithPluralizedTablePhysicalNamingStrategy<br>[Hibernate Strategy]"]
     end
 
     ClientApp -->|"HTTPS / REST"| GlobalExHandler

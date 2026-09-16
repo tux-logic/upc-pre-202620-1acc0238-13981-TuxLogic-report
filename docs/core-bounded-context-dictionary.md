@@ -726,44 +726,44 @@ El siguiente diagrama C4 descompone el Container API en sus componentes principa
 ```mermaid
 graph TB
     subgraph Client_Tier ["Frontend / Mobile Clients Tier"]
-        ClientApp["ShiftIQ WebApp / Mobile Client<br><i>[TypeScript / Flutter]</i><br>Interacciona con perfiles y estructura organizacional."]
+        ClientApp["ShiftIQ WebApp / Mobile Client<br>[TypeScript / Flutter]<br>Interacciona con perfiles y estructura organizacional."]
     end
 
     subgraph External_DB ["Database Tier"]
-        PostgreSql["PostgreSQL 16 Database<br><i>[Relational DB / Port 5432]</i><br>Tablas: customers, employees, owners, workshops, branches, branch_subscriptions."]
+        PostgreSql["PostgreSQL 16 Database<br>[Relational DB / Port 5432]<br>Tablas: customers, employees, owners, workshops, branches, branch_subscriptions."]
     end
 
     subgraph Core_Container ["Container: Spring Boot REST API — Core Bounded Context"]
-        ProfilesCtrl["ProfilesController<br><b>[Spring REST Controller]</b><br>Búsqueda rápida por DNI/RUC y resolución de roles operacionales."]
-        CustomersCtrl["CustomersController<br><b>[Spring REST Controller]</b><br>Gestión CRUD de clientes (natural / corporativo)."]
-        EmployeesCtrl["EmployeesController<br><b>[Spring REST Controller]</b><br>Gestión CRUD de empleados."]
-        OwnersCtrl["OwnersController<br><b>[Spring REST Controller]</b><br>Gestión CRUD de propietarios."]
-        WorkshopsCtrl["WorkshopsController<br><b>[Spring REST Controller]</b><br>Gestión de talleres automotrices."]
-        BranchesCtrl["BranchesController<br><b>[Spring REST Controller]</b><br>Gestión de sucursales y suscripciones de pago."]
+        ProfilesCtrl["ProfilesController<br>[Spring REST Controller]<br>Búsqueda rápida por DNI/RUC y resolución de roles operacionales."]
+        CustomersCtrl["CustomersController<br>[Spring REST Controller]<br>Gestión CRUD de clientes (natural / corporativo)."]
+        EmployeesCtrl["EmployeesController<br>[Spring REST Controller]<br>Gestión CRUD de empleados."]
+        OwnersCtrl["OwnersController<br>[Spring REST Controller]<br>Gestión CRUD de propietarios."]
+        WorkshopsCtrl["WorkshopsController<br>[Spring REST Controller]<br>Gestión de talleres automotrices."]
+        BranchesCtrl["BranchesController<br>[Spring REST Controller]<br>Gestión de sucursales y suscripciones de pago."]
 
-        MultiTenancySecService["MultiTenancySecurityService<br><b>[Security Component]</b><br>Verifica autorización multi-tenant e identidad del token JWT."]
+        MultiTenancySecService["MultiTenancySecurityService<br>[Security Component]<br>Verifica autorización multi-tenant e identidad del token JWT."]
 
-        CustCmdService["CustomerCommandService<br><b>[Application Service]</b><br>Orquesta registro y mutación de clientes."]
-        EmpCmdService["EmployeeCommandService<br><b>[Application Service]</b><br>Orquesta registro y mutación de empleados."]
-        OwnerCmdService["OwnerCommandService<br><b>[Application Service]</b><br>Orquesta registro y mutación de propietarios."]
-        WorkCmdService["WorkshopCommandService<br><b>[Application Service]</b><br>Orquesta creación y mantenimiento de talleres."]
-        WorkQueryService["WorkshopQueryService<br><b>[Application Service]</b><br>Consultas de talleres por dueño o ID."]
-        BranchCmdService["BranchCommandService<br><b>[Application Service]</b><br>Orquesta sucursales del taller."]
-        SubCmdService["SubscriptionCommandService<br><b>[Application Service]</b><br>Orquesta la asignación y cobro simulado de planes."]
+        CustCmdService["CustomerCommandService<br>[Application Service]<br>Orquesta registro y mutación de clientes."]
+        EmpCmdService["EmployeeCommandService<br>[Application Service]<br>Orquesta registro y mutación de empleados."]
+        OwnerCmdService["OwnerCommandService<br>[Application Service]<br>Orquesta registro y mutación de propietarios."]
+        WorkCmdService["WorkshopCommandService<br>[Application Service]<br>Orquesta creación y mantenimiento de talleres."]
+        WorkQueryService["WorkshopQueryService<br>[Application Service]<br>Consultas de talleres por dueño o ID."]
+        BranchCmdService["BranchCommandService<br>[Application Service]<br>Orquesta sucursales del taller."]
+        SubCmdService["SubscriptionCommandService<br>[Application Service]<br>Orquesta la asignación y cobro simulado de planes."]
 
-        CustRepoAdapter["CustomerRepositoryImpl<br><b>[Infrastructure Adapter]</b><br>Persistencia JPA y emisión de eventos de clientes."]
-        EmpRepoAdapter["EmployeeRepositoryImpl<br><b>[Infrastructure Adapter]</b><br>Persistencia JPA de empleados."]
-        OwnerRepoAdapter["OwnerRepositoryImpl<br><b>[Infrastructure Adapter]</b><br>Persistencia JPA de propietarios."]
-        WorkRepoAdapter["WorkshopRepositoryImpl<br><b>[Infrastructure Adapter]</b><br>Persistencia JPA de talleres."]
-        BranchRepoAdapter["BranchRepositoryImpl<br><b>[Infrastructure Adapter]</b><br>Persistencia JPA de sucursales."]
-        SubRepoAdapter["BranchSubscriptionRepositoryImpl<br><b>[Infrastructure Adapter]</b><br>Persistencia JPA de suscripciones."]
+        CustRepoAdapter["CustomerRepositoryImpl<br>[Infrastructure Adapter]<br>Persistencia JPA y emisión de eventos de clientes."]
+        EmpRepoAdapter["EmployeeRepositoryImpl<br>[Infrastructure Adapter]<br>Persistencia JPA de empleados."]
+        OwnerRepoAdapter["OwnerRepositoryImpl<br>[Infrastructure Adapter]<br>Persistencia JPA de propietarios."]
+        WorkRepoAdapter["WorkshopRepositoryImpl<br>[Infrastructure Adapter]<br>Persistencia JPA de talleres."]
+        BranchRepoAdapter["BranchRepositoryImpl<br>[Infrastructure Adapter]<br>Persistencia JPA de sucursales."]
+        SubRepoAdapter["BranchSubscriptionRepositoryImpl<br>[Infrastructure Adapter]<br>Persistencia JPA de suscripciones."]
 
-        CustJpaRepo["CustomerPersistenceRepository<br><b>[Spring Data JPA]</b>"]
-        EmpJpaRepo["EmployeePersistenceRepository<br><b>[Spring Data JPA]</b>"]
-        OwnerJpaRepo["OwnerPersistenceRepository<br><b>[Spring Data JPA]</b>"]
-        WorkJpaRepo["WorkshopPersistenceRepository<br><b>[Spring Data JPA]</b>"]
-        BranchJpaRepo["BranchPersistenceRepository<br><b>[Spring Data JPA]</b>"]
-        SubJpaRepo["BranchSubscriptionPersistenceRepository<br><b>[Spring Data JPA]</b>"]
+        CustJpaRepo["CustomerPersistenceRepository<br>[Spring Data JPA]"]
+        EmpJpaRepo["EmployeePersistenceRepository<br>[Spring Data JPA]"]
+        OwnerJpaRepo["OwnerPersistenceRepository<br>[Spring Data JPA]"]
+        WorkJpaRepo["WorkshopPersistenceRepository<br>[Spring Data JPA]"]
+        BranchJpaRepo["BranchPersistenceRepository<br>[Spring Data JPA]"]
+        SubJpaRepo["BranchSubscriptionPersistenceRepository<br>[Spring Data JPA]"]
     end
 
     ClientApp -->|"HTTPS / REST"| ProfilesCtrl
