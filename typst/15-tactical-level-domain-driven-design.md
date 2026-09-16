@@ -364,7 +364,7 @@ Estructura de la tabla relacional base heredada por las entidades persistentes m
 #v(0.5em)
 #align(center)[
   #table(
-    columns: (110pt, 100pt, 1fr),
+    columns: (auto, auto, 1fr),
     align: (center, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, DEFAULT gen_random_uuid()`],
@@ -837,7 +837,7 @@ Descomposición estructural del container REST API para el Bounded Context de IA
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (85pt, 95pt, 1fr),
+    columns: (auto, auto, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, DEFAULT gen_random_uuid()`],
@@ -861,7 +861,7 @@ Descomposición estructural del container REST API para el Bounded Context de IA
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (85pt, 95pt, 1fr),
+    columns: (auto, auto, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`user_id`*], [`UUID`], [`PRIMARY KEY, FOREIGN KEY -> users(id)`],
@@ -877,7 +877,7 @@ Descomposición estructural del container REST API para el Bounded Context de IA
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (85pt, 95pt, 1fr),
+    columns: (auto, auto, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -1201,14 +1201,16 @@ La Capa de Dominio encapsula el modelo de negocio inmutable, asegurando transici
 ]
 #v(0.3em)
 
-#block(
-  fill: rgb("#f8fafc"),
-  stroke: 0.5pt + rgb("#cbd5e1"),
-  radius: 4pt,
-  inset: 10pt,
-  width: 100%
-)[
-  Entidades JPA (`WorkOrderPersistenceEntity`, `WorkOrderTaskPersistenceEntity`, `WorkOrderTaskProductPersistenceEntity`, `ServicePersistenceEntity`) mapeadas a PostgreSQL 18 con Spring Data JPA. Adaptadores `WorkOrderRepositoryImpl` y `ServiceRepositoryImpl` para despacho de eventos.
+#align(center)[
+  #table(
+    columns: (auto, auto, 1fr),
+    align: (left, left, left),
+    table.header([Tabla Relacional], [Clase JPA Entity], [Atributos & Campos Mapeados]),
+    [*`work_orders`*], [`WorkOrderPersistenceEntity`], [`id` (UUID, PK), `appointment_id` (UUID), `branch_id` (UUID), `vehicle_id` (UUID), `customer_id` (UUID), `internal_number` (INTEGER), `status` (VARCHAR), `diagnostic_summary` (TEXT), `mileage_in` (DECIMAL), `total_amount` (DECIMAL), `created_at`, `updated_at`, `version`],
+    [*`work_order_tasks`*], [`WorkOrderTaskPersistenceEntity`], [`id` (UUID, PK), `work_order_id` (UUID, FK), `service_id` (UUID), `branch_id` (UUID), `assigned_mechanic_id` (UUID), `status` (VARCHAR), `description` (TEXT), `price` (DECIMAL), `started_at`, `completed_at`],
+    [*`work_order_task_products`*], [`WorkOrderTaskProductPersistenceEntity`], [`id` (UUID, PK), `work_order_task_id` (UUID, FK), `product_id` (UUID), `branch_id` (UUID), `quantity` (INTEGER), `unit_price` (DECIMAL), `total_amount` (DECIMAL)],
+    [*`services`*], [`ServicePersistenceEntity`], [`id` (UUID, PK), `branch_id` (UUID), `name` (VARCHAR), `price` (DECIMAL), `created_at`, `updated_at`, `version`]
+  )
 ]
 
 #v(0.5em)
@@ -1281,7 +1283,7 @@ La Capa de Dominio encapsula el modelo de negocio inmutable, asegurando transici
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (85pt, 95pt, 1fr),
+    columns: (auto, auto, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, DEFAULT gen_random_uuid()`],
@@ -1304,7 +1306,7 @@ La Capa de Dominio encapsula el modelo de negocio inmutable, asegurando transici
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (85pt, 95pt, 1fr),
+    columns: (auto, auto, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -1313,4 +1315,535 @@ La Capa de Dominio encapsula el modelo de negocio inmutable, asegurando transici
     [*`is_active`*], [`BOOLEAN`], [`NOT NULL, DEFAULT TRUE`],
   )
 ]
+
+#v(0.8em)
+
+=== 2.6.4. Bounded Context: Inventory (Stock & Products Management)
+
+El *Bounded Context `Inventory`* administra el catálogo de repuestos, autopartes y consumibles del taller automotriz (`Product`), la gestión física de existencias mediante lotes de adquisición (`ProductBatch`), la evaluación automática de niveles de stock mínimo (`MinimumStockAlertEvaluationJob`), y la sincronización asíncrona de inventario respondiendo a las reservas y despachos producidos por las Órdenes de Trabajo del Bounded Context `Operations`.
+
+#v(0.5em)
+
+==== 2.6.4.1. Domain Layer (Capa de Dominio)
+
+La Capa de Dominio define las reglas inmutables del inventario, gestionando el stock disponible, la deducción FIFO encapsulada en el agregado `Product`, los métodos de creación y reconstitución (patrón *Factory*), la activación de alertas de bajo stock y las validaciones de negocio sin dependencias tecnológicas externas.
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/inventory/inventory-domain-layer.svg", width: 95%)
+    ),
+    caption: [Diagrama de la Capa de Dominio -- Inventory]
+  )
+]
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.4.1.1. Value Objects, Enums & Exceptions]
+]
+#v(0.3em)
+
+#grid(
+  columns: (1fr, 1fr),
+  gutter: 10pt,
+  block(
+    fill: rgb("#f8fafc"),
+    stroke: 0.5pt + rgb("#cbd5e1"),
+    radius: 4pt,
+    inset: 8pt,
+    width: 100%
+  )[
+    #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `BranchId`] \
+    *Propósito:* Identificador único fuertemente tipado de la sucursal de taller asociada al inventario. \
+    *Validaciones:* No nulo.
+  ],
+  block(
+    fill: rgb("#f8fafc"),
+    stroke: 0.5pt + rgb("#cbd5e1"),
+    radius: 4pt,
+    inset: 8pt,
+    width: 100%
+  )[
+    #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `Money`] \
+    *Propósito:* Representa montos monetarios para precios de venta y costos de adquisición de lotes. \
+    *Validaciones:* `amount` no nulo y `>= 0`. \
+    *Métodos:* `getAmount()`.
+  ],
+  block(
+    fill: rgb("#f8fafc"),
+    stroke: 0.5pt + rgb("#cbd5e1"),
+    radius: 4pt,
+    inset: 8pt,
+    width: 100%
+  )[
+    #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `ProductName`] \
+    *Propósito:* Nombre comercial de la autoparte o repuesto. \
+    *Validaciones:* No nulo ni en blanco (`inventory.error.productName.required`).
+  ],
+  block(
+    fill: rgb("#f8fafc"),
+    stroke: 0.5pt + rgb("#cbd5e1"),
+    radius: 4pt,
+    inset: 8pt,
+    width: 100%
+  )[
+    #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `Sku`] \
+    *Propósito:* Stock Keeping Unit (código único de producto por sucursal). \
+    *Validaciones:* No nulo ni en blanco (`inventory.error.sku.required`).
+  ],
+  block(
+    fill: rgb("#f8fafc"),
+    stroke: 0.5pt + rgb("#cbd5e1"),
+    radius: 4pt,
+    inset: 8pt,
+    width: 100%
+  )[
+    #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `ProductCategory`] \
+    *Propósito:* Categoría o familia del producto (ej. "Frenos", "Filtros", "Lubricantes"). \
+    *Validaciones:* No nulo ni en blanco (`inventory.error.productCategory.required`).
+  ],
+  block(
+    fill: rgb("#f8fafc"),
+    stroke: 0.5pt + rgb("#cbd5e1"),
+    radius: 4pt,
+    inset: 8pt,
+    width: 100%
+  )[
+    #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `InventoryQuantity`] \
+    *Propósito:* Cantidad entera no negativa en inventario. \
+    *Validaciones:* No nulo y `>= 0`. \
+    *Métodos:* `add()`, `subtract()`.
+  ]
+)
+
+#v(0.4em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `StockMovementQuantity(Integer value)`] \
+  *Propósito:* Movimiento o ajuste de inventario (positivo para ingresos, negativo para egresos). \
+  *Validaciones:* No nulo y distinto de cero. *Métodos:* `isPositive()`, `absoluteValue()`.
+
+  #v(6pt)
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[Enum: `ProductCommandFailure`] \
+  *Valores:* `PRODUCT_NOT_FOUND`, `INVALID_PRODUCT_DATA`, `DUPLICATE_SKU`, `PRODUCT_IN_USE`, `INSUFFICIENT_STOCK`.
+
+  #v(6pt)
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[Excepción: `InsufficientStockException`] \
+  *Propósito:* Excepción de dominio lanzada cuando se intenta reservar o descontar más stock del disponible (`inventory.error.product.insufficientStock`).
+]
+
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.4.1.2. Aggregates & Entities]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[Aggregate Root: `Product`] \
+  #text(size: 9.5pt, fill: rgb("#475569"))[*Hereda de:* `AbstractAggregateRoot<Product>`] \
+  *Propósito:* Raíz del agregado que representa un producto del inventario en una sucursal (`BranchId`). Clave primaria `UUID id`. \
+  #v(4pt)
+  *Reglas de Negocio:*
+  - Mantiene la lista de lotes físicos recibidos (`batches`).
+  - `reserveStock(InventoryQuantity amount)`: Recorre los lotes activos (`ProductBatch`) en estricto orden FIFO (`receptionDate` ascendente) descontando existencias. Lanza `InsufficientStockException` si `currentStock < amount`.
+  - `releaseStock(InventoryQuantity amount)`: Reingresa existencias a los lotes en caso de cancelación de reserva.
+  - `refreshLowStockAlert()`: Compara `currentStock <= minimumStock`. Si el estado cambia, emite `LowStockAlertTriggeredEvent` o `LowStockAlertClearedEvent`.
+
+  #v(8pt)
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[Entity: `ProductBatch`] \
+  #text(size: 9.5pt, fill: rgb("#475569"))[*Propósito:* Entidad de dominio que representa un lote físico recibido con costo de adquisición y fecha de recepción. Clave primaria `UUID batchId`.] \
+  *Atributos:* `batchId` (UUID), `initialQuantity` (InventoryQuantity), `availableQuantity` (InventoryQuantity), `acquisitionCost` (Money), `receptionDate` (Instant), `version` (Long). \
+  *Comportamiento:* `deductQuantity` y `addQuantity` actualizan `availableQuantity`.
+]
+
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.4.1.3. Creation & Reconstitution Methods (Factory Pattern)]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  - *Constructor Público `Product(...)`:* `public Product(UUID id, BranchId branchId, ProductCategory category, ProductName name, Sku sku, Money currentSellingPrice, String description, Integer minimumStock)`. Asigna `UUID.randomUUID()` si `id` es nulo, inicializa `currentStock = 0`, `lowStockAlert = false` y publica `ProductCreatedEvent`.
+  - *`Product.reconstitute(...)`:* `public static Product reconstitute(UUID id, BranchId branchId, ProductCategory category, ProductName name, Sku sku, InventoryQuantity currentStock, Money currentSellingPrice, String description, Integer minimumStock, boolean lowStockAlert, Long version, List<ProductBatch> batches)`. Reconstruye el agregado desde infraestructura sin publicar eventos.
+  - *`ProductBatch.forStockAdjustment(...)`:* `public static ProductBatch forStockAdjustment(int signedQuantity, Money acquisitionCost, int resultingStock)`. Reconstituye un `ProductBatch` para ajustes manuales de almacén asignando `initialQuantity = 0` y `availableQuantity = resultingStock`.
+]
+
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.4.1.4. Domain Events]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  - `ProductCreatedEvent`: Notifica la creación de un nuevo producto en una sucursal.
+  - `ProductUpdatedEvent`: Notifica la actualización de los datos del producto.
+  - `StockMovementAppliedEvent`: Notifica la aplicación de un movimiento de stock manual o lote.
+  - `StockReservedEvent`: Notifica la reserva exitosa de stock solicitada desde Operations.
+  - `StockReleasedEvent`: Notifica la liberación de stock previamente reservado.
+  - `LowStockAlertTriggeredEvent`: Notifica cuando el stock cae por debajo del mínimo configurado.
+  - `LowStockAlertClearedEvent`: Notifica cuando el stock se recupera por encima del mínimo.
+]
+
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.4.1.5. Domain Repositories (Interfaces)]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[`ProductRepository` (Domain Repository Interface)] \
+  *Métodos de Contrato:*
+  - `Product save(Product product)`
+  - `Optional<Product> findById(UUID id)`
+  - `List<Product> findAllByBranchId(BranchId branchId)`
+  - `List<Product> findAllByBranchIdWithFilters(BranchId branchId, String name, String category, Boolean lowStockOnly)`
+  - `List<Product> findAll()`
+  - `boolean existsByBranchIdAndSku(BranchId branchId, String sku)`
+  - `boolean existsByBranchIdAndSkuAndIdNot(BranchId branchId, String sku, UUID productId)`
+  - `boolean existsById(UUID id)`
+  - `void deleteById(UUID id)`
+]
+
+#v(0.5em)
+
+==== 2.6.4.2. Application Layer (Capa de Aplicación)
+
+La Capa de Aplicación expone la ejecución de casos de uso utilizando `Result<T, ProductCommandFailure>` para manejo funcional de fallos y ejecuta tareas programadas para la evaluación continua de alertas.
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/inventory/inventory-app-layer.svg", width: 95%)
+    ),
+    caption: [Diagrama de la Capa de Aplicación -- Inventory]
+  )
+]
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.4.2.1. Commands & Queries (DTOs de Aplicación)]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[Comandos de Escritura (CQRS Commands):] \
+  - `CreateProductCommand(BranchId branchId, ProductCategory category, ProductName name, Sku sku, String description, Money salePrice, InventoryQuantity minimumStock)`
+  - `UpdateProductCommand(UUID productId, ProductName name, ProductCategory category, Sku sku, String description, Money salePrice, InventoryQuantity minimumStock)`
+  - `DeleteProductCommand(UUID productId)`
+  - `AddBatchToProductCommand(UUID productId, StockMovementQuantity quantity, Money acquisitionCost)`
+
+  #v(8pt)
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[Consultas y DTOs de Resultado (CQRS Queries):] \
+  - `GetProductByIdQuery(UUID productId)`
+  - `GetProductsByBranchIdQuery(BranchId branchId, String name, String category, Boolean lowStockOnly)`
+]
+
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.4.2.2. Capabilities & Scheduled Tasks]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[`MinimumStockAlertEvaluationJob` (Scheduled Task / Job)] \
+  *Tipo:* Proceso de fondo programado (`@Scheduled(cron = "0 0 * * * *")`). \
+  *Responsabilidad:* Inspecciona el estado de existencias de todos los productos por sucursal en la base de datos, invocando directamente `product.refreshLowStockAlert()` en cada agregado para actualizar el indicador `lowStockAlert` y publicar eventos `LowStockAlertTriggeredEvent` cuando el stock disponible cae por debajo de la reserva mínima configurada.
+]
+
+#v(0.5em)
+
+==== 2.6.4.3. Interface Layer (Capa de Interfaz / REST & Events)
+
+Exposición RESTful e integración asíncrona mediante listeners de eventos producidos por otros Bounded Contexts.
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/inventory/inventory-interface-layer.svg", width: 95%)
+    ),
+    caption: [Diagrama de la Capa de Interfaz -- Inventory]
+  )
+]
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.4.3.1. Endpoints & REST Controllers]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[`ProductsController` (`/api/v1/inventory/products`)] \
+  - `POST /api/v1/inventory/products`: Registra un nuevo producto en el inventario de una sucursal.
+  - `GET /api/v1/inventory/products?branchId={branchId}`: Consulta productos por sucursal con filtros opcionales (`name`, `category`, `lowStockOnly`).
+  - `GET /api/v1/inventory/products/branch/{branchId}`: Catálogo de productos por ruta de sucursal.
+  - `GET /api/v1/inventory/products/{productId}`: Consulta detalles completos de un producto incluyendo sus lotes.
+  - `PUT /api/v1/inventory/products/{productId}`: Actualiza información básica del producto.
+  - `DELETE /api/v1/inventory/products/{productId}`: Eliminación lógica (soft-delete vía `deleted_at`) del producto y sus lotes.
+  - `POST /api/v1/inventory/products/{productId}/batches`: Registra la entrada de un nuevo lote de stock o un ajuste manual de almacén.
+
+  #v(8pt)
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[Event Listener: `InventoryStockListener`] \
+  - Escucha `ProductReservedEvent` proveniente de `Operations` e invoca `product.reserveStock(amount)`.
+  - Escucha `ProductReservationCanceledEvent` proveniente de `Operations` e invoca `product.releaseStock(amount)`.
+]
+
+#v(0.5em)
+
+==== 2.6.4.4. Infrastructure Layer (Capa de Infraestructura)
+
+Mapeo ORM relacional a PostgreSQL 18 con Spring Data JPA y configuración de Jobs programados con `@EnableScheduling`.
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/inventory/inventory-infra-layer.svg", width: 95%)
+    ),
+    caption: [Diagrama de la Capa de Infraestructura -- Inventory]
+  )
+]
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.4.4.1. Mapeo de Entidades Relacionales (JPA)]
+]
+#v(0.3em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 9.5pt, fill: rgb("#334155"))[Tabla: `products` (`ProductJpaEntity`)]
+]
+#v(0.2em)
+#align(center)[
+  #table(
+    columns: (auto, auto, 1fr),
+    align: (left, center, left),
+    table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
+    [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
+    [*`branch_id`*], [`UUID`], [`NOT NULL, FOREIGN KEY -> branches(id)`],
+    [*`category`*], [`VARCHAR(100)`], [`NOT NULL`],
+    [*`name`*], [`VARCHAR(150)`], [`NOT NULL`],
+    [*`sku`*], [`VARCHAR(100)`], [`NOT NULL, UNIQUE`],
+    [*`description`*], [`TEXT`], [`NULLABLE`],
+    [*`current_selling_price`*], [`NUMERIC(12,2)`], [`NOT NULL, CHECK (current_selling_price >= 0)`],
+    [*`current_stock`*], [`INTEGER`], [`NOT NULL, CHECK (current_stock >= 0)`],
+    [*`minimum_stock`*], [`INTEGER`], [`NOT NULL, CHECK (minimum_stock >= 0)`],
+    [*`low_stock_alert`*], [`BOOLEAN`], [`NOT NULL DEFAULT false`],
+    [*`created_by`*], [`UUID`], [`NOT NULL`],
+    [*`updated_by`*], [`UUID`], [`NOT NULL`],
+    [*`created_at`*], [`TIMESTAMP`], [`NOT NULL`],
+    [*`updated_at`*], [`TIMESTAMP`], [`NOT NULL`],
+    [*`deleted_at`*], [`TIMESTAMP`], [`NULLABLE (Soft Delete)`],
+    [*`version`*], [`BIGINT`], [`NOT NULL`],
+  )
+]
+
+#v(0.6em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 9.5pt, fill: rgb("#334155"))[Tabla: `product_batches` (`ProductBatchJpaEntity`)]
+]
+#v(0.2em)
+#align(center)[
+  #table(
+    columns: (auto, auto, 1fr),
+    align: (left, center, left),
+    table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
+    [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
+    [*`product_id`*], [`UUID`], [`NOT NULL, FOREIGN KEY -> products(id)`],
+    [*`branch_id`*], [`UUID`], [`NOT NULL, FOREIGN KEY -> branches(id)`],
+    [*`initial_quantity`*], [`INTEGER`], [`NOT NULL, CHECK (initial_quantity > 0)`],
+    [*`available_quantity`*], [`INTEGER`], [`NOT NULL, CHECK (available_quantity >= 0)`],
+    [*`acquisition_cost`*], [`NUMERIC(12,2)`], [`NOT NULL, CHECK (acquisition_cost >= 0)`],
+    [*`created_by`*], [`UUID`], [`NOT NULL`],
+    [*`updated_by`*], [`UUID`], [`NOT NULL`],
+    [*`created_at`*], [`TIMESTAMP`], [`NOT NULL`],
+    [*`updated_at`*], [`TIMESTAMP`], [`NOT NULL`],
+    [*`deleted_at`*], [`TIMESTAMP`], [`NULLABLE (Soft Delete)`],
+    [*`version`*], [`BIGINT`], [`NOT NULL`],
+  )
+]
+
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.4.4.2. Repository Adapters & Infrastructure Components]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[`ProductRepositoryAdapter` (Infrastructure Repository Adapter)] \
+  *Implementa:* Contrato de dominio `ProductRepository`. \
+  *Inyecta:* `ProductJpaRepository` (Spring Data JPA). \
+  *Responsabilidad:* Provee persistencia relacional con aislamiento total del modelo de dominio. Realiza el mapeo bidireccional entre los agregados de dominio (`Product`, `ProductBatch`) y las entidades de persistencia JPA (`ProductJpaEntity`, `ProductBatchJpaEntity`). \
+  *Métodos Clave:* `save()`, `findById()`, `findAllByBranchId()`, `findAllByBranchIdWithFilters()`, `existsByBranchIdAndSku()`, `deleteById()`.
+]
+
+#v(0.5em)
+
+==== 2.6.4.5. Software Architecture Component Level Diagrams (C4 Model - Level 3)
+
+El siguiente diagrama C4 descompone el Container API en sus componentes principales para el Bounded Context *Inventory*.
+
+#v(0.5em)
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.4.5.1. C4 Model Component Diagram (Container: Spring Boot REST API -- Inventory)]
+]
+#v(0.3em)
+
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/inventory/inventory-c4-component.svg", width: 95%)
+    ),
+    caption: [Diagrama de Componentes C4 Nivel 3 -- Inventory]
+  )
+]
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.4.5.2. Descomposición y Responsabilidad de Componentes]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  - *`ProductsController` (Interface Layer):* Expone los endpoints RESTful para la creación, consulta filtrada, actualización y eliminación de productos y registro de lotes. *(Spring Web MVC, REST over HTTPS, Jackson JSON)*.
+  - *`InventoryStockListener` (Interface Layer):* Escucha asíncronamente eventos de dominio emitidos por `Operations` (`ProductReservedEvent`, `ProductReservationCanceledEvent`) e invoca reglas de reserva. *(Spring Application Events)*.
+  - *`MinimumStockAlertEvaluationJob` (Application Layer):* Capability programada en segundo plano que evalúa los umbrales de stock mínimo invocando `product.refreshLowStockAlert()`. *(Spring Scheduled Tasks)*.
+  - *`ProductCommandService` (Application Layer):* Orquesta los comandos de creación, edición, borrado de productos y adición de lotes de inventario. *(Spring Service, Functional `Result<T, E>`)*.
+  - *`ProductQueryService` (Application Layer):* Ejecuta consultas filtradas por sucursal, categoría y estado de alerta de bajo stock. *(Spring Service, Read-only Transactions)*.
+  - *`ProductRepositoryAdapter` (Infrastructure Layer):* Adaptador de infraestructura que mapea agregados y entidades de dominio hacia/desde entidades relacionales JPA. *(Spring Component, JPA Hibernate Mapping)*.
+  - *`ProductJpaRepository` (Infrastructure Layer):* Repositorio Spring Data JPA que interactúa directamente con PostgreSQL 18. *(Spring Data JPA, Hibernate ORM, SQL Native Queries)*.
+]
+
+#v(0.5em)
+
+==== 2.6.4.6. Bounded Context Software Architecture Code Level Diagrams
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.4.6.1. Domain Layer Class Diagram]
+]
+#v(0.3em)
+
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/inventory/inventory-code-domain.svg", width: 95%)
+    ),
+    caption: [Diagrama de Clases del Dominio UML -- Inventory]
+  )
+]
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.4.6.2. Database Design Diagram (PostgreSQL 18)]
+]
+#v(0.3em)
+
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/inventory/inventory-erd.svg", width: 95%)
+    ),
+    caption: [Diagrama de Base de Datos Relacional ER -- Inventory]
+  )
+]
+
+```
+
 ```
