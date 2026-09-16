@@ -102,62 +102,66 @@ Este cuestionario busca explorar las conductas de mantenimiento, las barreras co
 
 ### 2.2.2. Registro de entrevistas
 
-**Segmento objetivo 1:**
+**Segmento Objetivo 1: Dueños o Administradores de Talleres Automotrices Independientes (B2B)**
 
 <table>
 <thead>
   <tr>
-    <th colspan="2">Entrevista #1<br></th>
+    <th colspan="2">Entrevista 1: Gerente General y Propietario de Taller Automotriz Independiente<br></th>
   </tr>
 </thead>
 <tbody>
   <tr>
     <td>Nombre</td>
-    <td>...</td>
+    <td>Roberto</td>
   </tr>
   <tr>
     <td>Apellidos</td>
-    <td>...</td>
+    <td>Silva</td>
   </tr>
   <tr>
     <td>Edad</td>
-    <td>...</td>
+    <td>37 años</td>
   </tr>
   <tr>
     <td>Distrito</td>
-    <td>...</td>
+    <td>San Miguel, Juliaca</td>
   </tr>
   <tr>
     <td>Aplicaciones Usadas</td>
-    <td>...</td>
+    <td>WhatsApp, BCP/Interbank, Excel y correo electrónico</td>
   </tr>
   <tr>
     <td>Tecnologías</td>
-    <td>...</td>
+    <td>Smartphone Android, PC de escritorio, escáner Launch y Bosch KTS</td>
   </tr>
   <tr>
     <td>Browsers</td>
-    <td>...</td>
+    <td>Google Chrome, Microsoft Edge</td>
   </tr>
   <tr>
     <td>Entrevistador</td>
-    <td>...</td>
+    <td>Alan Mamani</td>
   </tr>
   <tr>
     <td>Evidencia</td>
-    <td>...</td>
+    <td>
+      <img src="../assets/chapter2/interviews/interview-seg-1-1.png" alt="Evidencia de la entrevista">
+    </td>
   </tr>
-  <tr>
-    <td>Link</td>
-    <td>...</td>
-  </tr>
+<tr>
+  <td>Link</td>
+  <td><a href="https://upcedupe-my.sharepoint.com/:v:/g/personal/u20241e299_upc_edu_pe/IQDGi2mwibUOTri_qnCNOE9XAWbkwqGy7kLorGVW-DinwjI?e=jtY4c4&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D" target="_blank">Ver entrevista</a></td>
+</tr>
   <tr>
     <td>Duración<br></td>
-    <td>...</td>
+    <td>21:30</td>
   </tr>
   <tr>
     <td>Resumen</td>
-    <td>...</td>
+    <td>El entrevistado es gerente general y propietario de un taller automotriz independiente, con 14 años de experiencia en el sector. El taller cuenta con cuatro mecánicos y cuatro bahías de atención, y atiende entre 20 y 30 vehículos por semana. Actualmente gestiona las órdenes mediante documentos físicos, utiliza Excel para la contabilidad y caja, y WhatsApp para comunicarse con los clientes.<br><br>
+    Entre sus principales problemas se encuentran la baja ocupación de las bahías durante los primeros días de la semana, los vehículos que permanecen varios días en el taller y las pérdidas ocasionadas por repuestos solicitados que posteriormente son cancelados por el cliente. También señala que los clientes suelen desconfiar de reparaciones adicionales y que aproximadamente el 80 % llega cuando el vehículo ya presenta una falla grave.<br><br>
+    Respecto a ShiftIQ, considera interesante el uso de dispositivos OBD2 para detectar fallas antes de que el vehículo llegue al taller y ayudar a llenar las bahías en días de baja demanda. Sin embargo, requiere que la solución demuestre beneficios económicos concretos, tenga un costo inicial accesible, sea sencilla de instalar y no genere problemas para los clientes. Además, considera importante mantener canales tradicionales como llamadas y WhatsApp para aquellos clientes que tengan dificultades con una aplicación.</td>
   </tr>
 </tbody>
 </table>
@@ -165,60 +169,65 @@ Este cuestionario busca explorar las conductas de mantenimiento, las barreras co
 <table>
 <thead>
   <tr>
-    <th colspan="2">Entrevista #2<br></th>
+    <th colspan="2">Entrevista 2: Administrador de Taller Automotriz Independiente y Gestión de Operaciones<br></th>
   </tr>
 </thead>
 <tbody>
   <tr>
     <td>Nombre</td>
-    <td>...</td>
+    <td>Sebastián</td>
   </tr>
   <tr>
     <td>Apellidos</td>
-    <td>...</td>
+    <td>Rojas Espinoza</td>
   </tr>
   <tr>
     <td>Edad</td>
-    <td>...</td>
+    <td>30 años</td>
   </tr>
   <tr>
     <td>Distrito</td>
-    <td>...</td>
+    <td>San Martín de Porres, Lima</td>
   </tr>
   <tr>
     <td>Aplicaciones Usadas</td>
-    <td>...</td>
+    <td>Excel, WhatsApp Business, Google Sheets, banca móvil, Yape, Plin, BCP, Instagram, YouTube</td>
   </tr>
   <tr>
     <td>Tecnologías</td>
-    <td>...</td>
+    <td>Smartphone Samsung Android, laptop con Windows, escáneres automotrices Autel y Launch</td>
   </tr>
   <tr>
     <td>Browsers</td>
-    <td>...</td>
+    <td>Google Chrome</td>
   </tr>
   <tr>
     <td>Entrevistador</td>
-    <td>...</td>
+    <td>Alan Mamani</td>
   </tr>
   <tr>
     <td>Evidencia</td>
-    <td>...</td>
+    <td>
+      <img src="../assets/chapter2/interviews/interview-seg-1-2.png" alt="Evidencia de la entrevista">
+    </td>
   </tr>
   <tr>
     <td>Link</td>
-    <td>...</td>
+    <td><a href="https://upcedupe-my.sharepoint.com/:v:/g/personal/u20241e299_upc_edu_pe/IQCP18HU1eTaRpL0g71UYN7UAb1Z9zEjcHkiVFpKXGfQdR0?e=InyIAk&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D" target="_blank">Ver entrevista</a></td>
   </tr>
   <tr>
     <td>Duración<br></td>
-    <td>...</td>
+    <td>22:34</td>
   </tr>
   <tr>
     <td>Resumen</td>
-    <td>...</td>
+    <td>El entrevistado es administrador de un taller automotriz independiente y cuenta con aproximadamente 7 años de experiencia en el sector. Se encarga de las operaciones, recepción de clientes, planificación de agenda, inventario, cotizaciones, gestión financiera y coordinación del trabajo del equipo. El taller cuenta con 3 técnicos mecánicos, 1 asistente y 3 bahías de trabajo, de las cuales 2 tienen elevadores hidráulicos, además de áreas de diagnóstico computarizado y trabajos eléctricos.<br><br>
+    Actualmente utiliza Excel para gestionar historiales de servicios e ingresos, WhatsApp Business para comunicarse con clientes y proveedores, y progresivamente está migrando algunos registros a Google Sheets para facilitar el acceso compartido entre el personal administrativo. Entre sus principales dificultades se encuentran la variabilidad en la ocupación de las bahías, los clientes que olvidan sus mantenimientos, los retrasos en la cotización y disponibilidad de repuestos y los cruces o cancelaciones de citas de último momento.<br><br>
+    Respecto a una solución conectada a dispositivos telemáticos OBD2, considera que las alertas de fallas en tiempo real permitirían contactar anticipadamente a los clientes, ofrecer servicios y agendar citas automáticamente en los días de menor ocupación, optimizando el uso de las bahías y aumentando la facturación. Para adoptar una solución de este tipo, considera importante que la interfaz sea clara, intuitiva y fácil de aprender, que exista un periodo de prueba y que las notificaciones sean compatibles con los smartphones utilizados por el equipo, como Samsung y Xiaomi.</td>
   </tr>
 </tbody>
 </table>
+
 
 <table>
 <thead>
@@ -278,7 +287,7 @@ Este cuestionario busca explorar las conductas de mantenimiento, las barreras co
 </tbody>
 </table>
 
-**Segmento objetivo 2:**
+**Segmento Objetivo 2: Conductores de Vehículos Particulares en Lima (B2C)**
 
 <table>
 <thead>
