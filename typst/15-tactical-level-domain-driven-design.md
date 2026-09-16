@@ -2333,6 +2333,634 @@ Descomposición del Container API en sus componentes principales para el Bounded
   )
 ]
 
+
+
+=== 2.6.6. Bounded Context: Core (Profiles, Workshops & Branches)
+
+El Bounded Context *Core* constituye el núcleo relacional y organizacional de la plataforma *ShiftIQ*. Gestiona la identidad de los perfiles operacionales de los usuarios (`Customer`, `Employee`, `Owner`), las organizaciones y talleres mecánicos (`Workshop`), sus sedes o sucursales físicas (`Branch`), así como el modelo de monetización y suscripciones de la plataforma (`SubscriptionPlan`, `BranchSubscription`).
+
+#v(0.5em)
+
+==== 2.6.6.1. Domain Layer (Capa de Dominio)
+
+La Capa de Dominio define el modelo de negocio inmutable, encapsulando reglas de validación, agregados principales, objetos de valor (Value Objects), métodos de creación (fábricas / constructores), eventos de dominio e interfaces de repositorios agnósticas a la tecnología de persistencia.
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/core/core-domain-layer.svg", width: 80%)
+    ),
+    caption: [Diagrama de la Capa de Dominio -- Core]
+  )
+]
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.6.1.1. Value Objects, Enums & Exceptions]
+]
+#v(0.3em)
+
+#grid(
+  columns: (1fr, 1fr),
+  gutter: 10pt,
+  block(
+    fill: rgb("#f8fafc"),
+    stroke: 0.5pt + rgb("#cbd5e1"),
+    radius: 4pt,
+    inset: 8pt,
+    width: 100%
+  )[
+    #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `Document`] \
+    #text(size: 9.5pt, fill: rgb("#475569"))[`(DocumentType documentType, String documentNumber)`] \
+    *Propósito:* Encapsula la identidad legal del sujeto. \
+    *Validaciones:* `documentType` no nulo (`core.error.documentType.notNull`); `documentNumber` no nulo ni en blanco (`core.error.documentNumber.notBlank`).
+  ],
+  block(
+    fill: rgb("#f8fafc"),
+    stroke: 0.5pt + rgb("#cbd5e1"),
+    radius: 4pt,
+    inset: 8pt,
+    width: 100%
+  )[
+    #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `PersonName`] \
+    #text(size: 9.5pt, fill: rgb("#475569"))[`(String firstName, String lastName)`] \
+    *Propósito:* Nombre y apellidos de personas naturales. \
+    *Validaciones:* `firstName` y `lastName` no nulos ni vacíos. Método `getFullName()`.
+  ]
+)
+
+#v(0.4em)
+
+#grid(
+  columns: (1fr, 1fr),
+  gutter: 10pt,
+  block(
+    fill: rgb("#f8fafc"),
+    stroke: 0.5pt + rgb("#cbd5e1"),
+    radius: 4pt,
+    inset: 8pt,
+    width: 100%
+  )[
+    #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `Phone`] \
+    #text(size: 9.5pt, fill: rgb("#475569"))[`(String value)`] \
+    *Propósito:* Número telefónico de contacto. \
+    *Validaciones:* No nulo ni en blanco (`core.error.phone.required`).
+  ],
+  block(
+    fill: rgb("#f8fafc"),
+    stroke: 0.5pt + rgb("#cbd5e1"),
+    radius: 4pt,
+    inset: 8pt,
+    width: 100%
+  )[
+    #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `TaxId`] \
+    #text(size: 9.5pt, fill: rgb("#475569"))[`(String value)`] \
+    *Propósito:* Identificador tributario (RUC de 11 dígitos). \
+    *Validaciones:* Exactamente 11 dígitos numéricos (`core.error.taxId.invalid`).
+  ]
+)
+
+#v(0.4em)
+
+#grid(
+  columns: (1fr, 1fr),
+  gutter: 10pt,
+  block(
+    fill: rgb("#f8fafc"),
+    stroke: 0.5pt + rgb("#cbd5e1"),
+    radius: 4pt,
+    inset: 8pt,
+    width: 100%
+  )[
+    #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `CreditCard`] \
+    #text(size: 9.5pt, fill: rgb("#475569"))[`(cardNumber, cardHolderName, expirationDate, cvv)`] \
+    *Propósito:* Datos de tarjeta para cobro simulado de suscripciones. \
+    *Validaciones:* 16 dígitos, formato `MM/YY`, `cvv` de 3 dígitos.
+  ],
+  block(
+    fill: rgb("#f8fafc"),
+    stroke: 0.5pt + rgb("#cbd5e1"),
+    radius: 4pt,
+    inset: 8pt,
+    width: 100%
+  )[
+    #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `MileageIntervalConfig`] \
+    #text(size: 9.5pt, fill: rgb("#475569"))[`(int value)`] \
+    *Propósito:* Intervalo de kilometraje para mantenimientos sugeridos del taller. \
+    *Validaciones:* Entero estrictamente positivo (`core.error.mileageIntervalConfig.mustBePositive`).
+  ]
+)
+
+#v(0.4em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 8pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[Strongly Typed IDs & Enumerations] \
+  - *Typed IDs:* `UserId`, `CustomerId`, `EmployeeId`, `OwnerId`, `WorkshopId`, `BranchId`, `BranchSubscriptionId`, `SubscriptionPlanId` (encapsulan `UUID`).
+  - *Enum `DocumentType`:* `DNI`, `RUC`, `CE`, `PASSPORT`.
+  - *Enum `SubscriptionStatus`:* `ACTIVE`, `CANCELED`, `EXPIRED`.
+  - *Enum `BillingCycle`:* `MONTHLY`, `ANNUAL`.
+]
+
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.6.1.2. Aggregates & Entities]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[`Customer` (Aggregate Root)] \
+  #text(size: 9.5pt, fill: rgb("#475569"))[*Tipo:* Raíz de Agregado (`extends AbstractDomainAggregateRoot<Customer>`)] \
+  *Propósito:* Agregado para clientes del sistema (persona natural `isCorporate = false` o persona jurídica `isCorporate = true`). \
+  #v(4pt)
+  *Atributos:* `id` (`CustomerId`), `userId` (`UserId`), `isCorporate` (`boolean`), `name` (`PersonName`), `businessName` (`String`), `document` (`Document`), `phone` (`Phone`). \
+  #v(4pt)
+  *Reglas de Negocio & Métodos:* Si es corporativo, `businessName` es obligatorio. En actualizaciones, el tipo de documento corporativo es inmutable. Emite `CustomerCreatedEvent` y `CustomerUpdatedEvent`.
+]
+
+#v(0.4em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[`Employee` (Aggregate Root)] \
+  #text(size: 9.5pt, fill: rgb("#475569"))[*Tipo:* Raíz de Agregado (`extends AbstractDomainAggregateRoot<Employee>`)] \
+  *Propósito:* Agregado para perfiles de empleados y personal técnico del taller vinculados a un `UserId`. \
+  #v(4pt)
+  *Atributos:* `id` (`EmployeeId`), `userId` (`UserId`), `name` (`PersonName`), `document` (`Document`), `phone` (`Phone`). \
+  #v(4pt)
+  *Métodos:* `update(PersonName, Document, Phone)`. Emite `EmployeeCreatedEvent` y `EmployeeUpdatedEvent`.
+]
+
+#v(0.4em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[`Owner` (Aggregate Root)] \
+  #text(size: 9.5pt, fill: rgb("#475569"))[*Tipo:* Raíz de Agregado (`extends AbstractDomainAggregateRoot<Owner>`)] \
+  *Propósito:* Agregado para propietarios y dueños de talleres automotrices. \
+  #v(4pt)
+  *Atributos:* `id` (`OwnerId`), `userId` (`UserId`), `name` (`PersonName`), `document` (`Document`), `phone` (`Phone`). \
+  #v(4pt)
+  *Métodos:* `update(PersonName, Document, Phone)`. Emite `OwnerCreatedEvent` y `OwnerUpdatedEvent`.
+]
+
+#v(0.4em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[`Workshop` (Aggregate Root)] \
+  #text(size: 9.5pt, fill: rgb("#475569"))[*Tipo:* Raíz de Agregado (`extends AbstractDomainAggregateRoot<Workshop>`)] \
+  *Propósito:* Representa la empresa o taller mecánico comercial propiedad de un `Owner`. \
+  #v(4pt)
+  *Atributos:* `id` (`WorkshopId`), `ownerId` (`OwnerId`), `businessName` (`String`), `brandName` (`String`), `taxId` (`TaxId`), `mileageIntervalConfig` (`MileageIntervalConfig`). \
+  #v(4pt)
+  *Reglas de Negocio:* `businessName` y `brandName` requeridos. Emite `WorkshopCreatedEvent` y `WorkshopUpdatedEvent`.
+]
+
+#v(0.4em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[`Branch` & `BranchSubscription` (Aggregates)] \
+  - *`Branch`:* Representa cada sucursal física (`BranchId`, `WorkshopId`, `code`, `name`, `address`, `phone`). Code único requerido. Emite `BranchCreatedEvent` y `BranchUpdatedEvent`.
+  - *`BranchSubscription`:* Suscripción contratada (`BranchSubscriptionId`, `BranchId`, `SubscriptionPlanId`, `status`, `billingCycle`, `startDate`, `endDate`). Calcula `endDate` automáticamente (+1 mes / +12 meses). `cancel(Instant)` cambia estado a `CANCELED`.
+  - *`SubscriptionPlan`:* Plan de comercialización SaaS (`SubscriptionPlanId`, `name`, `monthlyPrice`, `maxObd2Devices`, `maxMonthlySnapshotsPerVehicle`, `maxCustomers`, `maxStaffAccounts`, `isActive`).
+]
+
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.6.1.3. Domain Repositories (Interfaces)]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[Interfaces de Repositorio del Dominio Core:] \
+  - `CustomerRepository`: `save(Customer)`, `findById(CustomerId)`, `findByUserId(UserId)`, `existsByUserId(UserId)`, `findByDocumentNumber(String)`, `findProfileRolesByUserId(UserId)`, `delete(Customer)`.
+  - `EmployeeRepository`: `save(Employee)`, `findById(EmployeeId)`, `findByUserId(UserId)`, `existsByUserId(UserId)`, `findByDocumentNumber(String)`, `delete(Employee)`.
+  - `OwnerRepository`: `save(Owner)`, `findById(OwnerId)`, `findByUserId(UserId)`, `existsById(OwnerId)`, `existsByUserId(UserId)`, `findByDocumentNumber(String)`, `delete(Owner)`.
+  - `WorkshopRepository`: `save(Workshop)`, `findById(WorkshopId)`, `findAllByOwnerId(OwnerId)`, `existsById(WorkshopId)`.
+  - `BranchRepository`: `save(Branch)`, `findById(BranchId)`, `findAllByWorkshopId(WorkshopId)`, `existsById(BranchId)`, `existsByCode(String)`.
+  - `BranchSubscriptionRepository`: `save(BranchSubscription)`, `findById(BranchSubscriptionId)`, `findAllByBranchId(BranchId)`, `findActiveByBranchId(BranchId)`.
+  - `SubscriptionPlanRepository`: `save(SubscriptionPlan)`, `findById(SubscriptionPlanId)`, `findByName(String)`, `findAll()`.
+]
+
+#v(0.5em)
+
+==== 2.6.6.2. Application Layer (Capa de Aplicación)
+
+La Capa de Aplicación orquesta los casos de uso, transformando los Commands y Queries provenientes de la capa de interfaz en operaciones del modelo de dominio.
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/core/core-app-layer.svg", width: 95%)
+    ),
+    caption: [Diagrama de la Capa de Aplicación -- Core]
+  )
+]
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.6.2.1. Commands & Queries (DTOs)]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[Comandos de Escritura (CQRS Commands):] \
+  - `CreateCustomerCommand(...)`, `UpdateCustomerCommand(...)`, `DeleteCustomerCommand(...)`
+  - `CreateEmployeeCommand(...)`, `UpdateEmployeeCommand(...)`, `DeleteEmployeeCommand(...)`
+  - `CreateOwnerCommand(...)`, `UpdateOwnerCommand(...)`, `DeleteOwnerCommand(...)`
+  - `CreateWorkshopCommand(...)`, `UpdateWorkshopCommand(...)`
+  - `CreateBranchCommand(...)`, `UpdateBranchCommand(...)`
+  - `AssignSubscriptionCommand(BranchId, SubscriptionPlanId, BillingCycle, CreditCard)`
+  - `CancelSubscriptionCommand(BranchId)`
+
+  #v(8pt)
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[Consultas y DTOs de Resultado (CQRS Queries & Responses):] \
+  - `GetCustomerByIdQuery`, `GetCustomerByUserIdQuery`
+  - `GetEmployeeByIdQuery`, `GetEmployeeByUserIdQuery`, `GetEmployeeByDocumentNumberQuery`
+  - `GetOwnerByIdQuery`, `GetOwnerByUserIdQuery`
+  - `GetWorkshopByIdQuery`, `GetAllWorkshopsByOwnerIdQuery`
+  - `GetBranchByIdQuery`, `GetAllBranchesByWorkshopIdQuery`
+  - `GetProfileRolesByUserIdQuery`, `GetProfileByDocumentNumberQuery`
+  - `ProfileSummary(profileId, userId, firstName, lastName, documentType, documentNumber, profileType)`
+]
+
+#v(0.5em)
+
+==== 2.6.6.3. Interface Layer (Capa de Interfaz / REST)
+
+Expone los servicios de la plataforma a través de una API RESTful documentada con Swagger/OpenAPI y protegida mediante Spring Security.
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/core/core-interface-layer.svg", width: 95%)
+    ),
+    caption: [Diagrama de la Capa de Interfaz -- Core]
+  )
+]
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.6.3.1. Endpoints & REST Controllers]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[`ProfilesController` (`/api/v1/profiles`)] \
+  - `GET /api/v1/profiles/roles?userId={userId}`: Retorna lista de roles asignados al usuario (ej. `["CUSTOMER", "OWNER"]`).
+  - `GET /api/v1/profiles?documentNumber={documentNumber}`: Búsqueda rápida de perfil por DNI/RUC.
+
+  #v(6pt)
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[`CustomersController` (`/api/v1/customers`)] \
+  - `POST /api/v1/customers`: Registra perfil de cliente (natural o corporativo).
+  - `GET /api/v1/customers?userId={userId}` / `GET /api/v1/customers/{customerId}`: Consultas de clientes.
+  - `PUT /api/v1/customers/{customerId}` / `DELETE /api/v1/customers/{customerId}`: Actualización y borrado lógico.
+
+  #v(6pt)
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[`EmployeesController` & `OwnersController`] \
+  - CRUD completo para perfiles de empleados (`/api/v1/employees`) y dueños de taller (`/api/v1/owners`).
+
+  #v(6pt)
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[`WorkshopsController` & `BranchesController`] \
+  - `POST /api/v1/workshops` & `GET /api/v1/workshops?ownerId={ownerId}`: Gestión de talleres.
+  - `POST /api/v1/branches`, `GET /api/v1/branches?workshopId={workshopId}`, `POST /api/v1/branches/{branchId}/subscriptions`, `DELETE /api/v1/branches/{branchId}/subscription`: Gestión de sucursales y suscripciones.
+]
+
+#v(0.5em)
+
+==== 2.6.6.4. Infrastructure Layer (Capa de Infraestructura)
+
+Implementa la persistencia física en PostgreSQL 18 utilizando Spring Data JPA, mapeando entidades de dominio inmutables a entidades de tabla relacional.
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/core/core-infra-layer.svg", width: 80%)
+    ),
+    caption: [Diagrama de la Capa de Infraestructura -- Core]
+  )
+]
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.6.4.1. Mapeo de Entidades Relacionales (JPA)]
+]
+#v(0.3em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 9.5pt, fill: rgb("#334155"))[Tabla: `customers` (`CustomerPersistenceEntity`)]
+]
+#v(0.2em)
+#align(center)[
+  #table(
+    columns: (auto, auto, 1fr),
+    align: (left, center, left),
+    table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
+    [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
+    [*`user_id`*], [`UUID`], [`NOT NULL, UNIQUE`],
+    [*`is_corporate`*], [`BOOLEAN`], [`NOT NULL`],
+    [*`first_name`*], [`VARCHAR`], [`NOT NULL`],
+    [*`last_name`*], [`VARCHAR`], [`NOT NULL`],
+    [*`business_name`*], [`VARCHAR`], [`NULLABLE`],
+    [*`document_type`*], [`VARCHAR`], [`NOT NULL`],
+    [*`document_number`*], [`VARCHAR`], [`NOT NULL`],
+    [*`phone`*], [`VARCHAR`], [`NOT NULL`],
+    [*`created_at`*], [`TIMESTAMP`], [`NOT NULL`],
+    [*`updated_at`*], [`TIMESTAMP`], [`NOT NULL`],
+    [*`deleted_at`*], [`TIMESTAMP`], [`NULLABLE (Soft Delete)`],
+    [*`version`*], [`BIGINT`], [`NOT NULL`]
+  )
+]
+
+#v(0.4em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 9.5pt, fill: rgb("#334155"))[Tabla: `employees` (`EmployeePersistenceEntity`)]
+]
+#v(0.2em)
+#align(center)[
+  #table(
+    columns: (auto, auto, 1fr),
+    align: (left, center, left),
+    table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
+    [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
+    [*`user_id`*], [`UUID`], [`NOT NULL, UNIQUE`],
+    [*`first_name`*], [`VARCHAR`], [`NOT NULL`],
+    [*`last_name`*], [`VARCHAR`], [`NOT NULL`],
+    [*`document_type`*], [`VARCHAR`], [`NOT NULL`],
+    [*`document_number`*], [`VARCHAR`], [`NOT NULL`],
+    [*`phone`*], [`VARCHAR`], [`NOT NULL`],
+    [*`created_at`*], [`TIMESTAMP`], [`NOT NULL`],
+    [*`updated_at`*], [`TIMESTAMP`], [`NOT NULL`],
+    [*`deleted_at`*], [`TIMESTAMP`], [`NULLABLE (Soft Delete)`],
+    [*`version`*], [`BIGINT`], [`NOT NULL`]
+  )
+]
+
+#v(0.4em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 9.5pt, fill: rgb("#334155"))[Tabla: `owners` (`OwnerPersistenceEntity`)]
+]
+#v(0.2em)
+#align(center)[
+  #table(
+    columns: (auto, auto, 1fr),
+    align: (left, center, left),
+    table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
+    [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
+    [*`user_id`*], [`UUID`], [`NOT NULL, UNIQUE`],
+    [*`first_name`*], [`VARCHAR`], [`NOT NULL`],
+    [*`last_name`*], [`VARCHAR`], [`NOT NULL`],
+    [*`document_type`*], [`VARCHAR`], [`NOT NULL`],
+    [*`document_number`*], [`VARCHAR`], [`NOT NULL`],
+    [*`phone`*], [`VARCHAR`], [`NOT NULL`],
+    [*`created_at`*], [`TIMESTAMP`], [`NOT NULL`],
+    [*`updated_at`*], [`TIMESTAMP`], [`NOT NULL`],
+    [*`deleted_at`*], [`TIMESTAMP`], [`NULLABLE (Soft Delete)`],
+    [*`version`*], [`BIGINT`], [`NOT NULL`]
+  )
+]
+
+#v(0.4em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 9.5pt, fill: rgb("#334155"))[Tabla: `workshops` (`WorkshopPersistenceEntity`)]
+]
+#v(0.2em)
+#align(center)[
+  #table(
+    columns: (auto, auto, 1fr),
+    align: (left, center, left),
+    table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
+    [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
+    [*`owner_id`*], [`UUID`], [`NOT NULL, FOREIGN KEY (owners.id)`],
+    [*`business_name`*], [`VARCHAR`], [`NOT NULL`],
+    [*`brand_name`*], [`VARCHAR`], [`NOT NULL`],
+    [*`tax_id`*], [`VARCHAR`], [`NOT NULL`],
+    [*`mileage_interval_config`*], [`INTEGER`], [`NOT NULL`],
+    [*`created_at`*], [`TIMESTAMP`], [`NOT NULL`],
+    [*`updated_at`*], [`TIMESTAMP`], [`NOT NULL`],
+    [*`deleted_at`*], [`TIMESTAMP`], [`NULLABLE (Soft Delete)`],
+    [*`version`*], [`BIGINT`], [`NOT NULL`]
+  )
+]
+
+#v(0.4em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 9.5pt, fill: rgb("#334155"))[Tabla: `branches` (`BranchPersistenceEntity`)]
+]
+#v(0.2em)
+#align(center)[
+  #table(
+    columns: (auto, auto, 1fr),
+    align: (left, center, left),
+    table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
+    [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
+    [*`workshop_id`*], [`UUID`], [`NOT NULL, FOREIGN KEY (workshops.id)`],
+    [*`code`*], [`VARCHAR`], [`NOT NULL, UNIQUE`],
+    [*`name`*], [`VARCHAR`], [`NOT NULL`],
+    [*`address`*], [`VARCHAR`], [`NOT NULL`],
+    [*`phone`*], [`VARCHAR`], [`NOT NULL`],
+    [*`created_by`*], [`UUID`], [`NOT NULL`],
+    [*`updated_by`*], [`UUID`], [`NOT NULL`],
+    [*`created_at`*], [`TIMESTAMP`], [`NOT NULL`],
+    [*`updated_at`*], [`TIMESTAMP`], [`NOT NULL`],
+    [*`deleted_at`*], [`TIMESTAMP`], [`NULLABLE (Soft Delete)`],
+    [*`version`*], [`BIGINT`], [`NOT NULL`]
+  )
+]
+
+#v(0.4em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 9.5pt, fill: rgb("#334155"))[Tabla: `branch_subscriptions` (`BranchSubscriptionPersistenceEntity`)]
+]
+#v(0.2em)
+#align(center)[
+  #table(
+    columns: (auto, auto, 1fr),
+    align: (left, center, left),
+    table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
+    [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
+    [*`branch_id`*], [`UUID`], [`NOT NULL, FOREIGN KEY (branches.id)`],
+    [*`plan_id`*], [`UUID`], [`NOT NULL, FOREIGN KEY (subscription_plans.id)`],
+    [*`status`*], [`VARCHAR`], [`NOT NULL (Enum)`],
+    [*`billing_cycle`*], [`VARCHAR`], [`NOT NULL (Enum)`],
+    [*`start_date`*], [`TIMESTAMP`], [`NOT NULL`],
+    [*`end_date`*], [`TIMESTAMP`], [`NOT NULL`],
+    [*`canceled_at`*], [`TIMESTAMP`], [`NULLABLE`],
+    [*`deleted_at`*], [`TIMESTAMP`], [`NULLABLE (Soft Delete)`],
+    [*`version`*], [`BIGINT`], [`NOT NULL`]
+  )
+]
+
+#v(0.4em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 9.5pt, fill: rgb("#334155"))[Tabla: `subscription_plans` (`SubscriptionPlanPersistenceEntity`)]
+]
+#v(0.2em)
+#align(center)[
+  #table(
+    columns: (auto, auto, 1fr),
+    align: (left, center, left),
+    table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
+    [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
+    [*`name`*], [`VARCHAR`], [`NOT NULL, UNIQUE`],
+    [*`monthly_price`*], [`DOUBLE PRECISION`], [`NOT NULL`],
+    [*`max_obd2_devices`*], [`INTEGER`], [`NOT NULL`],
+    [*`max_monthly_snapshots_per_vehicle`*], [`INTEGER`], [`NOT NULL`],
+    [*`max_customers`*], [`INTEGER`], [`NOT NULL`],
+    [*`max_staff_accounts`*], [`INTEGER`], [`NOT NULL`],
+    [*`is_active`*], [`BOOLEAN`], [`NOT NULL`],
+    [*`deleted_at`*], [`TIMESTAMP`], [`NULLABLE (Soft Delete)`],
+    [*`version`*], [`BIGINT`], [`NOT NULL`]
+  )
+]
+
+#v(0.5em)
+
+==== 2.6.6.5. Software Architecture Component Level Diagrams (C4 Model - Level 3)
+
+Descomposición del Container API en sus componentes principales para el Bounded Context *Core*.
+
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.6.5.1. C4 Model Component Diagram]
+]
+#v(0.3em)
+
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/core/core-c4-component.svg", width: 80%)
+    ),
+    caption: [Diagrama de Componentes C4 Nivel 3 -- Core]
+  )
+]
+#v(0.5em)
+
+==== 2.6.6.6. Code Level Diagrams
+
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.6.6.1. Domain Layer Class Diagram]
+]
+#v(0.3em)
+
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/core/core-code-domain.svg", width: 80%)
+    ),
+    caption: [Diagrama de Clases del Dominio UML -- Core]
+  )
+]
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.6.6.2. Database Design Diagram (PostgreSQL 18)]
+]
+#v(0.3em)
+
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/core/core-erd.svg", width: 60%)
+    ),
+    caption: [Diagrama de Base de Datos Relacional ER -- Core]
+  )
+]
+
 ```
 
 ```

@@ -1507,3 +1507,230 @@ Descomposición del Container API en sus componentes principales para el Bounded
 
 ![Diagrama de Base de Datos Relacional ER -- IoT](../assets/iot/iot-erd.svg)
 
+
+
+---
+
+### 2.6.6. Bounded Context: Core (Profiles, Workshops & Branches)
+
+El Bounded Context Core constituye el núcleo relacional y organizacional de la plataforma ShiftIQ. Gestiona la identidad de los perfiles operacionales de los usuarios (`Customer`, `Employee`, `Owner`), las organizaciones y talleres mecánicos (`Workshop`), sus sedes o sucursales físicas (`Branch`), así como el modelo de monetización y suscripciones de la plataforma (`SubscriptionPlan`, `BranchSubscription`).
+
+---
+
+#### 2.6.6.1. Domain Layer (Capa de Dominio)
+
+La Capa de Dominio define el modelo de negocio inmutable, encapsulando reglas de validación, agregados principales, objetos de valor (Value Objects), métodos de creación (fábricas / constructores), eventos de dominio e interfaces de repositorios agnósticas a la tecnología de persistencia.
+
+![Diagrama de la Capa de Dominio -- Core](../assets/core/core-domain-layer.svg)
+
+---
+
+##### 2.6.6.1.1. Value Objects & Records
+
+* **Record: `Document(DocumentType documentType, String documentNumber)`**
+  * **Propósito:** Encapsula la identidad legal del sujeto.
+  * **Validaciones:** `documentType` no puede ser nulo (`core.error.documentType.notNull`); `documentNumber` no puede ser nulo ni estar en blanco (`core.error.documentNumber.notBlank`).
+* **Record: `PersonName(String firstName, String lastName)`**
+  * **Propósito:** Nombre y apellidos de personas naturales.
+  * **Validaciones:** `firstName` y `lastName` no pueden ser nulos ni estar vacíos (`core.error.firstName.notBlank`, `core.error.lastName.notBlank`).
+  * **Métodos:** `getFullName()` retorna el string formateado `"firstName lastName"`.
+* **Record: `Phone(String value)`**
+  * **Propósito:** Número telefónico de contacto.
+  * **Validaciones:** No puede ser nulo ni estar en blanco (`core.error.phone.required`).
+* **Record: `TaxId(String value)`**
+  * **Propósito:** Identificador tributario (RUC de 11 dígitos).
+  * **Validaciones:** Debe ser exacto de 11 dígitos numéricos (`core.error.taxId.invalid`).
+* **Record: `CreditCard(String cardNumber, String cardHolderName, String expirationDate, String cvv)`**
+  * **Propósito:** Tarjeta de crédito/débito para el cobro simulado de suscripciones.
+  * **Validaciones:** `cardNumber`: 16 dígitos numéricos (`core.error.cardNumber.invalid`); `cardHolderName`: no en blanco (`core.error.cardHolderName.required`); `expirationDate`: formato `MM/YY` (`core.error.expirationDate.invalid`); `cvv`: 3 dígitos numéricos (`core.error.cvv.invalid`).
+* **Record: `MileageIntervalConfig(int value)`**
+  * **Propósito:** Intervalo de kilometraje para mantenimientos sugeridos del taller.
+  * **Validaciones:** Debe ser un entero strictly positivo (`core.error.mileageIntervalConfig.mustBePositive`).
+* **Identificadores Fuertemente Tipados (Strongly Typed IDs):** `UserId`, `CustomerId`, `EmployeeId`, `OwnerId`, `WorkshopId`, `BranchId`, `BranchSubscriptionId`, `SubscriptionPlanId`. Encapsulan un valor `UUID`.
+* **Enum: `DocumentType`:** Valores: `DNI`, `RUC`, `CE`, `PASSPORT`.
+* **Enum: `SubscriptionStatus`:** Valores: `ACTIVE`, `CANCELED`, `EXPIRED`.
+* **Enum: `BillingCycle`:** Valores: `MONTHLY`, `ANNUAL`.
+
+---
+
+##### 2.6.6.1.2. Aggregates (Raíces de Agregado)
+
+* **Aggregate: `Customer`**
+  * **Hereda de:** `AbstractDomainAggregateRoot<Customer>` (provee soporte para registro y publicación de eventos de dominio).
+  * **Propósito:** Agregado para clientes del sistema. Puede ser persona natural (`isCorporate = false`) o persona jurídica (`isCorporate = true`).
+  * **Reglas de Negocio:** Si es corporativo (`isCorporate = true`), `businessName` es obligatorio (`core.error.businessName.required`). Si es persona natural (`isCorporate = false`), `name` es obligatorio (`core.error.personName.required`). En actualizaciones, el tipo de documento de un cliente corporativo no puede cambiarse (`core.error.customer.corporateDocumentTypeImmutable`).
+  * **Eventos Emitidos:** `CustomerCreatedEvent`, `CustomerUpdatedEvent`.
+* **Aggregate: `Employee`**
+  * **Hereda de:** `AbstractDomainAggregateRoot<Employee>`
+  * **Propósito:** Agregado para perfiles de empleados y personal técnico del taller vinculados a un `UserId`.
+  * **Eventos Emitidos:** `EmployeeCreatedEvent`, `EmployeeUpdatedEvent`.
+* **Aggregate: `Owner`**
+  * **Hereda de:** `AbstractDomainAggregateRoot<Owner>`
+  * **Propósito:** Agregado para propietarios y dueños de talleres automotrices.
+  * **Eventos Emitidos:** `OwnerCreatedEvent`, `OwnerUpdatedEvent`.
+* **Aggregate: `Workshop`**
+  * **Hereda de:** `AbstractDomainAggregateRoot<Workshop>`
+  * **Propósito:** Representa la empresa o taller mecánico comercial propiedad de un `Owner`.
+  * **Reglas de Negocio:** `businessName` y `brandName` no pueden estar vacíos (`core.error.businessName.required`, `core.error.brandName.required`).
+  * **Eventos Emitidos:** `WorkshopCreatedEvent`, `WorkshopUpdatedEvent`.
+* **Aggregate: `Branch`**
+  * **Hereda de:** `AbstractDomainAggregateRoot<Branch>`
+  * **Propósito:** Representa cada sucursal o sede física operacional del taller.
+  * **Reglas de Negocio:** `code` (único) y `name` son requeridos (`core.error.code.required`, `core.error.name.required`).
+  * **Eventos Emitidos:** `BranchCreatedEvent`, `BranchUpdatedEvent`.
+* **Aggregate: `BranchSubscription`**
+  * **Hereda de:** `AbstractDomainAggregateRoot<BranchSubscription>`
+  * **Propósito:** Suscripción contratada por una sucursal a un `SubscriptionPlan`.
+  * **Reglas de Negocio:** Calcula `endDate` automáticamente (+1 mes si `MONTHLY`, +12 meses si `ANNUAL`). El método `cancel(Instant canceledAt)` cambia el estado a `CANCELED`.
+* **Aggregate: `SubscriptionPlan`**
+  * **Hereda de:** `AbstractDomainAggregateRoot<SubscriptionPlan>`
+  * **Propósito:** Plan de comercialización del SaaS (ej. Lite, Pro, Max) con límites operacionales de OBD2, snapshots, clientes y usuarios staff.
+
+---
+
+##### 2.6.6.1.3. Domain Repositories (Interfaces)
+
+* **`CustomerRepository`:** `save(Customer)`, `findById(CustomerId)`, `findByUserId(UserId)`, `existsByUserId(UserId)`, `findByDocumentNumber(String)`, `findProfileRolesByUserId(UserId)`, `delete(Customer)`.
+* **`EmployeeRepository`:** `save(Employee)`, `findById(EmployeeId)`, `findByUserId(UserId)`, `existsByUserId(UserId)`, `findByDocumentNumber(String)`, `delete(Employee)`.
+* **`OwnerRepository`:** `save(Owner)`, `findById(OwnerId)`, `findByUserId(UserId)`, `existsById(OwnerId)`, `existsByUserId(UserId)`, `findByDocumentNumber(String)`, `delete(Owner)`.
+* **`WorkshopRepository`:** `save(Workshop)`, `findById(WorkshopId)`, `findAllByOwnerId(OwnerId)`, `existsById(WorkshopId)`.
+* **`BranchRepository`:** `save(Branch)`, `findById(BranchId)`, `findAllByWorkshopId(WorkshopId)`, `existsById(BranchId)`, `existsByCode(String)`.
+* **`BranchSubscriptionRepository`:** `save(BranchSubscription)`, `findById(BranchSubscriptionId)`, `findAllByBranchId(BranchId)`, `findActiveByBranchId(BranchId)`.
+* **`SubscriptionPlanRepository`:** `save(SubscriptionPlan)`, `findById(SubscriptionPlanId)`, `findByName(String)`, `findAll()`.
+
+---
+
+#### 2.6.6.2. Application Layer (Capa de Aplicación)
+
+La Capa de Aplicación orquesta los casos de uso, transformando los Commands y Queries provenientes de la capa de interfaz en operaciones del modelo de dominio.
+
+![Diagrama de la Capa de Aplicación -- Core](../assets/core/core-app-layer.svg)
+
+---
+
+##### 2.6.6.2.1. Commands & Queries (DTOs)
+
+* **Commands (Comandos de Escritura):**
+  * `CreateCustomerCommand(UserId userId, boolean isCorporate, PersonName name, String businessName, Document document, Phone phone)`
+  * `UpdateCustomerCommand(CustomerId customerId, PersonName name, String businessName, Document document, Phone phone)`
+  * `DeleteCustomerCommand(CustomerId customerId)`
+  * `CreateEmployeeCommand(UserId userId, PersonName name, Document document, Phone phone)`
+  * `UpdateEmployeeCommand(EmployeeId employeeId, PersonName name, Document document, Phone phone)`
+  * `DeleteEmployeeCommand(EmployeeId employeeId)`
+  * `CreateOwnerCommand(UserId userId, PersonName name, Document document, Phone phone)`
+  * `UpdateOwnerCommand(OwnerId ownerId, PersonName name, Document document, Phone phone)`
+  * `DeleteOwnerCommand(OwnerId ownerId)`
+  * `CreateWorkshopCommand(OwnerId ownerId, String businessName, String brandName, TaxId taxId, MileageIntervalConfig mileageIntervalConfig)`
+  * `UpdateWorkshopCommand(WorkshopId workshopId, String businessName, String brandName, TaxId taxId, MileageIntervalConfig mileageIntervalConfig)`
+  * `CreateBranchCommand(WorkshopId workshopId, String code, String name, Address address, Phone phone)`
+  * `UpdateBranchCommand(BranchId branchId, String code, String name, Address address, Phone phone)`
+  * `AssignSubscriptionCommand(BranchId branchId, SubscriptionPlanId planId, BillingCycle billingCycle, CreditCard creditCard)`
+  * `CancelSubscriptionCommand(BranchId branchId)`
+* **Queries & Responses (Consultas y DTOs de Resultado):**
+  * `GetCustomerByIdQuery(CustomerId customerId)`
+  * `GetCustomerByUserIdQuery(UserId userId)`
+  * `GetEmployeeByIdQuery(EmployeeId employeeId)`
+  * `GetEmployeeByUserIdQuery(UserId userId)`
+  * `GetEmployeeByDocumentNumberQuery(String documentNumber)`
+  * `GetOwnerByIdQuery(OwnerId ownerId)`
+  * `GetOwnerByUserIdQuery(UserId userId)`
+  * `GetWorkshopByIdQuery(WorkshopId workshopId)`
+  * `GetAllWorkshopsByOwnerIdQuery(OwnerId ownerId)`
+  * `GetBranchByIdQuery(BranchId branchId)`
+  * `GetAllBranchesByWorkshopIdQuery(WorkshopId workshopId)`
+  * `GetProfileRolesByUserIdQuery(UserId userId)`
+  * `GetProfileByDocumentNumberQuery(String documentNumber)`
+  * `ProfileSummary(UUID profileId, UUID userId, String firstName, String lastName, String documentType, String documentNumber, String profileType)`
+
+---
+
+#### 2.6.6.3. Interface Layer (Capa de Interfaz / REST)
+
+Expone los servicios de la plataforma a través de una API RESTful documentada con Swagger/OpenAPI y protegida mediante Spring Security.
+
+![Diagrama de la Capa de Interfaces -- Core](../assets/core/core-interface-layer.svg)
+
+---
+
+##### 2.6.6.3.1. Endpoints & REST Controllers
+
+* **`ProfilesController` (`/api/v1/profiles`)**
+  * `GET /api/v1/profiles/roles?userId={userId}`: Retorna la lista de roles asignados a los perfiles del usuario (ej. `["CUSTOMER", "OWNER"]`).
+  * `GET /api/v1/profiles?documentNumber={documentNumber}`: Búsqueda rápida de perfil por DNI o RUC.
+* **`CustomersController` (`/api/v1/customers`)**
+  * `POST /api/v1/customers`: Registra perfil de cliente (natural o corporate).
+  * `GET /api/v1/customers?userId={userId}`: Obtiene el `CustomerResource` por ID de usuario.
+  * `GET /api/v1/customers/{customerId}`: Consulta detalles del cliente.
+  * `PUT /api/v1/customers/{customerId}`: Actualiza los datos del cliente.
+  * `DELETE /api/v1/customers/{customerId}`: Eliminación lógica del cliente.
+* **`EmployeesController` (`/api/v1/employees`)**
+  * `POST /api/v1/employees`: Registra perfil de empleado.
+  * `GET /api/v1/employees?userId={userId}`: Obtiene el perfil por `userId`.
+  * `GET /api/v1/employees?documentNumber={documentNumber}`: Obtiene el perfil del empleado por número de documento (DNI/RUC).
+  * `GET /api/v1/employees/{employeeId}`: Consulta detalles del empleado.
+  * `PUT /api/v1/employees/{employeeId}`: Actualiza datos del empleado.
+  * `DELETE /api/v1/employees/{employeeId}`: Eliminación lógica del empleado.
+* **`OwnersController` (`/api/v1/owners`)**
+  * `POST /api/v1/owners`: Registra perfil de propietario.
+  * `GET /api/v1/owners?userId={userId}`: Obtiene el perfil por `userId`.
+  * `GET /api/v1/owners/{ownerId}`: Consulta detalles del dueño.
+  * `PUT /api/v1/owners/{ownerId}`: Actualiza datos del dueño.
+  * `DELETE /api/v1/owners/{ownerId}`: Eliminación lógica del dueño.
+* **`WorkshopsController` (`/api/v1/workshops`)**
+  * `POST /api/v1/workshops`: Registra un nuevo taller asociado a un `ownerId`.
+  * `GET /api/v1/workshops?ownerId={ownerId}`: Lista todos los talleres de un propietario.
+  * `GET /api/v1/workshops/{workshopId}`: Consulta un taller por su ID.
+  * `PUT /api/v1/workshops/{workshopId}`: Actualiza la información del taller.
+* **`BranchesController` (`/api/v1/branches`)**
+  * `POST /api/v1/branches`: Registra una nueva sucursal física asociada a un `workshopId`.
+  * `GET /api/v1/branches?workshopId={workshopId}`: Lista las sucursales de un taller.
+  * `GET /api/v1/branches/{branchId}`: Consulta una sucursal específica.
+  * `PUT /api/v1/branches/{branchId}`: Actualiza datos de la sucursal.
+  * `POST /api/v1/branches/{branchId}/subscriptions`: Asigna/paga un plan de suscripción para la sucursal.
+  * `DELETE /api/v1/branches/{branchId}/subscription`: Cancela la suscripción activa de la sucursal.
+
+---
+
+#### 2.6.6.4. Infrastructure Layer (Capa de Infraestructura)
+
+Implementa la persistencia física en PostgreSQL 18 utilizando Spring Data JPA, mapeando entidades de dominio inmutables a entidades de tabla relacional.
+
+![Diagrama de la Capa de Infraestructura -- Core](../assets/core/core-infra-layer.svg)
+
+---
+
+##### 2.6.6.4.1. Mapeo de Entidades Relacionales (JPA)
+
+Todas las entidades extienden de `AuditableAbstractPersistenceEntity` (`@MappedSuperclass`) obteniendo `id` (UUID), `created_at`, `updated_at` y `version` (bloqueo optimista `@Version`). Adicionalmente implementan `@SQLDelete` y `@SQLRestriction("deleted_at IS NULL")` para Soft Delete.
+
+* **`customers`** (`CustomerPersistenceEntity`): `user_id` (UUID, NOT NULL, UNIQUE), `is_corporate` (boolean, NOT NULL), `first_name`, `last_name`, `business_name`, `document_type`, `document_number`, `phone`, `deleted_at`.
+* **`employees`** (`EmployeePersistenceEntity`): `user_id` (UUID, NOT NULL, UNIQUE), `first_name`, `last_name`, `document_type`, `document_number`, `phone`, `deleted_at`.
+* **`owners`** (`OwnerPersistenceEntity`): `user_id` (UUID, NOT NULL, UNIQUE), `first_name`, `last_name`, `document_type`, `document_number`, `phone`, `deleted_at`.
+* **`workshops`** (`WorkshopPersistenceEntity`): `owner_id` (UUID, NOT NULL), `business_name`, `brand_name`, `tax_id`, `mileage_interval_config`, `deleted_at`.
+* **`branches`** (`BranchPersistenceEntity`): `workshop_id` (UUID, NOT NULL), `code` (VARCHAR, NOT NULL, UNIQUE), `name`, `address`, `phone`, `deleted_at`, `created_by`, `updated_by`.
+* **`branch_subscriptions`** (`BranchSubscriptionPersistenceEntity`): `branch_id` (UUID, NOT NULL), `plan_id` (UUID, NOT NULL), `status` (VARCHAR, Enum), `billing_cycle` (VARCHAR, Enum), `start_date`, `end_date`, `canceled_at`, `deleted_at`.
+* **`subscription_plans`** (`SubscriptionPlanPersistenceEntity`): `name` (VARCHAR, NOT NULL, UNIQUE), `monthly_price`, `max_obd2_devices`, `max_monthly_snapshots_per_vehicle`, `max_customers`, `max_staff_accounts`, `is_active`, `deleted_at`.
+
+---
+
+#### 2.6.6.5. Software Architecture Component Level Diagrams (C4 Model - Level 3)
+
+Descomposición del Container API en sus componentes principales para el Bounded Context **Core**.
+
+##### 2.6.6.5.1. C4 Model Component Diagram
+
+![Diagrama de Componentes C4 Nivel 3 -- Core](../assets/core/core-c4-component.svg)
+
+---
+
+#### 2.6.6.6. Code Level Diagrams
+
+##### 2.6.6.6.1. Domain Layer Class Diagram
+
+![Diagrama de Clases del Dominio UML -- Core](../assets/core/core-code-domain.svg)
+
+---
+
+##### 2.6.6.6.2. PostgreSQL 18 Entity Relationship Diagram (ERD)
+
+![Diagrama de Base de Datos Relacional ER -- Core](../assets/core/core-erd.svg)
