@@ -324,7 +324,75 @@ El Canvas formaliza las responsabilidades relacionadas con Quote, Payment, Check
 
 ### 2.5.2. Context Mapping
 
+Una vez identificados los siete **Candidate Bounded Contexts** mediante EventStorming y formalizadas sus responsabilidades mediante los **Bounded Context Canvases**, se realizó el **Context Mapping** con el propósito de analizar las relaciones existentes entre dichos contextos.
 
+El Context Mapping permite pasar de la identificación individual de los contextos a una visión de conjunto, determinando **quién consume información de quién, qué contexto proporciona determinados servicios o eventos y qué sistemas externos participan en cada interacción**.
+
+Para ShiftIq, el análisis considera los siguientes siete contextos:
+
+1. **Identity & Access**
+2. **Workshop Management**
+3. **Fleet & Appointments**
+4. **Vehicle Intelligence & Diagnostics**
+5. **Service Operations**
+6. **Inventory Management**
+7. **Billing & Payments**
+
+La separación de estos contextos tiene correspondencia con la organización del backend, donde existen módulos independientes para `iam`, `core`, `fleet`, `iot`, `operations`, `inventory` y `billing`.
+
+#### Identificación de relaciones entre Bounded Contexts
+
+El análisis de Context Mapping se realizó tomando como referencia los **Domain Message Flows** desarrollados anteriormente. Estos flujos permitieron identificar qué contextos requieren información o servicios proporcionados por otros contextos.
+
+Las principales relaciones identificadas son:
+
+| Contexto consumidor | Contexto proveedor | Información / servicio relacionado |
+|---|---|---|
+| Fleet & Appointments | Workshop Management | Workshop, Branch, Customer, Employee |
+| Fleet & Appointments | Vehicle Intelligence & Diagnostics | Vehicle |
+| Service Operations | Fleet & Appointments | Appointment |
+| Service Operations | Workshop Management | Branch, Employee |
+| Service Operations | Inventory Management | Product, Stock, Reservation |
+| Service Operations | Billing & Payments | Billing / Payment |
+| Billing & Payments | Service Operations | Service / Work Order information |
+| Identity & Access | Workshop Management | User identity / profile association |
+| Workshop Management | Identity & Access | User identity |
+
+Estas relaciones se encuentran respaldadas por la estructura del backend. Por ejemplo, `fleet` dispone de servicios externos hacia `core` y hacia el contexto de vehículos, mientras que `operations` posee servicios externos para Appointment, Billing, Branch, Employee y Product.
+
+---
+
+#### Context Map de ShiftIq
+
+![Context Map — Relaciones entre los Bounded Contexts de ShiftIq](../assets/chapter2/strategic-level-DDD/event-storming/Context-Mapping.jpg)
+
+**Figura 40.** Context Map — Relaciones entre los Bounded Contexts de ShiftIq.
+
+El mapa representa las principales relaciones entre los siete contextos identificados. Las conexiones muestran que los contextos mantienen responsabilidades independientes, pero requieren colaborar para completar determinados procesos de negocio.
+
+La interacción más relevante se presenta alrededor del proceso de servicio automotriz:
+
+```text
+┌────────────────────────────────────────────────────────┐
+│         Vehicle Intelligence & Diagnostics             │
+└───────────────────────────┬────────────────────────────┘
+                            │ (Alertas DTC / Telemetría)
+                            ▼
+┌────────────────────────────────────────────────────────┐
+│              Fleet & Appointments                      │
+└───────────────────────────┬────────────────────────────┘
+                            │ (Reserva de Cita)
+                            ▼
+┌────────────────────────────────────────────────────────┐
+│               Service Operations                       │
+└─────────────┬───────────────────────────┬──────────────┘
+              │                           │
+              │ (Reserva Stock)           │ (Facturación)
+              ▼                           ▼
+┌───────────────────────────┐ ┌──────────────────────────┐
+│   Inventory Management    │ │    Billing & Payments    │
+└───────────────────────────┘ └──────────────────────────┘
+```
 
 ### 2.5.3. Software Architecture
 
