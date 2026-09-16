@@ -14,7 +14,13 @@ La Capa de Dominio del Shared Kernel encapsula los tipos de valor reutilizables 
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/shared/domain-layer-diagram.svg", width: 95%),
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/shared/domain-layer-diagram.svg", width: 95%)
+    ),
     caption: [Diagrama de la Capa de Dominio -- Shared Kernel]
   )
 ]
@@ -130,7 +136,13 @@ Manejo global de excepciones (`@RestControllerAdvice`), ensambladores universale
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/shared/interface-layer-diagram.svg", width: 95%),
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/shared/interface-layer-diagram.svg", width: 95%)
+    ),
     caption: [Diagrama de la Capa de Interfaz -- Shared Kernel]
   )
 ]
@@ -162,7 +174,13 @@ La Capa de Aplicación del Shared Kernel provee la estructura funcional `Result<
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/shared/application-layer-diagram.svg", width: 95%),
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/shared/application-layer-diagram.svg", width: 95%)
+    ),
     caption: [Diagrama de la Capa de Aplicación -- Shared Kernel]
   )
 ]
@@ -213,7 +231,13 @@ Clase base relacional auditada JPA (`AuditableAbstractPersistenceEntity`), conve
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/shared/infrastracture-layer-diagram.svg", width: 95%),
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/shared/infrastracture-layer-diagram.svg", width: 95%)
+    ),
     caption: [Diagrama de la Capa de Infraestructura -- Shared Kernel]
   )
 ]
@@ -257,12 +281,18 @@ Clase base relacional auditada JPA (`AuditableAbstractPersistenceEntity`), conve
 
 ==== 2.6.1.5. Bounded Context Software Architecture Component Level Diagrams
 
-Descomposición del Container REST API resaltando los componentes del **Shared Kernel** que prestan servicio transversal a todos los Bounded Contexts.
+Descomposición del Container REST API resaltando los componentes del *Shared Kernel* que prestan servicio transversal a todos los Bounded Contexts.
 
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/shared/component-diagram-share.svg", width: 95%),
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/shared/component-diagram-share.svg", width: 95%)
+    ),
     caption: [Component Diagram (C4 Level 3) -- Shared Kernel]
   )
 ]
@@ -277,7 +307,13 @@ Representación detallada de clases del módulo Shared Kernel en formato UML, ab
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/shared/domain-shared-kernel-class-diagram.svg", width: 95%),
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/shared/domain-shared-kernel-class-diagram.svg", width: 95%)
+    ),
     caption: [Diagrama de Clases del Dominio UML -- Shared Kernel]
   )
 ]
