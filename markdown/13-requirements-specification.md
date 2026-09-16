@@ -853,7 +853,19 @@ Given que el stock cae al mínimo, when se evalúa el umbral, then el sistema em
 
 ### 2.4.2. Impact Mapping
 
+El Impact Mapping articula, para cada segmento objetivo de ShiftIq, el *Goal* de negocio, los *Actors* que pueden influir en su logro, los *Impacts* (cambios de comportamiento) y los *Deliverables* del Product Backlog.
 
+#### Segmento Objetivo 1 — Talleres independientes (B2B)
+
+**Figura.** *Impact Mapping — Segmento Objetivo 1 (Dueños / Administradores de talleres)*
+
+![](../assets/impact-mapping-segmento-1.jpg)
+
+#### Segmento Objetivo 2 — Conductores (B2C)
+
+**Figura.** *Impact Mapping — Segmento Objetivo 2 (Conductores de Lima)*
+
+![](../assets/impact-mapping-segmento-2.jpg)
 
 ### 2.4.3. Product Backlog
 
