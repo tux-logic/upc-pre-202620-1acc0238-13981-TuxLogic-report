@@ -12,7 +12,7 @@ Para profundizar este análisis en el nivel estratégico de DDD, el EventStormin
 
 En la primera actividad se recopilaron los principales **Domain Events** asociados con las actividades del dominio automotriz de ShiftIq. El objetivo fue obtener una visión amplia de los hechos relevantes que ocurren durante los diferentes procesos del sistema, sin establecer inicialmente límites entre contextos.
 
-![](assets/chapter2/strategic-level-DDD/event-storming/event_storming_s1.jpg)
+![Collect Domain Events — EventStorming parte 1](../assets/chapter2/strategic-level-DDD/event-storming/event_storming_s1.jpg)
 
 **Figura 16.** Collect Domain Events — Identificación de eventos de dominio de ShiftIq.
 
@@ -22,7 +22,7 @@ La actividad permitió reunir acontecimientos relacionados con identidad, gesti�
 
 A continuación, los eventos recopilados fueron revisados y refinados para distinguir los acontecimientos relevantes del negocio de acciones, datos o elementos que no representan hechos de dominio. También se consolidaron eventos relacionados y se estableció una nomenclatura orientada al lenguaje del dominio.
 
-![](assets/chapter2/strategic-level-DDD/event-storming/event_storming_s2.jpg)
+![Refine Domain — EventStorming parte 2](../assets/chapter2/strategic-level-DDD/event-storming/event_storming_s2.jpg)
 
 **Figura 17.** Refine Domain — Refinamiento y organización de los eventos del dominio.
 
@@ -32,7 +32,7 @@ El refinamiento permitió obtener un conjunto de eventos más consistente y repr
 
 Finalmente, se realizó el seguimiento de las causas y consecuencias de los eventos mediante **Process Modelling**. En esta actividad se relacionaron los elementos del EventStorming, principalmente **Actor, Command, Event, Business Process/Policy, Aggregate, External System y Hotspot**.
 
-![](assets/chapter2/strategic-level-DDD/event-storming/event_storming_s3.jpg)
+![Track Causes (Process Modelling) — EventStorming parte 3](../assets/chapter2/strategic-level-DDD/event-storming/event_storming_s3.jpg)
 
 **Figura 18.** Track Causes (Process Modelling) — Relación causal de comandos, eventos y procesos.
 
