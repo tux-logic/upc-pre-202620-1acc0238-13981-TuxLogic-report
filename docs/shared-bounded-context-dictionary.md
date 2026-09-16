@@ -364,7 +364,7 @@ graph TB
     end
 
     subgraph External_DB ["Database Tier"]
-        PostgreSql["PostgreSQL 16 Database<br><i>[Relational DB / Port 5432]</i>"]
+        PostgreSql["PostgreSQL 18 Database<br><i>[Relational DB / Port 5432]</i>"]
     end
 
     subgraph Shared_Kernel_Container ["Container: Spring Boot REST API — Shared Kernel Components"]
