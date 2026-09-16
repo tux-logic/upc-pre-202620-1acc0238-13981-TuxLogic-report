@@ -250,6 +250,79 @@ Los Domain Message Flows constituyen así el vínculo entre el descubrimiento de
 #### 2.5.1.3. Bounded Context Canvases
 
 
+A partir de los siete Candidate Bounded Contexts identificados y de los seis Domain Message Flows modelados, se elaboraron los **Bounded Context Canvases**.
+
+El Canvas permite describir cada contexto desde una perspectiva estratégica, especificando su propósito, clasificación estratégica, roles de dominio, comunicaciones de entrada y salida, lenguaje ubicuo, decisiones de negocio, supuestos, métricas de verificación y preguntas abiertas.
+
+Los siete Canvas desarrollados son los siguientes:
+
+##### Canvas 1 — Identity & Access
+
+![Bounded Context Canvas — Identity & Access](../assets/chapter2/strategic-level-DDD/event-storming/bounded-context-canvas-identity-access.jpg)
+
+**Figura 33.** Bounded Context Canvas — Identity & Access.
+
+El Canvas formaliza las responsabilidades del contexto relacionadas con usuarios, autenticación, recuperación de credenciales y acceso a la plataforma.
+
+---
+
+##### Canvas 2 — Workshop Management
+
+![Bounded Context Canvas — Workshop Management](../assets/chapter2/strategic-level-DDD/event-storming/bounded-context-canvas-workshop-management.jpg)
+
+**Figura 34.** Bounded Context Canvas — Workshop Management.
+
+El Canvas delimita las responsabilidades relacionadas con Workshop, Branch, Owner, Customer y Employee.
+
+---
+
+##### Canvas 3 — Fleet & Appointments
+
+![Bounded Context Canvas — Fleet & Appointments](../assets/chapter2/strategic-level-DDD/event-storming/bounded-context-canvas-fleet-appointments.jpg)
+
+**Figura 35.** Bounded Context Canvas — Fleet & Appointments.
+
+El Canvas formaliza la responsabilidad de gestionar citas y los registros necesarios para coordinar la atención del vehículo.
+
+---
+
+##### Canvas 4 — Vehicle Intelligence & Diagnostics
+
+![Bounded Context Canvas — Vehicle Intelligence & Diagnostics](../assets/chapter2/strategic-level-DDD/event-storming/bounded-context-canvas-vehicle-intelligence-diagnostics.jpg)
+
+**Figura 36.** Bounded Context Canvas — Vehicle Intelligence & Diagnostics.
+
+El Canvas formaliza las responsabilidades relacionadas con Vehicle, OBD2 Device, Telemetry, DTC y diagnóstico, elementos que forman parte del lenguaje ubicuo del proyecto.
+
+---
+
+##### Canvas 5 — Service Operations
+
+![Bounded Context Canvas — Service Operations](../assets/chapter2/strategic-level-DDD/event-storming/bounded-context-canvas-service-operations.jpg)
+
+**Figura 37.** Bounded Context Canvas — Service Operations.
+
+El Canvas formaliza las responsabilidades relacionadas con Service, Work Order, Task y Mechanic, incluyendo las reglas asociadas con la ejecución del servicio.
+
+---
+
+##### Canvas 6 — Inventory Management
+
+![Bounded Context Canvas — Inventory Management](../assets/chapter2/strategic-level-DDD/event-storming/bounded-context-canvas-inventory-management.jpg)
+
+**Figura 38.** Bounded Context Canvas — Inventory Management.
+
+El Canvas formaliza las responsabilidades relacionadas con Product, Product Batch, Stock, Reservation y Low Stock.
+
+---
+
+##### Canvas 7 — Billing & Payments
+
+![Bounded Context Canvas — Billing & Payments](../assets/chapter2/strategic-level-DDD/event-storming/bounded-context-canvas-billing-payments.jpg)
+
+**Figura 39.** Bounded Context Canvas — Billing & Payments.
+
+El Canvas formaliza las responsabilidades relacionadas con Quote, Payment, Checkout y Voucher, incluyendo las interacciones necesarias con servicios externos de pago y facturación.
 
 ### 2.5.2. Context Mapping
 
