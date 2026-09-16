@@ -585,29 +585,29 @@ Descomposición del Container API en sus componentes principales para el Bounded
 ```mermaid
 graph TB
     subgraph Client_Tier ["Frontend / Mobile / IoT Devices Tier"]
-        Obd2Hardware["OBD2 Scanner Hardware<br><i>[Embedded IoT Device]</i><br>Envía ráfagas telemáticas vía HTTP REST."]
-        ClientApp["ShiftIQ WebApp / Mobile Client<br><i>[TypeScript / Flutter]</i><br>Monitoreo en vivo de telemetría y alertas DTC."]
+        Obd2Hardware["OBD2 Scanner Hardware<br>[Embedded IoT Device]<br>Envía ráfagas telemáticas vía HTTP REST."]
+        ClientApp["ShiftIQ WebApp / Mobile Client<br>[TypeScript / Flutter]<br>Monitoreo en vivo de telemetría y alertas DTC."]
     end
 
     subgraph External_DB ["Database Tier"]
-        PostgreSql["PostgreSQL 16 Database<br><i>[Relational DB / Port 5432]</i><br>Tablas: vehicles, obd2_devices, telemetry_snapshots, dtc_alerts."]
+        PostgreSql["PostgreSQL 16 Database<br>[Relational DB / Port 5432]<br>Tablas: vehicles, obd2_devices, telemetry_snapshots, dtc_alerts."]
     end
 
     subgraph IoT_Container ["Container: Spring Boot REST API — IoT Bounded Context"]
-        VehiclesCtrl["VehiclesController<br><b>[Spring REST Controller]</b><br>Gestión de catálogo de vehículos e historial telemático."]
-        CustVehCtrl["CustomerVehiclesController<br><b>[Spring REST Controller]</b><br>Consulta de vehículos por cliente."]
-        Obd2DevicesCtrl["Obd2DevicesController<br><b>[Spring REST Controller]</b><br>Gestión e inventario de escáneres OBD2."]
-        Obd2RegCtrl["Obd2DeviceRegistrationsController<br><b>[Spring REST Controller]</b><br>Emparejamiento de escáneres con vehículos."]
-        TelemetryCtrl["TelemetryBatchesController<br><b>[Spring REST Controller]</b><br>Ingesta de ráfagas telemáticas de motor."]
+        VehiclesCtrl["VehiclesController<br>[Spring REST Controller]<br>Gestión de catálogo de vehículos e historial telemático."]
+        CustVehCtrl["CustomerVehiclesController<br>[Spring REST Controller]<br>Consulta de vehículos por cliente."]
+        Obd2DevicesCtrl["Obd2DevicesController<br>[Spring REST Controller]<br>Gestión e inventario de escáneres OBD2."]
+        Obd2RegCtrl["Obd2DeviceRegistrationsController<br>[Spring REST Controller]<br>Emparejamiento de escáneres con vehículos."]
+        TelemetryCtrl["TelemetryBatchesController<br>[Spring REST Controller]<br>Ingesta de ráfagas telemáticas de motor."]
 
-        VehicleCmdService["VehicleCommandService<br><b>[Application Service]</b>"]
-        TelemetryCmdService["TelemetryCommandService<br><b>[Application Service]</b><br>Procesamiento de telemetría y alertas DTC."]
-        Obd2DeviceCmdService["Obd2DeviceCommandService<br><b>[Application Service]</b>"]
+        VehicleCmdService["VehicleCommandService<br>[Application Service]"]
+        TelemetryCmdService["TelemetryCommandService<br>[Application Service]<br>Procesamiento de telemetría y alertas DTC."]
+        Obd2DeviceCmdService["Obd2DeviceCommandService<br>[Application Service]"]
 
-        VehicleRepoAdapter["VehicleRepositoryImpl<br><b>[Infrastructure Adapter]</b>"]
-        TelemetryRepoAdapter["TelemetrySnapshotRepositoryImpl<br><b>[Infrastructure Adapter]</b>"]
-        DtcRepoAdapter["DtcAlertRepositoryImpl<br><b>[Infrastructure Adapter]</b>"]
-        Obd2RepoAdapter["Obd2DeviceRepositoryImpl<br><b>[Infrastructure Adapter]</b>"]
+        VehicleRepoAdapter["VehicleRepositoryImpl<br>[Infrastructure Adapter]"]
+        TelemetryRepoAdapter["TelemetrySnapshotRepositoryImpl<br>[Infrastructure Adapter]"]
+        DtcRepoAdapter["DtcAlertRepositoryImpl<br>[Infrastructure Adapter]"]
+        Obd2RepoAdapter["Obd2DeviceRepositoryImpl<br>[Infrastructure Adapter]"]
     end
 
     Obd2Hardware -->|"HTTP REST / JSON"| TelemetryCtrl
