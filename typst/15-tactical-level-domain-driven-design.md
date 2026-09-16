@@ -888,4 +888,429 @@ Descomposición estructural del container REST API para el Bounded Context de IA
     [*`is_used`*], [`BOOLEAN`], [`NOT NULL, DEFAULT FALSE`],
   )
 ]
+
+#v(1em)
+=== 2.6.3. Bounded Context: Operations (Work Orders & Services)
+
+El Bounded Context de *Operations* constituye el motor operativo principal de la plataforma *ShiftIQ*. Gestiona el flujo de trabajo completo del taller automotriz: desde la definición del catálogo de servicios ofreciendo precios y mantenimiento (`Service`), la emisión y control del ciclo de vida de Órdenes de Trabajo (`WorkOrder`), la orquestación de tareas asignadas a mecánicos (`WorkOrderTask`), hasta el consumo y reserva de repuestos/productos de inventario (`WorkOrderTaskProduct`).
+
+#v(0.5em)
+
+==== 2.6.3.1. Domain Layer (Capa de Dominio)
+
+La Capa de Dominio encapsula el modelo de negocio inmutable, asegurando transiciones estrictas de estado para las órdenes de trabajo y tareas mediante métodos *Factory*, reglas de negocio encapsuladas en el Agregado `WorkOrder`, el cálculo dinámico de costos y la emisión de eventos de dominio.
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/operations/domain-layer-diagram.svg", width: 95%)
+    ),
+    caption: [Diagrama de la Capa de Dominio -- Operations]
+  )
+]
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.3.1.1. Aggregates & Entities]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[`WorkOrder` (Aggregate Root)]   #text(size: 9.5pt, fill: rgb("#475569"))[*Tipo:* Aggregate Root (`extends AbstractDomainAggregateRoot<WorkOrder>`)]   *Propósito:* Raíz de consistencia del flujo operativo de taller. Encapsula las tareas planificadas, diagnóstico, millaje de ingreso, relaciones con vehículo, cliente y sede, calculando dinámicamente el monto total y despachando eventos de dominio ante cambios de estado.   #v(4pt)
+  *Atributos del Agregado:*
+  - `id`: `WorkOrderId` -- Identificador único del agregado.
+  - `appointmentId`: `AppointmentId` -- Cita de origen asociada.
+  - `branchId`: `BranchId` -- Sede física donde se ejecuta el trabajo.
+  - `vehicleId`: `VehicleId` -- Vehículo en mantenimiento.
+  - `customerId`: `CustomerId` -- Cliente propietario.
+  - `internalNumber`: `Integer` -- Correlativo operativo visible.
+  - `status`: `WorkOrderStatus` -- Estado (`DRAFT`, `IN_PROGRESS`, `COMPLETED`, `PAID`, `CANCELED`).
+  - `diagnosticSummary`: `DiagnosticSummary` -- Resumen de diagnóstico técnico.
+  - `mileageIn`: `Mileage` -- Kilometraje de ingreso.
+  - `totalAmount`: `Money` -- Monto acumulado de tareas y repuestos.
+  - `tasks`: `List<WorkOrderTask>` -- Lista interna de tareas operativas.
+  #v(4pt)
+  *Métodos y Comportamientos de Dominio:*
+  - `addTask(ServiceId, MechanicId, TaskDescription, Money)`: Adiciona una tarea e incrementa el costo total.
+  - `addProductToTask(WorkOrderTaskId, ProductId, Quantity, Money)`: Registra el uso de un repuesto y despacha `WorkOrderTaskProductAddedEvent`.
+  - `startWork()` / `completeWorkOrder()` / `markAsPaid()`: Controlan el ciclo de vida y emiten eventos atómicos.
+]
+
+#v(0.5em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[`Service` (Aggregate Root)]   #text(size: 9.5pt, fill: rgb("#475569"))[*Tipo:* Aggregate Root de Catálogo]   *Propósito:* Define los servicios ofrecidos por el taller (ej. Cambio de Aceite, Alineación) con precio base y estado de vigencia.   #v(4pt)
+  *Atributos:* `id` (`ServiceId`), `name` (`ServiceName`), `description`, `price` (`Money`), `isActive` (`boolean`).
+]
+
+#v(0.5em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[`WorkOrderTask` & `WorkOrderTaskProduct` (Entities)]   - `WorkOrderTask`: Entidad interna que representa un servicio ejecutado por un mecánico con estado (`PENDING`, `IN_PROGRESS`, `COMPLETED`).
+  - `WorkOrderTaskProduct`: Entidad de repuesto asociado a una tarea con cantidad y subtotal.
+]
+
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.3.1.2. Value Objects & Records]
+]
+#v(0.3em)
+
+#grid(
+  columns: (1fr, 1fr),
+  gutter: 10pt,
+  block(
+    fill: rgb("#f8fafc"),
+    stroke: 0.5pt + rgb("#cbd5e1"),
+    radius: 4pt,
+    inset: 8pt,
+    width: 100%
+  )[
+    #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `WorkOrderId(UUID value)`]     *Propósito:* Identificador de orden de trabajo.
+
+    #v(6pt)
+    #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `ServiceId(UUID value)`]     *Propósito:* Identificador del servicio de catálogo.
+  ],
+  block(
+    fill: rgb("#f8fafc"),
+    stroke: 0.5pt + rgb("#cbd5e1"),
+    radius: 4pt,
+    inset: 8pt,
+    width: 100%
+  )[
+    #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `TaskDescription(String value)`]     *Propósito:* Detalle operativo de la tarea.
+
+    #v(6pt)
+    #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `Quantity(Integer value)`]     *Propósito:* Unidades de repuestos consumidos.
+  ]
+)
+
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.3.1.3. Enumerations]
+]
+#v(0.3em)
+
+#grid(
+  columns: (1fr, 1fr),
+  gutter: 10pt,
+  block(
+    fill: rgb("#f8fafc"),
+    stroke: 0.5pt + rgb("#cbd5e1"),
+    radius: 4pt,
+    inset: 8pt,
+    width: 100%
+  )[
+    #text(weight: "bold", fill: rgb("#1e3a8a"))[Enum: `WorkOrderStatus`]     - `DRAFT`: Borrador en preparación.
+    - `IN_PROGRESS`: En ejecución en taller.
+    - `COMPLETED`: Trabajo finalizado.
+    - `PAID`: Facturado y cancelado.
+  ],
+  block(
+    fill: rgb("#f8fafc"),
+    stroke: 0.5pt + rgb("#cbd5e1"),
+    radius: 4pt,
+    inset: 8pt,
+    width: 100%
+  )[
+    #text(weight: "bold", fill: rgb("#1e3a8a"))[Enum: `WorkOrderTaskStatus`]     - `PENDING`: Tarea pendiente de asignación.
+    - `IN_PROGRESS`: Mecánico ejecutando la labor.
+    - `COMPLETED`: Tarea concluida.
+  ]
+)
+
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.3.1.4. Domain Repositories (Interfaces)]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  - `WorkOrderRepository`: `save(WorkOrder order)`, `findById(WorkOrderId id)`, `findAllByBranchId(BranchId branchId)`.
+  - `ServiceRepository`: `save(Service service)`, `findById(ServiceId id)`, `findAllActive()`.
+]
+
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.3.1.5. Domain Events]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  - `WorkOrderCreatedEvent`: Notifica la creación de una orden de trabajo.
+  - `WorkOrderStartedEvent` / `WorkOrderCompletedEvent`: Notifican inicio y cierre de trabajos.
+  - `WorkOrderTaskProductAddedEvent`: Emite la reserva de repuestos consumidos hacia `Inventory`.
+  - `ServiceCreatedEvent` / `ServiceUpdatedEvent`: Notifican modificaciones en el catálogo de servicios.
+]
+
+#v(0.5em)
+
+==== 2.6.3.2. Application Layer (Capa de Aplicación)
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/operations/application-layer-diagram.svg", width: 95%)
+    ),
+    caption: [Diagrama de la Capa de Aplicación -- Operations]
+  )
+]
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.3.2.1. Commands & Queries (DTOs de Aplicación)]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[Comandos de Escritura (CQRS Commands):]   - `CreateWorkOrderCommand`: Emisión de orden con cita y vehículo.
+  - `AddTaskToWorkOrderCommand`: Asignación de tarea a mecánico.
+  - `AddProductToTaskCommand`: Adición de repuesto consumido.
+  - `StartWorkOrderCommand` / `CompleteWorkOrderCommand`: Mutaciones de estado de orden.
+  - `CreateServiceCommand` / `UpdateServiceCommand`: Gestión de catálogo de servicios.
+
+  #v(8pt)
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[Consultas y DTOs de Resultado (CQRS Queries):]   - `GetWorkOrderByIdQuery`: Consulta por ID de orden.
+  - `GetWorkOrdersByBranchIdQuery`: Consulta de órdenes por sede.
+  - `GetServiceByIdQuery` / `GetAllActiveServicesQuery`: Consultas de servicios.
+]
+
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.3.2.2. Application Services]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[`WorkOrderCommandServiceImpl` & `ServiceCommandServiceImpl`]   Servicios transaccionales (`@Service`, `@Transactional`) que coordinan las mutaciones del agregado `WorkOrder` y `Service`, persisten en repositorio y publican eventos de dominio.
+]
+
+#v(0.5em)
+
+==== 2.6.3.3. Interface Layer (Capa de Interfaces)
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/operations/interface-layer-diagram.svg", width: 95%)
+    ),
+    caption: [Diagrama de la Capa de Interfaces -- Operations]
+  )
+]
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.3.3.1. REST Controllers & DTO Resources]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  - `WorkOrdersController` (`/api/v1/work-orders`): Endpoints REST para creación, flujo de estado, tareas y repuestos.
+  - `ServicesController` (`/api/v1/services`): Endpoints para administración del catálogo de servicios.
+]
+
+#v(0.5em)
+
+==== 2.6.3.4. Infrastructure Layer (Capa de Infraestructura)
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/operations/infrastructure-layer-diagram.svg", width: 95%)
+    ),
+    caption: [Diagrama de la Capa de Infraestructura -- Operations]
+  )
+]
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.3.4.1. Persistence & Security Adapters]
+]
+#v(0.3em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
+  Entidades JPA (`WorkOrderPersistenceEntity`, `WorkOrderTaskPersistenceEntity`, `WorkOrderTaskProductPersistenceEntity`, `ServicePersistenceEntity`) mapeadas a PostgreSQL 18 con Spring Data JPA. Adaptadores `WorkOrderRepositoryImpl` y `ServiceRepositoryImpl` para despacho de eventos.
+]
+
+#v(0.5em)
+
+==== 2.6.3.5. C4 Model Component Diagram (Container: Spring Boot REST API -- Operations)
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/operations/c4-component-diagram.svg", width: 95%)
+    ),
+    caption: [Diagrama de Componentes C4 Nivel 3 -- Operations]
+  )
+]
+#v(0.5em)
+
+==== 2.6.3.6. Bounded Context Software Architecture Code Level Diagrams
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.3.6.1. Domain Layer Class Diagram]
+]
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/operations/class-diagram.svg", width: 95%)
+    ),
+    caption: [Diagrama de Clases del Dominio UML -- Operations]
+  )
+]
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[2.6.3.6.2. Database Design Diagram (PostgreSQL 18)]
+]
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/operations/database-er-diagram.svg", width: 95%)
+    ),
+    caption: [Diagrama de Base de Datos Relacional ER -- Operations]
+  )
+]
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", fill: rgb("#1e3a8a"))[Especificación de Tablas Relacionales (PostgreSQL 18):]
+]
+#v(0.4em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 9.5pt, fill: rgb("#334155"))[Tabla: `work_orders`]
+]
+#v(0.2em)
+#align(center)[
+  #table(
+    columns: (85pt, 95pt, 1fr),
+    align: (left, center, left),
+    table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
+    [*`id`*], [`UUID`], [`PRIMARY KEY, DEFAULT gen_random_uuid()`],
+    [*`branch_id`*], [`UUID`], [`NOT NULL, FOREIGN KEY -> branches(id)`],
+    [*`vehicle_id`*], [`UUID`], [`NOT NULL, FOREIGN KEY -> vehicles(id)`],
+    [*`customer_id`*], [`UUID`], [`NOT NULL, FOREIGN KEY -> customers(id)`],
+    [*`status`*], [`VARCHAR(20)`], [`NOT NULL (DRAFT/IN_PROGRESS/COMPLETED/PAID)`],
+    [*`total_amount`*], [`DECIMAL(12,2)`], [`NOT NULL, DEFAULT 0.00`],
+    [*`created_at`*], [`TIMESTAMP`], [`NOT NULL, DEFAULT CURRENT_TIMESTAMP`],
+    [*`updated_at`*], [`TIMESTAMP`], [`NOT NULL, DEFAULT CURRENT_TIMESTAMP`],
+    [*`version`*], [`BIGINT`], [`NOT NULL, DEFAULT 0`],
+  )
+]
+
+#v(0.6em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 9.5pt, fill: rgb("#334155"))[Tabla: `services`]
+]
+#v(0.2em)
+#align(center)[
+  #table(
+    columns: (85pt, 95pt, 1fr),
+    align: (left, center, left),
+    table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
+    [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
+    [*`name`*], [`VARCHAR(100)`], [`NOT NULL, UNIQUE`],
+    [*`price`*], [`DECIMAL(12,2)`], [`NOT NULL, DEFAULT 0.00`],
+    [*`is_active`*], [`BOOLEAN`], [`NOT NULL, DEFAULT TRUE`],
+  )
+]
 ```
