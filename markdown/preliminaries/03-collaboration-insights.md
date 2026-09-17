@@ -42,7 +42,7 @@ Los 5 integrantes del equipo **TuxLogic** han participado activamente en la cons
 | Estudiante | Código | Rol Principal | Aportes Principales al Informe (AV1) |
 | --- | --- | --- | --- |
 | **Machacca Soto, Aldo Jeanfranco** | `u202419485` | Backend & Architecture | Arquitectura DDD (Context Mapping, Bounded Contexts Tácticos), Modelado C4 (Contexto, Contenedores, Despliegue), Pipeline Typst y Automatización SVG. |
-| **Mamani Vilca, Alan Jaivi** | `u20241e299` | Frontend & UX Research | Diseño y ejecución de entrevistas cualitativas, matriz de arquetipos B2B/B2C, EventStorming estratégico y Candidate Bounded Context Canvases. |
+| **Mamani Vilca, Alan Jaivi** | `u20241e299` | FinTech Data & Cloud Architecture | Ejecución y registro de las Entrevistas #1 y #2 (Segmento 1 - Talleres), matriz de arquetipos, EventStorming estratégico, Candidate Bounded Context Canvases, Context Mapping, Flujos de Mensajes de Dominio y Modelado C4 (Contexto, Contenedores y Despliegue). |
 | **Mallqui Vilca, Dhilsen Armil** | `U202319440` | QA & Requirements | Investigación de Needfinding, Empathy Maps, User Personas e diagramación estructurada de Impact Mapping para ambos segmentos de mercado. |
 | **Ramos Hinostroza, Diego Antonio** | `u202224130` | Backend & DevOps | Inicialización del repositorio, redacción del Startup Profile, Solution Profile (Lean UX, 5W's 2H's), Target Segments y registro de versiones inicial. |
 | **Vidal Malaga, Jareth Beycker** | `u202316878` | Mobile & Product Owner | Análisis competitivo de mercado, matriz SWOT, estrategias/tácticas frente a competidores, catálogo de 60 User Stories y Product Backlog priorizado. |
@@ -53,7 +53,7 @@ Los 5 integrantes del equipo **TuxLogic** han participado activamente en la cons
 
 A través de las herramientas de analítica de GitHub (*Insights / Contributors*), se constata la actividad constante del equipo durante el periodo de desarrollo del **Primer Hito (AV1)**:
 
-![GitHub Insights y Distribución de Contribuciones](../assets/chapter1/collaboration/github-insights.png)
+![GitHub Insights y Distribución de Contribuciones](../../assets/chapter-1/collaboration/github-insights.png)
 
 **Figura 6.** Analíticos de colaboración de GitHub e historial de contribuciones del equipo TuxLogic.
 

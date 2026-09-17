@@ -70,7 +70,7 @@ En TuxLogic, tenemos la visión de consolidarnos como la plataforma referente en
             radius: 26pt,
             clip: true,
             stroke: 1.5pt + rgb("#b91c1c"),
-            image("assets/equipment/aldo-machacca-soto.png", width: 100%, height: 100%, fit: "cover")
+            image("assets/chapter-1/equipment/aldo-machacca-soto.png", width: 100%, height: 100%, fit: "cover")
           )
         ],
         [
@@ -105,7 +105,7 @@ En TuxLogic, tenemos la visión de consolidarnos como la plataforma referente en
             radius: 26pt,
             clip: true,
             stroke: 1.5pt + rgb("#b91c1c"),
-            image("assets/equipment/dhilsen-armil-mallqui-vilca.png", width: 100%, height: 100%, fit: "cover")
+            image("assets/chapter-1/equipment/dhilsen-armil-mallqui-vilca.png", width: 100%, height: 100%, fit: "cover")
           )
         ],
         [
@@ -140,7 +140,7 @@ En TuxLogic, tenemos la visión de consolidarnos como la plataforma referente en
             radius: 26pt,
             clip: true,
             stroke: 1.5pt + rgb("#b91c1c"),
-            image("assets/equipment/diego-ramos-hinostroza.png", width: 100%, height: 100%, fit: "cover")
+            image("assets/chapter-1/equipment/diego-ramos-hinostroza.png", width: 100%, height: 100%, fit: "cover")
           )
         ],
         [
