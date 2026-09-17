@@ -482,7 +482,7 @@ Estas relaciones se encuentran respaldadas por la estructura del backend. Por ej
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter2/strategic-level-DDD/event-storming/Context-Mapping.jpg", width: 95%),
+    image("assets/chapter2/strategic-level-DDD/event-storming/Context-Mapping.jpg", width: 70%),
     caption: [Context Map -- Relaciones entre los Bounded Contexts de ShiftIq.]
   )
 ]
