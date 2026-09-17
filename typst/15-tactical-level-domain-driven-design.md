@@ -1,4 +1,5 @@
-```{=typst}
+
+``` {=typst}
 == 2.6. Tactical-Level Domain-Driven Design
 
 === 2.6.1. Bounded Context: Shared Kernel
@@ -3825,7 +3826,5 @@ Descomposición del Container API en sus componentes principales para el Bounded
     caption: [Diagrama de Base de Datos Relacional ER -- Billing]
   )
 ]
-
-```
 
 ```

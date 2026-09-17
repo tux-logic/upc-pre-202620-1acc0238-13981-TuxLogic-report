@@ -15,7 +15,7 @@ En TuxLogic, tenemos la visión de consolidarnos como la plataforma referente en
 
 ### 1.1.2. Perfiles de integrantes del equipo
 
-```{=typst}
+``` {=typst}
 #v(0.5em)
 #grid(
   columns: (1fr),
@@ -42,8 +42,6 @@ En TuxLogic, tenemos la visión de consolidarnos como la plataforma referente en
           #text(size: 12pt, weight: "bold", fill: rgb("#1e3a8a"))[Mamani Vilca, Alan Jaivi]
           #h(1fr)
           #text(size: 9.5pt, fill: rgb("#b91c1c"), weight: "bold")[u20241e299]
-          #v(-4pt)
-          #text(size: 9pt, style: "italic", fill: rgb("#64748b"))[Estudiante de Ingeniería de Software -- Desarrollo & UI/UX]
           #v(0.3em)
           #text(size: 10pt)[
             Estudiante de Ingeniería de Software de la Universidad Peruana de Ciencias Aplicadas (UPC). Enfocado en el diseño e implementación de interfaces de usuario intuitivas y el desarrollo frontend para aplicaciones móviles y plataformas web.
@@ -66,16 +64,19 @@ En TuxLogic, tenemos la visión de consolidarnos como la plataforma referente en
         gutter: 12pt,
         align: (center + horizon, left + top),
         [
-          #circle(radius: 24pt, fill: rgb("#fee2e2"), stroke: 1.5pt + rgb("#b91c1c"))[
-            #align(center + horizon)[#text(size: 12pt, weight: "bold", fill: rgb("#b91c1c"))[AM]]
-          ]
+          #block(
+            width: 52pt,
+            height: 52pt,
+            radius: 26pt,
+            clip: true,
+            stroke: 1.5pt + rgb("#b91c1c"),
+            image("assets/equipment/aldo-machacca-soto.png", width: 100%, height: 100%, fit: "cover")
+          )
         ],
         [
           #text(size: 12pt, weight: "bold", fill: rgb("#1e3a8a"))[Machacca Soto, Aldo Jeanfranco]
           #h(1fr)
           #text(size: 9.5pt, fill: rgb("#b91c1c"), weight: "bold")[u202419485]
-          #v(-4pt)
-          #text(size: 9pt, style: "italic", fill: rgb("#64748b"))[Estudiante de Ingeniería de Software -- Backend Developer & AI Architecture]
           #v(0.3em)
           #text(size: 10pt)[
             Estudiante de Ingeniería de Software centrado en el diseño, desarrollo y mantenimiento de soluciones tecnológicas eficientes, escalables y de calidad. Especializado en el desarrollo backend y la arquitectura de APIs bajo Domain-Driven Design (DDD) con Java (Spring Boot), Python, C++, JavaScript y TypeScript, junto con React y Next.js. Experiencia en gestión de bases de datos optimizadas, procesos de despliegue e integración de agentes de inteligencia artificial en flujos de trabajo.
@@ -98,16 +99,19 @@ En TuxLogic, tenemos la visión de consolidarnos como la plataforma referente en
         gutter: 12pt,
         align: (center + horizon, left + top),
         [
-          #circle(radius: 24pt, fill: rgb("#e0e7ff"), stroke: 1.5pt + rgb("#1e3a8a"))[
-            #align(center + horizon)[#text(size: 12pt, weight: "bold", fill: rgb("#1e3a8a"))[DM]]
-          ]
+          #block(
+            width: 52pt,
+            height: 52pt,
+            radius: 26pt,
+            clip: true,
+            stroke: 1.5pt + rgb("#b91c1c"),
+            image("assets/equipment/dhilsen-armil-mallqui-vilca.png", width: 100%, height: 100%, fit: "cover")
+          )
         ],
         [
           #text(size: 12pt, weight: "bold", fill: rgb("#1e3a8a"))[Mallqui Vilca, Dhilsen Armil]
           #h(1fr)
           #text(size: 9.5pt, fill: rgb("#b91c1c"), weight: "bold")[U202319440]
-          #v(-4pt)
-          #text(size: 9pt, style: "italic", fill: rgb("#64748b"))[Estudiante de Ingeniería de Software -- QA & Análisis de Requerimientos]
           #v(0.3em)
           #text(size: 10pt)[
             Estudiante de Ingeniería de Software de la Universidad Peruana de Ciencias Aplicadas (UPC). Con habilidades orientadas al análisis de procesos, aseguramiento de la calidad de software (QA) y diseño funcional de soluciones tecnológicas orientadas al usuario.
@@ -130,16 +134,19 @@ En TuxLogic, tenemos la visión de consolidarnos como la plataforma referente en
         gutter: 12pt,
         align: (center + horizon, left + top),
         [
-          #circle(radius: 24pt, fill: rgb("#e0e7ff"), stroke: 1.5pt + rgb("#1e3a8a"))[
-            #align(center + horizon)[#text(size: 12pt, weight: "bold", fill: rgb("#1e3a8a"))[DR]]
-          ]
+          #block(
+            width: 52pt,
+            height: 52pt,
+            radius: 26pt,
+            clip: true,
+            stroke: 1.5pt + rgb("#b91c1c"),
+            image("assets/equipment/diego-ramos-hinostroza.png", width: 100%, height: 100%, fit: "cover")
+          )
         ],
         [
           #text(size: 12pt, weight: "bold", fill: rgb("#1e3a8a"))[Ramos Hinostroza, Diego Antonio]
           #h(1fr)
           #text(size: 9.5pt, fill: rgb("#b91c1c"), weight: "bold")[u202224130]
-          #v(-4pt)
-          #text(size: 9pt, style: "italic", fill: rgb("#64748b"))[Estudiante de Ingeniería de Software -- Backend & DevOps]
           #v(0.3em)
           #text(size: 10pt)[
             Estudiante de sexto ciclo de Ingeniería de Software en la UPC. Cuenta con dominio en diseño de arquitectura, desarrollo backend y consumo de servicios web. Experiencia en construcción e integración de APIs REST utilizando Java (Spring Boot), C\# y Python, modelado de bases de datos relacionales y NoSQL, estructuración de comunicación cliente-servidor en apps móviles, Docker y Git.
@@ -171,8 +178,6 @@ En TuxLogic, tenemos la visión de consolidarnos como la plataforma referente en
           #text(size: 12pt, weight: "bold", fill: rgb("#1e3a8a"))[Vidal Malaga, Jareth Beycker]
           #h(1fr)
           #text(size: 9.5pt, fill: rgb("#b91c1c"), weight: "bold")[u202316878]
-          #v(-4pt)
-          #text(size: 9pt, style: "italic", fill: rgb("#64748b"))[Estudiante de Ingeniería de Software -- Mobile & Frontend Developer]
           #v(0.3em)
           #text(size: 10pt)[
             Estudiante de Ingeniería de Software de la Universidad Peruana de Ciencias Aplicadas (UPC). Especializado en la implementación de aplicaciones móviles y soluciones de interacción para usuario en entornos multiplataforma.
@@ -183,3 +188,4 @@ En TuxLogic, tenemos la visión de consolidarnos como la plataforma referente en
   )
 )
 ```
+

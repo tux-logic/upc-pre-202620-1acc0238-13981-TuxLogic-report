@@ -1,10 +1,16 @@
-## 2.1. Competidores
-
-### 2.1.1. Análisis competitivo
-
-*Competitive Analysis Landscape*
-
 ```{=typst}
+#set page(
+  paper: "a4",
+  flipped: true,
+  margin: (x: 2cm, top: 2.2cm, bottom: 2.2cm)
+)
+
+== 2.1. Competidores
+
+=== 2.1.1. Análisis competitivo
+
+#align(center)[#text(style: "italic", size: 9.5pt, fill: rgb("#64748b"))[Competitive Analysis Landscape]]
+
 #let header-fill = rgb("#1e3a8a")
 #let label-fill = rgb("#e2e8f0")
 #let alt-fill = rgb("#f8fafc")
@@ -13,34 +19,34 @@
 
 #v(0.5em)
 #table(
-  columns: (13%, 15%, 1fr, 1fr, 1fr, 1fr),
+  columns: (11%, 13%, 1fr, 1fr, 1fr, 1fr),
   align: left,
   stroke: 0.4pt + rgb("#cbd5e1"),
   inset: (x: 6pt, y: 5pt),
-  fill: (x, y) => if y <= 1 { header-fill } else if x <= 1 { label-fill } else if calc.even(y) { alt-fill } else { white },
+  fill: (x, y) => if y == 0 and x >= 2 { rgb("#f8fafc") } else if y <= 1 { header-fill } else if x <= 1 { label-fill } else if calc.even(y) { alt-fill } else { white },
 
   // Fila 0 — motivo del análisis
   table.cell(colspan: 2)[#hcell[¿Por qué llevar a cabo este análisis?]],
-  table.cell(colspan: 4)[#text(fill: white)[Buscamos entender si el problema de mantenimiento reactivo y falta de diagnóstico predictivo en talleres automotrices peruanos ya está siendo resuelto por otros actores, y en qué medida. El objetivo es identificar si existe una oferta real de mantenimiento predictivo basado en telemetría (hardware OBD) en el mercado peruano, o si los competidores actuales solo cubren la gestión administrativa del taller, para confirmar el espacio de diferenciación de ShiftIq.]],
+  table.cell(colspan: 4)[#text(fill: rgb("#1e293b"), weight: "regular")[Buscamos entender si el problema de mantenimiento reactivo y falta de diagnóstico predictivo en talleres automotrices peruanos ya está siendo resuelto por otros actores, y en qué medida. El objetivo es identificar si existe una oferta real de mantenimiento predictivo basado en telemetría (hardware OBD) en el mercado peruano, o si los competidores actuales solo cubren la gestión administrativa del taller, para confirmar el espacio de diferenciación de ShiftIq.]],
 
   // Fila 1 — nombres de competidores
   table.cell(colspan: 2)[#hcell[Competidor]],
-  [#hcell[ShiftIq]],
+  [#align(center)[#hcell[ShiftIq]]],
   [
     #align(center)[
-      #image("assets/Logo_GestionCAR.jpg", height: 32pt)
+      #image("assets/Logo_GestionCAR.jpg", height: 28pt)
       #hcell[Competidor 1]
     ]
   ],
   [
     #align(center)[
-      #image("assets/Logo_OK-Car.png", height: 32pt)
+      #image("assets/Logo_OK-Car.png", height: 28pt)
       #hcell[Competidor 2]
     ]
   ],
   [
     #align(center)[
-      #image("assets/Logo_ERP.png", height: 32pt)
+      #image("assets/Logo_ERP.png", height: 28pt)
       #hcell[Competidor 3]
     ]
   ],
@@ -167,13 +173,11 @@
   ],
 )
 #v(0.5em)
-```
 
-### 2.1.2. Estrategias y tácticas frente a competidores
+=== 2.1.2. Estrategias y tácticas frente a competidores
 
-*Tabla de estrategias y tácticas frente a competidores*
+#align(center)[#text(style: "italic", size: 9.5pt, fill: rgb("#64748b"))[Tabla de estrategias y tácticas frente a competidores]]
 
-```{=typst}
 #v(0.5em)
 #table(
   columns: (14%, 1fr, 1fr, 1fr),
@@ -207,4 +211,10 @@
   [*Cumplen con SUNAT, pero no saben qué le pasa al auto*: ERP SICO es un sistema puramente administrativo/contable; no tiene ningún vínculo con el vehículo ni interpreta señales de diagnóstico. *Nuestra oportunidad:* ShiftIq también puede cubrir la facturación SUNAT, pero además traduce la telemetría del vehículo en alertas de mantenimiento preventivo en tiempo real. Les ganamos en *tecnología de diagnóstico* y en ofrecer una propuesta completa (cumplimiento + preventivo) donde ellos solo cubren la mitad administrativa.],
 )
 #v(0.5em)
+
+#set page(
+  paper: "a4",
+  flipped: false,
+  margin: (x: 2.5cm, top: 2.8cm, bottom: 2.5cm)
+)
 ```
