@@ -34,19 +34,19 @@
   [#align(center)[#hcell[ShiftIq]]],
   [
     #align(center)[
-      #image("assets/Logo_GestionCAR.jpg", height: 28pt)
+      #image("assets/chapter-2/competitors/Logo_GestionCAR.jpg", height: 28pt)
       #hcell[Competidor 1]
     ]
   ],
   [
     #align(center)[
-      #image("assets/Logo_OK-Car.png", height: 28pt)
+      #image("assets/chapter-2/competitors/Logo_OK-Car.png", height: 28pt)
       #hcell[Competidor 2]
     ]
   ],
   [
     #align(center)[
-      #image("assets/Logo_ERP.png", height: 28pt)
+      #image("assets/chapter-2/competitors/Logo_ERP.png", height: 28pt)
       #hcell[Competidor 3]
     ]
   ],

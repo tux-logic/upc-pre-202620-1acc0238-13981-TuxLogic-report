@@ -17,7 +17,7 @@ En la primera actividad se recopilaron los principales *Domain Events* asociados
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter2/strategic-level-DDD/event-storming/event_storming_s1.jpg", width: 95%),
+    image("assets/chapter-2/strategic-ddd/event-storming/event_storming_s1.jpg", width: 95%),
     caption: [Collect Domain Events -- Identificación de eventos de dominio de ShiftIq.]
   )
 ]
@@ -33,7 +33,7 @@ A continuación, los eventos recopilados fueron revisados y refinados para disti
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter2/strategic-level-DDD/event-storming/event_storming_s2.jpg", width: 95%),
+    image("assets/chapter-2/strategic-ddd/event-storming/event_storming_s2.jpg", width: 95%),
     caption: [Refine Domain -- Refinamiento y organización de los eventos del dominio.]
   )
 ]
@@ -49,7 +49,7 @@ Finalmente, se realizó el seguimiento de las causas y consecuencias de los even
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter2/strategic-level-DDD/event-storming/event_storming_s3.jpg", width: 95%),
+    image("assets/chapter-2/strategic-ddd/event-storming/event_storming_s3.jpg", width: 95%),
     caption: [Track Causes (Process Modelling) -- Relación causal de comandos, eventos y procesos.]
   )
 ]
@@ -81,7 +81,7 @@ Como resultado se reconocieron *siete Candidate Bounded Contexts*:
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter2/strategic-level-DDD/event-storming/candidate-context-discovery.jpg", width: 95%),
+    image("assets/chapter-2/strategic-ddd/event-storming/candidate-context-discovery.jpg", width: 95%),
     caption: [Candidate Context Discovery -- Reconocimiento de los Candidate Bounded Contexts de ShiftIq.]
   )
 ]
@@ -99,7 +99,7 @@ Su correspondencia con el backend se evidencia en el módulo `iam`, donde se enc
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter2/strategic-level-DDD/event-storming/candidate-context-identity-access.png", width: 90%),
+    image("assets/chapter-2/strategic-ddd/event-storming/candidate-context-identity-access.png", width: 90%),
     caption: [Candidate Bounded Context -- Identity & Access.]
   )
 ]
@@ -114,7 +114,7 @@ La correspondencia con el backend se encuentra en el módulo `core`, donde exist
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter2/strategic-level-DDD/event-storming/candidate-context-workshop-management.png", width: 90%),
+    image("assets/chapter-2/strategic-ddd/event-storming/candidate-context-workshop-management.png", width: 90%),
     caption: [Candidate Bounded Context -- Workshop Management.]
   )
 ]
@@ -129,7 +129,7 @@ El backend contiene `Appointment` y comandos relacionados con su creación, actu
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter2/strategic-level-DDD/event-storming/candidate-context-fleet-appointments.png", width: 90%),
+    image("assets/chapter-2/strategic-ddd/event-storming/candidate-context-fleet-appointments.png", width: 90%),
     caption: [Candidate Bounded Context -- Fleet & Appointments.]
   )
 ]
@@ -146,7 +146,7 @@ Además, el lenguaje ubicuo del proyecto incorpora explícitamente términos com
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter2/strategic-level-DDD/event-storming/candidate-context-vehicle-intelligence-diagnostics.png", width: 90%),
+    image("assets/chapter-2/strategic-ddd/event-storming/candidate-context-vehicle-intelligence-diagnostics.png", width: 90%),
     caption: [Candidate Bounded Context -- Vehicle Intelligence & Diagnostics.]
   )
 ]
@@ -161,7 +161,7 @@ La estructura del backend contiene comandos para crear órdenes de trabajo, agre
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter2/strategic-level-DDD/event-storming/candidate-context-service-operations.png", width: 90%),
+    image("assets/chapter-2/strategic-ddd/event-storming/candidate-context-service-operations.png", width: 90%),
     caption: [Candidate Bounded Context -- Service Operations.]
   )
 ]
@@ -176,7 +176,7 @@ La estructura contiene el agregado `Product`, la entidad `ProductBatch`, comando
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter2/strategic-level-DDD/event-storming/candidate-context-inventory-management.png", width: 90%),
+    image("assets/chapter-2/strategic-ddd/event-storming/candidate-context-inventory-management.png", width: 90%),
     caption: [Candidate Bounded Context -- Inventory Management.]
   )
 ]
@@ -191,7 +191,7 @@ La estructura del backend contiene elementos de cotización y facturación, incl
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter2/strategic-level-DDD/event-storming/candidate-context-billing-payments.png", width: 90%),
+    image("assets/chapter-2/strategic-ddd/event-storming/candidate-context-billing-payments.png", width: 90%),
     caption: [Candidate Bounded Context -- Billing & Payments.]
   )
 ]
@@ -220,7 +220,7 @@ Representa el proceso de registro y monitoreo del vehículo, incluyendo la vincu
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter2/strategic-level-DDD/event-storming/Flow-1-Vehicle-Intelligence-&-Diagnostics.png", width: 95%),
+    image("assets/chapter-2/strategic-ddd/event-storming/Flow-1-Vehicle-Intelligence-&-Diagnostics.png", width: 95%),
     caption: [Domain Message Flow -- Vehicle Intelligence & Diagnostics.]
   )
 ]
@@ -236,7 +236,7 @@ Representa la transición desde la planificación de una atención hasta la rece
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter2/strategic-level-DDD/event-storming/Flow-2-Appointment-&-Service.png", width: 95%),
+    image("assets/chapter-2/strategic-ddd/event-storming/Flow-2-Appointment-&-Service.png", width: 95%),
     caption: [Domain Message Flow -- Appointment & Service.]
   )
 ]
@@ -252,7 +252,7 @@ Representa la ejecución de una orden de trabajo y la utilización de productos 
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter2/strategic-level-DDD/event-storming/Flow-3-Work-Order-&-Inventory.png", width: 95%),
+    image("assets/chapter-2/strategic-ddd/event-storming/Flow-3-Work-Order-&-Inventory.png", width: 95%),
     caption: [Domain Message Flow -- Work Order & Inventory.]
   )
 ]
@@ -268,7 +268,7 @@ Representa el proceso que comienza con la elaboración de una cotización y cont
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter2/strategic-level-DDD/event-storming/Flow-4-Quotation-&-Payment.png", width: 95%),
+    image("assets/chapter-2/strategic-ddd/event-storming/Flow-4-Quotation-&-Payment.png", width: 95%),
     caption: [Domain Message Flow -- Quotation & Payment.]
   )
 ]
@@ -284,7 +284,7 @@ Representa las operaciones relacionadas con la configuración y administración 
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter2/strategic-level-DDD/event-storming/Flow-5-Workshop-Management.png", width: 95%),
+    image("assets/chapter-2/strategic-ddd/event-storming/Flow-5-Workshop-Management.png", width: 95%),
     caption: [Domain Message Flow -- Workshop Management.]
   )
 ]
@@ -300,7 +300,7 @@ Representa el ciclo de acceso de los usuarios a la plataforma, desde el registro
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter2/strategic-level-DDD/event-storming/Flow-6-Identity-&-Access.png", width: 95%),
+    image("assets/chapter-2/strategic-ddd/event-storming/Flow-6-Identity-&-Access.png", width: 95%),
     caption: [Domain Message Flow -- Identity & Access.]
   )
 ]
@@ -332,7 +332,7 @@ Los siete Canvas desarrollados son los siguientes:
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter2/strategic-level-DDD/event-storming/bounded-context-canvas-identity-access.jpg", width: 95%),
+    image("assets/chapter-2/strategic-ddd/event-storming/bounded-context-canvas-identity-access.jpg", width: 95%),
     caption: [Bounded Context Canvas -- Identity & Access.]
   )
 ]
@@ -346,7 +346,7 @@ El Canvas formaliza las responsabilidades del contexto relacionadas con usuarios
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter2/strategic-level-DDD/event-storming/bounded-context-canvas-workshop-management.jpg", width: 95%),
+    image("assets/chapter-2/strategic-ddd/event-storming/bounded-context-canvas-workshop-management.jpg", width: 95%),
     caption: [Bounded Context Canvas -- Workshop Management.]
   )
 ]
@@ -360,7 +360,7 @@ El Canvas delimita las responsabilidades relacionadas con Workshop, Branch, Owne
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter2/strategic-level-DDD/event-storming/bounded-context-canvas-fleet-appointments.jpg", width: 95%),
+    image("assets/chapter-2/strategic-ddd/event-storming/bounded-context-canvas-fleet-appointments.jpg", width: 95%),
     caption: [Bounded Context Canvas -- Fleet & Appointments.]
   )
 ]
@@ -374,7 +374,7 @@ El Canvas formaliza la responsabilidad de gestionar citas y los registros necesa
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter2/strategic-level-DDD/event-storming/bounded-context-canvas-vehicle-intelligence-diagnostics.jpg", width: 95%),
+    image("assets/chapter-2/strategic-ddd/event-storming/bounded-context-canvas-vehicle-intelligence-diagnostics.jpg", width: 95%),
     caption: [Bounded Context Canvas -- Vehicle Intelligence & Diagnostics.]
   )
 ]
@@ -388,7 +388,7 @@ El Canvas formaliza las responsabilidades relacionadas con Vehicle, OBD2 Device,
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter2/strategic-level-DDD/event-storming/bounded-context-canvas-service-operations.jpg", width: 95%),
+    image("assets/chapter-2/strategic-ddd/event-storming/bounded-context-canvas-service-operations.jpg", width: 95%),
     caption: [Bounded Context Canvas -- Service Operations.]
   )
 ]
@@ -402,7 +402,7 @@ El Canvas formaliza las responsabilidades relacionadas con Service, Work Order, 
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter2/strategic-level-DDD/event-storming/bounded-context-canvas-inventory-management.jpg", width: 95%),
+    image("assets/chapter-2/strategic-ddd/event-storming/bounded-context-canvas-inventory-management.jpg", width: 95%),
     caption: [Bounded Context Canvas -- Inventory Management.]
   )
 ]
@@ -416,7 +416,7 @@ El Canvas formaliza las responsabilidades relacionadas con Product, Product Batc
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter2/strategic-level-DDD/event-storming/bounded-context-canvas-billing-payments.jpg", width: 95%),
+    image("assets/chapter-2/strategic-ddd/event-storming/bounded-context-canvas-billing-payments.jpg", width: 95%),
     caption: [Bounded Context Canvas -- Billing & Payments.]
   )
 ]
@@ -482,7 +482,7 @@ Estas relaciones se encuentran respaldadas por la estructura del backend. Por ej
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter2/strategic-level-DDD/event-storming/Context-Mapping.jpg", width: 70%),
+    image("assets/chapter-2/strategic-ddd/event-storming/Context-Mapping.jpg", width: 70%),
     caption: [Context Map -- Relaciones entre los Bounded Contexts de ShiftIq.]
   )
 ]
@@ -495,7 +495,7 @@ La interacción más relevante se presenta alrededor del proceso de servicio aut
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter2/strategic-level-DDD/event-storming/context-mapping-flow.svg", width: 70%),
+    image("assets/chapter-2/strategic-ddd/event-storming/context-mapping-flow.svg", width: 70%),
     caption: [Flujo de interacción entre Bounded Contexts en el proceso de servicio automotriz.]
   )
 ]
@@ -510,7 +510,7 @@ Según el Modelo C4 de Simon Brown, el *Diagrama de Contexto del Sistema* ofrece
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter2/strategic-level-DDD/software-architecture/c4-system-context.svg", width: 95%),
+    image("assets/chapter-2/strategic-ddd/software-architecture/c4-system-context.svg", width: 95%),
     caption: [Diagrama de Contexto del Sistema -- ShiftIQ Platform.]
   )
 ]
@@ -535,7 +535,7 @@ El *Diagrama de Contenedores* abre la caja negra del sistema para mostrar sus pr
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter2/strategic-level-DDD/software-architecture/c4-container-diagram.svg", width: 95%),
+    image("assets/chapter-2/strategic-ddd/software-architecture/c4-container-diagram.svg", width: 95%),
     caption: [Diagrama de Contenedores -- ShiftIQ Platform.]
   )
 ]
@@ -559,7 +559,7 @@ El *Diagrama de Despliegue* representa la distribución física y tecnológica d
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter2/strategic-level-DDD/software-architecture/c4-deployment-diagram.svg", width: 95%),
+    image("assets/chapter-2/strategic-ddd/software-architecture/c4-deployment-diagram.svg", width: 95%),
     caption: [Diagrama de Despliegue -- ShiftIQ Platform Infrastructure.]
   )
 ]

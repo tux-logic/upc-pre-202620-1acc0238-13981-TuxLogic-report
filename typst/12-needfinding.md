@@ -14,7 +14,7 @@ Para desarrollar la propuesta de solución móvil se elabora un *User Persona* p
 #v(0.3em)
 #align(center)[
   #figure(
-    image("assets/user-persona-taller.png", width: 90%),
+    image("assets/chapter-2/needfinding/user-persona-taller.png", width: 90%),
     caption: [User persona -- Felipe Hernández (dueño / administrador de taller)]
   )
 ]
@@ -45,7 +45,7 @@ Para desarrollar la propuesta de solución móvil se elabora un *User Persona* p
 #v(0.3em)
 #align(center)[
   #figure(
-    image("assets/user-persona-conductor.png", width: 90%),
+    image("assets/chapter-2/needfinding/user-persona-conductor.png", width: 90%),
     caption: [User persona -- Raúl Jiménez (conductor particular)]
   )
 ]
@@ -122,7 +122,7 @@ El *User Journey Mapping* visualiza el recorrido del usuario para alcanzar un ob
 #v(0.3em)
 #align(center)[
   #figure(
-    image("assets/user-journey-taller.png", width: 95%),
+    image("assets/chapter-2/needfinding/user-journey-taller.png", width: 95%),
     caption: [User journey mapping -- Felipe Hernández (taller)]
   )
 ]
@@ -155,7 +155,7 @@ El *User Journey Mapping* visualiza el recorrido del usuario para alcanzar un ob
 #v(0.3em)
 #align(center)[
   #figure(
-    image("assets/user-journey-conductor.png", width: 95%),
+    image("assets/chapter-2/needfinding/user-journey-conductor.png", width: 95%),
     caption: [User journey mapping -- Raúl Jiménez (conductor)]
   )
 ]
@@ -192,7 +192,7 @@ El *Empathy Mapping* profundiza en lo que cada persona *dice, piensa, hace y sie
 #v(0.3em)
 #align(center)[
   #figure(
-    image("assets/empathy-map-taller.png", width: 90%),
+    image("assets/chapter-2/needfinding/empathy-map-taller.png", width: 90%),
     caption: [Empathy Mapping -- Felipe Hernández]
   )
 ]
@@ -223,7 +223,7 @@ El *Empathy Mapping* profundiza en lo que cada persona *dice, piensa, hace y sie
 #v(0.3em)
 #align(center)[
   #figure(
-    image("assets/empathy-map-conductor.png", width: 90%),
+    image("assets/chapter-2/needfinding/empathy-map-conductor.png", width: 90%),
     caption: [Empathy Mapping -- Raúl Jiménez]
   )
 ]
@@ -259,7 +259,7 @@ El *Big Picture EventStorming* es una técnica colaborativa que ordena en una l�
 #v(0.3em)
 #align(center)[
   #figure(
-    image("assets/big-picture-eventstorming-1.jpg", width: 95%),
+    image("assets/chapter-2/strategic-ddd/big-picture-eventstorming-1.jpg", width: 95%),
     caption: [Big Picture EventStorming -- Segmento Objetivo 1 (flujo de servicio: presupuesto, pago, navegación y calificación)]
   )
 ]
@@ -267,7 +267,7 @@ El *Big Picture EventStorming* es una técnica colaborativa que ordena en una l�
 
 #align(center)[
   #figure(
-    image("assets/big-picture-eventstorming-2.jpg", width: 95%),
+    image("assets/chapter-2/strategic-ddd/big-picture-eventstorming-2.jpg", width: 95%),
     caption: [Big Picture EventStorming -- Segmento Objetivo 2 (flujo núcleo: vinculación OBD2, telemetría, diagnóstico, cita y gestión del taller)]
   )
 ]

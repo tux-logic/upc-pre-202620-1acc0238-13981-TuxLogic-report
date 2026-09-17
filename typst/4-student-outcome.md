@@ -32,7 +32,7 @@ En este primer hito (*AV1*), el equipo *TuxLogic* aplicó metodologías de anál
   ],
   [
     *Alan Jaivi Mamani Vilca:* \
-    Investigó y aplicó principios de UX Research, entrevistas cualitativas y estructuración de EventStorming estratégico (Collect, Refine, Track Causes) para el diseño del producto ShiftIq. \ \
+    Diseñó, ejecutó y registró las entrevistas cualitativas de investigación del Segmento 1 (Dueños y Administradores de Talleres Automotrices B2B), investigó y aplicó principios de UX Research, estructuración de EventStorming estratégico (Collect, Refine, Track Causes), Candidate Bounded Context Canvases, Context Mapping, Flujos de Mensajes de Dominio y el diseño del Modelo de Arquitectura de Software C4 (Contexto, Contenedores y Despliegue) para el producto ShiftIq. \ \
     *Aldo Jeanfranco Machacca Soto:* \
     Profundizó en patrones de arquitectura Domain-Driven Design (DDD táctico/estratégico), modelado C4 (Contexto, Contenedores, Despliegue) y automatización del pipeline de documentos usando Typst y SVG vectoriales. \ \
     *Diego Antonio Ramos Hinostroza:* \
@@ -51,7 +51,7 @@ En este primer hito (*AV1*), el equipo *TuxLogic* aplicó metodologías de anál
   ],
   [
     *Alan Jaivi Mamani Vilca:* \
-    Identificó la necesidad de mantenerse actualizado en herramientas de diseño de interacción y prototipado moderno para iterar sobre las soluciones según el feedback de los usuarios. \ \
+    Reconoció la necesidad del aprendizaje permanente en metodologías de UX Research y entrevistas cualitativas de campo con actores clave del sector automotriz (Segmento 1 - Talleres B2B), manteniendo un ciclo continuo de aprendizaje en herramientas de prototipado e ingeniería de software para iterar las soluciones de ShiftIq. \ \
     *Aldo Jeanfranco Machacca Soto:* \
     Reconoció la importancia de profundizar continuamente en patrones emergentes de microservicios, seguridad en arquitecturas distribuidas y herramientas de compilación documental eficientes. \ \
     *Diego Antonio Ramos Hinostroza:* \

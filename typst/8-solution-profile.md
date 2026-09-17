@@ -12,7 +12,7 @@ De acuerdo con las cifras de la Asociación Automotriz del Perú (AAP, 2026), du
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/estadistica-1.png", width: 85%),
+    image("assets/chapter-1/estadistica-1.png", width: 85%),
     caption: [Venta de vehículos livianos y pesados en el periodo enero-febrero 2026]
   )
 ]
@@ -20,7 +20,7 @@ De acuerdo con las cifras de la Asociación Automotriz del Perú (AAP, 2026), du
 
 #align(center)[
   #figure(
-    image("assets/estadistica-2.png", width: 85%),
+    image("assets/chapter-1/estadistica-2.png", width: 85%),
     caption: [Evolución de ventas de vehículos livianos y pesados (2020 - 2026)]
   )
 ]
@@ -33,7 +33,7 @@ Esta desatención preventiva impacta de manera crítica en la seguridad vial. Se
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/estadistica-3.png", width: 85%),
+    image("assets/chapter-1/estadistica-3.png", width: 85%),
     caption: [Distribución porcentual de siniestros viales según causa raíz (2024)]
   )
 ]
@@ -44,7 +44,7 @@ Con la finalidad de aislar los componentes estructurales de esta problemática, 
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/diagrama-ishikawa-1.png", width: 95%),
+    image("assets/chapter-1/diagrama-ishikawa-1.png", width: 95%),
     caption: [Diagrama de Ishikawa: Adopción predominante de un modelo de mantenimiento reactivo en Lima]
   )
 ]
@@ -52,7 +52,7 @@ Con la finalidad de aislar los componentes estructurales de esta problemática, 
 
 #align(center)[
   #figure(
-    image("assets/diagrama-ishikawa-2.png", width: 95%),
+    image("assets/chapter-1/diagrama-ishikawa-2.png", width: 95%),
     caption: [Diagrama de Ishikawa: Baja fidelización y pérdida de recurrencia en talleres automotrices independientes]
   )
 ]
@@ -167,7 +167,7 @@ El diseño de la experiencia de usuario y el desarrollo de ShiftIq se fundamenta
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/LeanUX-Canvas.png", width: 80%),
+    image("assets/chapter-1/LeanUX-Canvas.png", width: 80%),
     caption: [Lean UX Canvas -- ShiftIq (TuxLogic)]
   )
 ]
