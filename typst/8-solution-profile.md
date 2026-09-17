@@ -164,103 +164,14 @@ El diseño de la experiencia de usuario y el desarrollo de ShiftIq se fundamenta
   margin: (x: 2cm, top: 2.2cm, bottom: 2.2cm)
 )
 
-#v(0.3em)
-#align(center)[#text(weight: "bold", size: 11pt, fill: rgb("#1e3a8a"))[Lean UX Canvas -- ShiftIq (TuxLogic)]]
-#v(0.3em)
-
-#table(
-  columns: (1fr, 1fr, 1fr),
-  stroke: 0.4pt + rgb("#cbd5e1"),
-  inset: (x: 8pt, y: 7pt),
-  fill: (x, y) => if y == 0 or y == 2 or y == 4 { rgb("#1e3a8a") } else if calc.even(y) { rgb("#f8fafc") } else { white },
-
-  // Fila 0 Cabeceras
-  [#text(fill: white, weight: "bold", size: 9pt)[1. Business Problem]],
-  [#text(fill: white, weight: "bold", size: 9pt)[2. Solutions]],
-  [#text(fill: white, weight: "bold", size: 9pt)[3. Business Outcomes]],
-
-  // Fila 0 Contenido
-  [
-    #text(size: 8.5pt)[
-      El modelo actual de mantenimiento automotriz en Lima es reactivo, lo que provoca que más de 38,000 talleres independientes experimenten pérdidas operativas de entre el 30% y el 40% debido a la falta de herramientas digitales y baja fidelización de clientes. A la par, la desatención preventiva genera sobrecostos a los conductores y deriva en 1,190 siniestros viales anuales atribuibles a fallas mecánicas evitables. \ \
-      #emph[¿Cómo podríamos facilitar un ecosistema digital y móvil que conecte la telemetría vehicular con la administración del taller para transformar el mantenimiento reactivo en un modelo preventivo, oportuno y confiable?]
-    ]
-  ],
-  [
-    #text(size: 8.5pt)[
-      - Desarrollar una aplicación móvil nativa para el conductor que se vincule vía Bluetooth con dispositivos OBD2, mostrando el estado de salud vehicular y alertas en lenguaje comprensible.
-      - Implementar un motor de interpretación que traduzca códigos de diagnóstico de fallas (DTC) y telemetría a advertencias claras con nivel de criticidad.
-      - Construir un módulo de gestión operativa y móvil para talleres que centralice la recepción de telemetría, el control de órdenes de trabajo y la programación de servicios preventivos.
-      - Integrar un sistema de notificaciones push proactivas con cálculo de costos estimados y botón de agendamiento directo de citas hacia el taller afiliado.
-    ]
-  ],
-  [
-    #text(size: 8.5pt)[
-      - Reducir las pérdidas operativas de los talleres afiliados a menos del 18% al término de 6 meses de operación.
-      - Alcanzar una tasa de conversión de alertas OBD2 a citas confirmadas igual o superior al 35% en los primeros 7 días.
-      - Lograr una retención de usuarios conductores en la app móvil mayor o igual al 60% a los 60 días de registro.
-      - Mantener una tasa de renovación mensual de suscripciones SaaS por parte de los talleres superior al 85% al finalizar el primer trimestre.
-    ]
-  ],
-
-  // Fila 1 Cabeceras
-  [#text(fill: white, weight: "bold", size: 9pt)[4. Users]],
-  [#text(fill: white, weight: "bold", size: 9pt)[5. User Outcomes & Benefits]],
-  [#text(fill: white, weight: "bold", size: 9pt)[6. Hypotheses]],
-
-  // Fila 1 Contenido
-  [
-    #text(size: 8.5pt)[
-      - *Dueños o administradores de talleres automotrices independientes en Lima:* Negocios que atienden de 5 a 30 vehículos por semana y buscan modernizar su operación manual.
-      - *Conductores de vehículos particulares de Lima:* Propietarios de vehículos livianos con baja alfabetización mecánica que postergan revisiones por falta de tiempo o desconfianza diagnóstica.
-    ]
-  ],
-  [
-    #text(size: 8.5pt)[
-      - *Talleres:* Control integral de la agenda y órdenes de servicio desde el móvil, reducción de tiempos muertos y capacidad de contactar al cliente con respaldo de datos técnicos objetivos.
-      - *Conductores:* Monitoreo transparente del estado real del vehículo sin jerga técnica, prevención de averías mecánicas críticas y ahorro económico en correctivos de emergencia.
-      - *Ambos:* Relación comercial transparente y libre de asimetrías de información durante el presupuesto y la ejecución de mantenimientos.
-    ]
-  ],
-  [
-    #text(size: 8.5pt)[
-      Creemos que el ecosistema ShiftIq incrementará la adopción del mantenimiento preventivo y optimizará la rentabilidad de los talleres independientes al sincronizar alertas diagnósticas OBD2 con un canal directo de reserva técnica. \ \
-      #emph[Sabremos que esto es cierto cuando al menos el 50% de las citas registradas en la plataforma se originen proactivamente por alertas mecánicas y más del 65% de los conductores activos mantenga el dispositivo OBD2 sincronizado durante su segundo mes de uso.]
-    ]
-  ],
-
-  // Fila 2 Cabeceras
-  table.cell(colspan: 3)[
-    #grid(
-      columns: (1fr, 1fr),
-      gutter: 10pt,
-      [#text(fill: white, weight: "bold", size: 9pt)[7. What's the most important thing we need to learn first?]],
-      [#text(fill: white, weight: "bold", size: 9pt)[8. What's the least amount of work we need to do to learn the next most important thing?]]
-    )
-  ],
-
-  // Fila 2 Contenido
-  table.cell(colspan: 3)[
-    #grid(
-      columns: (1fr, 1fr),
-      gutter: 10pt,
-      [
-        #text(size: 8.5pt)[
-          - Validar si los conductores están dispuestos a conservar el dispositivo OBD2 conectado permanentemente en sus vehículos a cambio de telemetría en su smartphone.
-          - Identificar si los administradores de talleres independientes encuentran viable y rápida la adopción de una interfaz móvil para gestionar citas y órdenes frente a sus libretas físicas.
-          - Determinar si una notificación push con costo estimado y nivel de urgencia reduce significativamente la fricción de agendamiento en el conductor.
-        ]
-      ],
-      [
-        #text(size: 8.5pt)[
-          - Desplegar una prueba piloto de 30 días con 5 talleres independientes y 30 conductores en Lima utilizando el MVP móvil vinculado a emuladores y dongles OBD2 estándar.
-          - Evaluar el comportamiento y tiempo de respuesta de los conductores ante el envío de alertas diagnósticas simuladas y reales.
-          - Aplicar entrevistas breves y métricas in-app para medir la facilidad de uso y la tasa de agendamiento efectivo post-alerta.
-        ]
-      ]
-    )
-  ]
-)
+#v(0.5em)
+#align(center)[
+  #figure(
+    image("assets/LeanUX-Canvas.png", width: 95%),
+    caption: [Lean UX Canvas -- ShiftIq (TuxLogic)]
+  )
+]
+#v(0.5em)
 
 #set page(
   paper: "a4",
