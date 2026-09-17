@@ -190,7 +190,7 @@ En TuxLogic, tenemos la visión de consolidarnos como la plataforma referente en
           #text(size: 9.5pt, fill: rgb("#b91c1c"), weight: "bold")[u202316878]
           #v(0.3em)
           #text(size: 10pt)[
-            Estudiante de Ingeniería de Software de la Universidad Peruana de Ciencias Aplicadas (UPC). Especializado en la implementación de aplicaciones móviles y soluciones de interacción para usuario en entornos multiplataforma.
+            Estudiante de Ingeniería de Software en la Universidad Peruana de Ciencias Aplicadas (UPC), especializado en el desarrollo de aplicaciones móviles y en el diseño de soluciones de interacción centradas en el usuario para entornos multiplataforma, priorizando la usabilidad y la experiencia final del usuario.
           ]
         ]
       )
