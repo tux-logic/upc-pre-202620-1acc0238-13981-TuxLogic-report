@@ -1202,45 +1202,16 @@ La Capa de Dominio encapsula el modelo de negocio inmutable, asegurando transici
 ]
 #v(0.3em)
 
-#block(
-  fill: rgb("#f8fafc"),
-  stroke: 0.5pt + rgb("#cbd5e1"),
-  radius: 4pt,
-  inset: 10pt,
-  width: 100%
-)[
-  #text(weight: "bold", fill: rgb("#1e3a8a"))[`WorkOrderPersistenceEntity` & `WorkOrderRepositoryImpl`] \
-  *Mapeo Relacional:* Tabla `work_orders` (Agregado `WorkOrder`). \
-  *Campos Mapeados:* `id` (UUID, PK), `appointment_id` (UUID), `branch_id` (UUID), `vehicle_id` (UUID), `customer_id` (UUID), `internal_number` (INTEGER), `status` (VARCHAR), `diagnostic_summary` (TEXT), `mileage_in` (DECIMAL), `total_amount` (DECIMAL), `created_at`, `updated_at`, `version`. \
-  *Adaptador:* `WorkOrderRepositoryImpl` delega en `SpringDataWorkOrderRepository` y publica eventos de dominio `WorkOrderCreatedEvent` y `WorkOrderCompletedEvent`.
-]
-
-#v(0.4em)
-
-#block(
-  fill: rgb("#f8fafc"),
-  stroke: 0.5pt + rgb("#cbd5e1"),
-  radius: 4pt,
-  inset: 10pt,
-  width: 100%
-)[
-  #text(weight: "bold", fill: rgb("#1e3a8a"))[`WorkOrderTaskPersistenceEntity` & `WorkOrderTaskProductPersistenceEntity`] \
-  *Mapeo Relacional:* Tablas `work_order_tasks` y `work_order_task_products` (Entidades internas del agregado `WorkOrder`). \
-  *Campos Mapeados:* Relación `@OneToMany` con cascada en tareas y productos consumidos durante las intervenciones técnicas.
-]
-
-#v(0.4em)
-
-#block(
-  fill: rgb("#f8fafc"),
-  stroke: 0.5pt + rgb("#cbd5e1"),
-  radius: 4pt,
-  inset: 10pt,
-  width: 100%
-)[
-  #text(weight: "bold", fill: rgb("#1e3a8a"))[`ServicePersistenceEntity` & `ServiceRepositoryImpl`] \
-  *Mapeo Relacional:* Tabla `services` (Catálogo de servicios del taller por sucursal). \
-  *Campos Mapeados:* `id` (UUID, PK), `branch_id` (UUID), `name` (VARCHAR), `price` (DECIMAL), `created_at`, `updated_at`, `version`.
+#align(center)[
+  #table(
+    columns: (115pt, 155pt, 1fr),
+    align: (left, left, left),
+    table.header([Tabla Relacional], [Clase JPA Entity], [Atributos & Campos Mapeados]),
+    [*`work_orders`*], [`WorkOrderPersistenceEntity`], [`id` (UUID, PK), `appointment_id` (UUID), `branch_id` (UUID), `vehicle_id` (UUID), `customer_id` (UUID), `internal_number` (INTEGER), `status` (VARCHAR), `diagnostic_summary` (TEXT), `mileage_in` (DECIMAL), `total_amount` (DECIMAL), `created_at`, `updated_at`, `version`],
+    [*`work_order_tasks`*], [`WorkOrderTaskPersistenceEntity`], [`id` (UUID, PK), `work_order_id` (UUID, FK), `service_id` (UUID), `branch_id` (UUID), `assigned_mechanic_id` (UUID), `status` (VARCHAR), `description` (TEXT), `price` (DECIMAL), `started_at`, `completed_at`],
+    [*`work_order_task_products`*], [`WorkOrderTaskProductPersistenceEntity`], [`id` (UUID, PK), `work_order_task_id` (UUID, FK), `product_id` (UUID), `branch_id` (UUID), `quantity` (INTEGER), `unit_price` (DECIMAL), `total_amount` (DECIMAL)],
+    [*`services`*], [`ServicePersistenceEntity`], [`id` (UUID, PK), `branch_id` (UUID), `name` (VARCHAR), `price` (DECIMAL), `created_at`, `updated_at`, `version`]
+  )
 ]
 
 #v(0.5em)
