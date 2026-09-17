@@ -99,9 +99,14 @@ En TuxLogic, tenemos la visión de consolidarnos como la plataforma referente en
         gutter: 12pt,
         align: (center + horizon, left + top),
         [
-          #circle(radius: 24pt, fill: rgb("#e0e7ff"), stroke: 1.5pt + rgb("#1e3a8a"))[
-            #align(center + horizon)[#text(size: 12pt, weight: "bold", fill: rgb("#1e3a8a"))[DM]]
-          ]
+          #block(
+            width: 52pt,
+            height: 52pt,
+            radius: 26pt,
+            clip: true,
+            stroke: 1.5pt + rgb("#b91c1c"),
+            image("assets/equipment/dhilsen-armil-mallqui-vilca.png", width: 100%, height: 100%, fit: "cover")
+          )
         ],
         [
           #text(size: 12pt, weight: "bold", fill: rgb("#1e3a8a"))[Mallqui Vilca, Dhilsen Armil]
@@ -129,9 +134,14 @@ En TuxLogic, tenemos la visión de consolidarnos como la plataforma referente en
         gutter: 12pt,
         align: (center + horizon, left + top),
         [
-          #circle(radius: 24pt, fill: rgb("#e0e7ff"), stroke: 1.5pt + rgb("#1e3a8a"))[
-            #align(center + horizon)[#text(size: 12pt, weight: "bold", fill: rgb("#1e3a8a"))[DR]]
-          ]
+          #block(
+            width: 52pt,
+            height: 52pt,
+            radius: 26pt,
+            clip: true,
+            stroke: 1.5pt + rgb("#b91c1c"),
+            image("assets/equipment/diego-ramos-hinostroza.png", width: 100%, height: 100%, fit: "cover")
+          )
         ],
         [
           #text(size: 12pt, weight: "bold", fill: rgb("#1e3a8a"))[Ramos Hinostroza, Diego Antonio]

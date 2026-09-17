@@ -24,9 +24,13 @@ En TuxLogic, tenemos la visión de consolidarnos como la plataforma referente en
 * **Descripción:** Estudiante de Ingeniería de Software centrado en el diseño, desarrollo y mantenimiento de soluciones tecnológicas eficientes, escalables y de calidad. Especializado en el desarrollo backend y la arquitectura de APIs bajo Domain-Driven Design (DDD) con Java (Spring Boot), Python, C++, JavaScript y TypeScript, junto con React y Next.js. Experiencia en gestión de bases de datos optimizadas, procesos de despliegue e integración de agentes de inteligencia artificial en flujos de trabajo.
 
 #### 3. Mallqui Vilca, Dhilsen Armil (`U202319440`)
+<img src="../assets/equipment/dhilsen-armil-mallqui-vilca.png" alt="Mallqui Vilca, Dhilsen Armil" width="120" />
+
 * **Descripción:** Estudiante de Ingeniería de Software de la Universidad Peruana de Ciencias Aplicadas (UPC). Con habilidades orientadas al análisis de procesos, aseguramiento de la calidad de software (QA) y diseño funcional de soluciones tecnológicas orientadas al usuario.
 
 #### 4. Ramos Hinostroza, Diego Antonio (`u202224130`)
+<img src="../assets/equipment/diego-ramos-hinostroza.png" alt="Ramos Hinostroza, Diego Antonio" width="120" />
+
 * **Descripción:** Estudiante de sexto ciclo de Ingeniería de Software en la UPC. Cuenta con dominio en diseño de arquitectura, desarrollo backend y consumo de servicios web. Experiencia en construcción e integración de APIs REST utilizando Java (Spring Boot), C# y Python, modelado de bases de datos relacionales y NoSQL, estructuración de comunicación cliente-servidor en apps móviles, Docker y Git.
 
 #### 5. Vidal Malaga, Jareth Beycker (`u202316878`)
