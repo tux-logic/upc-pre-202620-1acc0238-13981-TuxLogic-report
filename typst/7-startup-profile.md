@@ -149,7 +149,7 @@ En TuxLogic, tenemos la visión de consolidarnos como la plataforma referente en
           #text(size: 9.5pt, fill: rgb("#b91c1c"), weight: "bold")[u202224130]
           #v(0.3em)
           #text(size: 10pt)[
-            Estudiante de sexto ciclo de Ingeniería de Software en la UPC. Cuenta con dominio en diseño de arquitectura, desarrollo backend y consumo de servicios web. Experiencia en construcción e integración de APIs REST utilizando Java (Spring Boot), C\# y Python, modelado de bases de datos relacionales y NoSQL, estructuración de comunicación cliente-servidor en apps móviles, Docker y Git.
+            Estudiante de sexto ciclo de Ingeniería de Software en la UPC. Cuento con dominio en diseño de arquitectura, desarrollo backend y consumo de servicios web. Experiencia en construcción e integración de APIs REST utilizando Java (Spring Boot), C\# y Python, modelado de bases de datos relacionales y NoSQL, estructuración de comunicación cliente-servidor en apps móviles, Docker y Git.
           ]
         ]
       )

@@ -16,6 +16,7 @@ El curso contribuye al cumplimiento del Student Outcome ABET:
 
 En este primer hito (*AV1*), el equipo *TuxLogic* aplicó metodologías de análisis, investigación y diseño para comprender el problema del usuario, definir la propuesta de valor y plantear una solución viable con una base sólida para futuras iteraciones.
 
+<<<<<<< HEAD
 #v(0.5em)
 #table(
   columns: (22%, 56%, 22%),
@@ -74,4 +75,4 @@ En este primer hito (*AV1*), el equipo *TuxLogic* aplicó metodologías de anál
   flipped: false,
   margin: (x: 2.5cm, top: 2.8cm, bottom: 2.5cm)
 )
-```
+>>>>>>> develop
