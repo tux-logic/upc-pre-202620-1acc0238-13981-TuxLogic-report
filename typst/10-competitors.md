@@ -1,10 +1,16 @@
-## 2.1. Competidores
-
-### 2.1.1. Análisis competitivo
-
-*Competitive Analysis Landscape*
-
 ```{=typst}
+#set page(
+  paper: "a4",
+  flipped: true,
+  margin: (x: 2cm, top: 2.2cm, bottom: 2.2cm)
+)
+
+== 2.1. Competidores
+
+=== 2.1.1. Análisis competitivo
+
+#align(center)[#text(style: "italic", size: 9.5pt, fill: rgb("#64748b"))[Competitive Analysis Landscape]]
+
 #let header-fill = rgb("#1e3a8a")
 #let label-fill = rgb("#e2e8f0")
 #let alt-fill = rgb("#f8fafc")
@@ -13,34 +19,34 @@
 
 #v(0.5em)
 #table(
-  columns: (13%, 15%, 1fr, 1fr, 1fr, 1fr),
+  columns: (11%, 13%, 1fr, 1fr, 1fr, 1fr),
   align: left,
   stroke: 0.4pt + rgb("#cbd5e1"),
   inset: (x: 6pt, y: 5pt),
-  fill: (x, y) => if y <= 1 { header-fill } else if x <= 1 { label-fill } else if calc.even(y) { alt-fill } else { white },
+  fill: (x, y) => if y == 0 and x >= 2 { rgb("#f8fafc") } else if y <= 1 { header-fill } else if x <= 1 { label-fill } else if calc.even(y) { alt-fill } else { white },
 
   // Fila 0 — motivo del análisis
   table.cell(colspan: 2)[#hcell[¿Por qué llevar a cabo este análisis?]],
-  table.cell(colspan: 4)[#text(fill: white)[Buscamos entender si el problema de mantenimiento reactivo y falta de diagnóstico predictivo en talleres automotrices peruanos ya está siendo resuelto por otros actores, y en qué medida. El objetivo es identificar si existe una oferta real de mantenimiento predictivo basado en telemetría (hardware OBD) en el mercado peruano, o si los competidores actuales solo cubren la gestión administrativa del taller, para confirmar el espacio de diferenciación de ShiftIq.]],
+  table.cell(colspan: 4)[#text(fill: rgb("#1e293b"), weight: "regular")[Buscamos entender si el problema de mantenimiento reactivo y falta de diagnóstico predictivo en talleres automotrices peruanos ya está siendo resuelto por otros actores, y en qué medida. El objetivo es identificar si existe una oferta real de mantenimiento predictivo basado en telemetría (hardware OBD) en el mercado peruano, o si los competidores actuales solo cubren la gestión administrativa del taller, para confirmar el espacio de diferenciación de ShiftIq.]],
 
   // Fila 1 — nombres de competidores
   table.cell(colspan: 2)[#hcell[Competidor]],
-  [#hcell[ShiftIq]],
+  [#align(center)[#hcell[ShiftIq]]],
   [
     #align(center)[
-      #image("assets/Logo_GestionCAR.jpg", height: 32pt)
+      #image("assets/chapter-2/competitors/Logo_GestionCAR.jpg", height: 28pt)
       #hcell[Competidor 1]
     ]
   ],
   [
     #align(center)[
-      #image("assets/Logo_OK-Car.png", height: 32pt)
+      #image("assets/chapter-2/competitors/Logo_OK-Car.png", height: 28pt)
       #hcell[Competidor 2]
     ]
   ],
   [
     #align(center)[
-      #image("assets/Logo_ERP.png", height: 32pt)
+      #image("assets/chapter-2/competitors/Logo_ERP.png", height: 28pt)
       #hcell[Competidor 3]
     ]
   ],
@@ -167,13 +173,11 @@
   ],
 )
 #v(0.5em)
-```
 
-### 2.1.2. Estrategias y tácticas frente a competidores
+=== 2.1.2. Estrategias y tácticas frente a competidores
 
-*Tabla de estrategias y tácticas frente a competidores*
+#align(center)[#text(style: "italic", size: 9.5pt, fill: rgb("#64748b"))[Tabla de estrategias y tácticas frente a competidores]]
 
-```{=typst}
 #v(0.5em)
 #table(
   columns: (14%, 1fr, 1fr, 1fr),
@@ -186,25 +190,31 @@
   ),
 
   [
-    #align(center)[#image("assets/Logo_GestionCAR.jpg", height: 32pt)]
+    #align(center)[#image("assets/chapter-2/competitors/Logo_GestionCAR.jpg", height: 32pt)]
   ],
   [Se posicionan como *la red de talleres más grande de la región*: no venden solo software, venden pertenecer a una comunidad. Su gancho es la *comunidad activa* (cursos, certificaciones, foro técnico, marketplace de servicios) que hace que los talleres se queden por el ecosistema, no solo por las funciones del sistema.],
   [*Efecto de red regional*: al operar en varios países de LATAM acumulan miles de talleres, lo que les da economías de escala para invertir en funciones como IA de transcripción de diagnósticos y en mantener viva una comunidad de aprendizaje entre talleres. Esa base instalada grande genera confianza ("si tantos talleres lo usan, debe funcionar").],
   [*Su IA transcribe lo que el mecánico ya diagnosticó a mano*: la IA de GestionCar ayuda a redactar o pasar en limpio el reporte, pero *no lee el vehículo en tiempo real* — el mecánico sigue usando su escáner aparte y anotando manualmente. *Nuestra oportunidad:* nuestro dispositivo OBD2 envía la telemetría directo a la plataforma y nuestro motor de interpretación de códigos DTC genera la alerta y el nivel de criticidad al instante, sin que el mecánico tenga que redactar nada. Les ganamos en *velocidad de diagnóstico* y *prevención real de fallas*, no solo en documentarlas mejor.],
 
   [
-    #align(center)[#image("assets/Logo_OK-Car.png", height: 32pt)]
+    #align(center)[#image("assets/chapter-2/competitors/Logo_OK-Car.png", height: 32pt)]
   ],
   [Se venden como *la solución simple y accesible en la nube*: "digitaliza tu taller sin complicaciones". Su gancho es la *rapidez de adopción* y un set de funciones completo (presupuestos, VIN, facturación, seguimiento de clientes) para talleres pequeños que solo quieren dejar el papel y el Excel.],
   [*Simplicidad y reconocimiento en comparadores*: al aparecer bien posicionados en sitios como Capterra o ComparaSoftware, generan confianza inmediata en dueños de taller que buscan "el más recomendado" antes de decidir, sin necesidad de una fuerza de ventas agresiva.],
   [*Administran el papeleo, no el vehículo*: OK CAR no tiene ninguna integración con el auto — todo su valor está en organizar órdenes, presupuestos y facturas, pero el diagnóstico sigue dependiendo 100% del ojo del mecánico. *Nuestra oportunidad:* nuestras alertas nacen directamente de la lectura OBD2 del vehículo, con nivel de criticidad ya definido, antes de que el conductor note algo raro. Les ganamos en *tecnología de diagnóstico* y en darle al conductor una razón basada en datos reales del auto para confiar en el taller.],
 
   [
-    #align(center)[#image("assets/Logo_ERP.png", height: 32pt)]
+    #align(center)[#image("assets/chapter-2/competitors/Logo_ERP.png", height: 32pt)]
   ],
   [Se venden como *el ERP que cumple con todo lo que pide SUNAT*: "factura y controla tu taller o concesionario sin dolores de cabeza tributarios". Su gancho es el *cumplimiento normativo* y el control de historial por placa/mecánico, apuntando tanto a talleres como a concesionarios.],
   [*Especialización tributaria y alcance a concesionarios*: al enfocarse en la facturación electrónica SUNAT como eje central, generan confianza con negocios más grandes (concesionarios) que no pueden arriesgarse a errores de facturación, ampliando su mercado más allá del taller independiente.],
   [*Cumplen con SUNAT, pero no saben qué le pasa al auto*: ERP SICO es un sistema puramente administrativo/contable; no tiene ningún vínculo con el vehículo ni interpreta señales de diagnóstico. *Nuestra oportunidad:* ShiftIq también puede cubrir la facturación SUNAT, pero además traduce la telemetría del vehículo en alertas de mantenimiento preventivo en tiempo real. Les ganamos en *tecnología de diagnóstico* y en ofrecer una propuesta completa (cumplimiento + preventivo) donde ellos solo cubren la mitad administrativa.],
 )
 #v(0.5em)
+
+#set page(
+  paper: "a4",
+  flipped: false,
+  margin: (x: 2.5cm, top: 2.8cm, bottom: 2.5cm)
+)
 ```

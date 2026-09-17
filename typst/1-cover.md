@@ -1,4 +1,4 @@
-```{=typst}
+``` {=typst}
 #align(center)[
   #v(0.5cm)
   #image("assets/UPC_logo.png", width: 130pt)

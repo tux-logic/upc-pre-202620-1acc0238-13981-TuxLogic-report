@@ -1,4 +1,5 @@
-```{=typst}
+
+``` {=typst}
 == 2.6. Tactical-Level Domain-Driven Design
 
 === 2.6.1. Bounded Context: Shared Kernel
@@ -19,7 +20,7 @@ La Capa de Dominio del Shared Kernel encapsula los tipos de valor reutilizables 
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/shared/domain-layer-diagram.svg", width: 95%)
+      image("assets/chapter-2/tactical-ddd/shared/domain-layer-diagram.svg", width: 95%)
     ),
     caption: [Diagrama de la Capa de Dominio -- Shared Kernel]
   )
@@ -152,7 +153,7 @@ Manejo global de excepciones (`@RestControllerAdvice`), ensambladores universale
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/shared/interface-layer-diagram.svg", width: 100%)
+      image("assets/chapter-2/tactical-ddd/shared/interface-layer-diagram.svg", width: 100%)
     ),
     caption: [Diagrama de la Capa de Interfaz -- Shared Kernel]
   )
@@ -194,7 +195,7 @@ La Capa de Aplicación del Shared Kernel provee la estructura funcional `Result<
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/shared/application-layer-diagram.svg", width: 95%)
+      image("assets/chapter-2/tactical-ddd/shared/application-layer-diagram.svg", width: 95%)
     ),
     caption: [Diagrama de la Capa de Aplicación -- Shared Kernel]
   )
@@ -254,7 +255,7 @@ Clase base relacional auditada JPA (`AuditableAbstractPersistenceEntity`), conve
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/shared/infrastracture-layer-diagram.svg", width: 95%)
+      image("assets/chapter-2/tactical-ddd/shared/infrastracture-layer-diagram.svg", width: 95%)
     ),
     caption: [Diagrama de la Capa de Infraestructura -- Shared Kernel]
   )
@@ -321,7 +322,7 @@ Descomposición del Container REST API resaltando los componentes del *Shared Ke
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/shared/component-diagram-share.svg", width: 80%)
+      image("assets/chapter-2/tactical-ddd/shared/component-diagram-share.svg", width: 80%)
     ),
     caption: [Component Diagram (C4 Level 3) -- Shared Kernel]
   )
@@ -346,7 +347,7 @@ Representación detallada de clases del módulo Shared Kernel en formato UML, ab
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/shared/domain-shared-kernel-class-diagram.svg", width: 80%)
+      image("assets/chapter-2/tactical-ddd/shared/domain-shared-kernel-class-diagram.svg", width: 80%)
     ),
     caption: [Diagrama de Clases del Dominio UML -- Shared Kernel]
   )
@@ -418,7 +419,7 @@ La Capa de Dominio encierra la lógica de negocio pura, las invariantes operativ
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/iam/domain-layer-diagram.svg", width: 95%)
+      image("assets/chapter-2/tactical-ddd/iam/domain-layer-diagram.svg", width: 95%)
     ),
     caption: [Diagrama de la Capa de Dominio -- IAM]
   )
@@ -605,7 +606,7 @@ La Capa de Aplicación orquesta los casos de uso del Bounded Context. Recibe com
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/iam/application-layer-diagram.svg", width: 95%)
+      image("assets/chapter-2/tactical-ddd/iam/application-layer-diagram.svg", width: 95%)
     ),
     caption: [Diagrama de la Capa de Aplicación -- IAM]
   )
@@ -694,7 +695,7 @@ La Capa de Interfaces expone los controladores REST HTTP bajo la convención de 
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/iam/interface-layer-diagram.svg", width: 95%)
+      image("assets/chapter-2/tactical-ddd/iam/interface-layer-diagram.svg", width: 95%)
     ),
     caption: [Diagrama de la Capa de Interfaces -- IAM]
   )
@@ -740,7 +741,7 @@ La Capa de Infraestructura implementa la persistencia física en PostgreSQL 18 c
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/iam/infrastructure-layer-diagram.svg", width: 95%)
+      image("assets/chapter-2/tactical-ddd/iam/infrastructure-layer-diagram.svg", width: 95%)
     ),
     caption: [Diagrama de la Capa de Infraestructura -- IAM]
   )
@@ -779,7 +780,7 @@ Descomposición estructural del container REST API para el Bounded Context de IA
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/iam/c4-component-diagram.svg", width: 80%)
+      image("assets/chapter-2/tactical-ddd/iam/c4-component-diagram.svg", width: 80%)
     ),
     caption: [Diagrama de Componentes C4 Nivel 3 -- IAM]
   )
@@ -800,7 +801,7 @@ Descomposición estructural del container REST API para el Bounded Context de IA
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/iam/class-diagram.svg", width: 80%)
+      image("assets/chapter-2/tactical-ddd/iam/class-diagram.svg", width: 80%)
     ),
     caption: [Diagrama de Clases del Dominio UML -- IAM]
   )
@@ -819,7 +820,7 @@ Descomposición estructural del container REST API para el Bounded Context de IA
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/iam/database-er-diagram.svg", width: 80%)
+      image("assets/chapter-2/tactical-ddd/iam/database-er-diagram.svg", width: 80%)
     ),
     caption: [Diagrama de Base de Datos Relacional ER -- IAM]
   )
@@ -908,7 +909,7 @@ La Capa de Dominio encapsula el modelo de negocio inmutable, asegurando transici
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/operations/domain-layer-diagram.svg", width: 80%)
+      image("assets/chapter-2/tactical-ddd/operations/domain-layer-diagram.svg", width: 80%)
     ),
     caption: [Diagrama de la Capa de Dominio -- Operations]
   )
@@ -1094,7 +1095,7 @@ La Capa de Dominio encapsula el modelo de negocio inmutable, asegurando transici
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/operations/application-layer-diagram.svg", width: 95%)
+      image("assets/chapter-2/tactical-ddd/operations/application-layer-diagram.svg", width: 95%)
     ),
     caption: [Diagrama de la Capa de Aplicación -- Operations]
   )
@@ -1154,7 +1155,7 @@ La Capa de Dominio encapsula el modelo de negocio inmutable, asegurando transici
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/operations/interface-layer-diagram.svg", width: 95%)
+      image("assets/chapter-2/tactical-ddd/operations/interface-layer-diagram.svg", width: 95%)
     ),
     caption: [Diagrama de la Capa de Interfaces -- Operations]
   )
@@ -1189,7 +1190,7 @@ La Capa de Dominio encapsula el modelo de negocio inmutable, asegurando transici
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/operations/infrastructure-layer-diagram.svg", width: 95%)
+      image("assets/chapter-2/tactical-ddd/operations/infrastructure-layer-diagram.svg", width: 95%)
     ),
     caption: [Diagrama de la Capa de Infraestructura -- Operations]
   )
@@ -1225,7 +1226,7 @@ La Capa de Dominio encapsula el modelo de negocio inmutable, asegurando transici
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/operations/c4-component-diagram.svg", width: 80%)
+      image("assets/chapter-2/tactical-ddd/operations/c4-component-diagram.svg", width: 80%)
     ),
     caption: [Diagrama de Componentes C4 Nivel 3 -- Operations]
   )
@@ -1246,7 +1247,7 @@ La Capa de Dominio encapsula el modelo de negocio inmutable, asegurando transici
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/operations/class-diagram.svg", width: 80%)
+      image("assets/chapter-2/tactical-ddd/operations/class-diagram.svg", width: 80%)
     ),
     caption: [Diagrama de Clases del Dominio UML -- Operations]
   )
@@ -1265,7 +1266,7 @@ La Capa de Dominio encapsula el modelo de negocio inmutable, asegurando transici
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/operations/database-er-diagram.svg", width: 80%)
+      image("assets/chapter-2/tactical-ddd/operations/database-er-diagram.svg", width: 80%)
     ),
     caption: [Diagrama de Base de Datos Relacional ER -- Operations]
   )
@@ -1336,7 +1337,7 @@ La Capa de Dominio define las reglas inmutables del inventario, gestionando el s
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/inventory/inventory-domain-layer.svg", width: 80%)
+      image("assets/chapter-2/tactical-ddd/inventory/inventory-domain-layer.svg", width: 80%)
     ),
     caption: [Diagrama de la Capa de Dominio -- Inventory]
   )
@@ -1557,7 +1558,7 @@ La Capa de Aplicación expone la ejecución de casos de uso utilizando `Result<T
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/inventory/inventory-app-layer.svg", width: 95%)
+      image("assets/chapter-2/tactical-ddd/inventory/inventory-app-layer.svg", width: 95%)
     ),
     caption: [Diagrama de la Capa de Aplicación -- Inventory]
   )
@@ -1621,7 +1622,7 @@ Exposición RESTful e integración asíncrona mediante listeners de eventos prod
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/inventory/inventory-interface-layer.svg", width: 95%)
+      image("assets/chapter-2/tactical-ddd/inventory/inventory-interface-layer.svg", width: 95%)
     ),
     caption: [Diagrama de la Capa de Interfaz -- Inventory]
   )
@@ -1669,7 +1670,7 @@ Mapeo ORM relacional a PostgreSQL 18 con Spring Data JPA y configuración de Job
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/inventory/inventory-infra-layer.svg", width: 30%)
+      image("assets/chapter-2/tactical-ddd/inventory/inventory-infra-layer.svg", width: 30%)
     ),
     caption: [Diagrama de la Capa de Infraestructura -- Inventory]
   )
@@ -1775,7 +1776,7 @@ El siguiente diagrama C4 descompone el Container API en sus componentes principa
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/inventory/inventory-c4-component.svg", width: 80%)
+      image("assets/chapter-2/tactical-ddd/inventory/inventory-c4-component.svg", width: 80%)
     ),
     caption: [Diagrama de Componentes C4 Nivel 3 -- Inventory]
   )
@@ -1819,7 +1820,7 @@ El siguiente diagrama C4 descompone el Container API en sus componentes principa
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/inventory/inventory-code-domain.svg", width: 80%)
+      image("assets/chapter-2/tactical-ddd/inventory/inventory-code-domain.svg", width: 80%)
     ),
     caption: [Diagrama de Clases del Dominio UML -- Inventory]
   )
@@ -1838,7 +1839,7 @@ El siguiente diagrama C4 descompone el Container API en sus componentes principa
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/inventory/inventory-erd.svg", width: 80%)
+      image("assets/chapter-2/tactical-ddd/inventory/inventory-erd.svg", width: 80%)
     ),
     caption: [Diagrama de Base de Datos Relacional ER -- Inventory]
   )
@@ -1864,7 +1865,7 @@ La Capa de Dominio rige las reglas de lectura e ingesta telemática, constructor
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/iot/iot-domain-layer.svg", width: 80%)
+      image("assets/chapter-2/tactical-ddd/iot/iot-domain-layer.svg", width: 80%)
     ),
     caption: [Diagrama de la Capa de Dominio -- IoT]
   )
@@ -2004,7 +2005,7 @@ La Capa de Aplicación expone la ingesta de telemetría, emparejamiento de escá
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/iot/iot-app-layer.svg", width: 95%)
+      image("assets/chapter-2/tactical-ddd/iot/iot-app-layer.svg", width: 95%)
     ),
     caption: [Diagrama de la Capa de Aplicación -- IoT]
   )
@@ -2072,7 +2073,7 @@ Exposición RESTful para ingesta telemática, alertas de motor y catálogo de ve
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/iot/iot-interface-layer.svg", width: 95%)
+      image("assets/chapter-2/tactical-ddd/iot/iot-interface-layer.svg", width: 95%)
     ),
     caption: [Diagrama de la Capa de Interfaz -- IoT]
   )
@@ -2112,7 +2113,7 @@ Mapeo relacional JPA a PostgreSQL 18 con adaptadores de repositorio, ensamblador
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/iot/iot-infra-layer.svg", width: 80%)
+      image("assets/chapter-2/tactical-ddd/iot/iot-infra-layer.svg", width: 80%)
     ),
     caption: [Diagrama de la Capa de Infraestructura -- IoT]
   )
@@ -2287,7 +2288,7 @@ Descomposición del Container API en sus componentes principales para el Bounded
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/iot/iot-c4-component.svg", width: 80%)
+      image("assets/chapter-2/tactical-ddd/iot/iot-c4-component.svg", width: 80%)
     ),
     caption: [Diagrama de Componentes C4 Nivel 3 -- IoT]
   )
@@ -2308,7 +2309,7 @@ Descomposición del Container API en sus componentes principales para el Bounded
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/iot/iot-code-domain.svg", width: 80%)
+      image("assets/chapter-2/tactical-ddd/iot/iot-code-domain.svg", width: 80%)
     ),
     caption: [Diagrama de Clases del Dominio UML -- IoT]
   )
@@ -2327,7 +2328,7 @@ Descomposición del Container API en sus componentes principales para el Bounded
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/iot/iot-erd.svg", width: 60%)
+      image("assets/chapter-2/tactical-ddd/iot/iot-erd.svg", width: 60%)
     ),
     caption: [Diagrama de Base de Datos Relacional ER -- IoT]
   )
@@ -2353,7 +2354,7 @@ La Capa de Dominio define el modelo de negocio inmutable, encapsulando reglas de
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/core/core-domain-layer.svg", width: 80%)
+      image("assets/chapter-2/tactical-ddd/core/core-domain-layer.svg", width: 80%)
     ),
     caption: [Diagrama de la Capa de Dominio -- Core]
   )
@@ -2602,7 +2603,7 @@ La Capa de Aplicación orquesta los casos de uso, transformando los Commands y Q
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/core/core-app-layer.svg", width: 95%)
+      image("assets/chapter-2/tactical-ddd/core/core-app-layer.svg", width: 95%)
     ),
     caption: [Diagrama de la Capa de Aplicación -- Core]
   )
@@ -2655,7 +2656,7 @@ Expone los servicios de la plataforma a través de una API RESTful documentada c
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/core/core-interface-layer.svg", width: 95%)
+      image("assets/chapter-2/tactical-ddd/core/core-interface-layer.svg", width: 95%)
     ),
     caption: [Diagrama de la Capa de Interfaz -- Core]
   )
@@ -2708,7 +2709,7 @@ Implementa la persistencia física en PostgreSQL 18 utilizando Spring Data JPA, 
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/core/core-infra-layer.svg", width: 80%)
+      image("assets/chapter-2/tactical-ddd/core/core-infra-layer.svg", width: 80%)
     ),
     caption: [Diagrama de la Capa de Infraestructura -- Core]
   )
@@ -2913,7 +2914,7 @@ Descomposición del Container API en sus componentes principales para el Bounded
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/core/core-c4-component.svg", width: 80%)
+      image("assets/chapter-2/tactical-ddd/core/core-c4-component.svg", width: 80%)
     ),
     caption: [Diagrama de Componentes C4 Nivel 3 -- Core]
   )
@@ -2936,7 +2937,7 @@ Descomposición del Container API en sus componentes principales para el Bounded
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/core/core-code-domain.svg", width: 80%)
+      image("assets/chapter-2/tactical-ddd/core/core-code-domain.svg", width: 80%)
     ),
     caption: [Diagrama de Clases del Dominio UML -- Core]
   )
@@ -2955,7 +2956,7 @@ Descomposición del Container API en sus componentes principales para el Bounded
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/core/core-erd.svg", width: 60%)
+      image("assets/chapter-2/tactical-ddd/core/core-erd.svg", width: 60%)
     ),
     caption: [Diagrama de Base de Datos Relacional ER -- Core]
   )
@@ -2981,7 +2982,7 @@ La Capa de Dominio define las reglas de agendamiento de citas mecánicas, duraci
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/fleet/fleet-domain-layer.svg", width: 80%)
+      image("assets/chapter-2/tactical-ddd/fleet/fleet-domain-layer.svg", width: 80%)
     ),
     caption: [Diagrama de la Capa de Dominio -- Fleet]
   )
@@ -3142,7 +3143,7 @@ La Capa de Aplicación expone la ejecución de casos de uso mediante servicios d
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/fleet/fleet-app-layer.svg", width: 95%)
+      image("assets/chapter-2/tactical-ddd/fleet/fleet-app-layer.svg", width: 95%)
     ),
     caption: [Diagrama de la Capa de Aplicación -- Fleet]
   )
@@ -3195,7 +3196,7 @@ Exposición RESTful para agendamiento de citas y registros de clientes/empleados
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/fleet/fleet-interface-layer.svg", width: 95%)
+      image("assets/chapter-2/tactical-ddd/fleet/fleet-interface-layer.svg", width: 95%)
     ),
     caption: [Diagrama de la Capa de Interfaz -- Fleet]
   )
@@ -3247,7 +3248,7 @@ Mapeo relacional JPA a PostgreSQL 18 con soporte de eliminación lógica (`@SQLD
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/fleet/fleet-infra-layer.svg", width: 80%)
+      image("assets/chapter-2/tactical-ddd/fleet/fleet-infra-layer.svg", width: 80%)
     ),
     caption: [Diagrama de la Capa de Infraestructura -- Fleet]
   )
@@ -3352,7 +3353,7 @@ Descomposición del Container API en sus componentes principales para el Bounded
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/fleet/fleet-c4-component.svg", width: 80%)
+      image("assets/chapter-2/tactical-ddd/fleet/fleet-c4-component.svg", width: 80%)
     ),
     caption: [Diagrama de Componentes C4 Nivel 3 -- Fleet]
   )
@@ -3375,7 +3376,7 @@ Descomposición del Container API en sus componentes principales para el Bounded
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/fleet/fleet-code-domain.svg", width: 80%)
+      image("assets/chapter-2/tactical-ddd/fleet/fleet-code-domain.svg", width: 80%)
     ),
     caption: [Diagrama de Clases del Dominio UML -- Fleet]
   )
@@ -3394,7 +3395,7 @@ Descomposición del Container API en sus componentes principales para el Bounded
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/fleet/fleet-erd.svg", width: 60%)
+      image("assets/chapter-2/tactical-ddd/fleet/fleet-erd.svg", width: 60%)
     ),
     caption: [Diagrama de Base de Datos Relacional ER -- Fleet]
   )
@@ -3420,7 +3421,7 @@ La Capa de Dominio encapsula el cálculo estricto de subtotales, impuestos (IGV 
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/billing/billing-domain-layer.svg", width: 80%)
+      image("assets/chapter-2/tactical-ddd/billing/billing-domain-layer.svg", width: 80%)
     ),
     caption: [Diagrama de la Capa de Dominio -- Billing]
   )
@@ -3573,7 +3574,7 @@ La Capa de Aplicación expone la ejecución de casos de uso mediante servicios d
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/billing/billing-app-layer.svg", width: 95%)
+      image("assets/chapter-2/tactical-ddd/billing/billing-app-layer.svg", width: 95%)
     ),
     caption: [Diagrama de la Capa de Aplicación -- Billing]
   )
@@ -3619,7 +3620,7 @@ Exposición RESTful e integración de listeners para eventos internos de factura
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/billing/billing-interface-layer.svg", width: 95%)
+      image("assets/chapter-2/tactical-ddd/billing/billing-interface-layer.svg", width: 95%)
     ),
     caption: [Diagrama de la Capa de Interfaz -- Billing]
   )
@@ -3672,7 +3673,7 @@ Mapeo relacional JPA a tablas PostgreSQL 18 e integración de clientes HTTP REST
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/billing/billing-infra-layer.svg", width: 80%)
+      image("assets/chapter-2/tactical-ddd/billing/billing-infra-layer.svg", width: 80%)
     ),
     caption: [Diagrama de la Capa de Infraestructura -- Billing]
   )
@@ -3778,7 +3779,7 @@ Descomposición del Container API en sus componentes principales para el Bounded
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/billing/billing-c4-component.svg", width: 80%)
+      image("assets/chapter-2/tactical-ddd/billing/billing-c4-component.svg", width: 80%)
     ),
     caption: [Diagrama de Componentes C4 Nivel 3 -- Billing]
   )
@@ -3825,7 +3826,5 @@ Descomposición del Container API en sus componentes principales para el Bounded
     caption: [Diagrama de Base de Datos Relacional ER -- Billing]
   )
 ]
-
-```
 
 ```

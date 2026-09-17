@@ -1224,13 +1224,13 @@ El Impact Mapping articula, para cada segmento objetivo de ShiftIq, el *Goal* de
 
 **Figura.** *Impact Mapping — Segmento Objetivo 1 (Dueños / Administradores de talleres)*
 
-![](assets/impact-mapping-segmento-1.png)
+![](assets/chapter-2/needfinding/impact-mapping-segmento-1.png)
 
 #### Segmento Objetivo 2 — Conductores (B2C)
 
 **Figura.** *Impact Mapping — Segmento Objetivo 2 (Conductores de Lima)*
 
-![](assets/impact-mapping-segmento-2.png)
+![](assets/chapter-2/needfinding/impact-mapping-segmento-2.png)
 
 ### 2.4.3. Product Backlog
 
