@@ -1202,15 +1202,88 @@ La Capa de Dominio encapsula el modelo de negocio inmutable, asegurando transici
 ]
 #v(0.3em)
 
+#block(sticky: true)[
+  #text(weight: "bold", size: 9.5pt, fill: rgb("#334155"))[Tabla: `work_orders`]
+]
+#v(0.2em)
 #align(center)[
   #table(
-    columns: (115pt, 155pt, 1fr),
-    align: (left, left, left),
-    table.header([Tabla Relacional], [Clase JPA Entity], [Atributos & Campos Mapeados]),
-    [*`work_orders`*], [`WorkOrderPersistenceEntity`], [`id` (UUID, PK), `appointment_id` (UUID), `branch_id` (UUID), `vehicle_id` (UUID), `customer_id` (UUID), `internal_number` (INTEGER), `status` (VARCHAR), `diagnostic_summary` (TEXT), `mileage_in` (DECIMAL), `total_amount` (DECIMAL), `created_at`, `updated_at`, `version`],
-    [*`work_order_tasks`*], [`WorkOrderTaskPersistenceEntity`], [`id` (UUID, PK), `work_order_id` (UUID, FK), `service_id` (UUID), `branch_id` (UUID), `assigned_mechanic_id` (UUID), `status` (VARCHAR), `description` (TEXT), `price` (DECIMAL), `started_at`, `completed_at`],
-    [*`work_order_task_products`*], [`WorkOrderTaskProductPersistenceEntity`], [`id` (UUID, PK), `work_order_task_id` (UUID, FK), `product_id` (UUID), `branch_id` (UUID), `quantity` (INTEGER), `unit_price` (DECIMAL), `total_amount` (DECIMAL)],
-    [*`services`*], [`ServicePersistenceEntity`], [`id` (UUID, PK), `branch_id` (UUID), `name` (VARCHAR), `price` (DECIMAL), `created_at`, `updated_at`, `version`]
+    columns: (110pt, 110pt, 1fr),
+    align: (left, center, left),
+    table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
+    [*`id`*], [`UUID`], [`PRIMARY KEY, DEFAULT gen_random_uuid()`],
+    [*`branch_id`*], [`UUID`], [`NOT NULL, FOREIGN KEY -> branches(id)`],
+    [*`vehicle_id`*], [`UUID`], [`NOT NULL, FOREIGN KEY -> vehicles(id)`],
+    [*`customer_id`*], [`UUID`], [`NOT NULL, FOREIGN KEY -> customers(id)`],
+    [*`status`*], [`VARCHAR(20)`], [`NOT NULL (DRAFT/IN_PROGRESS/COMPLETED/PAID)`],
+    [*`total_amount`*], [`DECIMAL(12,2)`], [`NOT NULL, DEFAULT 0.00`],
+    [*`created_at`*], [`TIMESTAMP`], [`NOT NULL, DEFAULT CURRENT_TIMESTAMP`],
+    [*`updated_at`*], [`TIMESTAMP`], [`NOT NULL, DEFAULT CURRENT_TIMESTAMP`],
+    [*`version`*], [`BIGINT`], [`NOT NULL, DEFAULT 0`],
+  )
+]
+
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 9.5pt, fill: rgb("#334155"))[Tabla: `work_order_tasks`]
+]
+#v(0.2em)
+#align(center)[
+  #table(
+    columns: (110pt, 110pt, 1fr),
+    align: (left, center, left),
+    table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
+    [*`id`*], [`UUID`], [`PRIMARY KEY, DEFAULT gen_random_uuid()`],
+    [*`work_order_id`*], [`UUID`], [`NOT NULL, FOREIGN KEY -> work_orders(id)`],
+    [*`service_id`*], [`UUID`], [`NOT NULL, FOREIGN KEY -> services(id)`],
+    [*`branch_id`*], [`UUID`], [`NOT NULL`],
+    [*`assigned_mechanic_id`*], [`UUID`], [`NULLABLE`],
+    [*`status`*], [`VARCHAR(20)`], [`NOT NULL`],
+    [*`price`*], [`DECIMAL(12,2)`], [`NOT NULL, DEFAULT 0.00`],
+    [*`started_at`*], [`TIMESTAMP`], [`NULLABLE`],
+    [*`completed_at`*], [`TIMESTAMP`], [`NULLABLE`],
+  )
+]
+
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 9.5pt, fill: rgb("#334155"))[Tabla: `work_order_task_products`]
+]
+#v(0.2em)
+#align(center)[
+  #table(
+    columns: (110pt, 110pt, 1fr),
+    align: (left, center, left),
+    table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
+    [*`id`*], [`UUID`], [`PRIMARY KEY, DEFAULT gen_random_uuid()`],
+    [*`work_order_task_id`*], [`UUID`], [`NOT NULL, FOREIGN KEY -> work_order_tasks(id)`],
+    [*`product_id`*], [`UUID`], [`NOT NULL`],
+    [*`quantity`*], [`INTEGER`], [`NOT NULL, DEFAULT 1`],
+    [*`unit_price`*], [`DECIMAL(12,2)`], [`NOT NULL, DEFAULT 0.00`],
+    [*`total_amount`*], [`DECIMAL(12,2)`], [`NOT NULL, DEFAULT 0.00`],
+  )
+]
+
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 9.5pt, fill: rgb("#334155"))[Tabla: `services`]
+]
+#v(0.2em)
+#align(center)[
+  #table(
+    columns: (110pt, 110pt, 1fr),
+    align: (left, center, left),
+    table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
+    [*`id`*], [`UUID`], [`PRIMARY KEY, DEFAULT gen_random_uuid()`],
+    [*`branch_id`*], [`UUID`], [`NOT NULL`],
+    [*`name`*], [`VARCHAR(100)`], [`NOT NULL, UNIQUE`],
+    [*`price`*], [`DECIMAL(12,2)`], [`NOT NULL, DEFAULT 0.00`],
+    [*`created_at`*], [`TIMESTAMP`], [`NOT NULL, DEFAULT CURRENT_TIMESTAMP`],
+    [*`updated_at`*], [`TIMESTAMP`], [`NOT NULL, DEFAULT CURRENT_TIMESTAMP`],
+    [*`version`*], [`BIGINT`], [`NOT NULL, DEFAULT 0`],
   )
 ]
 
