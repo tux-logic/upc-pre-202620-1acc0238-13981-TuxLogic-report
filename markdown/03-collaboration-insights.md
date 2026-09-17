@@ -7,7 +7,7 @@ Esta sección documenta la infraestructura de repositorios, la metodología de t
 ## 1. Enlaces a Repositorios Oficiales del Proyecto
 
 El desarrollo del ecosistema **ShiftIq** se gestiona bajo la organización oficial en GitHub:  
-👉 **Organización de GitHub:** [https://github.com/tux-logic](https://github.com/tux-logic)
+**Organización de GitHub:** [https://github.com/tux-logic](https://github.com/tux-logic)
 
 | Repositorio | Descripción / Propósito | Enlace Público |
 | --- | --- | --- |
@@ -53,7 +53,7 @@ Los 5 integrantes del equipo **TuxLogic** han participado activamente en la cons
 
 A través de las herramientas de analítica de GitHub (*Insights / Contributors*), se constata la actividad constante del equipo durante el periodo de desarrollo de la entrega **TB1**:
 
-![GitHub Insights y Distribución de Contribuciones](../assets/chapter1/collaboration/github-insights.svg)
+![GitHub Insights y Distribución de Contribuciones](../assets/chapter1/collaboration/github-insights.png)
 
 **Figura 6.** Analíticos de colaboración de GitHub e historial de contribuciones del equipo TuxLogic.
 

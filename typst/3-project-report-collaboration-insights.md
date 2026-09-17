@@ -74,7 +74,7 @@ A través de las herramientas de analítica de GitHub (*Insights / Contributors*
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter1/collaboration/github-insights.svg", width: 95%),
+    image("assets/chapter1/collaboration/github-insights.png", width: 95%),
     caption: [Analíticos de colaboración de GitHub e historial de contribuciones del equipo TuxLogic.]
   )
 ]
