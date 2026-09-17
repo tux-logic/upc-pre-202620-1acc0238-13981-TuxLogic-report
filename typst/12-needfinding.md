@@ -14,7 +14,7 @@ Para desarrollar la propuesta de solución móvil se elabora un *User Persona* p
 #v(0.3em)
 #align(center)[
   #figure(
-    image("assets/chapter-2/needfinding/user-persona-taller.png", width: 90%),
+    image("assets/chapter-2/needfinding/user-persona-taller.png", width: 65%),
     caption: [User persona -- Felipe Hernández (dueño / administrador de taller)]
   )
 ]
@@ -45,7 +45,7 @@ Para desarrollar la propuesta de solución móvil se elabora un *User Persona* p
 #v(0.3em)
 #align(center)[
   #figure(
-    image("assets/chapter-2/needfinding/user-persona-conductor.png", width: 90%),
+    image("assets/chapter-2/needfinding/user-persona-conductor.png", width: 65%),
     caption: [User persona -- Raúl Jiménez (conductor particular)]
   )
 ]

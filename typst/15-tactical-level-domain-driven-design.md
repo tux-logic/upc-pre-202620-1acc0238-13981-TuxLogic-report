@@ -365,7 +365,7 @@ Estructura de la tabla relacional base heredada por las entidades persistentes m
 #v(0.5em)
 #align(center)[
   #table(
-    columns: (auto, auto, 1fr),
+    columns: (95pt, 110pt, 1fr),
     align: (center, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, DEFAULT gen_random_uuid()`],
@@ -838,7 +838,7 @@ Descomposición estructural del container REST API para el Bounded Context de IA
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (auto, auto, 1fr),
+    columns: (95pt, 110pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, DEFAULT gen_random_uuid()`],
@@ -862,7 +862,7 @@ Descomposición estructural del container REST API para el Bounded Context de IA
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (auto, auto, 1fr),
+    columns: (95pt, 110pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`user_id`*], [`UUID`], [`PRIMARY KEY, FOREIGN KEY -> users(id)`],
@@ -878,7 +878,7 @@ Descomposición estructural del container REST API para el Bounded Context de IA
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (auto, auto, 1fr),
+    columns: (95pt, 110pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -1190,7 +1190,7 @@ La Capa de Dominio encapsula el modelo de negocio inmutable, asegurando transici
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/chapter-2/tactical-ddd/operations/infrastructure-layer-diagram.svg", width: 95%)
+      image("assets/chapter-2/tactical-ddd/operations/infrastructure-layer-diagram.svg", width: 60%)
     ),
     caption: [Diagrama de la Capa de Infraestructura -- Operations]
   )
@@ -1202,15 +1202,88 @@ La Capa de Dominio encapsula el modelo de negocio inmutable, asegurando transici
 ]
 #v(0.3em)
 
+#block(sticky: true)[
+  #text(weight: "bold", size: 9.5pt, fill: rgb("#334155"))[Tabla: `work_orders`]
+]
+#v(0.2em)
 #align(center)[
   #table(
-    columns: (auto, auto, 1fr),
-    align: (left, left, left),
-    table.header([Tabla Relacional], [Clase JPA Entity], [Atributos & Campos Mapeados]),
-    [*`work_orders`*], [`WorkOrderPersistenceEntity`], [`id` (UUID, PK), `appointment_id` (UUID), `branch_id` (UUID), `vehicle_id` (UUID), `customer_id` (UUID), `internal_number` (INTEGER), `status` (VARCHAR), `diagnostic_summary` (TEXT), `mileage_in` (DECIMAL), `total_amount` (DECIMAL), `created_at`, `updated_at`, `version`],
-    [*`work_order_tasks`*], [`WorkOrderTaskPersistenceEntity`], [`id` (UUID, PK), `work_order_id` (UUID, FK), `service_id` (UUID), `branch_id` (UUID), `assigned_mechanic_id` (UUID), `status` (VARCHAR), `description` (TEXT), `price` (DECIMAL), `started_at`, `completed_at`],
-    [*`work_order_task_products`*], [`WorkOrderTaskProductPersistenceEntity`], [`id` (UUID, PK), `work_order_task_id` (UUID, FK), `product_id` (UUID), `branch_id` (UUID), `quantity` (INTEGER), `unit_price` (DECIMAL), `total_amount` (DECIMAL)],
-    [*`services`*], [`ServicePersistenceEntity`], [`id` (UUID, PK), `branch_id` (UUID), `name` (VARCHAR), `price` (DECIMAL), `created_at`, `updated_at`, `version`]
+    columns: (110pt, 110pt, 1fr),
+    align: (left, center, left),
+    table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
+    [*`id`*], [`UUID`], [`PRIMARY KEY, DEFAULT gen_random_uuid()`],
+    [*`branch_id`*], [`UUID`], [`NOT NULL, FOREIGN KEY -> branches(id)`],
+    [*`vehicle_id`*], [`UUID`], [`NOT NULL, FOREIGN KEY -> vehicles(id)`],
+    [*`customer_id`*], [`UUID`], [`NOT NULL, FOREIGN KEY -> customers(id)`],
+    [*`status`*], [`VARCHAR(20)`], [`NOT NULL (DRAFT/IN_PROGRESS/COMPLETED/PAID)`],
+    [*`total_amount`*], [`DECIMAL(12,2)`], [`NOT NULL, DEFAULT 0.00`],
+    [*`created_at`*], [`TIMESTAMP`], [`NOT NULL, DEFAULT CURRENT_TIMESTAMP`],
+    [*`updated_at`*], [`TIMESTAMP`], [`NOT NULL, DEFAULT CURRENT_TIMESTAMP`],
+    [*`version`*], [`BIGINT`], [`NOT NULL, DEFAULT 0`],
+  )
+]
+
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 9.5pt, fill: rgb("#334155"))[Tabla: `work_order_tasks`]
+]
+#v(0.2em)
+#align(center)[
+  #table(
+    columns: (110pt, 110pt, 1fr),
+    align: (left, center, left),
+    table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
+    [*`id`*], [`UUID`], [`PRIMARY KEY, DEFAULT gen_random_uuid()`],
+    [*`work_order_id`*], [`UUID`], [`NOT NULL, FOREIGN KEY -> work_orders(id)`],
+    [*`service_id`*], [`UUID`], [`NOT NULL, FOREIGN KEY -> services(id)`],
+    [*`branch_id`*], [`UUID`], [`NOT NULL`],
+    [*`assigned_mechanic_id`*], [`UUID`], [`NULLABLE`],
+    [*`status`*], [`VARCHAR(20)`], [`NOT NULL`],
+    [*`price`*], [`DECIMAL(12,2)`], [`NOT NULL, DEFAULT 0.00`],
+    [*`started_at`*], [`TIMESTAMP`], [`NULLABLE`],
+    [*`completed_at`*], [`TIMESTAMP`], [`NULLABLE`],
+  )
+]
+
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 9.5pt, fill: rgb("#334155"))[Tabla: `work_order_task_products`]
+]
+#v(0.2em)
+#align(center)[
+  #table(
+    columns: (110pt, 110pt, 1fr),
+    align: (left, center, left),
+    table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
+    [*`id`*], [`UUID`], [`PRIMARY KEY, DEFAULT gen_random_uuid()`],
+    [*`work_order_task_id`*], [`UUID`], [`NOT NULL, FOREIGN KEY -> work_order_tasks(id)`],
+    [*`product_id`*], [`UUID`], [`NOT NULL`],
+    [*`quantity`*], [`INTEGER`], [`NOT NULL, DEFAULT 1`],
+    [*`unit_price`*], [`DECIMAL(12,2)`], [`NOT NULL, DEFAULT 0.00`],
+    [*`total_amount`*], [`DECIMAL(12,2)`], [`NOT NULL, DEFAULT 0.00`],
+  )
+]
+
+#v(0.5em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 9.5pt, fill: rgb("#334155"))[Tabla: `services`]
+]
+#v(0.2em)
+#align(center)[
+  #table(
+    columns: (110pt, 110pt, 1fr),
+    align: (left, center, left),
+    table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
+    [*`id`*], [`UUID`], [`PRIMARY KEY, DEFAULT gen_random_uuid()`],
+    [*`branch_id`*], [`UUID`], [`NOT NULL`],
+    [*`name`*], [`VARCHAR(100)`], [`NOT NULL, UNIQUE`],
+    [*`price`*], [`DECIMAL(12,2)`], [`NOT NULL, DEFAULT 0.00`],
+    [*`created_at`*], [`TIMESTAMP`], [`NOT NULL, DEFAULT CURRENT_TIMESTAMP`],
+    [*`updated_at`*], [`TIMESTAMP`], [`NOT NULL, DEFAULT CURRENT_TIMESTAMP`],
+    [*`version`*], [`BIGINT`], [`NOT NULL, DEFAULT 0`],
   )
 ]
 
@@ -1284,7 +1357,7 @@ La Capa de Dominio encapsula el modelo de negocio inmutable, asegurando transici
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (auto, auto, 1fr),
+    columns: (95pt, 110pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, DEFAULT gen_random_uuid()`],
@@ -1307,7 +1380,7 @@ La Capa de Dominio encapsula el modelo de negocio inmutable, asegurando transici
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (auto, auto, 1fr),
+    columns: (95pt, 110pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -1688,7 +1761,7 @@ Mapeo ORM relacional a PostgreSQL 18 con Spring Data JPA y configuración de Job
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (auto, auto, 1fr),
+    columns: (95pt, 110pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -1718,7 +1791,7 @@ Mapeo ORM relacional a PostgreSQL 18 con Spring Data JPA y configuración de Job
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (auto, auto, 1fr),
+    columns: (95pt, 110pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -2131,7 +2204,7 @@ Mapeo relacional JPA a PostgreSQL 18 con adaptadores de repositorio, ensamblador
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (auto, auto, 1fr),
+    columns: (95pt, 110pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -2155,7 +2228,7 @@ Mapeo relacional JPA a PostgreSQL 18 con adaptadores de repositorio, ensamblador
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (auto, auto, 1fr),
+    columns: (95pt, 110pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -2174,7 +2247,7 @@ Mapeo relacional JPA a PostgreSQL 18 con adaptadores de repositorio, ensamblador
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (auto, auto, 1fr),
+    columns: (95pt, 110pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -2193,7 +2266,7 @@ Mapeo relacional JPA a PostgreSQL 18 con adaptadores de repositorio, ensamblador
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (auto, auto, 1fr),
+    columns: (95pt, 110pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -2213,7 +2286,7 @@ Mapeo relacional JPA a PostgreSQL 18 con adaptadores de repositorio, ensamblador
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (auto, auto, 1fr),
+    columns: (95pt, 110pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -2236,7 +2309,7 @@ Mapeo relacional JPA a PostgreSQL 18 con adaptadores de repositorio, ensamblador
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (auto, auto, 1fr),
+    columns: (95pt, 110pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -2379,7 +2452,7 @@ La Capa de Dominio define el modelo de negocio inmutable, encapsulando reglas de
     #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `Document`] \
     #text(size: 9.5pt, fill: rgb("#475569"))[`(DocumentType documentType, String documentNumber)`] \
     *Propósito:* Encapsula la identidad legal del sujeto. \
-    *Validaciones:* `documentType` no nulo (`core.error.documentType.notNull`); `documentNumber` no nulo ni en blanco (`core.error.documentNumber.notBlank`).
+    *Validaciones:* `documentType` no nulo \ (`core.error.documentType.notNull`); \ `documentNumber` no nulo ni en blanco \ (`core.error.documentNumber.notBlank`).
   ],
   block(
     fill: rgb("#f8fafc"),
@@ -2453,7 +2526,7 @@ La Capa de Dominio define el modelo de negocio inmutable, encapsulando reglas de
     #text(weight: "bold", fill: rgb("#1e3a8a"))[Record: `MileageIntervalConfig`] \
     #text(size: 9.5pt, fill: rgb("#475569"))[`(int value)`] \
     *Propósito:* Intervalo de kilometraje para mantenimientos sugeridos del taller. \
-    *Validaciones:* Entero estrictamente positivo (`core.error.mileageIntervalConfig.mustBePositive`).
+    *Validaciones:* Entero estrictamente positivo \ (`core.error.mileageIntervalConfig.mustBePositive`).
   ]
 )
 
@@ -2727,7 +2800,7 @@ Implementa la persistencia física en PostgreSQL 18 utilizando Spring Data JPA, 
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (auto, auto, 1fr),
+    columns: (95pt, 110pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -2754,7 +2827,7 @@ Implementa la persistencia física en PostgreSQL 18 utilizando Spring Data JPA, 
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (auto, auto, 1fr),
+    columns: (95pt, 110pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -2779,7 +2852,7 @@ Implementa la persistencia física en PostgreSQL 18 utilizando Spring Data JPA, 
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (auto, auto, 1fr),
+    columns: (95pt, 110pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -2804,7 +2877,7 @@ Implementa la persistencia física en PostgreSQL 18 utilizando Spring Data JPA, 
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (auto, auto, 1fr),
+    columns: (95pt, 110pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -2828,7 +2901,7 @@ Implementa la persistencia física en PostgreSQL 18 utilizando Spring Data JPA, 
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (auto, auto, 1fr),
+    columns: (95pt, 110pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -2854,7 +2927,7 @@ Implementa la persistencia física en PostgreSQL 18 utilizando Spring Data JPA, 
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (auto, auto, 1fr),
+    columns: (95pt, 110pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -2878,7 +2951,7 @@ Implementa la persistencia física en PostgreSQL 18 utilizando Spring Data JPA, 
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (auto, auto, 1fr),
+    columns: (95pt, 110pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -3266,7 +3339,7 @@ Mapeo relacional JPA a PostgreSQL 18 con soporte de eliminación lógica (`@SQLD
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (auto, auto, 1fr),
+    columns: (95pt, 110pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -3294,7 +3367,7 @@ Mapeo relacional JPA a PostgreSQL 18 con soporte de eliminación lógica (`@SQLD
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (auto, auto, 1fr),
+    columns: (95pt, 110pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -3316,7 +3389,7 @@ Mapeo relacional JPA a PostgreSQL 18 con soporte de eliminación lógica (`@SQLD
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (auto, auto, 1fr),
+    columns: (95pt, 110pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -3691,7 +3764,7 @@ Mapeo relacional JPA a tablas PostgreSQL 18 e integración de clientes HTTP REST
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (auto, auto, 1fr),
+    columns: (95pt, 110pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -3718,7 +3791,7 @@ Mapeo relacional JPA a tablas PostgreSQL 18 e integración de clientes HTTP REST
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (auto, auto, 1fr),
+    columns: (95pt, 110pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -3746,7 +3819,7 @@ Mapeo relacional JPA a tablas PostgreSQL 18 e integración de clientes HTTP REST
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (auto, auto, 1fr),
+    columns: (95pt, 110pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -3802,7 +3875,7 @@ Descomposición del Container API en sus componentes principales para el Bounded
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/billing/billing-code-domain.svg", width: 80%)
+      image("assets/chapter-2/tactical-ddd/billing/billing-code-domain.svg", width: 80%)
     ),
     caption: [Diagrama de Clases del Dominio UML -- Billing]
   )
@@ -3821,7 +3894,7 @@ Descomposición del Container API en sus componentes principales para el Bounded
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/billing/billing-erd.svg", width: 60%)
+      image("assets/chapter-2/tactical-ddd/billing/billing-erd.svg", width: 60%)
     ),
     caption: [Diagrama de Base de Datos Relacional ER -- Billing]
   )

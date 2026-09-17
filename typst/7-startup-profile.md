@@ -164,38 +164,38 @@ En TuxLogic, tenemos la visión de consolidarnos como la plataforma referente en
 
   // 5. Vidal Malaga, Jareth Beycker
   rect(
-  width: 100%,
-  fill: rgb("#f8fafc"),
-  stroke: 0.6pt + rgb("#cbd5e1"),
-  radius: 6pt,
-  inset: 12pt,
-  [
-    #grid(
-      columns: (60pt, 1fr),
-      gutter: 12pt,
-      align: (center + horizon, left + top),
-      [
-        #block(
-          width: 52pt,
-          height: 52pt,
-          radius: 26pt,
-          clip: true,
-          stroke: 1.5pt + rgb("#1e3a8a"),
-          image("assets/chapter-1/equipment/jareth-vidal.png", width: 100%, height: 100%, fit: "cover")
-        )
-      ],
-      [
-        #text(size: 12pt, weight: "bold", fill: rgb("#1e3a8a"))[Vidal Malaga, Jareth Beycker]
-        #h(1fr)
-        #text(size: 9.5pt, fill: rgb("#b91c1c"), weight: "bold")[u202316878]
-        #v(0.3em)
-        #text(size: 10pt)[
-          Estudiante de Ingeniería de Software en la Universidad Peruana de Ciencias Aplicadas (UPC), especializado en el desarrollo de aplicaciones móviles y en el diseño de soluciones de interacción centradas en el usuario para entornos multiplataforma, priorizando la usabilidad y la experiencia final del usuario.
+    width: 100%,
+    fill: rgb("#f8fafc"),
+    stroke: 0.6pt + rgb("#cbd5e1"),
+    radius: 6pt,
+    inset: 12pt,
+    [
+      #grid(
+        columns: (60pt, 1fr),
+        gutter: 12pt,
+        align: (center + horizon, left + top),
+        [
+          #block(
+            width: 52pt,
+            height: 52pt,
+            radius: 26pt,
+            clip: true,
+            stroke: 1.5pt + rgb("#b91c1c"),
+            image("assets/chapter-1/equipment/jareth-vidal.png", width: 100%, height: 100%, fit: "cover")
+          )
+        ],
+        [
+          #text(size: 12pt, weight: "bold", fill: rgb("#1e3a8a"))[Vidal Malaga, Jareth Beycker]
+          #h(1fr)
+          #text(size: 9.5pt, fill: rgb("#b91c1c"), weight: "bold")[u202316878]
+          #v(0.3em)
+          #text(size: 10pt)[
+            Estudiante de Ingeniería de Software en la Universidad Peruana de Ciencias Aplicadas (UPC), especializado en el desarrollo de aplicaciones móviles y en el diseño de soluciones de interacción centradas en el usuario para entornos multiplataforma, priorizando la usabilidad y la experiencia final del usuario.
+          ]
         ]
-      ]
-    )
-  ]
- )
+      )
+    ]
+  )
 )
 ```
 
