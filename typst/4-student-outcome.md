@@ -75,4 +75,4 @@ En este primer hito (*AV1*), el equipo *TuxLogic* aplicó metodologías de anál
   flipped: false,
   margin: (x: 2.5cm, top: 2.8cm, bottom: 2.5cm)
 )
->>>>>>> develop
+```
