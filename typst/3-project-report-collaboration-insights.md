@@ -57,7 +57,7 @@ Los 5 integrantes del equipo *TuxLogic* han participado activamente en la constr
     [#text(fill: white, weight: "bold")[Estudiante]],
     [#text(fill: white, weight: "bold")[Código]],
     [#text(fill: white, weight: "bold")[Rol Principal]],
-    [#text(fill: white, weight: "bold")[Aportes Principales al Informe (AV1 / TB1)]],
+    [#text(fill: white, weight: "bold")[Aportes Principales al Informe (AV1)]],
   ),
   [*Machacca Soto, Aldo Jeanfranco*], [u202419485], [Backend & Architecture], [Arquitectura DDD (Context Mapping, Bounded Contexts Tácticos), Modelado C4 (Contexto, Contenedores, Despliegue), Pipeline Typst y Automatización SVG.],
   [*Mamani Vilca, Alan Jaivi*], [u20241e299], [Frontend & UX Research], [Diseño y ejecución de entrevistas cualitativas, matriz de arquetipos B2B/B2C, EventStorming estratégico y Candidate Bounded Context Canvases.],
@@ -69,7 +69,7 @@ Los 5 integrantes del equipo *TuxLogic* han participado activamente en la constr
 
 === 4. Métricas de Colaboración y Analíticos de GitHub
 
-A través de las herramientas de analítica de GitHub (*Insights / Contributors*), se constata la actividad constante del equipo durante el periodo de desarrollo de la entrega *TB1*:
+A través de las herramientas de analítica de GitHub (*Insights / Contributors*), se constata la actividad constante del equipo durante el periodo de desarrollo del *Primer Hito (AV1)*:
 
 #v(0.5em)
 #align(center)[
@@ -80,7 +80,7 @@ A través de las herramientas de analítica de GitHub (*Insights / Contributors*
 ]
 #v(0.5em)
 
-==== Resumen de Actividad en GitHub (Hito TB1):
+==== Resumen de Actividad en GitHub (Hito AV1):
 - *Total de Commits:* 370+ commits registrados a través de las ramas de desarrollo e integración.
 - *Pull Requests Fusionados:* 16 solicitudes de extracción integradas a la rama `develop`.
 - *Nivel de Participación:* 100% de los 5 miembros del equipo registran aportes significativos en código, artefactos y documentación.
@@ -88,9 +88,8 @@ A través de las herramientas de analítica de GitHub (*Insights / Contributors*
 #v(0.5em)
 === 5. Avance Acumulativo del Proyecto
 
-La documentación del informe sigue un esquema de evolución incremental:
-- *Entrega AV1 / Hito Inicial (30/08/2026 - 05/09/2026):* Definición de la startup, problemática inicial y primeros segmentos objetivo (`v1.0` -- `v1.1`).
-- *Entrega TB1 / Hito Consolidado (06/09/2026 - 16/09/2026):* Expansión completa del Capítulo I y Capítulo II. Se integraron la investigación cualitativa de usuarios, catálogo de requerimientos con 60 historias de usuario, diagramas de Impact Mapping, modelado EventStorming, Bounded Context Canvases, Context Mapping, Arquitectura C4 y compilación nativa en Typst (`v1.2` -- `v1.12`).
+La documentación del informe corresponde al *Primer Hito (AV1)* del proyecto:
+- *Entrega AV1 / Primer Hito (30/08/2026 - 16/09/2026):* Definición de la startup, problemática, investigación cualitativa de usuarios y mercado, catálogo de requerimientos con 60 historias de usuario, diagramas de Impact Mapping, modelado EventStorming, Bounded Context Canvases, Context Mapping, Arquitectura C4 y compilación nativa en Typst (`v1.0` -- `v1.12`).
 
 #v(0.5em)
 === 6. Coherencia Interna con el Registro de Versiones
