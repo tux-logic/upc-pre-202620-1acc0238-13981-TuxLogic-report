@@ -1,4 +1,10 @@
 ```{=typst}
+#set page(
+  paper: "a4",
+  flipped: true,
+  margin: (x: 2cm, top: 2.2cm, bottom: 2.2cm)
+)
+
 == Student Outcome
 
 El curso contribuye al cumplimiento del Student Outcome ABET:
@@ -12,9 +18,9 @@ En este primer hito (*AV1*), el equipo *TuxLogic* aplicó metodologías de anál
 
 #v(0.5em)
 #table(
-  columns: (24%, 52%, 24%),
+  columns: (22%, 56%, 22%),
   stroke: 0.4pt + rgb("#cbd5e1"),
-  inset: (x: 8pt, y: 6pt),
+  inset: (x: 10pt, y: 8pt),
   fill: (x, y) => if y == 0 { rgb("#1e3a8a") } else if calc.even(y) { rgb("#f8fafc") } else { white },
   table.header(
     [#text(fill: white, weight: "bold")[Criterio específico]],
@@ -27,15 +33,15 @@ En este primer hito (*AV1*), el equipo *TuxLogic* aplicó metodologías de anál
   ],
   [
     *Alan Jaivi Mamani Vilca:* \
-    Investigó y aplicó principios de UX Research, entrevistas cualitativas y estructuración de EventStorming estratégico para el diseño del producto ShiftIq. \ \
+    Investigó y aplicó principios de UX Research, entrevistas cualitativas y estructuración de EventStorming estratégico (Collect, Refine, Track Causes) para el diseño del producto ShiftIq. \ \
     *Aldo Jeanfranco Machacca Soto:* \
-    Profundizó en patrones de arquitectura Domain-Driven Design (DDD táctico/estratégico), modelado C4 y automatización del pipeline de documentos usando Typst y SVG. \ \
+    Profundizó en patrones de arquitectura Domain-Driven Design (DDD táctico/estratégico), modelado C4 (Contexto, Contenedores, Despliegue) y automatización del pipeline de documentos usando Typst y SVG vectoriales. \ \
     *Diego Antonio Ramos Hinostroza:* \
-    Actualizó conocimientos en desarrollo DevOps, inicialización de repositorios estandarizados, metodología Gitflow y definición de perfiles de startup/solución bajo Lean UX. \ \
+    Actualizó conocimientos en desarrollo DevOps, inicialización de repositorios estandarizados, metodología Gitflow y definición de perfiles de startup/solución bajo principios Lean UX. \ \
     *Dhilsen Armil Mallqui Vilca:* \
     Investigó metodologías de Needfinding, diseño de Empathy Maps y la técnica de Impact Mapping para alinear requerimientos técnicos con objetivos de negocio B2B y B2C. \ \
     *Jareth Beycker Vidal Malaga:* \
-    Aplicó técnicas de análisis competitivo de mercado (SWOT, matrices comparativas), priorización de Product Backlog y definición de 60 Historias de Usuario bajo formato INVEST.
+    Aplicó técnicas de análisis competitivo de mercado (SWOT, matrices comparativas), priorización de Product Backlog y definición de 60 Historias de Usuario bajo el formato INVEST.
   ],
   [
     El equipo demostró capacidad de autoaprendizaje continuo al adoptar metodologías y herramientas de vanguardia (DDD, Typst, C4, EventStorming, Impact Mapping), lo que permitió estructurar un informe técnico riguroso y una arquitectura de software alineada a los estándares de la industria.
@@ -46,19 +52,26 @@ En este primer hito (*AV1*), el equipo *TuxLogic* aplicó metodologías de anál
   ],
   [
     *Alan Jaivi Mamani Vilca:* \
-    Identificó la necesidad de mantenerse actualizado en herramientas de diseño de interacción y prototipado moderno para iterar sobre las soluciones según feedback. \ \
+    Identificó la necesidad de mantenerse actualizado en herramientas de diseño de interacción y prototipado moderno para iterar sobre las soluciones según el feedback de los usuarios. \ \
     *Aldo Jeanfranco Machacca Soto:* \
-    Reconoció la importancia de profundizar continuamente en patrones emergentes de microservicios, seguridad en arquitecturas distribuidas y herramientas de compilación documental. \ \
+    Reconoció la importancia de profundizar continuamente en patrones emergentes de microservicios, seguridad en arquitecturas distribuidas y herramientas de compilación documental eficientes. \ \
     *Diego Antonio Ramos Hinostroza:* \
-    Comprendió la necesidad de capacitarse constantemente en prácticas de CI/CD, automatización de infraestructura y gestión ágil para acelerar el ciclo de entregas. \ \
+    Comprendió la necesidad de capacitarse constantemente en prácticas de CI/CD, automatización de infraestructura y gestión ágil para acelerar el ciclo de entregas de software. \ \
     *Dhilsen Armil Mallqui Vilca:* \
     Reconoció la relevancia del aprendizaje continuo en ingeniería de requerimientos, aseguramiento de calidad (QA) y metodologías ágiles centradas en el valor del cliente. \ \
     *Jareth Beycker Vidal Malaga:* \
-    Valoró la importancia del aprendizaje permanente en gestión de producto, análisis del mercado tecnológico y estrategia digital para mantener la competitividad móvil.
+    Valoró la importancia del aprendizaje permanente en gestión de producto, análisis del mercado tecnológico y estrategia digital para mantener la competitividad de las soluciones móviles.
   ],
   [
     El desarrollo de la entrega evidenció que el aprendizaje continuo es un pilar indispensable para afrontar desafíos complejos de software, garantizando adaptabilidad, calidad técnica y crecimiento profesional permanente en el equipo.
   ]
 )
-#pagebreak()
+
+#v(0.5em)
+
+#set page(
+  paper: "a4",
+  flipped: false,
+  margin: (x: 2.5cm, top: 2.8cm, bottom: 2.5cm)
+)
 ```
