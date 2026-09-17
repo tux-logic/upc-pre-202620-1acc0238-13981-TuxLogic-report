@@ -1213,13 +1213,31 @@ La Capa de Dominio encapsula el modelo de negocio inmutable, asegurando transici
   *Mapeo Relacional:* Tabla `work_orders` (Agregado `WorkOrder`). \
   *Campos Mapeados:* `id` (UUID, PK), `appointment_id` (UUID), `branch_id` (UUID), `vehicle_id` (UUID), `customer_id` (UUID), `internal_number` (INTEGER), `status` (VARCHAR), `diagnostic_summary` (TEXT), `mileage_in` (DECIMAL), `total_amount` (DECIMAL), `created_at`, `updated_at`, `version`. \
   *Adaptador:* `WorkOrderRepositoryImpl` delega en `SpringDataWorkOrderRepository` y publica eventos de dominio `WorkOrderCreatedEvent` y `WorkOrderCompletedEvent`.
+]
 
-  #v(8pt)
+#v(0.4em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
   #text(weight: "bold", fill: rgb("#1e3a8a"))[`WorkOrderTaskPersistenceEntity` & `WorkOrderTaskProductPersistenceEntity`] \
   *Mapeo Relacional:* Tablas `work_order_tasks` y `work_order_task_products` (Entidades internas del agregado `WorkOrder`). \
   *Campos Mapeados:* Relación `@OneToMany` con cascada en tareas y productos consumidos durante las intervenciones técnicas.
+]
 
-  #v(8pt)
+#v(0.4em)
+
+#block(
+  fill: rgb("#f8fafc"),
+  stroke: 0.5pt + rgb("#cbd5e1"),
+  radius: 4pt,
+  inset: 10pt,
+  width: 100%
+)[
   #text(weight: "bold", fill: rgb("#1e3a8a"))[`ServicePersistenceEntity` & `ServiceRepositoryImpl`] \
   *Mapeo Relacional:* Tabla `services` (Catálogo de servicios del taller por sucursal). \
   *Campos Mapeados:* `id` (UUID, PK), `branch_id` (UUID), `name` (VARCHAR), `price` (DECIMAL), `created_at`, `updated_at`, `version`.
@@ -1313,6 +1331,49 @@ La Capa de Dominio encapsula el modelo de negocio inmutable, asegurando transici
 #v(0.6em)
 
 #block(sticky: true)[
+  #text(weight: "bold", size: 9.5pt, fill: rgb("#334155"))[Tabla: `work_order_tasks`]
+]
+#v(0.2em)
+#align(center)[
+  #table(
+    columns: (95pt, 110pt, 1fr),
+    align: (left, center, left),
+    table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
+    [*`id`*], [`UUID`], [`PRIMARY KEY, DEFAULT gen_random_uuid()`],
+    [*`work_order_id`*], [`UUID`], [`NOT NULL, FOREIGN KEY -> work_orders(id)`],
+    [*`service_id`*], [`UUID`], [`NOT NULL, FOREIGN KEY -> services(id)`],
+    [*`branch_id`*], [`UUID`], [`NOT NULL`],
+    [*`assigned_mechanic_id`*], [`UUID`], [`NULLABLE`],
+    [*`status`*], [`VARCHAR(20)`], [`NOT NULL`],
+    [*`price`*], [`DECIMAL(12,2)`], [`NOT NULL, DEFAULT 0.00`],
+    [*`started_at`*], [`TIMESTAMP`], [`NULLABLE`],
+    [*`completed_at`*], [`TIMESTAMP`], [`NULLABLE`],
+  )
+]
+
+#v(0.6em)
+
+#block(sticky: true)[
+  #text(weight: "bold", size: 9.5pt, fill: rgb("#334155"))[Tabla: `work_order_task_products`]
+]
+#v(0.2em)
+#align(center)[
+  #table(
+    columns: (95pt, 110pt, 1fr),
+    align: (left, center, left),
+    table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
+    [*`id`*], [`UUID`], [`PRIMARY KEY, DEFAULT gen_random_uuid()`],
+    [*`work_order_task_id`*], [`UUID`], [`NOT NULL, FOREIGN KEY -> work_order_tasks(id)`],
+    [*`product_id`*], [`UUID`], [`NOT NULL`],
+    [*`quantity`*], [`INTEGER`], [`NOT NULL, DEFAULT 1`],
+    [*`unit_price`*], [`DECIMAL(12,2)`], [`NOT NULL, DEFAULT 0.00`],
+    [*`total_amount`*], [`DECIMAL(12,2)`], [`NOT NULL, DEFAULT 0.00`],
+  )
+]
+
+#v(0.6em)
+
+#block(sticky: true)[
   #text(weight: "bold", size: 9.5pt, fill: rgb("#334155"))[Tabla: `services`]
 ]
 #v(0.2em)
@@ -1321,10 +1382,13 @@ La Capa de Dominio encapsula el modelo de negocio inmutable, asegurando transici
     columns: (95pt, 110pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
-    [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
+    [*`id`*], [`UUID`], [`PRIMARY KEY, DEFAULT gen_random_uuid()`],
+    [*`branch_id`*], [`UUID`], [`NOT NULL`],
     [*`name`*], [`VARCHAR(100)`], [`NOT NULL, UNIQUE`],
     [*`price`*], [`DECIMAL(12,2)`], [`NOT NULL, DEFAULT 0.00`],
-    [*`is_active`*], [`BOOLEAN`], [`NOT NULL, DEFAULT TRUE`],
+    [*`created_at`*], [`TIMESTAMP`], [`NOT NULL, DEFAULT CURRENT_TIMESTAMP`],
+    [*`updated_at`*], [`TIMESTAMP`], [`NOT NULL, DEFAULT CURRENT_TIMESTAMP`],
+    [*`version`*], [`BIGINT`], [`NOT NULL, DEFAULT 0`],
   )
 ]
 
