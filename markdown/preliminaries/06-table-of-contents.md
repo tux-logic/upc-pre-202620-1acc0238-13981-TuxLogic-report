@@ -1,6 +1,5 @@
 # Tabla de Contenidos
 
-## Secciones Preliminares
 - [Carátula del Informe](01-cover.md)
 - [Registro de Versiones del Informe](02-report-version-log.md)
 - [Project Report Collaboration Insights](03-collaboration-insights.md)
