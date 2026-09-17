@@ -1224,29 +1224,29 @@ El Impact Mapping articula, para cada segmento objetivo de ShiftIq, el *Goal* de
 
 **Figura.** *Impact Mapping — Segmento Objetivo 1 (parte 1): Actor Dueño / Administrador*
 
-![](assets/impact-mapping-segmento-1-1.jpg)
+![](../assets/chapter-2/needfinding/impact-mapping-segmento-1-1.jpg)
 
 **Figura.** *Impact Mapping — Segmento Objetivo 1 (parte 2): Actor Mecánico*
 
-![](assets/impact-mapping-segmento-1-2.jpg)
+![](../assets/chapter-2/needfinding/impact-mapping-segmento-1-2.jpg)
 
 **Figura.** *Impact Mapping — Segmento Objetivo 1 (parte 3): Actor Cajero / Recepción*
 
-![](assets/impact-mapping-segmento-1-3.jpg)
+![](../assets/chapter-2/needfinding/impact-mapping-segmento-1-3.jpg)
 
 #### Segmento Objetivo 2 — Conductores (B2C)
 
 **Figura.** *Impact Mapping — Segmento Objetivo 2 (parte 1): Actor Conductor*
 
-![](assets/impact-mapping-segmento-2-1.jpg)
+![](../assets/chapter-2/needfinding/impact-mapping-segmento-2-1.jpg)
 
 **Figura.** *Impact Mapping — Segmento Objetivo 2 (parte 2): Actor Mecánico*
 
-![](assets/impact-mapping-segmento-2-2.jpg)
+![](../assets/chapter-2/needfinding/impact-mapping-segmento-2-2.jpg)
 
 **Figura.** *Impact Mapping — Segmento Objetivo 2 (parte 3): Actor Taller afiliado*
 
-![](assets/impact-mapping-segmento-2-3.jpg)
+![](../assets/chapter-2/needfinding/impact-mapping-segmento-2-3.jpg)
 
 ### 2.4.3. Product Backlog
 

@@ -190,21 +190,21 @@
   ),
 
   [
-    #align(center)[#image("assets/Logo_GestionCAR.jpg", height: 32pt)]
+    #align(center)[#image("assets/chapter-2/competitors/Logo_GestionCAR.jpg", height: 32pt)]
   ],
   [Se posicionan como *la red de talleres más grande de la región*: no venden solo software, venden pertenecer a una comunidad. Su gancho es la *comunidad activa* (cursos, certificaciones, foro técnico, marketplace de servicios) que hace que los talleres se queden por el ecosistema, no solo por las funciones del sistema.],
   [*Efecto de red regional*: al operar en varios países de LATAM acumulan miles de talleres, lo que les da economías de escala para invertir en funciones como IA de transcripción de diagnósticos y en mantener viva una comunidad de aprendizaje entre talleres. Esa base instalada grande genera confianza ("si tantos talleres lo usan, debe funcionar").],
   [*Su IA transcribe lo que el mecánico ya diagnosticó a mano*: la IA de GestionCar ayuda a redactar o pasar en limpio el reporte, pero *no lee el vehículo en tiempo real* — el mecánico sigue usando su escáner aparte y anotando manualmente. *Nuestra oportunidad:* nuestro dispositivo OBD2 envía la telemetría directo a la plataforma y nuestro motor de interpretación de códigos DTC genera la alerta y el nivel de criticidad al instante, sin que el mecánico tenga que redactar nada. Les ganamos en *velocidad de diagnóstico* y *prevención real de fallas*, no solo en documentarlas mejor.],
 
   [
-    #align(center)[#image("assets/Logo_OK-Car.png", height: 32pt)]
+    #align(center)[#image("assets/chapter-2/competitors/Logo_OK-Car.png", height: 32pt)]
   ],
   [Se venden como *la solución simple y accesible en la nube*: "digitaliza tu taller sin complicaciones". Su gancho es la *rapidez de adopción* y un set de funciones completo (presupuestos, VIN, facturación, seguimiento de clientes) para talleres pequeños que solo quieren dejar el papel y el Excel.],
   [*Simplicidad y reconocimiento en comparadores*: al aparecer bien posicionados en sitios como Capterra o ComparaSoftware, generan confianza inmediata en dueños de taller que buscan "el más recomendado" antes de decidir, sin necesidad de una fuerza de ventas agresiva.],
   [*Administran el papeleo, no el vehículo*: OK CAR no tiene ninguna integración con el auto — todo su valor está en organizar órdenes, presupuestos y facturas, pero el diagnóstico sigue dependiendo 100% del ojo del mecánico. *Nuestra oportunidad:* nuestras alertas nacen directamente de la lectura OBD2 del vehículo, con nivel de criticidad ya definido, antes de que el conductor note algo raro. Les ganamos en *tecnología de diagnóstico* y en darle al conductor una razón basada en datos reales del auto para confiar en el taller.],
 
   [
-    #align(center)[#image("assets/Logo_ERP.png", height: 32pt)]
+    #align(center)[#image("assets/chapter-2/competitors/Logo_ERP.png", height: 32pt)]
   ],
   [Se venden como *el ERP que cumple con todo lo que pide SUNAT*: "factura y controla tu taller o concesionario sin dolores de cabeza tributarios". Su gancho es el *cumplimiento normativo* y el control de historial por placa/mecánico, apuntando tanto a talleres como a concesionarios.],
   [*Especialización tributaria y alcance a concesionarios*: al enfocarse en la facturación electrónica SUNAT como eje central, generan confianza con negocios más grandes (concesionarios) que no pueden arriesgarse a errores de facturación, ampliando su mercado más allá del taller independiente.],

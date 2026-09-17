@@ -44,7 +44,7 @@ En TuxLogic, tenemos la visión de consolidarnos como la plataforma referente en
           #text(size: 9.5pt, fill: rgb("#b91c1c"), weight: "bold")[u20241e299]
           #v(0.3em)
           #text(size: 10pt)[
-            Estudiante de Ingeniería de Software de la Universidad Peruana de Ciencias Aplicadas (UPC). Enfocado en el diseño e implementación de interfaces de usuario intuitivas y el desarrollo frontend para aplicaciones móviles y plataformas web.
+            Estudiante de Ingeniería de Software de la Universidad Peruana de Ciencias Aplicadas (UPC). Interesado en el desarrollo de software financiero, arquitectura en la nube (AWS), análisis de datos e integración de soluciones con inteligencia artificial (IA). Cuenta con conocimientos en modelado Domain-Driven Design (DDD, EventStorming, C4 Model), servicios web y APIs REST, así como experiencia en investigación de usuarios y levantamiento de requerimientos de negocio.
           ]
         ]
       )
