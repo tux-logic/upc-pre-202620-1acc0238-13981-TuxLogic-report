@@ -494,35 +494,10 @@ La interacción más relevante se presenta alrededor del proceso de servicio aut
 
 #v(0.5em)
 #align(center)[
-  #block(
-    fill: rgb("#f8fafc"),
-    stroke: 0.5pt + rgb("#cbd5e1"),
-    inset: 12pt,
-    radius: 6pt,
-    width: 90%
-  )[
-    #text(size: 9pt, font: "DejaVu Sans Mono")[
-      ┌────────────────────────────────────────────────────────┐ \
-      │         Vehicle Intelligence & Diagnostics             │ \
-      └───────────────────────────┬────────────────────────────┘ \
-                                  │ (Alertas DTC / Telemetría)   \
-                                  ▼                              \
-      ┌────────────────────────────────────────────────────────┐ \
-      │              Fleet & Appointments                      │ \
-      └───────────────────────────┬────────────────────────────┘ \
-                                  │ (Reserva de Cita)            \
-                                  ▼                              \
-      ┌────────────────────────────────────────────────────────┐ \
-      │               Service Operations                       │ \
-      └─────────────┬───────────────────────────┬──────────────┘ \
-                    │                           │                \
-                    │ (Reserva Stock)           │ (Facturación)  \
-                    ▼                           ▼                \
-      ┌───────────────────────────┐ ┌──────────────────────────┐ \
-      │   Inventory Management    │ │    Billing & Payments    │ \
-      └───────────────────────────┘ └──────────────────────────┘
-    ]
-  ]
+  #figure(
+    image("assets/chapter2/strategic-level-DDD/event-storming/context-mapping-flow.svg", width: 85%),
+    caption: [Flujo de interacción entre Bounded Contexts en el proceso de servicio automotriz.]
+  )
 ]
 #v(0.5em)
 
