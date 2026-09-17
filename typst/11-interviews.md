@@ -203,19 +203,25 @@ Este cuestionario busca explorar las conductas de mantenimiento, las barreras co
   stroke: 0.4pt + rgb("#cbd5e1"),
   inset: (x: 8pt, y: 6pt),
   fill: (x, y) => if y == 0 { rgb("#1e3a8a") } else if calc.even(y) { rgb("#f8fafc") } else { white },
-  table.cell(colspan: 2)[#text(fill: white, weight: "bold")[Entrevista 1]],
-  [*Nombre*], [...],
-  [*Apellidos*], [...],
-  [*Edad*], [...],
-  [*Distrito*], [...],
-  [*Aplicaciones Usadas*], [...],
-  [*Tecnologías*], [...],
-  [*Navegadores*], [...],
-  [*Entrevistador*], [...],
-  [*Evidencia*], [...],
-  [*Enlace de Grabación*], [...],
-  [*Duración*], [...],
-  [*Resumen*], [...]
+  table.cell(colspan: 2)[#text(fill: white, weight: "bold")[Entrevista: Usuario de Vehículo Particular y Hábitos de Mantenimiento (Perfil Femenino)]],
+  [*Nombre*], [Fatima],
+  [*Apellidos*], [Trujillo Mendoza],
+  [*Edad*], [36 años],
+  [*Distrito*], [San Miguel, Lima],
+  [*Aplicaciones Usadas*], [Google Maps, WhatsApp, Yape, banca móvil],
+  [*Tecnologías*], [Smartphone iPhone 12 (iOS)],
+  [*Navegadores*], [Safari],
+  [*Entrevistador*], [Jareth Vidal],
+  [*Evidencia*], [#image("../assets/chapter2/interviews/interview-seg-2.PNG", alt: "Evidencia de la entrevista")],
+  [*Enlace de Grabación*], [#link("https://upcedupe-my.sharepoint.com/:v:/g/personal/u202316878_upc_edu_pe/IQD30_In5tm1RpfV1t5KuupVATa1nIF_ByDb9ye56ItupVE?e=LN696c&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D")[Ver entrevista]],
+  [*Duración*], [10:54],
+  [*Resumen*], [
+    La entrevistada tiene 36 años, reside en San Miguel, es divorciada y trabaja como coordinadora administrativa con horarios variables. Es madre de dos hijas y única conductora del hogar; su vehículo, un Kia Rio 2020, es esencial para el colegio, actividades, compras y desplazamientos nocturnos, recorriendo entre 25 y 30 km diarios. Mantiene el cambio de aceite cada 5,000 km con recordatorios en el celular, pero revisa frenos y alineación de forma reactiva. Relató un episodio en que se encendió una luz en el tablero un viernes, justo antes de recoger a sus hijas, generándole nervios ante la posibilidad de quedar varada con ellas; por falta de tiempo, esperó hasta el lunes para llevarlo al taller. La falta de tiempo por su rol de madre sola y, sobre todo, la incertidumbre sobre los costos son los factores que más la llevan a postergar el mantenimiento.
+
+    Respecto a su relación con los talleres, expresó una preocupación particular como mujer: percibe que en algunos lugares intentan cobrarle de más o explicarle de forma superficial. Ha vivido experiencias donde el costo final triplicó la cotización inicial, generándole sensación de estar atrapada. Valora la honestidad, la ausencia de tecnicismos innecesarios, presupuestos que se respeten y evidencia visual del problema antes de autorizar gastos adicionales.
+
+    En el plano digital, usa un iPhone con Google Maps, WhatsApp y Yape con frecuencia, y prefiere notificaciones push como apoyo para organizar su carga de responsabilidades. Frente a un dispositivo OBD2 conectado, se mostró muy receptiva, priorizando la seguridad de sus hijas y la planificación anticipada de gastos, y estaría dispuesta a mantenerlo conectado de forma permanente. Como condición indispensable, exige transparencia total sobre qué datos se recopilan (mecánicos y de ubicación), que no se compartan sin su autorización, y la posibilidad de eliminar su información si decide dejar de usar la aplicación.
+  ]
 )
 
 #v(0.5em)
