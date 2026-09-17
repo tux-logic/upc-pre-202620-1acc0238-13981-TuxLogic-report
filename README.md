@@ -11,5 +11,3 @@
     <img src="assets/general/btn-markdown.svg" alt="Ver Informe Markdown" height="58" />
   </a>
 </p>
-
----
