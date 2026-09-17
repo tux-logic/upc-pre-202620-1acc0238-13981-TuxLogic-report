@@ -495,7 +495,7 @@ La interacción más relevante se presenta alrededor del proceso de servicio aut
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter2/strategic-level-DDD/event-storming/context-mapping-flow.svg", width: 85%),
+    image("assets/chapter2/strategic-level-DDD/event-storming/context-mapping-flow.svg", width: 70%),
     caption: [Flujo de interacción entre Bounded Contexts en el proceso de servicio automotriz.]
   )
 ]
