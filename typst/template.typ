@@ -27,7 +27,7 @@
 
 #set text(
   font: ("Liberation Sans", "DejaVu Sans", "Arial"),
-  size: 11pt,
+  size: 10pt,
   lang: "es",
   region: "PE",
   fill: rgb("#1e293b")
@@ -45,7 +45,7 @@
 
 #show heading.where(level: 1): it => {
   v(1.2em)
-  text(fill: rgb("#b91c1c"), weight: "bold", size: 16pt)[
+  text(fill: rgb("#b91c1c"), weight: "bold", size: 15pt)[
     #it.body
   ]
   v(0.6em)
@@ -53,7 +53,7 @@
 
 #show heading.where(level: 2): it => {
   v(1em)
-  text(fill: rgb("#1e3a8a"), weight: "bold", size: 13pt)[
+  text(fill: rgb("#1e3a8a"), weight: "bold", size: 12pt)[
     #it.body
   ]
   v(0.5em)
@@ -61,7 +61,7 @@
 
 #show heading.where(level: 3): it => {
   v(0.8em)
-  text(fill: rgb("#334155"), weight: "bold", size: 11pt)[
+  text(fill: rgb("#334155"), weight: "bold", size: 10pt)[
     #it.body
   ]
   v(0.4em)
