@@ -3802,7 +3802,7 @@ Descomposición del Container API en sus componentes principales para el Bounded
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/billing/billing-code-domain.svg", width: 80%)
+      image("assets/chapter-2/tactical-ddd/billing/billing-code-domain.svg", width: 80%)
     ),
     caption: [Diagrama de Clases del Dominio UML -- Billing]
   )
@@ -3821,7 +3821,7 @@ Descomposición del Container API en sus componentes principales para el Bounded
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 8pt,
       radius: 4pt,
-      image("assets/billing/billing-erd.svg", width: 60%)
+      image("assets/chapter-2/tactical-ddd/billing/billing-erd.svg", width: 60%)
     ),
     caption: [Diagrama de Base de Datos Relacional ER -- Billing]
   )
