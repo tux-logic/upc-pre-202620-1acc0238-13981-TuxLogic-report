@@ -29,7 +29,7 @@ En TuxLogic, tenemos la visión de consolidarnos como la plataforma referente en
 
 #### 4. Ramos Hinostroza, Diego Antonio (`u202224130`)
 * **Rol:** Estudiante de Ingeniería de Software -- Backend & DevOps
-* **Descripción:** Estudiante de sexto ciclo de Ingeniería de Software en la UPC. Cuenta con dominio en diseño de arquitectura, desarrollo backend y consumo de servicios web. Experiencia en construcción e integración de APIs REST utilizando Java (Spring Boot), C# y Python, modelado de bases de datos relacionales y NoSQL, estructuración de comunicación cliente-servidor en apps móviles, Docker y Git.
+* **Descripción:** Estudiante de sexto ciclo de Ingeniería de Software en la UPC. Cuento con dominio en diseño de arquitectura, desarrollo backend y consumo de servicios web. Experiencia en construcción e integración de APIs REST utilizando Java (Spring Boot), C# y Python, modelado de bases de datos relacionales y NoSQL, estructuración de comunicación cliente-servidor en apps móviles, Docker y Git.
 
 #### 5. Vidal Malaga, Jareth Beycker (`u202316878`)
 * **Rol:** Estudiante de Ingeniería de Software -- Mobile & Frontend Developer
