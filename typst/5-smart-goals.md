@@ -6,10 +6,10 @@ Los objetivos SMART son una herramienta fundamental para definir metas claras, a
 A continuación, cada integrante del equipo *TuxLogic* formula un plan de crecimiento profesional compuesto por al menos dos objetivos SMART a ejecutarse tras su graduación universitaria, orientados a mantener un aprendizaje continuo y un desarrollo profesional de alto impacto en la industria del software.
 
 #v(0.5em)
-=== 1. Alan Jaivi Mamani Vilca (Frontend & UX Lead)
+=== 1. Alan Jaivi Mamani Vilca (FinTech Data & Cloud Architecture Lead)
 
 #v(0.3em)
-#text(weight: "bold", fill: rgb("#1e3a8a"))[Objetivo SMART 1: Certificación Internacional en UX/UI (Certified Usability Analyst -- CUA)]
+#text(weight: "bold", fill: rgb("#1e3a8a"))[Objetivo SMART 1: Certificación Internacional en Análisis de Datos y Cloud para Sistemas Financieros (AWS Certified Data Analytics / Financial Cloud Specialist)]
 
 #v(0.3em)
 #table(
@@ -17,18 +17,18 @@ A continuación, cada integrante del equipo *TuxLogic* formula un plan de crecim
   stroke: 0.4pt + rgb("#cbd5e1"),
   inset: (x: 8pt, y: 6pt),
   fill: (x, y) => if calc.even(y) { rgb("#f8fafc") } else { white },
-  [*Descripción del objetivo*], [Obtener la certificación Certified Usability Analyst (CUA) de Human Factors International mediante un programa formal de preparación y examen oficial.],
+  [*Descripción del objetivo*], [Obtener la certificación oficial AWS Certified Data Analytics / Solutions Architect enfocada en la ingesta, procesamiento masivo de datos transaccionales y arquitectura de software para plataformas financieras y FinTech.],
   [*Fecha de inicio*], [15/01/2027],
   [*Fecha de cumplimiento esperada*], [15/07/2027],
-  [*S -- Specific*], [Aprobar la evaluación oficial de CUA enfocada en diseño centrado en el usuario, investigación cualitativa y pruebas de usabilidad en entornos web y móviles.],
-  [*M -- Measurable*], [Obtener un puntaje mínimo de 80/100 en el examen de certificación y publicar la credencial digital verificable en LinkedIn.],
-  [*A -- Achievable*], [Dedicar 10 horas semanales durante 6 meses al estudio de los módulos oficiales de HFI e investigación de casos prácticos.],
-  [*R -- Relevant*], [Fortalecer el perfil profesional como especialista UX/UI Lead para garantizar interfaces accesibles e intuitivas en productos digitales de gran escala.],
+  [*S -- Specific*], [Aprobar la evaluación oficial de certificación AWS orientada a canales de datos en tiempo real (Kinesis, Redshift), almacenamiento seguro de telemetría/transacciones y cumplimiento de estándares de ciberseguridad financiera.],
+  [*M -- Measurable*], [Obtener un puntaje mínimo de 800/1000 en el examen oficial de AWS y publicar la credencial digital verificable en LinkedIn.],
+  [*A -- Achievable*], [Consolidar la formación universitaria en ingeniería de software dedicando 10 horas semanales durante 6 meses al estudio de los módulos oficiales de AWS y simulaciones con datos financieros.],
+  [*R -- Relevant*], [Especializarse como Ingeniero de Software en Análisis de Datos Financieros para diseñar e implementar plataformas transaccionales de alto rendimiento en el sector bancario y FinTech.],
   [*T -- Time-bound*], [Completar la preparación y rendir el examen oficial en un periodo de 6 meses tras la graduación (julio de 2027).],
 )
 
 #v(0.5em)
-#text(weight: "bold", fill: rgb("#1e3a8a"))[Objetivo SMART 2: Especialización en Frameworks Frontend Modernos (Next.js & React Native)]
+#text(weight: "bold", fill: rgb("#1e3a8a"))[Objetivo SMART 2: Desarrollo e Implementación de un Pipeline de Análisis de Datos e Inteligencia Financiera]
 
 #v(0.3em)
 #table(
@@ -36,14 +36,14 @@ A continuación, cada integrante del equipo *TuxLogic* formula un plan de crecim
   stroke: 0.4pt + rgb("#cbd5e1"),
   inset: (x: 8pt, y: 6pt),
   fill: (x, y) => if calc.even(y) { rgb("#f8fafc") } else { white },
-  [*Descripción del objetivo*], [Desarrollar y publicar 2 aplicaciones multiplataforma (Web con Next.js y Móvil con React Native) en producción utilizando arquitectura limpia e integración continua.],
+  [*Descripción del objetivo*], [Desarrollar y desplegar en producción un sistema de software enfocado en el análisis predictivo de datos financieros y métricas de riesgo transaccional utilizando Python, FastAPI, servicios cloud e integración continua.],
   [*Fecha de inicio*], [01/08/2027],
   [*Fecha de cumplimiento esperada*], [01/02/2028],
-  [*S -- Specific*], [Diseñar, programar y desplegar 2 productos digitales multiplataforma optimizados para motores de búsqueda (SEO) y rendimiento móvil.],
-  [*M -- Measurable*], [Lograr un acumulado de 500 usuarios activos mensuales y mantener una cobertura de pruebas unitarias superior al 85%.],
-  [*A -- Achievable*], [Aplicar las bases de desarrollo web/móvil adquiridas en la carrera y dedicar 8 horas semanales al desarrollo y despliegue en Vercel y Google Play Store.],
-  [*R -- Relevant*], [Consolidar habilidades técnicas avanzadas en el ecosistema JavaScript/TypeScript para optar a cargos de Senior Frontend Engineer.],
-  [*T -- Time-bound*], [Lograr el despliegue en producción y las métricas objetivo en un lapso de 6 meses (febrero de 2028).],
+  [*S -- Specific*], [Diseñar, programar y desplegar una plataforma de software para el procesamiento de series de tiempo financieras y tableros interactivos de análisis de riesgo crediticio y operativo.],
+  [*M -- Measurable*], [Lograr una latencia de respuesta inferior a 200 ms en consultas analíticas, procesar datasets de más de 100,000 registros transaccionales y mantener una cobertura de pruebas superior al 85%.],
+  [*A -- Achievable*], [Aplicar las bases de desarrollo backend, ciencia de datos e ingeniería de software aprendidas durante la carrera, dedicando 8 horas semanales al desarrollo y despliegue del proyecto.],
+  [*R -- Relevant*], [Consolidar un perfil profesional altamente competitivo como especialista en desarrollo de software financiero y análisis de datos para instituciones bancarias y empresas FinTech.],
+  [*T -- Time-bound*], [Lograr el despliegue en producción y la validación de métricas en un plazo de 6 meses (febrero de 2028).],
 )
 
 #v(1em)

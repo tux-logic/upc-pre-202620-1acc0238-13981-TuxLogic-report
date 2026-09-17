@@ -34,9 +34,14 @@ En TuxLogic, tenemos la visión de consolidarnos como la plataforma referente en
         gutter: 12pt,
         align: (center + horizon, left + top),
         [
-          #circle(radius: 24pt, fill: rgb("#e0e7ff"), stroke: 1.5pt + rgb("#1e3a8a"))[
-            #align(center + horizon)[#text(size: 12pt, weight: "bold", fill: rgb("#1e3a8a"))[AM]]
-          ]
+          #block(
+            width: 52pt,
+            height: 52pt,
+            radius: 26pt,
+            clip: true,
+            stroke: 1.5pt + rgb("#b91c1c"),
+            image("assets/chapter-1/equipment/alan-jaivi-mamani-vilca.png", width: 100%, height: 100%, fit: "cover")
+          )
         ],
         [
           #text(size: 12pt, weight: "bold", fill: rgb("#1e3a8a"))[Mamani Vilca, Alan Jaivi]
@@ -44,7 +49,7 @@ En TuxLogic, tenemos la visión de consolidarnos como la plataforma referente en
           #text(size: 9.5pt, fill: rgb("#b91c1c"), weight: "bold")[u20241e299]
           #v(0.3em)
           #text(size: 10pt)[
-            Estudiante de Ingeniería de Software de la Universidad Peruana de Ciencias Aplicadas (UPC). Enfocado en el diseño e implementación de interfaces de usuario intuitivas y el desarrollo frontend para aplicaciones móviles y plataformas web.
+            Estudiante de Ingeniería de Software de la Universidad Peruana de Ciencias Aplicadas (UPC). Interesado en el desarrollo de software financiero, arquitectura en la nube (AWS), análisis de datos e integración de soluciones con inteligencia artificial (IA). Cuenta con conocimientos en modelado Domain-Driven Design (DDD, EventStorming, C4 Model), servicios web y APIs REST, así como experiencia en investigación de usuarios y levantamiento de requerimientos de negocio.
           ]
         ]
       )
@@ -70,7 +75,7 @@ En TuxLogic, tenemos la visión de consolidarnos como la plataforma referente en
             radius: 26pt,
             clip: true,
             stroke: 1.5pt + rgb("#b91c1c"),
-            image("assets/equipment/aldo-machacca-soto.png", width: 100%, height: 100%, fit: "cover")
+            image("assets/chapter-1/equipment/aldo-machacca-soto.png", width: 100%, height: 100%, fit: "cover")
           )
         ],
         [
@@ -105,7 +110,7 @@ En TuxLogic, tenemos la visión de consolidarnos como la plataforma referente en
             radius: 26pt,
             clip: true,
             stroke: 1.5pt + rgb("#b91c1c"),
-            image("assets/equipment/dhilsen-armil-mallqui-vilca.png", width: 100%, height: 100%, fit: "cover")
+            image("assets/chapter-1/equipment/dhilsen-armil-mallqui-vilca.png", width: 100%, height: 100%, fit: "cover")
           )
         ],
         [
@@ -140,7 +145,7 @@ En TuxLogic, tenemos la visión de consolidarnos como la plataforma referente en
             radius: 26pt,
             clip: true,
             stroke: 1.5pt + rgb("#b91c1c"),
-            image("assets/equipment/diego-ramos-hinostroza.png", width: 100%, height: 100%, fit: "cover")
+            image("assets/chapter-1/equipment/diego-ramos-hinostroza.png", width: 100%, height: 100%, fit: "cover")
           )
         ],
         [
