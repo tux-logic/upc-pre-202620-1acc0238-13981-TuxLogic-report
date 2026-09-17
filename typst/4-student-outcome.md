@@ -15,8 +15,6 @@ El curso contribuye al cumplimiento del Student Outcome ABET:
 #text(weight: "bold")[Criterio:] La capacidad de adquirir y aplicar nuevos conocimientos según sea necesario, utilizando estrategias de aprendizaje apropiadas.
 
 En este primer hito (*AV1*), el equipo *TuxLogic* aplicó metodologías de análisis, investigación y diseño para comprender el problema del usuario, definir la propuesta de valor y plantear una solución viable con una base sólida para futuras iteraciones.
-
-<<<<<<< HEAD
 #v(0.5em)
 #table(
   columns: (22%, 56%, 22%),
