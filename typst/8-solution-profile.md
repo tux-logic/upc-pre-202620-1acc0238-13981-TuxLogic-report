@@ -167,7 +167,7 @@ El diseño de la experiencia de usuario y el desarrollo de ShiftIq se fundamenta
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/LeanUX-Canvas.png", width: 95%),
+    image("assets/LeanUX-Canvas.png", width: 80%),
     caption: [Lean UX Canvas -- ShiftIq (TuxLogic)]
   )
 ]
