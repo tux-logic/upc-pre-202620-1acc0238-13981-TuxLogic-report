@@ -1,4 +1,5 @@
 ``` {=typst}
+#import "typst/header.typ": *
 #align(center)[
   #v(0.5cm)
   #image("assets/general/UPC_logo.png", width: 130pt)
@@ -30,8 +31,7 @@
       #text(weight: "bold", fill: rgb("#1e3a8a"))[Equipo:] TuxLogic
     ],
     [
-      #text(weight: "bold", fill: rgb("#1e3a8a"))[Proyecto:] ShiftIq \
-      #text(weight: "bold", fill: rgb("#1e3a8a"))[Sección:] 1ACC0238
+      #text(weight: "bold", fill: rgb("#1e3a8a"))[Proyecto:] ShiftIq
     ]
   )
 

@@ -23,7 +23,7 @@
 )
 
 #set text(
-  font: ("Liberation Sans", "DejaVu Sans", "Arial", "Roboto"),
+  font: ("Fira Sans", "Liberation Sans", "DejaVu Sans", "Arial"),
   size: 11pt,
   lang: "es",
   region: "PE",
@@ -72,7 +72,14 @@
   v(0.4em)
 }
 
-// Estilo de Tablas
+// Estilo de Tablas con Esquinas Redondeadas
+#show table: it => block(
+  radius: 5pt,
+  stroke: 0.4pt + rgb("#cbd5e1"),
+  clip: true,
+  it
+)
+
 #set table(
   stroke: 0.4pt + rgb("#cbd5e1"),
   fill: (x, y) => if y == 0 { rgb("#1e3a8a") } else if calc.even(y) { rgb("#f8fafc") } else { rgb("#ffffff") },

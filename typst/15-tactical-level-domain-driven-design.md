@@ -365,7 +365,7 @@ Estructura de la tabla relacional base heredada por las entidades persistentes m
 #v(0.5em)
 #align(center)[
   #table(
-    columns: (95pt, 110pt, 1fr),
+    columns: (175pt, 85pt, 1fr),
     align: (center, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, DEFAULT gen_random_uuid()`],
@@ -838,7 +838,7 @@ Descomposición estructural del container REST API para el Bounded Context de IA
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (95pt, 110pt, 1fr),
+    columns: (175pt, 85pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, DEFAULT gen_random_uuid()`],
@@ -862,7 +862,7 @@ Descomposición estructural del container REST API para el Bounded Context de IA
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (95pt, 110pt, 1fr),
+    columns: (175pt, 85pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`user_id`*], [`UUID`], [`PRIMARY KEY, FOREIGN KEY -> users(id)`],
@@ -878,7 +878,7 @@ Descomposición estructural del container REST API para el Bounded Context de IA
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (95pt, 110pt, 1fr),
+    columns: (175pt, 85pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -1208,7 +1208,7 @@ La Capa de Dominio encapsula el modelo de negocio inmutable, asegurando transici
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (110pt, 110pt, 1fr),
+    columns: (175pt, 85pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, DEFAULT gen_random_uuid()`],
@@ -1231,7 +1231,7 @@ La Capa de Dominio encapsula el modelo de negocio inmutable, asegurando transici
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (110pt, 110pt, 1fr),
+    columns: (175pt, 85pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, DEFAULT gen_random_uuid()`],
@@ -1254,7 +1254,7 @@ La Capa de Dominio encapsula el modelo de negocio inmutable, asegurando transici
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (110pt, 110pt, 1fr),
+    columns: (175pt, 85pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, DEFAULT gen_random_uuid()`],
@@ -1274,7 +1274,7 @@ La Capa de Dominio encapsula el modelo de negocio inmutable, asegurando transici
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (110pt, 110pt, 1fr),
+    columns: (175pt, 85pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, DEFAULT gen_random_uuid()`],
@@ -1357,7 +1357,7 @@ La Capa de Dominio encapsula el modelo de negocio inmutable, asegurando transici
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (95pt, 110pt, 1fr),
+    columns: (175pt, 85pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, DEFAULT gen_random_uuid()`],
@@ -1380,7 +1380,7 @@ La Capa de Dominio encapsula el modelo de negocio inmutable, asegurando transici
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (95pt, 110pt, 1fr),
+    columns: (175pt, 85pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -1761,7 +1761,7 @@ Mapeo ORM relacional a PostgreSQL 18 con Spring Data JPA y configuración de Job
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (95pt, 110pt, 1fr),
+    columns: (175pt, 85pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -1791,7 +1791,7 @@ Mapeo ORM relacional a PostgreSQL 18 con Spring Data JPA y configuración de Job
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (95pt, 110pt, 1fr),
+    columns: (175pt, 85pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -2204,7 +2204,7 @@ Mapeo relacional JPA a PostgreSQL 18 con adaptadores de repositorio, ensamblador
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (95pt, 110pt, 1fr),
+    columns: (175pt, 85pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -2228,7 +2228,7 @@ Mapeo relacional JPA a PostgreSQL 18 con adaptadores de repositorio, ensamblador
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (95pt, 110pt, 1fr),
+    columns: (175pt, 85pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -2247,7 +2247,7 @@ Mapeo relacional JPA a PostgreSQL 18 con adaptadores de repositorio, ensamblador
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (95pt, 110pt, 1fr),
+    columns: (175pt, 85pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -2266,7 +2266,7 @@ Mapeo relacional JPA a PostgreSQL 18 con adaptadores de repositorio, ensamblador
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (95pt, 110pt, 1fr),
+    columns: (175pt, 85pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -2286,7 +2286,7 @@ Mapeo relacional JPA a PostgreSQL 18 con adaptadores de repositorio, ensamblador
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (95pt, 110pt, 1fr),
+    columns: (175pt, 85pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -2309,7 +2309,7 @@ Mapeo relacional JPA a PostgreSQL 18 con adaptadores de repositorio, ensamblador
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (95pt, 110pt, 1fr),
+    columns: (175pt, 85pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -2800,7 +2800,7 @@ Implementa la persistencia física en PostgreSQL 18 utilizando Spring Data JPA, 
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (95pt, 110pt, 1fr),
+    columns: (175pt, 85pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -2827,7 +2827,7 @@ Implementa la persistencia física en PostgreSQL 18 utilizando Spring Data JPA, 
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (95pt, 110pt, 1fr),
+    columns: (175pt, 85pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -2852,7 +2852,7 @@ Implementa la persistencia física en PostgreSQL 18 utilizando Spring Data JPA, 
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (95pt, 110pt, 1fr),
+    columns: (175pt, 85pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -2877,7 +2877,7 @@ Implementa la persistencia física en PostgreSQL 18 utilizando Spring Data JPA, 
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (95pt, 110pt, 1fr),
+    columns: (175pt, 85pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -2901,7 +2901,7 @@ Implementa la persistencia física en PostgreSQL 18 utilizando Spring Data JPA, 
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (95pt, 110pt, 1fr),
+    columns: (175pt, 85pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -2927,7 +2927,7 @@ Implementa la persistencia física en PostgreSQL 18 utilizando Spring Data JPA, 
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (95pt, 110pt, 1fr),
+    columns: (175pt, 85pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -2951,7 +2951,7 @@ Implementa la persistencia física en PostgreSQL 18 utilizando Spring Data JPA, 
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (95pt, 110pt, 1fr),
+    columns: (175pt, 85pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -3339,7 +3339,7 @@ Mapeo relacional JPA a PostgreSQL 18 con soporte de eliminación lógica (`@SQLD
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (95pt, 110pt, 1fr),
+    columns: (175pt, 85pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -3367,7 +3367,7 @@ Mapeo relacional JPA a PostgreSQL 18 con soporte de eliminación lógica (`@SQLD
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (95pt, 110pt, 1fr),
+    columns: (175pt, 85pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -3389,7 +3389,7 @@ Mapeo relacional JPA a PostgreSQL 18 con soporte de eliminación lógica (`@SQLD
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (95pt, 110pt, 1fr),
+    columns: (175pt, 85pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -3764,7 +3764,7 @@ Mapeo relacional JPA a tablas PostgreSQL 18 e integración de clientes HTTP REST
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (95pt, 110pt, 1fr),
+    columns: (175pt, 85pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -3791,7 +3791,7 @@ Mapeo relacional JPA a tablas PostgreSQL 18 e integración de clientes HTTP REST
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (95pt, 110pt, 1fr),
+    columns: (175pt, 85pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],
@@ -3819,7 +3819,7 @@ Mapeo relacional JPA a tablas PostgreSQL 18 e integración de clientes HTTP REST
 #v(0.2em)
 #align(center)[
   #table(
-    columns: (95pt, 110pt, 1fr),
+    columns: (175pt, 85pt, 1fr),
     align: (left, center, left),
     table.header([Columna], [Tipo de Dato], [Constraints / Descripción]),
     [*`id`*], [`UUID`], [`PRIMARY KEY, NOT NULL`],

@@ -15,7 +15,6 @@
 **Docente:** Mayta Guillermo, Jorge Luis  
 **Equipo:** TuxLogic  
 **Proyecto:** ShiftIq  
-**Sección:** 1ACC0238  
 
 ---
 
