@@ -26,7 +26,7 @@
 )
 
 #set text(
-  font: ("Liberation Sans", "DejaVu Sans", "Arial"),
+  font: ("Fira Sans", "Liberation Sans", "DejaVu Sans", "Arial"),
   size: 10pt,
   lang: "es",
   region: "PE",

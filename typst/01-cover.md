@@ -1,4 +1,5 @@
 ``` {=typst}
+#import "typst/header.typ": *
 #align(center)[
   #v(0.5cm)
   #image("assets/general/UPC_logo.png", width: 130pt)
