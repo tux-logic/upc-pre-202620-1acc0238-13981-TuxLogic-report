@@ -192,7 +192,7 @@ El *Empathy Mapping* profundiza en lo que cada persona *dice, piensa, hace y sie
 #v(0.3em)
 #align(center)[
   #figure(
-    image("assets/chapter-2/needfinding/empathy-map-taller.png", width: 90%),
+    image("assets/chapter-2/needfinding/empathy-map-taller.png", width: 60%),
     caption: [Empathy Mapping -- Felipe Hernández]
   )
 ]
@@ -223,7 +223,7 @@ El *Empathy Mapping* profundiza en lo que cada persona *dice, piensa, hace y sie
 #v(0.3em)
 #align(center)[
   #figure(
-    image("assets/chapter-2/needfinding/empathy-map-conductor.png", width: 90%),
+    image("assets/chapter-2/needfinding/empathy-map-conductor.png", width: 60%),
     caption: [Empathy Mapping -- Raúl Jiménez]
   )
 ]
