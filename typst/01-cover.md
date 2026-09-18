@@ -30,8 +30,7 @@
       #text(weight: "bold", fill: rgb("#1e3a8a"))[Equipo:] TuxLogic
     ],
     [
-      #text(weight: "bold", fill: rgb("#1e3a8a"))[Proyecto:] ShiftIq \
-      #text(weight: "bold", fill: rgb("#1e3a8a"))[Sección:] 1ACC0238
+      #text(weight: "bold", fill: rgb("#1e3a8a"))[Proyecto:] ShiftIq
     ]
   )
 
