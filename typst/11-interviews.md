@@ -221,7 +221,7 @@ Este cuestionario busca explorar las conductas de mantenimiento, las barreras co
   [*Evidencia*], [
     #align(center)[#image("assets/chapter-2/interviews/interview-seg-2-2.png", width: 70%)]
   ],
-  [*Enlace de Grabación*], [https://upcedupe-my.sharepoint.com/:v:/g/personal/u202224130_upc_edu_pe/IQA6IxCofdt_RIF2FEBLxbqCAcZXLQW-W7Xq_AbzuLo5uxQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=L1qbEP],
+  [*Enlace de Grabación*], [#link("https://upcedupe-my.sharepoint.com/:v:/g/personal/u202224130_upc_edu_pe/IQA6IxCofdt_RIF2FEBLxbqCAcZXLQW-W7Xq_AbzuLo5uxQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=L1qbEP")[Ver evidencia de entrevista]],
   [*Duración*], [8:32 min],
   [*Resumen*], [
     El entrevistado es un joven profesional de 26 años que reside en San Miguel y labora como analista comercial en San Isidro. Es propietario de un automóvil Kia Rio 2019 de transmisión mecánica, el cual utiliza diariamente para traslados laborales y actividades personales de fin de semana, acumulando un promedio de 25 a 30 km diarios expuesto a congestión vehicular severa.\ \
