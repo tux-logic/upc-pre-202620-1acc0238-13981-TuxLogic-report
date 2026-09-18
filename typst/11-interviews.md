@@ -231,18 +231,25 @@ Este cuestionario busca explorar las conductas de mantenimiento, las barreras co
   inset: (x: 8pt, y: 6pt),
   fill: (x, y) => if y == 0 { rgb("#1e3a8a") } else if calc.even(y) { rgb("#f8fafc") } else { white },
   table.cell(colspan: 2)[#text(fill: white, weight: "bold")[Entrevista 2]],
-  [*Nombre*], [...],
-  [*Apellidos*], [...],
-  [*Edad*], [...],
-  [*Distrito*], [...],
-  [*Aplicaciones Usadas*], [...],
-  [*Tecnologías*], [...],
-  [*Navegadores*], [...],
-  [*Entrevistador*], [...],
-  [*Evidencia*], [...],
-  [*Enlace de Grabación*], [...],
-  [*Duración*], [...],
-  [*Resumen*], [...]
+  [*Nombre*], [Aldo Jesus],
+  [*Apellidos*], [Huaman],
+  [*Edad*], [26 años],
+  [*Distrito*], [San Miguel, Lima],
+  [*Aplicaciones Usadas*], [WhatsApp, Waze, Google Maps, Spotify, Yape, Plin, BCP Móvil, Instagram],
+  [*Tecnologías*], [Smartphone Samsung Galaxy (Android 14), laptop con Windows 11],
+  [*Navegadores*], [Google Chrome],
+  [*Entrevistador*], [Diego Ramos],
+  [*Evidencia*], [
+    #align(center)[#image("assets/chapter-2/interviews/interview-seg-2-2.png", width: 70%)]
+  ],
+  [*Enlace de Grabación*], [https://upcedupe-my.sharepoint.com/:v:/g/personal/u202224130_upc_edu_pe/IQA6IxCofdt_RIF2FEBLxbqCAcZXLQW-W7Xq_AbzuLo5uxQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=L1qbEP],
+  [*Duración*], [8:32 min],
+  [*Resumen*], [
+    El entrevistado es un joven profesional de 26 años que reside en San Miguel y labora como analista comercial en San Isidro. Es propietario de un automóvil Kia Rio 2019 de transmisión mecánica, el cual utiliza diariamente para traslados laborales y actividades personales de fin de semana, acumulando un promedio de 25 a 30 km diarios expuesto a congestión vehicular severa.\ \
+    Actualmente maneja el cuidado de su vehículo bajo un enfoque netamente reactivo. Aunque reconoce la necesidad del mantenimiento preventivo cada 5,000 km, suele acudir al taller únicamente cuando percibe síntomas mecánicos notorios (ruidos en pastillas o dureza en embrague). Manifiesta que los principales factores de postergación son la falta de tiempo laboral para llevar el vehículo y la incertidumbre financiera provocada por la falta de presupuestos claros, dependiendo de recordatorios rústicos como el sticker del parabrisas.\ \
+    Frente a la interacción con los talleres mecánicos independientes, el entrevistado resalta una marcada frustración por la asimetría informativa: no comprende la jerga técnica utilizada por los mecánicos y experimenta desconfianza ante posibles cobros excesivos o cotizaciones adicionales imprevistas con el auto ya desarmado.\ \
+    Respecto a la propuesta tecnológica de ShiftIq, muestra una alta disposición de adopción hacia el hardware OBD2 y la aplicación móvil nativa. Valora positivamente la traducción de códigos de falla a lenguaje natural comprensible, la clasificación de severidad y la posibilidad de conocer costos estimados antes de agendar citas en un solo toque. Como condiciones para su uso permanente, solicita que el dispositivo no comprometa la batería del auto y que la plataforma garantice políticas transparentes en el tratamiento de datos telemáticos y de geolocalización.
+  ]
 )
 
 #v(0.5em)
