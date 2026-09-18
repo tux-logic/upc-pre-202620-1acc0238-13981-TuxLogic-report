@@ -174,27 +174,6 @@ Este cuestionario busca explorar las conductas de mantenimiento, las barreras co
 )
 
 #v(0.5em)
-#table(
-  columns: (30%, 70%),
-  stroke: 0.4pt + rgb("#cbd5e1"),
-  inset: (x: 8pt, y: 6pt),
-  fill: (x, y) => if y == 0 { rgb("#1e3a8a") } else if calc.even(y) { rgb("#f8fafc") } else { white },
-  table.cell(colspan: 2)[#text(fill: white, weight: "bold")[Entrevista 3]],
-  [*Nombre*], [...],
-  [*Apellidos*], [...],
-  [*Edad*], [...],
-  [*Distrito*], [...],
-  [*Aplicaciones Usadas*], [...],
-  [*Tecnologías*], [...],
-  [*Navegadores*], [...],
-  [*Entrevistador*], [...],
-  [*Evidencia*], [...],
-  [*Enlace de Grabación*], [...],
-  [*Duración*], [...],
-  [*Resumen*], [...]
-)
-
-#v(0.5em)
 #text(weight: "bold", fill: rgb("#1e3a8a"))[Segmento Objetivo 2: Conductores de Vehículos Particulares en Lima (B2C)]
 
 #v(0.3em)
@@ -253,26 +232,38 @@ Este cuestionario busca explorar las conductas de mantenimiento, las barreras co
 )
 
 #v(0.5em)
-#table(
-  columns: (30%, 70%),
-  stroke: 0.4pt + rgb("#cbd5e1"),
-  inset: (x: 8pt, y: 6pt),
-  fill: (x, y) => if y == 0 { rgb("#1e3a8a") } else if calc.even(y) { rgb("#f8fafc") } else { white },
-  table.cell(colspan: 2)[#text(fill: white, weight: "bold")[Entrevista 3]],
-  [*Nombre*], [...],
-  [*Apellidos*], [...],
-  [*Edad*], [...],
-  [*Distrito*], [...],
-  [*Aplicaciones Usadas*], [...],
-  [*Tecnologías*], [...],
-  [*Navegadores*], [...],
-  [*Entrevistador*], [...],
-  [*Evidencia*], [...],
-  [*Enlace de Grabación*], [...],
-  [*Duración*], [...],
-  [*Resumen*], [...]
-)
-
-#v(0.5em)
 === 2.2.3. Análisis de entrevistas
+
+A partir de la información recabada y de la sistematización de las respuestas obtenidas en las sesiones de entrevista semiestructurada, se desarrolló un análisis cualitativo, cuantitativo y conductual agrupado por cada segmento objetivo. Este análisis consolida los patrones de comportamiento, las barreras operativas, la madurez digital y las expectativas de los usuarios, sirviendo como fundamento directo para la definición de los arquetipos de usuario (#text(style: "italic")[User Personas]) y el diseño de la propuesta de valor de *ShiftIQ*.
+
+==== Segmento Objetivo 1: Dueños o Administradores de Talleres Automotrices Independientes en Lima (B2B)
+
+- *Experiencia y Perfil de Gestión (100%):* El 100% de la muestra de talleres representa a profesionales y microempresarios con amplia trayectoria operativa en el rubro automotriz (entre 7 y 14 años de experiencia), desempeñándose en roles combinados de dirección general, administración de operaciones y coordinación técnica. Esto determina que el arquetipo del taller (#text(style: "italic")[Felipe Hernández]) corresponda a un usuario experimentado en mecánica empírica y gestión de taller, con alta exigencia funcional sobre las herramientas que incorpora a su negocio.
+
+- *Ausencia de Software de Gestión Especializado (100%):* El 100% de los talleres entrevistados carece actualmente de un sistema ERP o plataforma de gestión en la nube. Operan mediante registros físicos (cuadernos de recepción), hojas de cálculo locales en Excel o Google Sheets y coordinación informal por mensajería, lo que confirma la vulnerabilidad operativa ante desorden en la agenda, pérdida de trazabilidad de historiales y falta de previsión de ingresos.
+
+- *Familiaridad con Escáneres de Diagnóstico (100%):* El 100% de los talleres utiliza de forma cotidiana escáneres automotrices profesionales multimarca (Autel, Launch, Bosch KTS) para la lectura computarizada de los vehículos. Esto valida que el personal técnico del taller comprende con fluidez los códigos de diagnóstico de fallas (DTC) y los parámetros de telemetría, respaldando la viabilidad operativa de integrar los dispositivos de lectura telemática OBD-II de *ShiftIQ* en su flujo de trabajo.
+
+- *Canal de Comunicación Exclusivo por Mensajería Móvil (100%):* El 100% utiliza WhatsApp (o WhatsApp Business) y llamadas telefónicas directas como medio único para coordinar citas, solicitar repuestos, enviar evidencias fotográficas y presentar presupuestos a sus clientes, experimentando saturación de chats y desorganización en el seguimiento comercial.
+
+- *Frustración por Mantenimiento Reactivo y Variabilidad de Bahías (100%):* El 100% de los administradores manifestó una profunda frustración por el comportamiento reactivo de los conductores, señalando que aproximadamente el 80% de los clientes acude únicamente cuando el vehículo presenta averías graves o inmovilizantes. Asimismo, reportan ineficiencia por la fluctuación en la ocupación de bahías (tiempos muertos a inicios de semana), expresando la necesidad de contar con mecanismos proactivos para convocar clientes en días de baja demanda.
+
+- *Postura Cautelosa y Pragmática ante Nuevas Tecnologías (100%):* El 100% de los entrevistados muestra una actitud precavida ante la adopción de nuevas plataformas tecnológicas. Exigen que cualquier solución SaaS demuestre un retorno de inversión claro (incremento en la conversión de citas y reducción de tiempos muertos), requiera una baja curva de aprendizaje y mantenga canales de soporte flexibles.
+
+- *Expectativa Central hacia ShiftIQ (100%):* El 100% concibe la solución ideal como un "panel de control operativo y centro de monitoreo preventivo" que centralice el historial de los vehículos de su cartera, emita alertas automáticas de fallas activas y facilite el agendamiento y cotización directa, optimizando la capacidad instalada de sus instalaciones.
+
+==== Segmento Objetivo 2: Conductores de Vehículos Particulares en Lima Metropolitana (B2C)
+
+- *Conectividad Móvil y Viabilidad Técnica IoT (100%):* El 100% de los conductores entrevistados mantiene conectividad constante a redes de datos móviles y enlace Bluetooth activo durante sus trayectos cotidianos, además de utilizar diariamente aplicaciones móviles de navegación (Waze, Google Maps), mensajería (WhatsApp) y finanzas/banca (Yape, Plin, apps bancarias). Este hábito valida estadísticamente la arquitectura IoT de *ShiftIQ*, garantizando la transmisión de la telemetría del hardware OBD-II a través del smartphone del usuario sin generar fricción en su rutina de manejo.
+
+- *Preferencia por Canales de Notificación Dinámicos (100%):* El 100% prefiere recibir alertas y notificaciones del estado de su vehículo a través de notificaciones push e interacción por WhatsApp, rechazando de forma categórica el uso de correos electrónicos formales para temas mecánicos.
+
+- *Conducta de Mantenimiento Predominantemente Reactiva (100%):* El 100% de la muestra reconoce que realiza el mantenimiento de su vehículo de forma reactiva (acudiendo al taller solo ante testigos encendidos en el tablero o ruidos inusuales), restringiendo la prevención básica únicamente al cambio de aceite regular mediante recordatorios físicos (stickers) o alarmas personales. Esto confirma que el arquetipo del conductor (#text(style: "italic")[Raúl Jiménez]) requiere estímulos externos automatizados para cumplir con sus revisiones preventivas.
+
+- *Barreras de Tiempo y Temor a la Opacidad Financiera (100%):* El 100% coincide en que las principales razones para posponer las visitas al taller son la restricción de tiempo (agenda laboral y responsabilidades familiares) y la incertidumbre sobre los costos de reparación. Reportan frustración cuando los presupuestos iniciales se incrementan sin justificación previa con el vehículo ya desarmado en el taller.
+
+- *Sensibilidad a la Asimetría Informativa y Experiencias de Estrés (100%):* El 100% de los usuarios relató episodios de alto estrés o ansiedad causados por fallas mecánicas imprevistas en la vía pública. Asimismo, manifiestan desconfianza hacia la jerga técnica utilizada por algunos talleres, percibiendo una asimetría de información que los hace sentir vulnerables ante cobros injustificados o cambios no autorizados de repuestos.
+
+- *Requerimientos Clave para la Adopción de ShiftIQ (100%):* El 100% de los conductores demanda una aplicación didáctica que traduzca los códigos de falla (DTC) a lenguaje sencillo y comprensible, señale el nivel de severidad/urgencia de la alerta, proporcione estimaciones transparentes de costo y permita reservar citas en un solo toque. Asimismo, exigen políticas rigurosas y transparentes de privacidad que garanticen la seguridad y confidencialidad de sus datos telemáticos y de geolocalización.
+
 ```
