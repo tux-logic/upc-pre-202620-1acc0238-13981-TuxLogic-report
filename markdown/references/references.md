@@ -15,3 +15,15 @@
 7. **Observatorio Nacional de Seguridad Vial (ONSV).** (2025). *Boletín Estadístico Anual de Siniestralidad Vial en el Perú (Periodo 2024).* Ministerio de Transportes y Comunicaciones (MTC). [https://onsv.mtc.gob.pe](https://onsv.mtc.gob.pe)
 
 8. **Vernik, G., & Khon, A.** (2022). *EventStorming in Practice: Hands-on Domain-Driven Design for Software Architects.* Packt Publishing.
+
+9. **Conventional Commits.** (s.f.). *Conventional Commits 1.0.0.* [https://www.conventionalcommits.org/](https://www.conventionalcommits.org/)
+
+10. **Driessen, V.** (2010). *A successful Git branching model.* [https://nvie.com/posts/a-successful-git-branching-model/](https://nvie.com/posts/a-successful-git-branching-model/)
+
+11. **Google.** (s.f.-a). *Google Java Style Guide.* [https://google.github.io/styleguide/javaguide.html](https://google.github.io/styleguide/javaguide.html)
+
+12. **Google.** (s.f.-b). *Google HTML/CSS Style Guide.* [https://google.github.io/styleguide/htmlcssguide.html](https://google.github.io/styleguide/htmlcssguide.html)
+
+13. **Google.** (s.f.-c). *Material Design 3.* [https://m3.material.io/](https://m3.material.io/)
+
+14. **Preston-Werner, T.** (s.f.). *Semantic Versioning 2.0.0.* [https://semver.org/](https://semver.org/)
