@@ -16,3 +16,4 @@
 | 1.11 | 16/09/2026 | Jareth Beycker Vidal Malaga | Incorporación del catálogo completo de Historias de Usuario (User Stories) y Product Backlog priorizado con estimación de Story Points. |
 | 1.12 | 16/09/2026 | Dhilsen Armil Mallqui Vilca | Inclusión de diagramas de Impact Mapping estructurados para los segmentos de talleres automotrices y conductores. |
 | 1.13 | 16/09/2026 | Aldo Jeanfranco Machacca Soto | Optimización tipográfica en Typst, tablas en formato horizontal (Landscape), gráficos vectoriales SVG (Mermaid C4) e imágenes del equipo. |
+| 2.0 | 04/10/2026 | Alan Jaivi Mamani Vilca | Desarrollo de la Sección 4.2 (Sprint 1): Sprint Planning, Aspect Leaders, Sprint Backlog (Landing Page + Backend REST API shiftiq-platform), Evidencias de desarrollo, Suite de pruebas JUnit 5, Servicios OpenAPI/Swagger, Despliegue Docker/Pages y Colaboración. |
