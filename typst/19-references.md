@@ -1,5 +1,5 @@
 ```{=typst}
-== Referencias Bibliográficas
+= Referencias Bibliográficas
 
 1. *Asociación Automotriz del Perú (AAP).* (2026). #emph[Reporte de Venta e Inscripción de Vehículos Livianos y Pesados (Primer Bimestre 2026)]. Asociación Automotriz del Perú. #link("https://www.aap.org.pe")[https://www.aap.org.pe]
 

@@ -5,11 +5,20 @@
   margin: (x: 2cm, top: 2.2cm, bottom: 2.2cm)
 )
 
+= Capítulo II: Requirements and Design
+
 == 2.1. Competidores
 
 === 2.1.1. Análisis competitivo
 
-#align(center)[#text(style: "italic", size: 9.5pt, fill: rgb("#64748b"))[Competitive Analysis Landscape]]
+Con el propósito de evaluar el posicionamiento de ShiftIq frente a las soluciones existentes en el mercado peruano y latinoamericano, se elaboró un análisis competitivo multidimensional. Como se muestra en la *Tabla 1*, se contrastan perfiles empresariales, ventajas competitivas, estrategias de marketing y capacidades operativas entre ShiftIq y tres competidores relevantes (GestionCar, OK CAR y ERP SICO de Soinfo Perú), cuyos logotipos corporativos identifican a cada actor en el estudio:
+
+#v(0.3em)
+#align(center)[
+  #text(weight: "bold")[Tabla 1] \
+  #text(style: "italic")[Matriz de análisis competitivo (Competitive Analysis Landscape)]
+]
+#v(0.3em)
 
 #let header-fill = rgb("#1e3a8a")
 #let label-fill = rgb("#e2e8f0")
@@ -176,7 +185,14 @@
 
 === 2.1.2. Estrategias y tácticas frente a competidores
 
-#align(center)[#text(style: "italic", size: 9.5pt, fill: rgb("#64748b"))[Tabla de estrategias y tácticas frente a competidores]]
+A partir de las brechas detectadas en el análisis preliminar, se formularon estrategias y tácticas directas para capitalizar las debilidades tecnológicas de los rivales. Como se detalla en la *Tabla 2*, se contraponen las tácticas diferenciadoras de ShiftIq frente a las fortalezas y debilidades operativas de cada competidor evaluado:
+
+#v(0.3em)
+#align(center)[
+  #text(weight: "bold")[Tabla 2] \
+  #text(style: "italic")[Matriz de estrategias y tácticas frente a competidores]
+]
+#v(0.3em)
 
 #v(0.5em)
 #table(

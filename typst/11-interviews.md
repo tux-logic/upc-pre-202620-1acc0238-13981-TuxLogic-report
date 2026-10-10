@@ -15,7 +15,14 @@ Para garantizar la rigurosidad científica y la validez empírica del estudio cu
 #v(0.5em)
 ==== a. Matriz de Información Requerida para Arquetipos de Usuarios
 
-La siguiente matriz delimita el propósito de indagación de cada variable requerida para modelar los arquetipos de usuario de ShiftIQ (*Felipe Hernández* para el Taller y *Raúl Jiménez* para el Conductor):
+Como se muestra en la *Tabla 1*, la siguiente matriz delimita el propósito de indagación de cada variable requerida para modelar los arquetipos de usuario de ShiftIQ (*Felipe Hernández* para el Taller y *Raúl Jiménez* para el Conductor):
+
+#v(0.3em)
+#align(center)[
+  #text(weight: "bold")[Tabla 1] \
+  #text(style: "italic")[Matriz de variables y propósitos de indagación para modelado de arquetipos]
+]
+#v(0.3em)
 
 #v(0.5em)
 #table(
