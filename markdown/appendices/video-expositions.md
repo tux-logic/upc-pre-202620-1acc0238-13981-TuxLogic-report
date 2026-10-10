@@ -28,3 +28,11 @@
 | Artefacto | Descripción | Responsables | Enlace Directo |
 | :--- | :--- | :--- | :--- |
 | **Tablero de EventStorming (Miro)** | Tablero colaborativo en Miro que contiene las dinámicas de *Big Picture EventStorming*, *Collect Domain Events*, *Refine Domain*, *Track Causes (Process Modelling)*, *Candidate Context Discovery*, *Domain Message Flows* y *Bounded Context Canvases*. | Alan Jaivi Mamani Vilca | [Ver Tablero Oficial en Miro](https://miro.com/app/board/uXjVHoedhIo=/?share_link_id=281932799218) |
+
+---
+
+## Anexo D: Diseño de la Landing Page en Figma
+
+| Artefacto | Descripción | Enlace directo |
+| :--- | :--- | :--- |
+| **ShiftIQ Landing Page** | Archivo de Figma con el UI Design, el wireframe y el mock-up de la landing, en web y en navegador móvil. | [Abrir en Figma](https://www.figma.com/design/lPYkoOHRmUky6IlMzqHFQX/ShiftIQ-Landing-Page?node-id=1-3&t=cq27eb1l0QqEWQwj-1) |

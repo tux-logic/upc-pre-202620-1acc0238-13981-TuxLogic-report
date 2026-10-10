@@ -58,4 +58,21 @@
   ),
   [*EventStorming (Miro)*], [Tablero colaborativo en Miro que contiene las dinámicas de Big Picture EventStorming, Collect Domain Events, Refine Domain, Track Causes (Process Modelling), Candidate Context Discovery, Domain Message Flows y Bounded Context Canvases.], [Alan Jaivi Mamani Vilca], [#link("https://miro.com/app/board/uXjVHoedhIo=/?share_link_id=281932799218")[Ver Tablero en Miro]],
 )
+
+#v(0.5em)
+=== Anexo D: Diseño de la Landing Page en Figma
+
+#v(0.3em)
+#table(
+  columns: (28%, 40%, 32%),
+  stroke: 0.4pt + rgb("#cbd5e1"),
+  inset: (x: 8pt, y: 6pt),
+  fill: (x, y) => if y == 0 { rgb("#1e3a8a") } else if calc.even(y) { rgb("#f8fafc") } else { white },
+  table.header(
+    [#text(fill: white, weight: "bold")[Artefacto]],
+    [#text(fill: white, weight: "bold")[Descripción]],
+    [#text(fill: white, weight: "bold")[Enlace directo]],
+  ),
+  [*ShiftIQ Landing Page*], [Archivo de Figma con el UI Design, el wireframe y el mock-up de la landing, en web y en navegador móvil.], [#link("https://www.figma.com/design/lPYkoOHRmUky6IlMzqHFQX/ShiftIQ-Landing-Page?node-id=1-3&t=cq27eb1l0QqEWQwj-1")[Abrir en Figma]],
+)
 ```
