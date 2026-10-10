@@ -7,7 +7,7 @@ El perfil de la solución define los fundamentos estratégicos, operativos y té
 
 En Lima Metropolitana, la gestión del mantenimiento automotriz opera predominantemente bajo un esquema reactivo, en el cual los usuarios acuden a los centros de reparación únicamente cuando la falla mecánica ha inhabilitado el funcionamiento del vehículo. Esta dinámica genera sobrecostos imprevistos para los propietarios y compromete la sostenibilidad operativa de los talleres mecánicos independientes, los cuales sufren de una demanda altamente volátil y bajos niveles de fidelización.
 
-De acuerdo con las cifras de la Asociación Automotriz del Perú (AAP, 2026), durante el primer bimestre del año 2026 se comercializaron 41,584 unidades de vehículos livianos, lo que representó una expansión interanual del 36.8% frente al mismo periodo del año anterior. Este dinamismo sostenido en las matriculaciones acentúa la presión operativa sobre el parque automotor existente, demandando capacidades de servicio técnico que garanticen la vida útil de las unidades en circulación.
+De acuerdo con las cifras de la Asociación Automotriz del Perú (AAP, 2026), durante el primer bimestre del año 2026 se comercializaron 41,584 unidades de vehículos livianos, lo que representó una expansión interanual del 36.8% frente al mismo periodo del año anterior, tal como se evidencia en el desglose bimestral (ver *Figura 2*) y en la serie histórica de crecimiento sostenido (ver *Figura 3*). Este dinamismo sostenido en las matriculaciones acentúa la presión operativa sobre el parque automotor existente, demandando capacidades de servicio técnico que garanticen la vida útil de las unidades en circulación.
 
 #v(0.5em)
 #align(center)[
@@ -28,18 +28,18 @@ De acuerdo con las cifras de la Asociación Automotriz del Perú (AAP, 2026), du
 
 A pesar de este crecimiento en el parque vehicular, el sector de servicios técnicos presenta una marcada ineficiencia estructural. En Lima Metropolitana y el Callao operan aproximadamente 38,000 talleres mecánicos independientes, de los cuales una proporción significativa registra pérdidas operativas de entre el 30% y el 40% debido a la falta de herramientas tecnológicas de gestión, la asimetría de precios y la reducida recurrencia de los clientes (Fiestas et al., 2021). La ausencia de canales de comunicación directos y transparentes entre el taller y el cliente perpetúa un clima de desconfianza que inhibe el mantenimiento regular.
 
-Esta desatención preventiva impacta de manera crítica en la seguridad vial. Según el Boletín Estadístico Anual de Siniestralidad Vial publicado por el Observatorio Nacional de Seguridad Vial (ONSV, 2025), durante el año 2024 se registraron 87,757 siniestros de tránsito a nivel nacional, de los cuales el 1.4% tuvieron como factor causal directo fallas mecánicas e inoperatividad de sistemas de iluminación. Esto equivale a 1,190 siniestros viales que pudieron haberse prevenido mediante diagnósticos mecánicos oportunos y esquemas de mantenimiento preventivo basados en el estado real del vehículo.
+Esta desatención preventiva impacta de manera crítica en la seguridad vial. Según el Boletín Estadístico Anual de Siniestralidad Vial publicado por el Observatorio Nacional de Seguridad Vial (ONSV, 2025), durante el año 2024 se registraron 87,757 siniestros de tránsito a nivel nacional, de los cuales el 1.4% tuvieron como factor causal directo fallas mecánicas e inoperatividad de sistemas de iluminación, como se muestra en la distribución porcentual de la *Figura 4*. Esto equivale a 1,190 siniestros viales que pudieron haberse prevenido mediante diagnósticos mecánicos oportunos y esquemas de mantenimiento preventivo basados en el estado real del vehículo.
 
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter-1/estadistica-3.png", width: 85%),
+    image("assets/chapter-1/estadistica-3.png", width: 60%),
     caption: [Distribución porcentual de siniestros viales según causa raíz (2024)]
   )
 ]
 #v(0.5em)
 
-Con la finalidad de aislar los componentes estructurales de esta problemática, TuxLogic desarrolló dos diagramas de Ishikawa, los cuales delimitan las causas origen del mantenimiento reactivo y la fragmentación en la relación taller-conductor.
+Con la finalidad de aislar los componentes estructurales de esta problemática, TuxLogic desarrolló dos diagramas de Ishikawa (ver *Figura 5* y *Figura 6*). Como se ilustra en la *Figura 5*, se delimitan las causas raíz de la adopción predominante de un esquema reactivo en Lima, mientras que en la *Figura 6* se analizan los factores de baja fidelización y pérdida de recurrencia en talleres independientes:
 
 #v(0.5em)
 #align(center)[
@@ -157,6 +157,8 @@ El diseño de la experiencia de usuario y el desarrollo de ShiftIq se fundamenta
 - *Hipótesis 3 (Flujo de Agendamiento Sin Fricción):* Creemos que conseguiremos *una tasa de conversión de alerta a cita confirmada no menor al 35%* si el *conductor particular* cuenta con *un enlace directo de reserva y cotización referencial dentro de la notificación de falla*, evitando llamadas o trámites externos. Sabremos que hemos tenido éxito cuando *el tiempo promedio transcurrido entre la detección de un código DTC y la confirmación de la cita en el taller sea inferior a 72 horas*.
 
 ==== 1.2.2.4. Lean UX Canvas
+
+Como síntesis metodológica de la formulación del producto, se estructuró el Lean UX Canvas de ShiftIq. Como se muestra en la *Figura 7*, este artefacto articula de forma integrada el problema del negocio, los resultados comerciales esperados (_business outcomes_), los usuarios clave de ambos segmentos, los beneficios perseguidos (_user outcomes_), las soluciones y características funcionales, las hipótesis prioritarias y los riesgos críticos a mitigar en el ciclo de vida del software:
 
 #set page(
   paper: "a4",

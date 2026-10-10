@@ -1,7 +1,14 @@
 ```{=typst}
 == Registro de Versiones
 
+El presente registro documenta la trazabilidad de las iteraciones, adiciones y mejoras técnicas incorporadas en el informe del proyecto *ShiftIQ* por parte del equipo TuxLogic. Como se muestra en la *Tabla 1*, se detallan las versiones liberadas, fechas de modificación, autores responsables y el resumen del alcance implementado en cada entrega:
+
 #v(0.5em)
+#align(center)[
+  #text(weight: "bold")[Tabla 1] \
+  #text(style: "italic")[Historial de versiones y modificaciones del informe]
+]
+#v(0.3em)
 #table(
   columns: (10%, 14%, 26%, 1fr),
   stroke: 0.4pt + rgb("#cbd5e1"),
@@ -26,6 +33,8 @@
   [1.10], [16/09/2026], [Jareth Beycker Vidal Malaga], [Incorporación del catálogo completo de Historias de Usuario (User Stories) y Product Backlog priorizado con estimación de Story Points.],
   [1.11], [16/09/2026], [Dhilsen Armil Mallqui Vilca], [Inclusión de diagramas de Impact Mapping estructurados para los segmentos de talleres automotrices y conductores.],
   [1.12], [16/09/2026], [Aldo Jeanfranco Machacca Soto], [Optimización tipográfica en Typst, tablas en formato horizontal (Landscape), gráficos vectoriales SVG (Mermaid C4) e imágenes del equipo.],
+  [2.0], [04/10/2026], [Alan Jaivi Mamani Vilca], [Desarrollo de la Sección 4.2 (Sprint 1): Sprint Planning, Aspect Leaders, Sprint Backlog (Landing Page + Backend REST API shiftiq-platform), Evidencias de desarrollo, Suite de pruebas JUnit 5, Servicios OpenAPI/Swagger, Despliegue Docker/Pages y Colaboración.],
+  [2.1], [10/10/2026], [Alan Jaivi Mamani Vilca], [Actualización integral de Conclusiones y Recomendaciones (contrastando Problem Statements, Assumptions, Hypotheses y Lean UX), integración de enlaces de despliegue en producción en Render Cloud (Backend API y Swagger UI), y actualización de Anexos A a D (repositorios oficiales, despliegues Vercel/Render, tableros Jira/Miro y prototipos Figma) para la entrega del Segundo Hito (TB1).],
 )
 #v(0.5em)
 ```
