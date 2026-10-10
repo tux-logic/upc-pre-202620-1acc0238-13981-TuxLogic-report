@@ -28,4 +28,4 @@
 | u202224130 | Ramos Hinostroza, Diego Antonio |
 | u202316878 | Vidal Malaga, Jareth Beycker |
 
-**Período 202620 -- Julio 2026**
+**Período 202620 -- Octubre 2026**
