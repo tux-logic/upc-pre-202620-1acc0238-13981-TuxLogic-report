@@ -1222,15 +1222,29 @@ El Impact Mapping articula, para cada segmento objetivo de ShiftIq, el *Goal* de
 
 #### Segmento Objetivo 1 — Talleres independientes (B2B)
 
-**Figura.** *Impact Mapping — Segmento Objetivo 1 (Dueños / Administradores de talleres)*
+Como se ilustra en la *Figura 16*, el mapa de impacto del segmento B2B estructura las metas de captación, los actores involucrados y las entregas requeridas para los talleres mecánicos:
 
-![](assets/chapter-2/needfinding/impact-mapping-segmento-1.png)
+#v(0.3em)
+#align(center)[
+  #figure(
+    image("assets/chapter-2/needfinding/impact-mapping-segmento-1.png", width: 85%),
+    caption: [Impact Mapping -- Segmento Objetivo 1 (Dueños / Administradores de talleres)]
+  )
+]
+#v(0.3em)
 
 #### Segmento Objetivo 2 — Conductores (B2C)
 
-**Figura.** *Impact Mapping — Segmento Objetivo 2 (Conductores de Lima)*
+De manera complementaria, en la *Figura 17* se modela el mapa de impacto enfocado en los conductores particulares (B2C), orientando los entregables hacia la prevención y la confianza:
 
-![](assets/chapter-2/needfinding/impact-mapping-segmento-2.png)
+#v(0.3em)
+#align(center)[
+  #figure(
+    image("assets/chapter-2/needfinding/impact-mapping-segmento-2.png", width: 85%),
+    caption: [Impact Mapping -- Segmento Objetivo 2 (Conductores de Lima)]
+  )
+]
+#v(0.3em)
 
 ### 2.4.3. Product Backlog
 
@@ -1238,7 +1252,10 @@ El Impact Mapping articula, para cada segmento objetivo de ShiftIq, el *Goal* de
 #text(weight: "bold", size: 10.5pt, fill: rgb("#1e3a8a"))[Orden de User Stories y Technical Stories]
 
 #v(0.4em)
-#text(size: 9.5pt)[El Product Backlog prioriza las historias según valor de negocio y dependencias técnicas. Las Technical Stories se intercalan junto a las User Stories que habilitan. Los _Bounded Contexts_ corresponden a los identificados en el diseño estratégico de ShiftIq. _Vehicle Intelligence_ abrevia _Vehicle Intelligence & Diagnostics_.]
+#text(size: 9.5pt)[Como se detalla en la *Tabla 11*, el Product Backlog prioriza las historias según valor de negocio y dependencias técnicas. Las Technical Stories se intercalan junto a las User Stories que habilitan. Los _Bounded Contexts_ corresponden a los identificados en el diseño estratégico de ShiftIq. _Vehicle Intelligence_ abrevia _Vehicle Intelligence & Diagnostics_.]
+
+#v(0.3em)
+*Tabla 11.* Product Backlog priorizado de ShiftIQ
 
 #v(0.6em)
 #text(size: 8.5pt)[

@@ -12,7 +12,7 @@ Para profundizar este análisis en el nivel estratégico de DDD, el EventStormin
 #v(0.5em)
 ==== Collect Domain Events
 
-En la primera actividad se recopilaron los principales *Domain Events* asociados con las actividades del dominio automotriz de ShiftIq. El objetivo fue obtener una visión amplia de los hechos relevantes que ocurren durante los diferentes procesos del sistema, sin establecer inicialmente límites entre contextos.
+En la primera actividad se recopilaron los principales *Domain Events* asociados con las actividades del dominio automotriz de ShiftIq, tal como se visualiza en la *Figura 16*. El objetivo fue obtener una visión amplia de los hechos relevantes que ocurren durante los diferentes procesos del sistema, sin establecer inicialmente límites entre contextos.
 
 #v(0.5em)
 #align(center)[
@@ -28,7 +28,7 @@ La actividad permitió reunir acontecimientos relacionados con identidad, gesti�
 #v(0.5em)
 ==== Refine Domain
 
-A continuación, los eventos recopilados fueron revisados y refinados para distinguir los acontecimientos relevantes del negocio de acciones, datos o elementos que no representan hechos de dominio. También se consolidaron eventos relacionados y se estableció una nomenclatura orientada al lenguaje del dominio.
+A continuación, los eventos recopilados fueron revisados y refinados (ver *Figura 17*) para distinguir los acontecimientos relevantes del negocio de acciones, datos o elementos que no representan hechos de dominio. También se consolidaron eventos relacionados y se estableció una nomenclatura orientada al lenguaje del dominio.
 
 #v(0.5em)
 #align(center)[
@@ -44,7 +44,7 @@ El refinamiento permitió obtener un conjunto de eventos más consistente y repr
 #v(0.5em)
 ==== Track Causes (Process Modelling)
 
-Finalmente, se realizó el seguimiento de las causas y consecuencias de los eventos mediante *Process Modelling*. En esta actividad se relacionaron los elementos del EventStorming, principalmente *Actor, Command, Event, Business Process/Policy, Aggregate, External System y Hotspot*.
+Finalmente, se realizó el seguimiento de las causas y consecuencias de los eventos mediante *Process Modelling*, como se ilustra en la *Figura 18*. En esta actividad se relacionaron los elementos del EventStorming, principalmente *Actor, Command, Event, Business Process/Policy, Aggregate, External System y Hotspot*.
 
 #v(0.5em)
 #align(center)[
@@ -68,7 +68,7 @@ El *Candidate Context Discovery* tuvo como objetivo identificar agrupaciones coh
 
 Es importante señalar que los *Bounded Contexts candidatos no fueron definidos únicamente a partir de los nombres de los paquetes del backend*. Primero se identificaron las agrupaciones funcionales que emergieron del comportamiento del dominio y posteriormente se contrastaron con la estructura existente del sistema.
 
-Como resultado se reconocieron *siete Candidate Bounded Contexts*:
+Como resultado se reconocieron *siete Candidate Bounded Contexts*, cuya distribución exploratoria se presenta en la *Figura 19*:
 
 1. *Identity & Access*
 2. *Workshop Management*
@@ -81,7 +81,7 @@ Como resultado se reconocieron *siete Candidate Bounded Contexts*:
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter-2/strategic-ddd/event-storming/candidate-context-discovery.jpg", width: 95%),
+    image("assets/chapter-2/strategic-ddd/event-storming/candidate-context-discovery.jpg", width: 62%),
     caption: [Candidate Context Discovery -- Reconocimiento de los Candidate Bounded Contexts de ShiftIq.]
   )
 ]
@@ -94,12 +94,12 @@ A continuación, se describe la responsabilidad de cada contexto identificado.
 
 Este contexto concentra las responsabilidades relacionadas con la identidad y el acceso de los usuarios. Incluye procesos de registro, autenticación, recuperación de contraseña y actualización de credenciales.
 
-Su correspondencia con el backend se evidencia en el módulo `iam`, donde se encuentra el agregado `User`, comandos como `SignUpCommand`, `SignInCommand`, `ResetPasswordCommand` y comandos para actualizar las credenciales. También existen servicios relacionados con correo, hashing y tokens.
+Su correspondencia con el backend se evidencia en el módulo `iam`, donde se encuentra el agregado `User`, comandos como `SignUpCommand`, `SignInCommand`, `ResetPasswordCommand` y comandos para actualizar las credenciales (ver *Figura 20*). También existen servicios relacionados con correo, hashing y tokens.
 
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter-2/strategic-ddd/event-storming/candidate-context-identity-access.png", width: 90%),
+    image("assets/chapter-2/strategic-ddd/event-storming/candidate-context-identity-access.png", width: 62%),
     caption: [Candidate Bounded Context -- Identity & Access.]
   )
 ]
@@ -109,12 +109,12 @@ Su correspondencia con el backend se evidencia en el módulo `iam`, donde se enc
 
 Este contexto gestiona la información organizacional del taller, incluyendo talleres, sucursales, propietarios, clientes y empleados.
 
-La correspondencia con el backend se encuentra en el módulo `core`, donde existen eventos como `WorkshopCreatedEvent`, `BranchCreatedEvent`, `CustomerCreatedEvent`, `EmployeeCreatedEvent` y `OwnerCreatedEvent`, además de sus respectivas consultas.
+La correspondencia con el backend se encuentra en el módulo `core`, donde existen eventos como `WorkshopCreatedEvent`, `BranchCreatedEvent`, `CustomerCreatedEvent`, `EmployeeCreatedEvent` y `OwnerCreatedEvent` (ver *Figura 21*), además de sus respectivas consultas.
 
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter-2/strategic-ddd/event-storming/candidate-context-workshop-management.png", width: 90%),
+    image("assets/chapter-2/strategic-ddd/event-storming/candidate-context-workshop-management.png", width: 62%),
     caption: [Candidate Bounded Context -- Workshop Management.]
   )
 ]
@@ -124,12 +124,12 @@ La correspondencia con el backend se encuentra en el módulo `core`, donde exist
 
 Este contexto concentra la gestión de citas y registros asociados a clientes y empleados, funcionando como punto de coordinación entre la planificación del servicio y las operaciones del taller.
 
-El backend contiene `Appointment` y comandos relacionados con su creación, actualización y eliminación, además de `AppointmentCreatedEvent`. También dispone de recursos y servicios de consulta asociados.
+El backend contiene `Appointment` y comandos relacionados con su creación, actualización y eliminación, además de `AppointmentCreatedEvent` (ver *Figura 22*). También dispone de recursos y servicios de consulta asociados.
 
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter-2/strategic-ddd/event-storming/candidate-context-fleet-appointments.png", width: 90%),
+    image("assets/chapter-2/strategic-ddd/event-storming/candidate-context-fleet-appointments.png", width: 62%),
     caption: [Candidate Bounded Context -- Fleet & Appointments.]
   )
 ]
@@ -141,12 +141,12 @@ Este contexto concentra las capacidades relacionadas con el vehículo, dispositi
 
 Esta agrupación se relaciona con el flujo identificado previamente de vehículo vinculado, telemetría recibida, detección de DTC y evaluación de severidad.
 
-Además, el lenguaje ubicuo del proyecto incorpora explícitamente términos como *Vehicle, OBD2 Dongle, Telemetry, DTC, Preventive Alert y Severity Level*.
+Además, el lenguaje ubicuo del proyecto incorpora explícitamente términos como *Vehicle, OBD2 Dongle, Telemetry, DTC, Preventive Alert y Severity Level*, cuya delimitación inicial se ilustra en la *Figura 23*.
 
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter-2/strategic-ddd/event-storming/candidate-context-vehicle-intelligence-diagnostics.png", width: 90%),
+    image("assets/chapter-2/strategic-ddd/event-storming/candidate-context-vehicle-intelligence-diagnostics.png", width: 62%),
     caption: [Candidate Bounded Context -- Vehicle Intelligence & Diagnostics.]
   )
 ]
@@ -156,12 +156,12 @@ Además, el lenguaje ubicuo del proyecto incorpora explícitamente términos com
 
 Este contexto gestiona la ejecución de los servicios mediante órdenes de trabajo, tareas y asignación de mecánicos.
 
-La estructura del backend contiene comandos para crear órdenes de trabajo, agregar tareas, asignar mecánicos, iniciar y completar tareas, así como eventos como `TaskStartedEvent`, `TaskCompletedEvent`, `TaskReopenedEvent` y `WorkOrderCompletedEvent`.
+La estructura del backend contiene comandos para crear órdenes de trabajo, agregar tareas, asignar mecánicos, iniciar y completar tareas, así como eventos como `TaskStartedEvent`, `TaskCompletedEvent`, `TaskReopenedEvent` y `WorkOrderCompletedEvent` (ver *Figura 24*).
 
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter-2/strategic-ddd/event-storming/candidate-context-service-operations.png", width: 90%),
+    image("assets/chapter-2/strategic-ddd/event-storming/candidate-context-service-operations.png", width: 62%),
     caption: [Candidate Bounded Context -- Service Operations.]
   )
 ]
@@ -171,12 +171,12 @@ La estructura del backend contiene comandos para crear órdenes de trabajo, agre
 
 Este contexto administra los productos y existencias necesarias para la ejecución de los servicios. Incluye productos, lotes, reservas, liberaciones, movimientos de stock y evaluación de niveles mínimos.
 
-La estructura contiene el agregado `Product`, la entidad `ProductBatch`, comandos de productos y eventos como `ProductCreatedEvent`, `StockReservedEvent`, `StockReleasedEvent`, `StockMovementAppliedEvent` y eventos relacionados con bajo stock.
+La estructura contiene el agregado `Product`, la entidad `ProductBatch`, comandos de productos y eventos como `ProductCreatedEvent`, `StockReservedEvent`, `StockReleasedEvent`, `StockMovementAppliedEvent` y eventos relacionados con bajo stock (ver *Figura 25*).
 
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter-2/strategic-ddd/event-storming/candidate-context-inventory-management.png", width: 90%),
+    image("assets/chapter-2/strategic-ddd/event-storming/candidate-context-inventory-management.png", width: 62%),
     caption: [Candidate Bounded Context -- Inventory Management.]
   )
 ]
@@ -186,12 +186,12 @@ La estructura contiene el agregado `Product`, la entidad `ProductBatch`, comando
 
 Este contexto concentra las responsabilidades relacionadas con cotizaciones, pagos y comprobantes asociados al servicio.
 
-La estructura del backend contiene elementos de cotización y facturación, incluyendo `Quote`, `Voucher`, `Payment` y comandos relacionados con la creación y aprobación de cotizaciones, checkout y procesamiento de pagos.
+La estructura del backend contiene elementos de cotización y facturación, incluyendo `Quote`, `Voucher`, `Payment` y comandos relacionados con la creación y aprobación de cotizaciones, checkout y procesamiento de pagos (ver *Figura 26*).
 
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter-2/strategic-ddd/event-storming/candidate-context-billing-payments.png", width: 90%),
+    image("assets/chapter-2/strategic-ddd/event-storming/candidate-context-billing-payments.png", width: 62%),
     caption: [Candidate Bounded Context -- Billing & Payments.]
   )
 ]
@@ -215,7 +215,7 @@ Se definieron seis flujos principales.
 #v(0.3em)
 ===== Flow 1 -- Vehicle Intelligence & Diagnostics
 
-Representa el proceso de registro y monitoreo del vehículo, incluyendo la vinculación del dispositivo OBD2, recepción de telemetría y generación de información de diagnóstico.
+Representa el proceso de registro y monitoreo del vehículo, incluyendo la vinculación del dispositivo OBD2, recepción de telemetría y generación de información de diagnóstico (ver *Figura 27*).
 
 #v(0.5em)
 #align(center)[
@@ -231,7 +231,7 @@ Este flujo representa una de las capacidades centrales de ShiftIq, ya que conect
 #v(0.3em)
 ===== Flow 2 -- Appointment & Service
 
-Representa la transición desde la planificación de una atención hasta la recepción del vehículo para iniciar el servicio.
+Representa la transición desde la planificación de una atención hasta la recepción del vehículo para iniciar el servicio, como se muestra en la *Figura 28*.
 
 #v(0.5em)
 #align(center)[
@@ -247,7 +247,7 @@ Este flujo muestra principalmente la interacción entre *Fleet & Appointments* y
 #v(0.3em)
 ===== Flow 3 -- Work Order & Inventory
 
-Representa la ejecución de una orden de trabajo y la utilización de productos necesarios para realizar las tareas del servicio.
+Representa la ejecución de una orden de trabajo y la utilización de productos necesarios para realizar las tareas del servicio (ver *Figura 29*).
 
 #v(0.5em)
 #align(center)[
@@ -263,7 +263,7 @@ El flujo evidencia la colaboración entre *Service Operations* e *Inventory Mana
 #v(0.3em)
 ===== Flow 4 -- Quotation & Payment
 
-Representa el proceso que comienza con la elaboración de una cotización y continúa con su aprobación y procesamiento del pago.
+Representa el proceso que comienza con la elaboración de una cotización y continúa con su aprobación y procesamiento del pago, según se ilustra en la *Figura 30*.
 
 #v(0.5em)
 #align(center)[
@@ -279,7 +279,7 @@ Este flujo permite representar la colaboración entre el proceso operativo del s
 #v(0.3em)
 ===== Flow 5 -- Workshop Management
 
-Representa las operaciones relacionadas con la configuración y administración de la información del taller, sus sucursales, clientes y empleados.
+Representa las operaciones relacionadas con la configuración y administración de la información del taller, sus sucursales, clientes y empleados (ver *Figura 31*).
 
 #v(0.5em)
 #align(center)[
@@ -295,7 +295,7 @@ El flujo representa las principales operaciones administrativas que permiten man
 #v(0.3em)
 ===== Flow 6 -- Identity & Access
 
-Representa el ciclo de acceso de los usuarios a la plataforma, desde el registro hasta la autenticación y gestión de sus credenciales.
+Representa el ciclo de acceso de los usuarios a la plataforma, desde el registro hasta la autenticación y gestión de sus credenciales, como se detalla en la *Figura 32*.
 
 #v(0.5em)
 #align(center)[
@@ -329,6 +329,8 @@ Los siete Canvas desarrollados son los siguientes:
 #v(0.3em)
 ===== Canvas 1 -- Identity & Access
 
+Como se visualiza en la *Figura 33*, el Canvas formaliza las responsabilidades del contexto relacionadas con usuarios, autenticación, recuperación de credenciales y acceso a la plataforma:
+
 #v(0.5em)
 #align(center)[
   #figure(
@@ -338,10 +340,10 @@ Los siete Canvas desarrollados son los siguientes:
 ]
 #v(0.5em)
 
-El Canvas formaliza las responsabilidades del contexto relacionadas con usuarios, autenticación, recuperación de credenciales y acceso a la plataforma.
-
 #v(0.3em)
 ===== Canvas 2 -- Workshop Management
+
+De acuerdo con la *Figura 34*, el Canvas delimita las responsabilidades relacionadas con Workshop, Branch, Owner, Customer y Employee:
 
 #v(0.5em)
 #align(center)[
@@ -352,10 +354,10 @@ El Canvas formaliza las responsabilidades del contexto relacionadas con usuarios
 ]
 #v(0.5em)
 
-El Canvas delimita las responsabilidades relacionadas con Workshop, Branch, Owner, Customer y Employee.
-
 #v(0.3em)
 ===== Canvas 3 -- Fleet & Appointments
+
+Tal como se observa en la *Figura 35*, el Canvas formaliza la responsabilidad de gestionar citas y los registros necesarios para coordinar la atención del vehículo:
 
 #v(0.5em)
 #align(center)[
@@ -366,10 +368,10 @@ El Canvas delimita las responsabilidades relacionadas con Workshop, Branch, Owne
 ]
 #v(0.5em)
 
-El Canvas formaliza la responsabilidad de gestionar citas y los registros necesarios para coordinar la atención del vehículo.
-
 #v(0.3em)
 ===== Canvas 4 -- Vehicle Intelligence & Diagnostics
+
+Como se detalla en la *Figura 36*, el Canvas formaliza las responsabilidades relacionadas con Vehicle, OBD2 Device, Telemetry, DTC y diagnóstico, elementos que forman parte del lenguaje ubicuo del proyecto:
 
 #v(0.5em)
 #align(center)[
@@ -380,10 +382,10 @@ El Canvas formaliza la responsabilidad de gestionar citas y los registros necesa
 ]
 #v(0.5em)
 
-El Canvas formaliza las responsabilidades relacionadas con Vehicle, OBD2 Device, Telemetry, DTC y diagnóstico, elementos que forman parte del lenguaje ubicuo del proyecto.
-
 #v(0.3em)
 ===== Canvas 5 -- Service Operations
+
+En la *Figura 37* se formalizan las responsabilidades relacionadas con Service, Work Order, Task y Mechanic, incluyendo las reglas asociadas con la ejecución del servicio:
 
 #v(0.5em)
 #align(center)[
@@ -394,10 +396,10 @@ El Canvas formaliza las responsabilidades relacionadas con Vehicle, OBD2 Device,
 ]
 #v(0.5em)
 
-El Canvas formaliza las responsabilidades relacionadas con Service, Work Order, Task y Mechanic, incluyendo las reglas asociadas con la ejecución del servicio.
-
 #v(0.3em)
 ===== Canvas 6 -- Inventory Management
+
+Tal como se representa en la *Figura 38*, el Canvas formaliza las responsabilidades relacionadas con Product, Product Batch, Stock, Reservation y Low Stock:
 
 #v(0.5em)
 #align(center)[
@@ -408,10 +410,10 @@ El Canvas formaliza las responsabilidades relacionadas con Service, Work Order, 
 ]
 #v(0.5em)
 
-El Canvas formaliza las responsabilidades relacionadas con Product, Product Batch, Stock, Reservation y Low Stock.
-
 #v(0.3em)
 ===== Canvas 7 -- Billing & Payments
+
+De acuerdo con la *Figura 39*, el Canvas formaliza las responsabilidades relacionadas con Quote, Payment, Checkout y Voucher, incluyendo las interacciones necesarias con servicios externos de pago y facturación:
 
 #v(0.5em)
 #align(center)[
@@ -421,8 +423,6 @@ El Canvas formaliza las responsabilidades relacionadas con Product, Product Batc
   )
 ]
 #v(0.5em)
-
-El Canvas formaliza las responsabilidades relacionadas con Quote, Payment, Checkout y Voucher, incluyendo las interacciones necesarias con servicios externos de pago y facturación.
 
 #v(0.5em)
 === 2.5.2. Context Mapping
@@ -448,9 +448,12 @@ La separación de estos contextos tiene correspondencia con la organización del
 
 El análisis de Context Mapping se realizó tomando como referencia los *Domain Message Flows* desarrollados anteriormente. Estos flujos permitieron identificar qué contextos requieren información o servicios proporcionados por otros contextos.
 
-Las principales relaciones identificadas son:
+Como se sintetiza en la *Tabla 12*, el análisis de Context Mapping delimita las interacciones y dependencias operativas entre contextos:
 
-#v(0.5em)
+#v(0.3em)
+*Tabla 12.* Matriz de relaciones e integraciones entre Bounded Contexts
+
+#v(0.3em)
 #table(
   columns: (30%, 35%, 35%),
   align: left,
@@ -479,6 +482,8 @@ Estas relaciones se encuentran respaldadas por la estructura del backend. Por ej
 #v(0.5em)
 ==== Context Map de ShiftIq
 
+En la *Figura 40* se presenta el Context Map integral de ShiftIq, donde se esquematizan visualmente las dependencias y patrones de integración entre los siete contextos identificados:
+
 #v(0.5em)
 #align(center)[
   #figure(
@@ -493,6 +498,9 @@ El mapa representa las principales relaciones entre los siete contextos identifi
 La interacción más relevante se presenta alrededor del proceso de servicio automotriz:
 
 #v(0.5em)
+De forma complementaria, el flujo secuencial de intercambio de mensajes entre dominios se esquematiza en la *Figura 41*:
+
+#v(0.3em)
 #align(center)[
   #figure(
     image("assets/chapter-2/strategic-ddd/event-storming/context-mapping-flow.svg", width: 70%),
@@ -505,7 +513,7 @@ La interacción más relevante se presenta alrededor del proceso de servicio aut
 
 ==== 2.5.3.1. Software Architecture Context Level Diagrams
 
-Según el Modelo C4 de Simon Brown, el *Diagrama de Contexto del Sistema* ofrece la vista de mayor nivel de abstracción, representando el sistema como una caja negra. En ShiftIQ, este nivel muestra la plataforma como sistema central y sus interacciones con los usuarios principales, el dispositivo IoT del vehículo y los servicios externos utilizados para mensajería, pagos y facturación electrónica.
+Según el Modelo C4 de Simon Brown, el *Diagrama de Contexto del Sistema* ofrece la vista de mayor nivel de abstracción, representando el sistema como una caja negra. En ShiftIQ, este nivel muestra la plataforma como sistema central y sus interacciones con los usuarios principales, el dispositivo IoT del vehículo y los servicios externos utilizados para mensajería, pagos y facturación electrónica, tal como se aprecia en la *Figura 42*.
 
 #v(0.5em)
 #align(center)[
@@ -530,7 +538,7 @@ Según el Modelo C4 de Simon Brown, el *Diagrama de Contexto del Sistema* ofrece
 #v(0.5em)
 ==== 2.5.3.2. Software Architecture Container Level Diagrams
 
-El *Diagrama de Contenedores* abre la caja negra del sistema para mostrar sus principales unidades ejecutables y responsabilidades tecnológicas. En ShiftIQ se representan la Landing Page, la aplicación web SPA, la aplicación móvil, la API RESTful y la base de datos PostgreSQL, junto con sus principales mecanismos de comunicación y las integraciones con servicios externos.
+El *Diagrama de Contenedores* abre la caja negra del sistema para mostrar sus principales unidades ejecutables y responsabilidades tecnológicas (ver *Figura 43*). En ShiftIQ se representan la Landing Page, la aplicación web SPA, la aplicación móvil, la API RESTful y la base de datos PostgreSQL, junto con sus principales mecanismos de comunicación y las integraciones con servicios externos.
 
 #v(0.5em)
 #align(center)[
@@ -554,7 +562,7 @@ El *Diagrama de Contenedores* abre la caja negra del sistema para mostrar sus pr
 #v(0.5em)
 ==== 2.5.3.3. Software Architecture Deployment Diagrams
 
-El *Diagrama de Despliegue* representa la distribución física y tecnológica de ShiftIQ en su infraestructura. Esta vista muestra cómo los componentes definidos en los niveles anteriores se despliegan sobre dispositivos de usuario, servidores web, servidores de aplicación, contenedores Docker y servicios externos en la nube.
+El *Diagrama de Despliegue* representa la distribución física y tecnológica de ShiftIQ en su infraestructura, tal como se ilustra en la *Figura 44*. Esta vista muestra cómo los componentes definidos en los niveles anteriores se despliegan sobre dispositivos de usuario, servidores web, servidores de aplicación, contenedores Docker y servicios externos en la nube.
 
 #v(0.5em)
 #align(center)[
