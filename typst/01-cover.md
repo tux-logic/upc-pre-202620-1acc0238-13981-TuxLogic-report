@@ -52,7 +52,7 @@
 
   #v(1.5cm)
 
-  #text(size: 11pt, weight: "bold", fill: rgb("#64748b"))[Período 202620 -- Julio 2026]
+  #text(size: 11pt, weight: "bold", fill: rgb("#64748b"))[Período 202620 -- Octubre 2026]
 ]
 #pagebreak()
 ```

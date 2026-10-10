@@ -44,8 +44,9 @@
 #show heading: set block(sticky: true)
 
 #show heading.where(level: 1): it => {
+  pagebreak(weak: true)
   v(1.2em)
-  text(fill: rgb("#b91c1c"), weight: "bold", size: 15pt)[
+  text(fill: rgb("#b91c1c"), weight: "bold", size: 16pt)[
     #it.body
   ]
   v(0.6em)
@@ -67,6 +68,9 @@
   v(0.4em)
 }
 
+// Estilo visual de Enlaces / Hipervínculos
+#show link: it => text(fill: rgb("#1d4ed8"), weight: "medium")[#underline(stroke: 0.5pt + rgb("#60a5fa"), offset: 1.5pt)[#it]]
+
 // Diseños de Tabla Estilo UPC con Esquinas Redondeadas
 #show table: it => block(
   radius: 5pt,
@@ -77,11 +81,11 @@
 
 #set table(
   stroke: 0.4pt + rgb("#cbd5e1"),
-  fill: (x, y) => if y == 0 { rgb("#1e3a8a") } else if calc.even(y) { rgb("#f8fafc") } else { rgb("#ffffff") },
-  inset: (x: 10pt, y: 7pt)
+  fill: (col, row) => if row == 0 { rgb("#1e3a8a") } else if calc.even(row) { rgb("#f8fafc") } else { rgb("#ffffff") },
+  inset: (x: 8pt, y: 6pt)
 )
 
-#show table.cell.where(y: 0): set text(fill: white, weight: "bold")
+#show table.header: set text(fill: white, weight: "bold")
 
 // Diseño de Figuras e Imágenes
 #show figure.where(kind: image): it => [
@@ -90,11 +94,12 @@
       stroke: 0.5pt + rgb("#e2e8f0"),
       inset: 4pt,
       radius: 4pt,
+      fill: rgb("#ffffff"),
       it.body
     )
     #if it.has("caption") [
       #v(4pt)
-      #text(size: 9pt, style: "italic", fill: rgb("#64748b"))[#it.caption]
+      #text(size: 8.5pt, fill: rgb("#334155"))[#it.caption]
     ]
   ]
 ]

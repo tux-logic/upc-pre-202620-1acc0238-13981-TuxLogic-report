@@ -103,10 +103,14 @@ ENV/
 # ==========================================
 # Scratch & Temporary Tool Files
 # ==========================================
-scratch/*.mmd
-scratch/fix_all_diagrams.py
-scratch/*.log
+scratch/
+output_test.typ
+Explicacion-shiftiq.md
+guia-cap-4.md
+jira1.md
+performance.md
+revision.md
+Trabajo-Final_1ACC0238_202620.md
 branch_structure.json
 temp_auto_push.bat
 temp_interactive_push.bat
-.gitignore
