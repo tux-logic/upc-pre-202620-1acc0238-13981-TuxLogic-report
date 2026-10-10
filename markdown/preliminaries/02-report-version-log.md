@@ -1,5 +1,10 @@
 # Registro de Versiones
 
+El presente registro documenta la trazabilidad de las iteraciones, adiciones y mejoras técnicas incorporadas en el informe del proyecto **ShiftIQ** por parte del equipo TuxLogic. Como se muestra en la Tabla 1, se detallan las versiones liberadas, fechas de modificación, autores responsables y el resumen del alcance implementado en cada entrega.
+
+**Tabla 1**  
+*Historial de versiones y modificaciones del informe*
+
 | Versión | Fecha | Autor | Descripción de modificación |
 | --- | --- | --- | --- |
 | 1.0 | 30/08/2026 | Diego Antonio Ramos Hinostroza | Estructura inicial del informe y repositorio para el proyecto ShiftIq (TuxLogic). |

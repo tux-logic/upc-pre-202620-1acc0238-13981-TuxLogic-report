@@ -6,7 +6,10 @@ El curso contribuye al cumplimiento del Student Outcome ABET:
 
 **Criterio:** La capacidad de adquirir y aplicar nuevos conocimientos según sea necesario, utilizando estrategias de aprendizaje apropiadas.
 
-En este primer hito (**AV1**), el equipo **TuxLogic** aplicó metodologías de análisis, investigación y diseño para comprender el problema del usuario, definir la propuesta de valor y plantear una solución viable con una base sólida para futuras iteraciones.
+En este primer hito (**AV1**), el equipo **TuxLogic** aplicó metodologías de análisis, investigación y diseño para comprender el problema del usuario, definir la propuesta de valor y plantear una solución viable con una base sólida para futuras iteraciones. Como se muestra en la Tabla 1, a continuación se detallan las evidencias de cumplimiento para cada criterio específico del Student Outcome 7, las acciones individuales realizadas por los integrantes del equipo y las conclusiones obtenidas:
+
+**Tabla 1**  
+*Matriz de cumplimiento del ABET Student Outcome 7 en el Primer Hito (AV1)*
 
 | Criterio específico | Acciones realizadas por integrante (AV1) | Conclusiones del hito (AV1) |
 | --- | --- | --- |

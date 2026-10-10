@@ -9,6 +9,11 @@ Esta sección documenta la infraestructura de repositorios, la metodología de t
 El desarrollo del ecosistema **ShiftIq** se gestiona bajo la organización oficial en GitHub:  
 **Organización de GitHub:** [https://github.com/tux-logic](https://github.com/tux-logic)
 
+Como se resume en la Tabla 1, la organización centraliza tres repositorios fundamentales para el informe del proyecto, la landing page comercial y la plataforma backend:
+
+**Tabla 1**  
+*Repositorios oficiales de la organización TuxLogic en GitHub*
+
 | Repositorio | Descripción / Propósito | Enlace Público |
 | --- | --- | --- |
 | **Project Report** | Informe académico oficial en formato Markdown (GFM) y Typst PDF. | [https://github.com/tux-logic/upc-pre-202620-1acc0238-13981-TuxLogic-report.git](https://github.com/tux-logic/upc-pre-202620-1acc0238-13981-TuxLogic-report.git) |
@@ -37,7 +42,10 @@ Para garantizar una trazabilidad rigurosa, la elaboración del informe se rigió
 
 ## 3. Demostración de Participación y Aportes del Equipo
 
-Los 5 integrantes del equipo **TuxLogic** han participado activamente en la construcción del informe, distribuyendo las responsabilidades según sus áreas de especialización:
+Los 5 integrantes del equipo **TuxLogic** han participado activamente en la construcción del informe, distribuyendo las responsabilidades según sus áreas de especialización. Como se muestra en la Tabla 2, se detallan los roles y contribuciones técnicas de cada miembro:
+
+**Tabla 2**  
+*Distribución de roles y aportes individuales en el informe del proyecto*
 
 | Estudiante | Código | Rol Principal | Aportes Principales al Informe (AV1) |
 | --- | --- | --- | --- |
@@ -51,11 +59,11 @@ Los 5 integrantes del equipo **TuxLogic** han participado activamente en la cons
 
 ## 4. Métricas de Colaboración y Analíticos de GitHub
 
-A través de las herramientas de analítica de GitHub (*Insights / Contributors*), se constata la actividad constante del equipo durante el periodo de desarrollo del **Primer Hito (AV1)**:
+A través de las herramientas de analítica de GitHub (*Insights / Contributors*), se constata la actividad constante del equipo durante el periodo de desarrollo del **Primer Hito (AV1)**, tal como se muestra en la Figura 1:
 
+**Figura 1**  
+*Analíticos de colaboración de GitHub e historial de contribuciones del equipo TuxLogic*  
 ![GitHub Insights y Distribución de Contribuciones](../../assets/chapter-1/collaboration/github-insights.png)
-
-**Figura 6.** Analíticos de colaboración de GitHub e historial de contribuciones del equipo TuxLogic.
 
 ### Resumen de Actividad en GitHub (Hito AV1):
 - **Total de Commits:** 370+ commits registrados a través de las ramas de desarrollo e integración.
