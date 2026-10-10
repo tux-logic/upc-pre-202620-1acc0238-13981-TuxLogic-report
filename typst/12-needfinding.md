@@ -11,6 +11,8 @@ Para desarrollar la propuesta de solución móvil se elabora un *User Persona* p
 #v(0.5em)
 #text(weight: "bold", fill: rgb("#1e3a8a"))[Segmento Objetivo 1: Dueños o administradores de talleres automotrices independientes en Lima]
 
+Para el Segmento Objetivo 1, se modeló el perfil de Felipe Hernández. Como se muestra en la *Figura 8* y se detalla en la *Tabla 3*, este arquetipo sintetiza las características sociodemográficas, hábitos operativos y principales frustraciones del administrador de taller automotriz:
+
 #v(0.3em)
 #align(center)[
   #figure(
@@ -20,6 +22,11 @@ Para desarrollar la propuesta de solución móvil se elabora un *User Persona* p
 ]
 #v(0.3em)
 
+#align(center)[
+  #text(weight: "bold")[Tabla 3] \
+  #text(style: "italic")[Ficha de caracterización del User Persona -- Felipe Hernández]
+]
+#v(0.3em)
 #table(
   columns: (30%, 70%),
   stroke: 0.4pt + rgb("#cbd5e1"),
@@ -42,6 +49,8 @@ Para desarrollar la propuesta de solución móvil se elabora un *User Persona* p
 #v(0.8em)
 #text(weight: "bold", fill: rgb("#1e3a8a"))[Segmento Objetivo 2: Conductores de vehículos de Lima]
 
+Para el Segmento Objetivo 2, se formuló el perfil de Raúl Jiménez. De acuerdo con la *Figura 9* y las especificaciones descritas en la *Tabla 4*, el arquetipo representa las motivaciones, temores de costos y requerimientos de información clara por parte del conductor particular:
+
 #v(0.3em)
 #align(center)[
   #figure(
@@ -51,6 +60,11 @@ Para desarrollar la propuesta de solución móvil se elabora un *User Persona* p
 ]
 #v(0.3em)
 
+#align(center)[
+  #text(weight: "bold")[Tabla 4] \
+  #text(style: "italic")[Ficha de caracterización del User Persona -- Raúl Jiménez]
+]
+#v(0.3em)
 #table(
   columns: (30%, 70%),
   stroke: 0.4pt + rgb("#cbd5e1"),
@@ -71,9 +85,14 @@ Para desarrollar la propuesta de solución móvil se elabora un *User Persona* p
 #v(0.5em)
 === 2.3.2. User Task Matrix
 
-Se presenta la *User Task Matrix* de los segmentos objetivo. Cada tarea se evalúa según *importancia* y *frecuencia* para priorizar qué flujos deben resolverse primero en las aplicaciones móviles de ShiftIq (tablero del taller vs. app del conductor).
+Se presenta la *User Task Matrix* de los segmentos objetivo. Cada tarea se evalúa según *importancia* y *frecuencia* para priorizar qué flujos deben resolverse primero en las aplicaciones móviles de ShiftIq (tablero del taller vs. app del conductor). Como se muestra en la *Tabla 5*, las tareas operativas y diagnósticas han sido jerarquizadas:
 
-#v(0.5em)
+#v(0.3em)
+#align(center)[
+  #text(weight: "bold")[Tabla 5] \
+  #text(style: "italic")[Matriz de tareas de usuario (User Task Matrix) para segmentos objetivo]
+]
+#v(0.3em)
 #table(
   columns: (36%, 16%, 16%, 16%, 16%),
   stroke: 0.4pt + rgb("#cbd5e1"),
@@ -119,15 +138,22 @@ El *User Journey Mapping* visualiza el recorrido del usuario para alcanzar un ob
 
 #text(style: "italic")[Objetivo del journey: llenar la agenda con servicios preventivos y reducir la demanda solo-reactiva.]
 
+Como se aprecia en la *Figura 10* y se detalla en las etapas operativas de la *Tabla 6*, el recorrido del dueño de taller muestra momentos clave de fricción en la recepción física que la solución móvil transforma en puntos de contacto estructurados:
+
 #v(0.3em)
 #align(center)[
   #figure(
-    image("assets/chapter-2/needfinding/user-journey-taller.png", width: 95%),
+    image("assets/chapter-2/needfinding/user-journey-taller.png", width: 72%),
     caption: [User journey mapping -- Felipe Hernández (taller)]
   )
 ]
 #v(0.3em)
 
+#align(center)[
+  #text(weight: "bold")[Tabla 6] \
+  #text(style: "italic")[Matriz descriptiva de fases del User Journey Map -- Felipe Hernández]
+]
+#v(0.3em)
 #table(
   columns: (18%, 22%, 15%, 22%, 23%),
   stroke: 0.4pt + rgb("#cbd5e1"),
@@ -152,6 +178,8 @@ El *User Journey Mapping* visualiza el recorrido del usuario para alcanzar un ob
 
 #text(style: "italic")[Objetivo del journey: prevenir una avería grave y agendar mantenimiento con confianza.]
 
+De manera análoga, el análisis visual presentado en la *Figura 11* y desglosado en la *Tabla 7* ilustra la experiencia del conductor, evidenciando que el punto de mayor estrés emocional ocurre ante la incertidumbre de una alerta mecánica imprevista:
+
 #v(0.3em)
 #align(center)[
   #figure(
@@ -161,6 +189,11 @@ El *User Journey Mapping* visualiza el recorrido del usuario para alcanzar un ob
 ]
 #v(0.3em)
 
+#align(center)[
+  #text(weight: "bold")[Tabla 7] \
+  #text(style: "italic")[Matriz descriptiva de fases del User Journey Map -- Raúl Jiménez]
+]
+#v(0.3em)
 #table(
   columns: (18%, 22%, 15%, 22%, 23%),
   stroke: 0.4pt + rgb("#cbd5e1"),
@@ -189,6 +222,8 @@ El *Empathy Mapping* profundiza en lo que cada persona *dice, piensa, hace y sie
 #v(0.5em)
 #text(weight: "bold", fill: rgb("#1e3a8a"))[Segmento Objetivo 1: Dueño / administrador de taller]
 
+De acuerdo con el mapa de empatía visualizado en la *Figura 12* y sintetizado en la *Tabla 8*, se identifican los cuadrantes emocionales y operativos que experimenta el administrador de taller durante su rutina laboral:
+
 #v(0.3em)
 #align(center)[
   #figure(
@@ -198,6 +233,11 @@ El *Empathy Mapping* profundiza en lo que cada persona *dice, piensa, hace y sie
 ]
 #v(0.3em)
 
+#align(center)[
+  #text(weight: "bold")[Tabla 8] \
+  #text(style: "italic")[Matriz descriptiva del Empathy Map -- Felipe Hernández]
+]
+#v(0.3em)
 #table(
   columns: (25%, 75%),
   stroke: 0.4pt + rgb("#cbd5e1"),
@@ -220,6 +260,8 @@ El *Empathy Mapping* profundiza en lo que cada persona *dice, piensa, hace y sie
 #v(0.8em)
 #text(weight: "bold", fill: rgb("#1e3a8a"))[Segmento Objetivo 2: Conductor]
 
+Asimismo, la perspectiva del conductor se ilustra en la *Figura 13* y se complementa analíticamente en la *Tabla 9*, donde se destaca la necesidad de recibir explicaciones claras y transparentes sin tecnicismos abrumadores:
+
 #v(0.3em)
 #align(center)[
   #figure(
@@ -229,6 +271,11 @@ El *Empathy Mapping* profundiza en lo que cada persona *dice, piensa, hace y sie
 ]
 #v(0.3em)
 
+#align(center)[
+  #text(weight: "bold")[Tabla 9] \
+  #text(style: "italic")[Matriz descriptiva del Empathy Map -- Raúl Jiménez]
+]
+#v(0.3em)
 #table(
   columns: (25%, 75%),
   stroke: 0.4pt + rgb("#cbd5e1"),
@@ -254,13 +301,13 @@ El *Empathy Mapping* profundiza en lo que cada persona *dice, piensa, hace y sie
 #v(0.5em)
 === 2.3.5. Big Picture EventStorming
 
-El *Big Picture EventStorming* es una técnica colaborativa que ordena en una línea de tiempo los *eventos de dominio* (hechos en pasado) del negocio automotriz digitalizado por ShiftIq. Permite ver el flujo completo --desde la telemetría hasta la orden de trabajo-- e identificar *hotspots* (fricciones, dudas o riesgos) antes de especificar requerimientos móviles.
+El *Big Picture EventStorming* es una técnica colaborativa que ordena en una línea de tiempo los *eventos de dominio* (hechos en pasado) del negocio automotriz digitalizado por ShiftIq. Permite ver el flujo completo --desde la telemetría hasta la orden de trabajo-- e identificar *hotspots* (fricciones, dudas o riesgos) antes de especificar requerimientos móviles. Como se aprecia en la *Figura 14* (flujo de servicio) y en la *Figura 15* (flujo de telemetría y diagnóstico), el modelado abarca todos los hitos del ecosistema:
 
 #v(0.3em)
 #align(center)[
   #figure(
     image("assets/chapter-2/strategic-ddd/big-picture-eventstorming-1.jpg", width: 95%),
-    caption: [Big Picture EventStorming -- Segmento Objetivo 1 (flujo de servicio: presupuesto, pago, navegación y calificación)]
+    caption: [Big Picture EventStorming -- Tablero 1: servicio y cierre]
   )
 ]
 #v(0.3em)
@@ -268,7 +315,7 @@ El *Big Picture EventStorming* es una técnica colaborativa que ordena en una l�
 #align(center)[
   #figure(
     image("assets/chapter-2/strategic-ddd/big-picture-eventstorming-2.jpg", width: 95%),
-    caption: [Big Picture EventStorming -- Segmento Objetivo 2 (flujo núcleo: vinculación OBD2, telemetría, diagnóstico, cita y gestión del taller)]
+    caption: [Big Picture EventStorming -- Tablero 2: monitoreo y operación]
   )
 ]
 #v(0.5em)
@@ -302,9 +349,14 @@ El *Big Picture EventStorming* es una técnica colaborativa que ordena en una l�
 #v(0.5em)
 === 2.3.6. Ubiquitous Language
 
-Se define el glosario de términos del dominio ShiftIq / TuxLogic. Este *Ubiquitous Language* evita ambigüedades entre negocio, UX móvil y desarrollo (nativo o Flutter), y debe usarse de forma consistente en código, pantallas, historias de usuario y documentación.
+Como se resume y formaliza en la *Tabla 10*, se define el glosario de términos del dominio ShiftIq / TuxLogic. Este *Ubiquitous Language* evita ambigüedades entre negocio, UX móvil y desarrollo, y debe usarse de forma consistente en código, pantallas, historias de usuario y documentación:
 
-#v(0.5em)
+#v(0.3em)
+#align(center)[
+  #text(weight: "bold")[Tabla 10] \
+  #text(style: "italic")[Glosario del Lenguaje Ubicuo (Ubiquitous Language) del dominio ShiftIq]
+]
+#v(0.3em)
 #align(center)[
   #table(
     columns: (auto, auto, 1fr, auto),

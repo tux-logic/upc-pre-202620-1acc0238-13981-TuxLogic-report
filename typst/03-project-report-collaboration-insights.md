@@ -9,7 +9,14 @@ Esta sección documenta la infraestructura de repositorios, la metodología de t
 El desarrollo del ecosistema *ShiftIq* se gestiona bajo la organización oficial en GitHub:  
 #text(weight: "bold", fill: rgb("#1e3a8a"))[Organización de GitHub:] #link("https://github.com/tux-logic")[https://github.com/tux-logic]
 
-#v(0.5em)
+Como se resume en la *Tabla 1*, la organización centraliza tres repositorios fundamentales para el informe del proyecto, la landing page comercial y la plataforma backend:
+
+#v(0.3em)
+#align(center)[
+  #text(weight: "bold")[Tabla 1] \
+  #text(style: "italic")[Repositorios oficiales de la organización TuxLogic en GitHub]
+]
+#v(0.3em)
 #table(
   columns: (22%, 38%, 40%),
   stroke: 0.4pt + rgb("#cbd5e1"),
@@ -45,9 +52,14 @@ Para garantizar una trazabilidad rigurosa, la elaboración del informe se rigió
 #v(0.5em)
 === 3. Demostración de Participación y Aportes del Equipo
 
-Los 5 integrantes del equipo *TuxLogic* han participado activamente en la construcción del informe, distribuyendo las responsabilidades según sus áreas de especialización:
+Como se detalla en la *Tabla 2*, los 5 integrantes del equipo *TuxLogic* han participado activamente en la construcción del informe, distribuyendo las responsabilidades según sus áreas de especialización:
 
-#v(0.5em)
+#v(0.3em)
+#align(center)[
+  #text(weight: "bold")[Tabla 2] \
+  #text(style: "italic")[Distribución de roles y aportes principales de los integrantes del equipo TuxLogic]
+]
+#v(0.3em)
 #table(
   columns: (22%, 14%, 20%, 44%),
   stroke: 0.4pt + rgb("#cbd5e1"),
@@ -69,7 +81,7 @@ Los 5 integrantes del equipo *TuxLogic* han participado activamente en la constr
 
 === 4. Métricas de Colaboración y Analíticos de GitHub
 
-A través de las herramientas de analítica de GitHub (*Insights / Contributors*), se constata la actividad constante del equipo durante el periodo de desarrollo del *Primer Hito (AV1)*:
+A través de las herramientas de analítica de GitHub (*Insights / Contributors*), se constata la actividad constante del equipo durante el periodo de desarrollo del *Primer Hito (AV1)*, tal como se muestra en la *Figura 1*:
 
 #v(0.5em)
 #align(center)[

@@ -208,7 +208,7 @@ Never restart subheaders from `1.1.` inside a sub-layer. Every subheader must fo
 After updating the Bounded Context in both files, run the full Pandoc/Typst compilation command:
 
 ```bash
-pandoc --template=typst/template.typ typst/1-cover.md typst/2-report-version-log.md typst/3-project-report-collaboration-insights.md typst/4-student-outcome.md typst/5-content.md typst/6-smart-goals.md typst/7-startup-profile.md typst/8-solution-profile.md typst/9-target-segments.md typst/10-competitors.md typst/11-interviews.md typst/12-needfinding.md typst/13-requirements-specification.md typst/14-strategic-level-domain-driven-design.md typst/15-tactical-level-domain-driven-design.md -o informe_final.pdf --pdf-engine=typst
+pandoc --template=typst/template.typ typst/01-cover.md typst/02-report-version-log.md typst/03-project-report-collaboration-insights.md typst/04-student-outcome.md typst/05-smart-goals.md typst/06-content.md typst/07-startup-profile.md typst/08-solution-profile.md typst/09-target-segments.md typst/10-competitors.md typst/11-interviews.md typst/12-needfinding.md typst/13-requirements-specification.md typst/14-strategic-level-domain-driven-design.md typst/15-tactical-level-domain-driven-design.md typst/16-solution-ui-ux-design.md typst/17-product-implementation-and-validation.md typst/18-conclusions-and-recommendations.md typst/19-references.md typst/20-appendices.md -o informe_final.pdf --pdf-engine=typst
 ```
 
 Verify that the process exits with **code 0** and produces a clean, un-truncated `informe_final.pdf`.
