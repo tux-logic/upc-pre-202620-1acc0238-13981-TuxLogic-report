@@ -62,6 +62,11 @@
   - [3.1.2. Information Architecture](../chapter-3-solution-ui-ux-design/3.1.-product-design/3.1.2.-information-architecture.md)
   - [3.1.3. Landing Page UI Design](../chapter-3-solution-ui-ux-design/3.1.-product-design/3.1.3.-landing-page-ui-design.md)
   - [3.1.4. Mobile Applications UX/UI Design](../chapter-3-solution-ui-ux-design/3.1.-product-design/3.1.4.-mobile-applications-ux-ui-design.md)
+    - [3.1.4.1. Mobile Applications Wireframes](../chapter-3-solution-ui-ux-design/3.1.-product-design/3.1.4.-mobile-applications-ux-ui-design.md#3141-mobile-applications-wireframes)
+    - [3.1.4.2. Mobile Applications Wireflow Diagrams](../chapter-3-solution-ui-ux-design/3.1.-product-design/3.1.4.-mobile-applications-ux-ui-design.md#3142-mobile-applications-wireflow-diagrams)
+    - [3.1.4.3. Mobile Applications Mock-ups](../chapter-3-solution-ui-ux-design/3.1.-product-design/3.1.4.-mobile-applications-ux-ui-design.md#3143-mobile-applications-mock-ups)
+    - [3.1.4.4. Mobile Applications User Flow Diagrams](../chapter-3-solution-ui-ux-design/3.1.-product-design/3.1.4.-mobile-applications-ux-ui-design.md#3144-mobile-applications-user-flow-diagrams)
+    - [3.1.4.5. Mobile Applications Prototyping](../chapter-3-solution-ui-ux-design/3.1.-product-design/3.1.4.-mobile-applications-ux-ui-design.md#3145-mobile-applications-prototyping)
 
 ---
 
