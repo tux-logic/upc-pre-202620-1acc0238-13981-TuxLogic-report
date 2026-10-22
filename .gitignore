@@ -55,6 +55,7 @@ tmp/
 
 # macOS
 .DS_Store
+temp_auto_push.bat
 .AppleDouble
 .LSOverride
 ._*
@@ -111,7 +112,5 @@ jira1.md
 performance.md
 revision.md
 Trabajo-Final_1ACC0238_202620.md
-branch_structure.json
-temp_auto_push.bat
-temp_interactive_push.bat
 .gitignore
+branch_structure.json
