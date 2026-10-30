@@ -55,6 +55,7 @@ tmp/
 
 # macOS
 .DS_Store
+temp_auto_push.bat
 .AppleDouble
 .LSOverride
 ._*
@@ -106,7 +107,12 @@ ENV/
 scratch/*.mmd
 scratch/fix_all_diagrams.py
 scratch/*.log
-branch_structure.json
-temp_auto_push.bat
-temp_interactive_push.bat
+
+### VS Code Tasks Protection ###
+
+### Environment & Secrets ###
+.env
+.env.*
+!.env.example
 .gitignore
+branch_structure.json
