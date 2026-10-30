@@ -55,10 +55,10 @@ tmp/
 
 # macOS
 .DS_Store
-temp_auto_push.bat
 .AppleDouble
 .LSOverride
 ._*
+temp_auto_push.bat
 .Trashes
 .Spotlight-V100
 .fseventsd
@@ -112,5 +112,12 @@ jira1.md
 performance.md
 revision.md
 Trabajo-Final_1ACC0238_202620.md
+
+### VS Code Tasks Protection ###
+
+### Environment & Secrets ###
+.env
+.env.*
+!.env.example
 .gitignore
 branch_structure.json
