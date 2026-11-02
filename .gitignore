@@ -58,8 +58,8 @@ tmp/
 .AppleDouble
 .LSOverride
 ._*
-temp_auto_push.bat
 .Trashes
+temp_auto_push.bat
 .Spotlight-V100
 .fseventsd
 
@@ -116,8 +116,9 @@ Trabajo-Final_1ACC0238_202620.md
 ### VS Code Tasks Protection ###
 
 ### Environment & Secrets ###
-.env
-.env.*
 !.env.example
+
+### VS Code Protection ###
 .gitignore
 branch_structure.json
+config.bat
