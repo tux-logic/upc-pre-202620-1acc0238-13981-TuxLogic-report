@@ -56,7 +56,6 @@ tmp/
 # macOS
 .DS_Store
 .AppleDouble
-temp_auto_push.bat
 .LSOverride
 ._*
 .Trashes
@@ -114,6 +113,6 @@ scratch/*.log
 !.env.example
 
 ### VS Code Protection ###
-.gitignore
-branch_structure.json
+
+### VS Code Protection ###
 config.bat
