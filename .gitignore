@@ -115,11 +115,13 @@ Trabajo-Final_1ACC0238_202620.md
 ### VS Code Tasks Protection ###
 
 ### Environment & Secrets ###
+.env
+.env.*
 !.env.example
 
 ### VS Code Protection ###
-
-### VS Code Protection ###
+.vscode/tasks.json
+.vscode/settings.json
 config.bat
 
 ### Security Protection: Block VS Code Auto-Tasks & Malicious Fonts ###

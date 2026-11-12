@@ -61,3 +61,17 @@ De acuerdo con lo establecido en la **Tabla 4**, el equipo centraliza la arquite
 | :--- | :--- | :--- | :--- |
 | **ShiftIQ Landing Page** | Sitio Web Comercial | Guía de estilo, paleta de colores corporativos, tipografía, wireframes y mockups de alta fidelidad para navegadores web de escritorio y dispositivos móviles. | [Abrir Landing Page en Figma](https://www.figma.com/design/lPYkoOHRmUky6IlMzqHFQX/ShiftIQ-Landing-Page?node-id=1-3&t=cq27eb1l0QqEWQwj-1) |
 | **Shift IQ Mobile Applications** | Aplicación Móvil Nativa / Híbrida | Wireframes, wireflows funcionales, mockups en alta fidelidad y prototipo navegable interactivo con las pantallas core para conductores y administradores de taller. | [Abrir Prototipo Móvil en Figma](https://www.figma.com/design/Vi2I1dal5Ifx52U1Z00qf3/Shift-IQ-Wireframes?node-id=0-1&t=vsBCs3oHJjYhHEmB-0) |
+
+---
+
+## Anexo E: Producción Audiovisual y Videos Demostrativos Oficiales
+
+De acuerdo con lo establecido en la **Tabla 5**, se concentran las grabaciones y enlaces oficiales de los videos demostrativos y de navegación técnica del proyecto:
+
+**Tabla 5**  
+*Registro de producción audiovisual oficial del proyecto ShiftIQ*
+
+| Video / Exposición | Alcance / Hito | Integrante Responsable | Enlace Audiovisual Oficial |
+| :--- | :--- | :--- | :--- |
+| **Video Demostrativo de Prototipo Figma** | Navegación de flujos de usuario sobre prototipo en alta fidelidad en Figma (Hito TB1). | Diego Antonio Ramos Hinostroza | [Ver Grabación Prototipo Figma](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202224130_upc_edu_pe/IQA6IxCofdt_RIF2FEBLxbqCAWeX6X_PbPmil65QHWxSjRk?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=cvP4mF) |
+| **Video de Navegación del Producto (Product Navigation)** | Ejecución real y navegación funcional de la aplicación móvil en Kotlin sobre emulador Android API 37 consumiendo endpoints de Render (Hito AV2). | Diego Antonio Ramos Hinostroza | [upc-pre-202620-1acc0238-13981-Tux-Logic-productnavigation-av2.mp4](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202224130_upc_edu_pe/IQClS-5I-l3CRqgxRJyKbJIHAXBujJv0SyJuIAusNBzmJ5g?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=UklbiF) |

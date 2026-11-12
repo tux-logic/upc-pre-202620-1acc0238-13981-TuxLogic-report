@@ -1268,4 +1268,253 @@ A continuación, se presentan las métricas de colaboración extraídas de GitHu
 Como demuestran los analíticos, la carga de trabajo se distribuyó de manera transparente y equilibrada entre los 5 integrantes del equipo TuxLogic, registrando aportes sustanciales en código fuente, configuraciones DevOps, suites de pruebas unitarias y documentación técnica del ecosistema *ShiftIQ*.
 
 #v(1em)
+---
+
+=== 4.2.2. Sprint 2
+
+==== 4.2.2.1. Sprint Planning 2
+
+A continuación, se presenta la ficha técnica de planificación del Sprint 2 acordada por el equipo para el desarrollo de la aplicación móvil en Kotlin:
+
+#v(0.3em)
+#align(center)[
+  #table(
+    columns: (30%, 70%),
+    stroke: 0.4pt + rgb("#cbd5e1"),
+    inset: (x: 8pt, y: 6pt),
+    fill: (x, y) => if y == 0 or y == 1 or y == 9 { rgb("#1e3a8a") } else if calc.even(y) { rgb("#f8fafc") } else { white },
+    table.cell(colspan: 2, align: center)[#text(fill: white, weight: "bold", size: 10pt)[Sprint \#2]],
+    table.cell(colspan: 2, align: center)[#text(fill: white, weight: "bold", size: 9pt)[Sprint Planning Background]],
+    [*Date*], [2026-10-12],
+    [*Time*], [5:00 PM],
+    [*Location*], [Reunión presencial en la UPC (Pabellón L, piso 3, cubículo 6) y sesión síncrona vía Microsoft Teams.],
+    [*Prepared By*], [Ramos Hinostroza, Diego Antonio / Mamani Vilca, Alan Jaivi],
+    [*Attendees (to planning meeting)*], [Machacca Soto, Aldo Jeanfranco / Mallqui Vilca, Dhilsen Armil / Mamani Vilca, Alan Jaivi / Ramos Hinostroza, Diego Antonio / Vidal Malaga, Jareth Beycker],
+    [*Sprint 1 Review Summary*], [Durante el Sprint 1 se completó exitosamente la publicación comercial de la Landing Page en Vercel y el desarrollo, contenedorización y despliegue del backend RESTful en Render Cloud con 42 pruebas unitarias satisfactorias en JUnit 5 y documentación interactiva OpenAPI en Swagger UI.],
+    [*Sprint 1 Retrospective Summary*], [El equipo acordó enfocar el Sprint 2 en el desarrollo de la aplicación móvil nativa Android en Kotlin con Jetpack Compose (`shiftiq-mobile-app`). Se priorizó implementar una arquitectura desacoplada en tres capas (Presentation, Domain, Infrastructure), soporte offline-first mediante Room 3, y la integración integral de los flujos B2C para conductores (telemetría reactiva, diagnóstico OBD-II didáctico, catálogo de talleres, agendamiento de citas y gestión del garaje).],
+    table.cell(colspan: 2, align: center)[#text(fill: white, weight: "bold", size: 9pt)[Sprint Goal & User Stories]],
+    [*Sprint 2 Goal*], [
+      *Our focus is on* designing, implementing, and validating the native Android mobile application (`com.tuxlogic.shiftiq.mobile`) in Kotlin with Jetpack Compose under Material Design 3, establishing a clean 3-layer DDD architecture with Room 3 offline-first caching, and delivering the complete B2C driver user experience covering multi-step registration with OTP email verification, dynamic driver home dashboard with real-time Canvas telemetry graphics, OBD-II scanner with didactic DTC fault translation, workshop discovery with appointment booking, and My Garage vehicle fleet management. \ \
+      *We believe it delivers* an intuitive, resilient, and high-performance mobile application that empowers vehicle owners to monitor telemetry in real time, understand mechanical diagnostics in accessible language, and connect seamlessly with certified automotive repair workshops. \ \
+      *This will be confirmed when* the Android application compiles successfully with Gradle 9.6 and AGP 9.4, passes all JVM unit test suites, executes smoothly on official Android emulators and physical devices, communicates reliably with the RESTful backend on Render Cloud, and provides a fully documented product navigation video.
+    ],
+    [*Sprint 2 Velocity*], [50 Story Points],
+    [*Sum of Story Points*], [50 Story Points (US001/US002: 5, US019: 5, US023: 5, US024/US022: 5, US026: 5, US029: 3, US030: 3, TS001: 5, TS008: 8, TS009: 6).],
+  )
+]
+#v(0.3em)
+
+---
+
+==== 4.2.2.2. Aspect Leaders and Collaborators
+
+En este segundo Sprint, el esfuerzo técnico de TuxLogic se concentró en la construcción de la aplicación cliente nativa Android (`shiftiq-mobile-app`) bajo una arquitectura orientada al dominio (Clean Architecture / DDD), desacoplada en capas de Presentación, Dominio e Infraestructura. Para optimizar el rendimiento y asegurar la máxima calidad de software, las responsabilidades se distribuyeron en cuatro frentes especializados:
+
+1. *Mobile Architecture & Core Foundation (Clean DDD, Room 3 & Network):* Liderado por *Ramos Hinostroza, Diego Antonio*, abarca el diseño del Shared Kernel, el bus de eventos de dominio en memoria (`DomainEventBus`), la persistencia local reactiva con AndroidX Room 3 (`ShiftIQDatabase`, `VehicleDao`, `TelemetryDao`), el interceptor seguro Bearer JWT con `SessionDataStore`, y el cliente HTTP Retrofit con encapsulamiento `SafeApiCall`.
+2. *Driver B2C Experience & UI/UX (Jetpack Compose M3, Canvas, Telemetría y Diagnóstico):* Liderado por *Ramos Hinostroza, Diego Antonio*, con el soporte de *Vidal Malaga, Jareth Beycker* en consistencia de diseño visual, comprende el desarrollo del asistente de registro B2C con validación OTP por correo, el tablero principal del conductor (`DriverHomeScreen`) con dibujo dinámico en Canvas (`CarSilhouetteCanvas`, `HealthRingCanvas`), el escáner de diagnóstico OBD-II con catálogo explicativo de fallas DTC (`DiagnosticScreen`, `DtcDetailScreen`), y la administración del garaje vehicular (`GarageScreen`).
+3. *Workshop Catalog, Appointments & Operations:* Liderado por *Mamani Vilca, Alan Jaivi*, con la colaboración de *Mallqui Vilca, Dhilsen Armil*, abarca la implementación del catálogo de talleres mecánicos afiliados (`WorkshopsScreen`), vista detallada de sucursales, flujo interactivo de agendamiento de citas técnicas y seguimiento en vivo de órdenes de trabajo.
+4. *Backend Cloud Sync, QA & Integration Testing:* Liderado conjuntamente por *Machacca Soto, Aldo Jeanfranco* y *Ramos Hinostroza, Diego Antonio*, comprende la verificación y sincronización continua de contratos REST contra el servidor en la nube de Render (`https://shiftiq-platform.onrender.com`), la construcción de suites de pruebas unitarias para repositorios y casos de uso, y la remediación de seguridad del código fuente.
+
+#v(0.3em)
+#align(center)[
+  #table(
+    columns: (26%, 16%, 14%, 14%, 15%, 15%),
+    stroke: 0.4pt + rgb("#cbd5e1"),
+    inset: (x: 5pt, y: 6pt),
+    align: (col, row) => if col <= 1 { left + horizon } else { center + horizon },
+    fill: (x, y) => if y == 0 { rgb("#1e3a8a") } else if calc.even(y) { rgb("#f8fafc") } else { white },
+    table.header(
+      [#text(fill: white, weight: "bold", size: 8pt)[Team Member (Last Name, First Name)]],
+      [#text(fill: white, weight: "bold", size: 8pt)[GitHub Username]],
+      [#text(fill: white, weight: "bold", size: 7.5pt)[Mobile Arch & Core\(L / C)]],
+      [#text(fill: white, weight: "bold", size: 7.5pt)[Driver B2C Exp & UI\(L / C)]],
+      [#text(fill: white, weight: "bold", size: 7.5pt)[Workshops & Ops\(L / C)]],
+      [#text(fill: white, weight: "bold", size: 7.5pt)[Cloud Sync & QA\(L / C)]],
+    ),
+    [Ramos Hinostroza, Diego Antonio], [`Kosevy`], [#text(weight: "bold", fill: rgb("#16a34a"))[L]], [#text(weight: "bold", fill: rgb("#16a34a"))[L]], [#text(fill: rgb("#2563eb"))[C]], [#text(weight: "bold", fill: rgb("#16a34a"))[L]],
+    [Machacca Soto, Aldo Jeanfranco], [`MarkOne-dev`], [#text(fill: rgb("#2563eb"))[C]], [#text(fill: rgb("#2563eb"))[C]], [#text(fill: rgb("#2563eb"))[C]], [#text(weight: "bold", fill: rgb("#16a34a"))[L]],
+    [Mamani Vilca, Alan Jaivi], [`AlanMamaniV`], [#text(fill: rgb("#2563eb"))[C]], [#text(fill: rgb("#2563eb"))[C]], [#text(weight: "bold", fill: rgb("#16a34a"))[L]], [#text(fill: rgb("#2563eb"))[C]],
+    [Mallqui Vilca, Dhilsen Armil], [`Dhilsen18`], [#text(fill: rgb("#2563eb"))[C]], [#text(fill: rgb("#2563eb"))[C]], [#text(fill: rgb("#2563eb"))[C]], [#text(fill: rgb("#2563eb"))[C]],
+    [Vidal Malaga, Jareth Beycker], [`jarethvidal`], [#text(fill: rgb("#2563eb"))[C]], [#text(fill: rgb("#2563eb"))[C]], [#text(fill: rgb("#2563eb"))[C]], [#text(fill: rgb("#2563eb"))[C]],
+  )
+]
+#v(0.3em)
+
+---
+
+==== 4.2.2.3. Sprint Backlog 2
+
+A continuación, se detalla la descomposición técnica de las Historias de Usuario e Historias Técnicas correspondientes al Sprint 2, enfocadas en la construcción, arquitectura offline-first y consumo de servicios en la aplicación móvil en Kotlin (`shiftiq-mobile-app`):
+
+#v(0.3em)
+#align(center)[
+  #table(
+    columns: (6%, 16%, 6%, 16%, 32%, 8%, 8%, 8%),
+    stroke: 0.4pt + rgb("#cbd5e1"),
+    inset: (x: 4pt, y: 5pt),
+    fill: (x, y) => if y == 0 { rgb("#1e3a8a") } else if calc.even(y) { rgb("#f8fafc") } else { white },
+    table.header(
+      [#text(fill: white, weight: "bold", size: 7.5pt)[US Id]],
+      [#text(fill: white, weight: "bold", size: 7.5pt)[User Story]],
+      [#text(fill: white, weight: "bold", size: 7.5pt)[WI Id]],
+      [#text(fill: white, weight: "bold", size: 7.5pt)[Work-Item]],
+      [#text(fill: white, weight: "bold", size: 7.5pt)[Description]],
+      [#text(fill: white, weight: "bold", size: 7.5pt)[Hours]],
+      [#text(fill: white, weight: "bold", size: 7.5pt)[Assigned]],
+      [#text(fill: white, weight: "bold", size: 7.5pt)[Status]],
+    ),
+    [TS008], [Arquitectura Base Clean DDD y Room 3], [WI-19], [Estructura Capas y DomainEventBus], [_Modularizar paquetes e implementar bus en memoria._], [6], [Ramos, D.], [#text(weight: "bold", fill: rgb("#16a34a"))[Done]],
+    [TS008], [Arquitectura Base Clean DDD y Room 3], [WI-20], [Configuración Room 3 y DAOs], [_ShiftIQDatabase, VehicleDao y TelemetryDao offline-first._], [5], [Ramos, D.], [#text(weight: "bold", fill: rgb("#16a34a"))[Done]],
+    [US001], [Registro B2C y Verificación OTP], [WI-21], [Asistente de Registro en Compose], [_RegisterScreen con etapas y componentes Material 3._], [5], [Ramos, D.], [#text(weight: "bold", fill: rgb("#16a34a"))[Done]],
+    [US002], [Registro B2C y Verificación OTP], [WI-22], [Verificación OTP por Correo], [_Integrar sendOtp y verifyOtp reactivos en ViewModel._], [4], [Ramos, D.], [#text(weight: "bold", fill: rgb("#16a34a"))[Done]],
+    [US019], [Tablero Telemático en Vivo], [WI-23], [Componentes Gráficos Canvas], [_CarSilhouetteCanvas y HealthRingCanvas vectoriales._], [6], [Ramos, D.], [#text(weight: "bold", fill: rgb("#16a34a"))[Done]],
+    [US019], [Tablero Telemático en Vivo], [WI-24], [DriverHomeScreen Polling 2s], [_Telemetría cada 2s, ActiveServiceCard y banner._], [5], [Ramos, D.], [#text(weight: "bold", fill: rgb("#16a34a"))[Done]],
+    [US023], [Diagnóstico y Alertas DTC], [WI-25], [Simulación y Escaneo OBD-II], [_DiagnosticScreen con escaneo ECU y parámetros live._], [5], [Ramos, D.], [#text(weight: "bold", fill: rgb("#16a34a"))[Done]],
+    [US023], [Diagnóstico y Alertas DTC], [WI-26], [Traductor Didáctico Códigos DTC], [_DtcDetailScreen con explicaciones claras y severidad._], [4], [Ramos, D.], [#text(weight: "bold", fill: rgb("#16a34a"))[Done]],
+    [US026], [Catálogo y Reserva de Citas], [WI-27], [Explorador Talleres Afiliados], [_WorkshopsScreen con filtros de cercanía y preview._], [5], [Ramos, D.], [#text(weight: "bold", fill: rgb("#16a34a"))[Done]],
+    [US029], [Catálogo y Reserva de Citas], [WI-28], [Reserva y Cupón Digital QR], [_AppointmentBookingScreen con confirmación instantánea._], [4], [Ramos, D.], [#text(weight: "bold", fill: rgb("#16a34a"))[Done]],
+    [US024], [Gestión Garaje y Fichas PDF], [WI-29], [Módulo Garaje y Alta Vehicular], [_GarageScreen, VehicleRegistration y modal Bluetooth._], [6], [Ramos, D.], [#text(weight: "bold", fill: rgb("#16a34a"))[Done]],
+    [US022], [Gestión Garaje y Fichas PDF], [WI-30], [Historial Servicios y Visor PDF], [_TechnicalInterventionDetail y ServiceVoucherPdf._], [5], [Ramos, D.], [#text(weight: "bold", fill: rgb("#16a34a"))[Done]],
+    [TS009], [Navegación Unificada B2C y M3], [WI-31], [Barra ShiftIQBottomNavBar], [_4 pestañas y ruteo centralizado en MainActivity._], [4], [Ramos, D.], [#text(weight: "bold", fill: rgb("#16a34a"))[Done]],
+    [TS009], [Navegación Unificada B2C y M3], [WI-32], [Estandarización TopBars y Tema], [_Unificación de paddings y tokens de color Figma._], [3], [Ramos, D.], [#text(weight: "bold", fill: rgb("#16a34a"))[Done]],
+    [TS001], [Pruebas Unitarias y Sincronización], [WI-33], [Suites Unitarias Repositorios], [_Tests JVM para AuthRepository, Fleet y Mappers._], [5], [Ramos, D.], [#text(weight: "bold", fill: rgb("#16a34a"))[Done]],
+    [TS001], [Pruebas Unitarias y Sincronización], [WI-34], [Sincronización Endpoints Render], [_Consumo REST con SafeApiCall y manejo 200/204/401._], [4], [Ramos, D.], [#text(weight: "bold", fill: rgb("#16a34a"))[Done]],
+  )
+]
+#v(0.3em)
+
+---
+
+==== 4.2.2.4. Development Evidence for Sprint Review
+
+A continuación, se documenta una selección representativa de commits del repositorio oficial `tux-logic/shiftiq-mobile-app` que acreditan la implementación técnica de la arquitectura de la aplicación móvil en Kotlin, las pantallas de experiencia del conductor, el almacenamiento local y la sincronización de servicios en la nube:
+
+#v(0.3em)
+#align(center)[
+  #table(
+    columns: (22%, 18%, 10%, 12%, 26%, 12%),
+    stroke: 0.4pt + rgb("#cbd5e1"),
+    inset: (x: 5pt, y: 5pt),
+    fill: (x, y) => if y == 0 { rgb("#1e3a8a") } else if calc.even(y) { rgb("#f8fafc") } else { white },
+    table.header(
+      [#text(fill: white, weight: "bold", size: 8pt)[Repository]],
+      [#text(fill: white, weight: "bold", size: 8pt)[Branch]],
+      [#text(fill: white, weight: "bold", size: 8pt)[Commit Id]],
+      [#text(fill: white, weight: "bold", size: 8pt)[Message]],
+      [#text(fill: white, weight: "bold", size: 8pt)[Message Body]],
+      [#text(fill: white, weight: "bold", size: 8pt)[Date]],
+    ),
+    [`tux-logic/shiftiq-mobile-app`], [`develop`], [`f92f0fc`], [fix(diagnostic):], [update DtcDetailScreen.kt to polish didactic interpretation], [12/11/2026],
+    [`tux-logic/shiftiq-mobile-app`], [`develop`], [`302de47`], [fix(fleet):], [standardize fleet screen top bars and vertical spacing], [12/11/2026],
+    [`tux-logic/shiftiq-mobile-app`], [`feature/fleet`], [`71e35aa`], [feat(fleet):], [implement workshops, my garage, booking and figma alignment], [12/11/2026],
+    [`tux-logic/shiftiq-mobile-app`], [`feature/fleet`], [`7ac5c92`], [fix(ui):], [polish driver dashboard UX, profile and card elevation], [11/11/2026],
+    [`tux-logic/shiftiq-mobile-app`], [`feature/fleet`], [`e407f8e`], [feat(fleet):], [driver dashboard, workshops, diagnostic, garage and Room 3], [11/11/2026],
+    [`tux-logic/shiftiq-mobile-app`], [`feature/iam`], [`e5f0c69`], [fix(iam):], [align sendOtp and verifyOtp API contracts with backend], [09/11/2026],
+    [`tux-logic/shiftiq-mobile-app`], [`feature/iam`], [`29856f8`], [fix(iam):], [integrate OTP email verification into B2C driver wizard], [09/11/2026],
+    [`tux-logic/shiftiq-mobile-app`], [`feature/sync`], [`742a92f`], [refactor(arch):], [merge IAM and Inventory into new 3-layer architecture], [09/11/2026],
+    [`tux-logic/shiftiq-mobile-app`], [`develop`], [`265e819`], [feat(core):], [implement in-memory DomainEventBus cross-context events], [09/11/2026],
+  )
+]
+#v(0.3em)
+
+---
+
+==== 4.2.2.5. Testing Suite Evidence for Sprint Review
+
+Para garantizar la estabilidad y la robustez lógica de la aplicación móvil en Kotlin, se implementaron suites de pruebas unitarias automatizadas ejecutadas directamente en la máquina virtual Java (JVM) con Gradle (`.\gradlew.bat :app:testDebugUnitTest`). Estas pruebas abarcan la lógica de negocio en casos de uso, la correspondencia de modelos mediante mappers bidireccionales y la capa de infraestructura de autenticación y red.
+
+#raw(block: true, "> Task :app:testDebugUnitTest\n\ncom.tuxlogic.shiftiq.mobile.feature.iam.AuthRepositoryTest > sendOtp_success PASSED\ncom.tuxlogic.shiftiq.mobile.feature.iam.AuthRepositoryTest > verifyOtp_success PASSED\ncom.tuxlogic.shiftiq.mobile.feature.iam.AuthRepositoryTest > login_returns_valid_token PASSED\ncom.tuxlogic.shiftiq.mobile.feature.fleet.domain.usecase.GetAppointmentsUseCaseTest > getAppointments_returns_filtered_list PASSED\ncom.tuxlogic.shiftiq.mobile.feature.fleet.domain.usecase.CreateAppointmentUseCaseTest > createAppointment_validates_dates PASSED\ncom.tuxlogic.shiftiq.mobile.feature.fleet.infrastructure.mapper.FleetMappersTest > dto_to_domain_mapping_preserves_attributes PASSED\ncom.tuxlogic.shiftiq.mobile.core.network.SafeApiCallTest > safeApiCall_handles_http_exceptions_gracefully PASSED\n\nBUILD SUCCESSFUL in 14s\n38 actionable tasks: 38 executed")
+
+#v(0.5em)
+
+---
+
+==== 4.2.2.6. Execution Evidence for Sprint Review
+
+En esta sección se presenta la evidencia audiovisual y funcional de la ejecución del producto correspondiente al Sprint 2. El hito alcanzado comprende la aplicación Android *ShiftIQ Mobile* en Kotlin totalmente funcional, ejecutándose en un emulador oficial de Android Studio (Pixel 10 Pro XL con API 37.0) e interactuando en vivo con la plataforma backend alojada en Render Cloud.
+
+- *Enlace al video demostrativo de navegación del producto en Kotlin:* #link("https://upcedupe-my.sharepoint.com/:v:/g/personal/u202224130_upc_edu_pe/IQClS-5I-l3CRqgxRJyKbJIHAXBujJv0SyJuIAusNBzmJ5g?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=UklbiF")[upc-pre-202620-1acc0238-13981-Tux-Logic-productnavigation-av2.mp4]
+
+Como se aprecia en la *Figura 325*, se presenta la portada oficial del video de navegación del producto grabado por el desarrollador Diego Ramos. En dicha captura se evidencia la ejecución en tiempo real de la pantalla de *Talleres Afiliados (`WorkshopsScreen`)* dentro del entorno emulado, exhibiendo las tarjetas de talleres certificados, filtros de disponibilidad inmediata, cotizaciones estimadas y el botón de acción para agendar una cita técnica:
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 8pt,
+      radius: 4pt,
+      image("assets/chapter-4/sprint-2/product-navigation-video-thumbnail.jpg", width: 85%)
+    ),
+    caption: [Portada del video demostrativo de navegación del producto en Kotlin (ShiftIQ Mobile App - Android).]
+  )
+]
+#v(0.5em)
+
+*Escenarios de Navegación Demostrados en el Video:*
+
+1. *Autenticación y Registro B2C:* Demostración del asistente interactivo de registro de conductores en Jetpack Compose, validación de contraseñas seguras y consumo del servicio de verificación OTP por correo electrónico.
+2. *Dashboard Telemático del Conductor (Home):* Visualización del estado del vehículo en tiempo real mediante componentes Canvas personalizados (`CarSilhouetteCanvas` y anillo de salud `HealthRingCanvas`), grilla de parámetros (velocidad, RPM, temperatura del refrigerante, nivel de combustible) con actualización reactiva cada 2 segundos y banner de alertas mecánicas.
+3. *Escaneo y Diagnóstico Didáctico OBD-II:* Demostración del flujo de escaneo vehicular inteligente que traduce códigos de falla técnicos DTC (tales como P0171 o fallas de sensor O2) a diagnósticos didácticos en lenguaje natural amigable (US023), con estimación de severidad y recomendaciones inmediatas.
+4. *Catálogo de Talleres Afiliados y Reserva de Citas:* Exploración de sedes automotrices certificadas por ShiftIQ con cálculo de presupuesto aproximado, filtrado dinámico y flujo completo de reserva de turno mecánico con generación inmediata de comprobante digital.
+5. *Mi Garaje y Gestión de Historial Técnico:* Visualización de la flota de vehículos del usuario, alta vehicular mediante formulario guiado, historial de intervenciones mecánicas pasadas y visualizador integrado de comprobantes de servicio en formato PDF.
+
+---
+
+==== 4.2.2.7. Services Documentation Evidence for Sprint Review
+
+Durante el Sprint 2, la aplicación móvil nativa Android consumió e integró de manera exhaustiva el catálogo de servicios RESTful desplegados en producción en la plataforma backend de Render Cloud (`https://shiftiq-platform.onrender.com`). La comunicación se estructuró mediante Retrofit 2, serialización JSON con Gson y un interceptor HTTP que inyecta automáticamente el token Bearer JWT almacenado en `SessionDataStore`.
+
+#v(0.3em)
+#align(center)[
+  #table(
+    columns: (26%, 10%, 14%, 28%, 22%),
+    stroke: 0.4pt + rgb("#cbd5e1"),
+    inset: (x: 5pt, y: 5pt),
+    fill: (x, y) => if y == 0 { rgb("#1e3a8a") } else if calc.even(y) { rgb("#f8fafc") } else { white },
+    table.header(
+      [#text(fill: white, weight: "bold", size: 8pt)[Servicio / Endpoint]],
+      [#text(fill: white, weight: "bold", size: 8pt)[Método]],
+      [#text(fill: white, weight: "bold", size: 8pt)[Bounded Context]],
+      [#text(fill: white, weight: "bold", size: 8pt)[Descripción del Consumo]],
+      [#text(fill: white, weight: "bold", size: 8pt)[Mapeo Kotlin]],
+    ),
+    [`/api/v1/auth/otp/send-registration`], [POST], [IAM], [Envía código de 6 dígitos al correo del conductor.], [`AuthApiService.sendOtp()`],
+    [`/api/v1/auth/otp/verify`], [POST], [IAM], [Valida código OTP y confirma el registro.], [`AuthApiService.verifyOtp()`],
+    [`/api/v1/workshops`], [GET], [Core], [Lista talleres afiliados certificados.], [`CoreApiService.getWorkshops()`],
+    [`/api/v1/appointments`], [POST/GET], [Fleet], [Registra y consulta citas mecánicas.], [`FleetApiService.createAppointment()`],
+    [`/api/v1/vehicles`], [GET/POST], [IoT / Fleet], [Alta y consulta de vehículos del garaje.], [`IotApiService.getVehicles()`],
+    [`/api/v1/telemetry-batches/latest`], [GET], [IoT], [Telemetría y códigos DTC del vehículo.], [`IotApiService.getLatestTelemetry()`],
+  )
+]
+#v(0.3em)
+
+---
+
+==== 4.2.2.8. Software Deployment Evidence for Sprint Review
+
+El despliegue y validación de la aplicación móvil en este Sprint 2 se llevó a cabo mediante los siguientes mecanismos:
+
+1. *Toolchain y Compilación Gradle:*
+   - *Compilador:* Kotlin 2.4.21 con soporte para KSP (Kotlin Symbol Processing).
+   - *Gradle:* Wrapper Gradle 9.6 ejecutado en Windows PowerShell mediante `.\gradlew.bat`.
+   - *Android Gradle Plugin (AGP):* Versión 9.4.1 con configuración moderna `compileSdk { version = release(37) }` y `minSdk 24`.
+   - *JDK Daemon:* JVM toolchain fijado en JDK 25 con compatibilidad Java 11 para la app Android.
+2. *Generación del Artefacto APK Debug:*
+   - Comando de empaquetado: `.\gradlew.bat :app:assembleDebug`.
+   - Salida del binario: `app/build/outputs/apk/debug/app-debug.apk`.
+3. *Despliegue y Ejecución en Dispositivos:*
+   - *Emulador Oficial:* Google Pixel 10 Pro XL ejecutando Android 15 (API 37.0), validando la adaptación responsiva de fuentes, padding táctil y animaciones suaves de Compose.
+   - *Dispositivos Físicos:* Pruebas de compatibilidad sobre terminales Xiaomi y Samsung con Android 12, 13 y 14, garantizando estabilidad y rendimiento óptimo en memoria.
+
+---
+
+==== 4.2.2.9. Team Collaboration Insights during Sprint 2
+
+A lo largo del Sprint 2, el equipo TuxLogic aplicó de forma disciplinada la metodología GitFlow sobre el repositorio `shiftiq-mobile-app`. Toda la funcionalidad se organizó mediante ramas temáticas de características (_feature branches_) alineadas a los Bounded Contexts y flujos de usuario: `feature/iam`, `feature/fleet`, `feature/iot-presentation`, y la rama de consolidación `feature/sync-all-contexts`.
+
+Cada integración hacia la rama `develop` se realizó mediante Pull Requests formales con revisión estricta de código por pares (_Code Review_), asegurando el cumplimiento de la guía de estilos de Kotlin, la inexistencia de credenciales hardcodeadas o archivos de configuración vulnerables, y la estandarización de mensajes bajo _Conventional Commits_. La estrecha colaboración entre los frentes de arquitectura móvil, diseño visual y backend permitió consolidar una aplicación nativa completa, de alto valor de negocio y con excelente experiencia de usuario para el conductor automotriz.
+
+#v(1em)
 ```

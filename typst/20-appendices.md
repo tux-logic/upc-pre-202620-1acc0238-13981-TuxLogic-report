@@ -110,4 +110,30 @@ De acuerdo con lo establecido en la *Tabla 4*, el equipo centraliza la arquitect
   [*ShiftIQ Landing Page*], [Sitio Web Comercial], [Guía de estilo, paleta cromática, wireframes y mockups desktop y mobile.], [#link("https://www.figma.com/design/lPYkoOHRmUky6IlMzqHFQX/ShiftIQ-Landing-Page?node-id=1-3&t=cq27eb1l0QqEWQwj-1")[Abrir Figma]],
   [*Shift IQ Mobile App*], [Aplicación Móvil], [Wireframes, wireflows funcionales, mockups y prototipo interactivo.], [#link("https://www.figma.com/design/Vi2I1dal5Ifx52U1Z00qf3/Shift-IQ-Wireframes?node-id=0-1&t=vsBCs3oHJjYhHEmB-0")[Abrir Figma]],
 )
+
+#v(0.6em)
+=== Anexo E: Producción Audiovisual y Videos Demostrativos Oficiales
+
+De acuerdo con lo establecido en la *Tabla 5*, se concentran las grabaciones y enlaces oficiales de los videos demostrativos y de navegación técnica del proyecto:
+
+#v(0.3em)
+#align(center)[
+  #text(weight: "bold")[Tabla 5] \
+  #text(style: "italic")[Registro de producción audiovisual oficial del proyecto ShiftIQ]
+]
+#v(0.3em)
+#table(
+  columns: (30%, 30%, 20%, 20%),
+  stroke: 0.4pt + rgb("#cbd5e1"),
+  inset: (x: 8pt, y: 6pt),
+  fill: (x, y) => if y == 0 { rgb("#1e3a8a") } else if calc.even(y) { rgb("#f8fafc") } else { white },
+  table.header(
+    [#text(fill: white, weight: "bold")[Video / Exposición]],
+    [#text(fill: white, weight: "bold")[Alcance / Hito]],
+    [#text(fill: white, weight: "bold")[Responsable]],
+    [#text(fill: white, weight: "bold")[Enlace]],
+  ),
+  [*Video Demostrativo Prototipo Figma*], [Navegación de flujos de usuario sobre prototipo Figma (Hito TB1).], [Diego Ramos], [#link("https://upcedupe-my.sharepoint.com/:v:/g/personal/u202224130_upc_edu_pe/IQA6IxCofdt_RIF2FEBLxbqCAWeX6X_PbPmil65QHWxSjRk?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=cvP4mF")[Ver Video]],
+  [*Video Navegación del Producto (Kotlin)*], [Ejecución real y navegación en Kotlin sobre emulador API 37 (Hito AV2).], [Diego Ramos], [#link("https://upcedupe-my.sharepoint.com/:v:/g/personal/u202224130_upc_edu_pe/IQClS-5I-l3CRqgxRJyKbJIHAXBujJv0SyJuIAusNBzmJ5g?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=UklbiF")[Ver Video]],
+)
 ```
