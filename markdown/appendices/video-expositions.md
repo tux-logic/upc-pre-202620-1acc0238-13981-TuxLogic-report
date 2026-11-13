@@ -13,9 +13,11 @@ Como se muestra en la **Tabla 1**, a continuación se presentan los repositorios
 | **Landing Page (Código)** | Repositorio de código fuente del sitio web comercial e informativo de ShiftIQ (HTML5, CSS3, JavaScript modular). | [https://github.com/tux-logic/Shiftiq-Landing-Page.git](https://github.com/tux-logic/Shiftiq-Landing-Page.git) |
 | **Landing Page (Despliegue Vercel)** | Despliegue en producción de la Landing Page comercial en la nube de Vercel (100% operativo y responsive). | [https://shiftiq-landing-page.vercel.app/](https://shiftiq-landing-page.vercel.app/) |
 | **Backend API Platform (Código)** | Repositorio de la plataforma backend de microservicios RESTful desarrollada con Spring Boot 3.5.5, Java 21, PostgreSQL y DDD. | [https://github.com/tux-logic/shiftiq-platform.git](https://github.com/tux-logic/shiftiq-platform.git) |
-| **Backend API Platform (Despliegue Render)** | Despliegue público en producción del servicio Backend RESTful alojado en la nube de Render Cloud. | [https://shiftiq-platform.onrender.com/](https://shiftiq-platform.onrender.com/) |
+| **Backend API (Despliegue)** | Despliegue público en producción del servicio Backend RESTful alojado en la nube de Render Cloud. | [https://shiftiq-platform.onrender.com/](https://shiftiq-platform.onrender.com/) |
 | **Swagger UI / OpenAPI (Render)** | Interfaz interactiva de documentación y ejecución pública de los servicios web RESTful en Render Cloud. | [https://shiftiq-platform.onrender.com/swagger-ui/index.html](https://shiftiq-platform.onrender.com/swagger-ui/index.html) |
-| **Aplicación Móvil (Mobile App)** | Repositorio para la aplicación móvil cliente en Flutter / Kotlin Multiplatform dirigida a conductores y administradores de taller. | [https://github.com/tux-logic/shiftiq-mobile-app.git](https://github.com/tux-logic/shiftiq-mobile-app.git) |
+| **Workshop App (Flutter - Despliegue)** | Distribución y descarga del APK para talleres automotrices mediante Firebase App Distribution. | [https://appdistribution.firebase.dev/i/40720f8e62ef7ca4](https://appdistribution.firebase.dev/i/40720f8e62ef7ca4) |
+| **Workshop App (Flutter - Código)** | Repositorio de código fuente de la app móvil para talleres mecánicos independientes (Flutter / Dart). | [https://github.com/tux-logic/shiftiq-mobile-app-flutter.git](https://github.com/tux-logic/shiftiq-mobile-app-flutter.git) |
+| **Driver App (Kotlin - Código y Release)** | Repositorio de código fuente y releases de APK para conductores particulares (Android Jetpack Compose). | [https://github.com/tux-logic/shiftiq-mobile-app.git](https://github.com/tux-logic/shiftiq-mobile-app.git) |
 | **Organización Oficial GitHub** | Espacio organizacional oficial que reúne a los miembros del equipo y todos los repositorios de software de TuxLogic. | [https://github.com/tux-logic](https://github.com/tux-logic) |
 
 ---
@@ -61,3 +63,18 @@ De acuerdo con lo establecido en la **Tabla 4**, el equipo centraliza la arquite
 | :--- | :--- | :--- | :--- |
 | **ShiftIQ Landing Page** | Sitio Web Comercial | Guía de estilo, paleta de colores corporativos, tipografía, wireframes y mockups de alta fidelidad para navegadores web de escritorio y dispositivos móviles. | [Abrir Landing Page en Figma](https://www.figma.com/design/lPYkoOHRmUky6IlMzqHFQX/ShiftIQ-Landing-Page?node-id=1-3&t=cq27eb1l0QqEWQwj-1) |
 | **Shift IQ Mobile Applications** | Aplicación Móvil Nativa / Híbrida | Wireframes, wireflows funcionales, mockups en alta fidelidad y prototipo navegable interactivo con las pantallas core para conductores y administradores de taller. | [Abrir Prototipo Móvil en Figma](https://www.figma.com/design/Vi2I1dal5Ifx52U1Z00qf3/Shift-IQ-Wireframes?node-id=0-1&t=vsBCs3oHJjYhHEmB-0) |
+
+---
+
+## Anexo E: Producción Audiovisual y Videos Demostrativos Oficiales
+
+De acuerdo con lo establecido en la **Tabla 5**, se concentran las grabaciones y enlaces oficiales de los videos demostrativos y de navegación técnica del proyecto:
+
+**Tabla 5**  
+*Registro de producción audiovisual oficial del proyecto ShiftIQ*
+
+| Video / Exposición | Alcance / Hito | Integrante Responsable | Enlace Audiovisual Oficial |
+| :--- | :--- | :--- | :--- |
+| **Video Demostrativo de Prototipo Figma** | Navegación de flujos de usuario sobre prototipo en alta fidelidad en Figma (Hito TB1). | Diego Antonio Ramos Hinostroza | [Ver Grabación Prototipo Figma](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202224130_upc_edu_pe/IQA6IxCofdt_RIF2FEBLxbqCAWeX6X_PbPmil65QHWxSjRk?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=cvP4mF) |
+| **Video de Navegación del Producto (Product Navigation - Kotlin B2C)** | Ejecución real y navegación funcional de la aplicación móvil en Kotlin sobre emulador Android API 37 consumiendo endpoints de Render (Hito AV2). | Diego Antonio Ramos Hinostroza | [upc-pre-202620-1acc0238-13981-Tux-Logic-productnavigation-av2.mp4](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202224130_upc_edu_pe/IQClS-5I-l3CRqgxRJyKbJIHAXBujJv0SyJuIAusNBzmJ5g?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=UklbiF) |
+| **Video de Navegación del Taller (Workshop Navigation - Flutter B2B)** | Navegación funcional del aplicativo en Flutter para gestión de sucursales, mecánicos y órdenes de trabajo (Hito AV2). | Dhilsen Armil Mallqui Vilca | [Ver Video en Google Drive](https://drive.google.com/file/d/1TuoNJeeY1T-oAVaM7BXqTjasaG_TjvEG/view?usp=sharing) |

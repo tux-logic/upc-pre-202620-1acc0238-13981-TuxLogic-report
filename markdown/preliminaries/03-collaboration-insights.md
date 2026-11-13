@@ -9,7 +9,7 @@ Esta sección documenta la infraestructura de repositorios, la metodología de t
 El desarrollo del ecosistema **ShiftIq** se gestiona bajo la organización oficial en GitHub:  
 **Organización de GitHub:** [https://github.com/tux-logic](https://github.com/tux-logic)
 
-Como se resume en la Tabla 1, la organización centraliza tres repositorios fundamentales para el informe del proyecto, la landing page comercial y la plataforma backend:
+Como se resume en la Tabla 1, la organización centraliza los repositorios oficiales para el informe del proyecto, la landing page comercial, la plataforma backend y los dos aplicativos móviles desarrollados en el Sprint 2:
 
 **Tabla 1**  
 *Repositorios oficiales de la organización TuxLogic en GitHub*
@@ -19,6 +19,8 @@ Como se resume en la Tabla 1, la organización centraliza tres repositorios fund
 | **Project Report** | Informe académico oficial en formato Markdown (GFM) y Typst PDF. | [https://github.com/tux-logic/upc-pre-202620-1acc0238-13981-TuxLogic-report.git](https://github.com/tux-logic/upc-pre-202620-1acc0238-13981-TuxLogic-report.git) |
 | **Landing Page** | Sitio web comercial e informativo del producto ShiftIq. | [https://github.com/tux-logic/Shiftiq-Landing-Page.git](https://github.com/tux-logic/Shiftiq-Landing-Page.git) |
 | **Backend API** | Plataforma backend orientada a microservicios bajo Domain-Driven Design (DDD). | [https://github.com/tux-logic/shiftiq-platform.git](https://github.com/tux-logic/shiftiq-platform.git) |
+| **ShiftIQ Workshop App (Flutter - B2B)** | Aplicación móvil multiplataforma para dueños y mecánicos de talleres automotrices (Segmento 1). | [https://github.com/tux-logic/shiftiq-mobile-app-flutter](https://github.com/tux-logic/shiftiq-mobile-app-flutter) |
+| **ShiftIQ Driver App (Kotlin nativo - B2C)** | Aplicación móvil nativa en Kotlin con Jetpack Compose para conductores particulares (Segmento 2). | [https://github.com/tux-logic/shiftiq-mobile-app](https://github.com/tux-logic/shiftiq-mobile-app) |
 
 ---
 
@@ -74,11 +76,13 @@ A través de las herramientas de analítica de GitHub (*Insights / Contributors*
 
 ## 5. Avance Acumulativo del Proyecto
 
-La documentación del informe corresponde al **Primer Hito (AV1)** del proyecto:
-- **Entrega AV1 / Primer Hito (30/08/2026 - 16/09/2026):** Definición de la startup, problemática, investigación cualitativa de usuarios y mercado, catálogo de requerimientos con 60 historias de usuario, diagramas de Impact Mapping, modelado EventStorming, Bounded Context Canvases, Context Mapping, Arquitectura C4 y compilación nativa en Typst (`v1.0` – `v1.12`).
+La documentación del informe cubre los hitos desarrollados por el equipo:
+- **Entrega AV1 / Primer Hito (30/08/2026 - 16/09/2026):** Definición de la startup, problemática, investigación cualitativa de usuarios y mercado, catálogo de requerimientos con 60 historias de usuario, diagramas de Impact Mapping, modelado EventStorming, Bounded Context Canvases, Context Mapping, Arquitectura C4 y compilación nativa en Typst (`v1.0` – `v1.13`).
+- **Entrega TB1 / Segundo Hito (Sprint 1: 17/09/2026 - 10/10/2026):** Desarrollo y publicación de la Landing Page en Vercel, contenedorización y despliegue del Backend RESTful API en Render Cloud, 42 pruebas unitarias con JUnit 5 y documentación interactiva con OpenAPI/Swagger (`v2.0` – `v2.1`).
+- **Entrega Final / Tercer Hito (Sprint 2: 12/10/2026 - 12/11/2026):** Desarrollo dual móvil con la aplicación Flutter para talleres (B2B) y la aplicación Kotlin nativa con Jetpack Compose para conductores (B2C), distribución con GitHub Releases y Firebase App Distribution, videos de navegación y evaluaciones de usabilidad según las 10 heurísticas de Nielsen (`v2.2`).
 
 ---
 
 ## 6. Coherencia Interna con el Registro de Versiones
 
-Toda la información expuesta en esta sección guarda una estricta alineación y coherencia con la tabla del **Registro de Versiones del Informe** (Sección 02), reflejando con exactitud los autores, fechas y descripciones de las modificaciones realizadas desde la versión `v1.0` hasta la versión `v1.12`.
+Toda la información expuesta en esta sección guarda una estricta alineación y coherencia con la tabla del **Registro de Versiones del Informe** (Sección 02), reflejando con exactitud los autores, fechas y descripciones de las modificaciones realizadas desde la versión `v1.0` hasta la versión `v2.2`.

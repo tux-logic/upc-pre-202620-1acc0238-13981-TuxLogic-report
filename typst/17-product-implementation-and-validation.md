@@ -1268,4 +1268,500 @@ A continuación, se presentan las métricas de colaboración extraídas de GitHu
 Como demuestran los analíticos, la carga de trabajo se distribuyó de manera transparente y equilibrada entre los 5 integrantes del equipo TuxLogic, registrando aportes sustanciales en código fuente, configuraciones DevOps, suites de pruebas unitarias y documentación técnica del ecosistema *ShiftIQ*.
 
 #v(1em)
+
+=== 4.2.2. Sprint 2
+
+==== 4.2.2.1. Sprint Planning 2
+
+A continuación, se presenta la ficha técnica de planificación del Sprint 2 acordada por el equipo:
+
+#v(0.5em)
+#align(center)[
+  #text(weight: "bold")[Tabla 42A] \
+  #text(style: "italic")[Planificación del Sprint 2: Datos generales y objetivos de iteración]
+]
+#v(0.3em)
+#table(
+  columns: (30%, 70%),
+  stroke: 0.4pt + rgb("#cbd5e1"),
+  inset: (x: 8pt, y: 6pt),
+  fill: (x, y) => if y == 0 { rgb("#1e3a8a") } else if y == 1 or y == 7 { rgb("#f1f5f9") } else { white },
+  table.header(
+    table.cell(colspan: 2, align: center)[#text(fill: white, weight: "bold", size: 10pt)[Sprint \#2]],
+  ),
+  table.cell(colspan: 2, align: center)[#text(fill: rgb("#1e3a8a"), weight: "bold", size: 9pt)[Sprint Planning Background]],
+  [*Date*], [2026-10-05],
+  [*Time*], [3:30 PM],
+  [*Location*], [Reunión presencial en la UPC (Pabellón L, piso 3, cubículo 6) y sesión síncrona vía Microsoft Teams.],
+  [*Prepared By*], [Mamani Vilca, Alan Jaivi],
+  [*Attendees*], [Machacca Soto, Aldo Jeanfranco / Mallqui Vilca, Dhilsen Armil / Mamani Vilca, Alan Jaivi / Ramos Hinostroza, Diego Antonio / Vidal Malaga, Jareth Beycker],
+  [*Sprint 1 Review Summary*], [Durante el Sprint 1, el equipo TuxLogic desplegó con éxito la Landing Page comercial en Vercel y completó la base de la plataforma RESTful backend (`shiftiq-platform`) con Spring Boot 3.5.5, PostgreSQL 18, autenticación JWT, documentación OpenAPI/Swagger UI y pruebas unitarias automatizadas.],
+  [*Sprint 1 Retrospective Summary*], [Se acordó consolidar la primera versión funcional de la aplicación cliente móvil (`shiftiq-mobile-app`) para ambos segmentos (Talleres B2B y Conductores B2C), consumiendo de manera directa los contratos de endpoints ya expuestos por la plataforma backend y validando la experiencia de usuario móvil.],
+  table.cell(colspan: 2, align: center)[#text(fill: rgb("#1e3a8a"), weight: "bold", size: 9pt)[Sprint Goal & User Stories]],
+  [*Sprint 2 Goal*], [
+    *Our focus is on* developing and deploying the first functional version of the ShiftIQ Mobile Application client for Android, integrating core operational flows: User Authentication & Role selection (IAM), Workshop & Branch Management (Workshop Core), Customer Vehicle Registration with OBD-II device linking (Vehicle Intelligence), Service Appointment Scheduling (Fleet & Appointments), and Work Order Task Lifecycle Tracking (Service Operations).\
+    *We believe it delivers* an interactive, touch-optimized, and testable mobile client experience for workshop administrators, mechanics, and drivers, connecting real-time domain events with the deployed RESTful backend platform.\
+    *This will be confirmed when* the mobile application successfully connects to the backend REST API, executes full user journeys without data simulation mocks, passes all mobile unit/widget test suites, and generates a release-ready signed APK available on GitHub Releases.
+  ],
+  [*Sprint 2 Velocity*], [42 Story Points],
+  [*Sum of Story Points*], [42 Story Points (US001: 5, US002: 3, US005: 5, US006: 3, US008: 3, US012: 5, US013: 3, US014: 5, US017: 3, US018: 5, US026: 2).],
+)
+#v(0.5em)
+
+---
+
+==== 4.2.2.2. Aspect Leaders and Collaborators
+
+En el presente Sprint 2, el alcance de *ShiftIQ* se orientó hacia la materialización de la aplicación móvil cliente interactiva conectada a los servicios web en producción y el soporte continuo de la infraestructura backend. Para asegurar un ritmo de trabajo eficiente y multidisciplinario, las responsabilidades del equipo TuxLogic se estructuraron en cuatro aspectos:
+
+1. *Mobile Frontend Architecture & State Management:* Liderado por *Mamani Vilca, Alan Jaivi*, abarca la configuración del proyecto móvil en Kotlin/Android Studio, arquitectura modular por capas (Domain, Data, Presentation), inyección de dependencias y reactividad del estado global.
+2. *Mobile UI/UX Implementation & Views:* Liderado por *Mallqui Vilca, Dhilsen Armil* en colaboración con *Vidal Malaga, Jareth Beycker*, enfocado en la maquetación de pantallas, transiciones fluidas, diseño adaptativo según las guías de estilo de ShiftIQ y componentes de interacción táctil.
+3. *Backend API Integration & Endpoints Hardening:* Liderado por *Machacca Soto, Aldo Jeanfranco*, abarca la optimización de controladores RESTful, interceptores JWT en cliente HTTP móvil, serialización JSON y resolución de consultas operativas de talleres.
+4. *DevOps, QA & Mobile Build Deployment:* Liderado por *Ramos Hinostroza, Diego Antonio*, comprende la configuración del pipeline de CI/CD para compilación automatizada del paquete APK, ejecución de suites de pruebas unitarias/instrumentadas y publicación de releases en GitHub.
+
+#v(0.5em)
+#align(center)[
+  #text(weight: "bold")[Tabla 42B] \
+  #text(style: "italic")[Distribución de Aspect Leaders (L) y Collaborators (C) en el Sprint 2]
+]
+#v(0.3em)
+#table(
+  columns: (26%, 16%, 14%, 14%, 15%, 15%),
+  stroke: 0.4pt + rgb("#cbd5e1"),
+  inset: (x: 5pt, y: 5pt),
+  fill: (x, y) => if y == 0 { rgb("#1e3a8a") } else if calc.even(y) { rgb("#f8fafc") } else { white },
+  table.header(
+    [#text(fill: white, weight: "bold", size: 8pt)[Team Member]],
+    [#text(fill: white, weight: "bold", size: 8pt)[GitHub]],
+    [#text(fill: white, weight: "bold", size: 8pt)[Mobile Arch.]],
+    [#text(fill: white, weight: "bold", size: 8pt)[Mobile UI/UX]],
+    [#text(fill: white, weight: "bold", size: 8pt)[API Integr.]],
+    [#text(fill: white, weight: "bold", size: 8pt)[DevOps & QA]],
+  ),
+  [Mamani Vilca, Alan Jaivi], [`alanjm-pe`], [#text(fill: rgb("#2e7d32"), weight: "bold")[L]], [#text(fill: rgb("#1976d2"))[C]], [#text(fill: rgb("#1976d2"))[C]], [#text(fill: rgb("#1976d2"))[C]],
+  [Mallqui Vilca, Dhilsen Armil], [`Dhilsen18`], [#text(fill: rgb("#1976d2"))[C]], [#text(fill: rgb("#2e7d32"), weight: "bold")[L]], [#text(fill: rgb("#1976d2"))[C]], [#text(fill: rgb("#1976d2"))[C]],
+  [Machacca Soto, Aldo Jeanfranco], [`AldoMachacca`], [#text(fill: rgb("#1976d2"))[C]], [#text(fill: rgb("#1976d2"))[C]], [#text(fill: rgb("#2e7d32"), weight: "bold")[L]], [#text(fill: rgb("#1976d2"))[C]],
+  [Ramos Hinostroza, Diego Antonio], [`DiegoRamosH`], [#text(fill: rgb("#1976d2"))[C]], [#text(fill: rgb("#1976d2"))[C]], [#text(fill: rgb("#1976d2"))[C]], [#text(fill: rgb("#2e7d32"), weight: "bold")[L]],
+  [Vidal Malaga, Jareth Beycker], [`Jareth-18`], [#text(fill: rgb("#1976d2"))[C]], [#text(fill: rgb("#2e7d32"), weight: "bold")[L]], [#text(fill: rgb("#1976d2"))[C]], [#text(fill: rgb("#1976d2"))[C]],
+)
+#v(0.5em)
+
+---
+
+==== 4.2.2.3. Sprint Backlog 2
+
+El presente Sprint Backlog detalla la descomposición técnica de las historias de usuario e ítems de trabajo seleccionados para la segunda iteración de ShiftIQ. El objetivo primordial de este ciclo es construir y conectar la aplicación móvil con la plataforma backend RESTful, implementando flujos operativos reales de registro, autenticación, gestión de talleres, órdenes de trabajo y monitoreo vehicular.
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    image("assets/chapter-4/sprint-2/sprint2_backlog.png", width: 85%),
+    caption: [Planificación del Sprint 2 en Jira Software (Backlog y Estimación de 42 Story Points).]
+  )
+]
+#v(0.5em)
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    image("assets/chapter-4/sprint-2/sprint2_board.png", width: 85%),
+    caption: [Tablero Activo del Sprint 2 en Jira Software (Sprint Board en Columna Done).]
+  )
+]
+#v(0.5em)
+
+Enlace al tablero en Jira Software: #link("https://tux-logic.atlassian.net/jira/software/projects/TL/boards/2")[Tablero Jira TL - Sprint 2]
+
+#v(0.5em)
+#align(center)[
+  #text(weight: "bold")[Tabla 42C] \
+  #text(style: "italic")[Sprint Backlog 2: Descomposición de historias de usuario y tareas técnicas]
+]
+#v(0.3em)
+#table(
+  columns: (6%, 16%, 6%, 16%, 32%, 6%, 10%, 8%),
+  stroke: 0.4pt + rgb("#cbd5e1"),
+  inset: (x: 4pt, y: 5pt),
+  fill: (x, y) => if y == 0 { rgb("#1e3a8a") } else if calc.even(y) { rgb("#f8fafc") } else { white },
+  table.header(
+    [#text(fill: white, weight: "bold", size: 8pt)[US Id]],
+    [#text(fill: white, weight: "bold", size: 8pt)[User Story]],
+    [#text(fill: white, weight: "bold", size: 8pt)[Task Id]],
+    [#text(fill: white, weight: "bold", size: 8pt)[Task Title]],
+    [#text(fill: white, weight: "bold", size: 8pt)[Description]],
+    [#text(fill: white, weight: "bold", size: 8pt)[Est.]],
+    [#text(fill: white, weight: "bold", size: 8pt)[Assigned To]],
+    [#text(fill: white, weight: "bold", size: 8pt)[Status]],
+  ),
+  [US001], [Registro taller y dueño], [WI-21], [Vistas Registro B2B/B2C], [Vistas asistidas de registro en Kotlin y Jetpack Compose.], [6h], [Mallqui / Vidal], [#text(fill: rgb("#2aac2a"), weight: "bold")[Done]],
+  [US001], [Registro taller y dueño], [WI-22], [Integración SignUp API], [Consumir `/api/v1/auth/sign-up` con validación de RUC.], [5h], [Mamani, Alan], [#text(fill: rgb("#2aac2a"), weight: "bold")[Done]],
+  [US002], [Inicio de sesión], [WI-23], [Login y Feedback], [Formulario móvil con manejo de credenciales inválidas.], [4h], [Mallqui, Dhilsen], [#text(fill: rgb("#2aac2a"), weight: "bold")[Done]],
+  [US002], [Inicio de sesión], [WI-24], [Storage JWT y Bearer], [EncryptedSharedPreferences e Interceptor HTTP Bearer.], [5h], [Mamani / Machacca], [#text(fill: rgb("#2aac2a"), weight: "bold")[Done]],
+  [US005], [Gestión empleados], [WI-25], [Vistas Staff Mecánicos], [Listado, creación y asignación de roles al personal.], [5h], [Vidal, Jareth], [#text(fill: rgb("#2aac2a"), weight: "bold")[Done]],
+  [US005], [Gestión empleados], [WI-26], [Control Roles RBAC], [Restricción de vistas y acciones según rol en app móvil.], [4h], [Machacca, Aldo], [#text(fill: rgb("#2aac2a"), weight: "bold")[Done]],
+  [US006], [Gestión sucursales], [WI-27], [CRUD Sucursales], [Interfaz para sedes operativas y capacidad técnica.], [4h], [Mallqui, Dhilsen], [#text(fill: rgb("#2aac2a"), weight: "bold")[Done]],
+  [US006], [Gestión sucursales], [WI-28], [Sync Sedes Backend], [Conectar con `/api/v1/workshops/{id}/branches`.], [4h], [Mamani, Alan], [#text(fill: rgb("#2aac2a"), weight: "bold")[Done]],
+  [US012], [Creación Orden Trabajo], [WI-29], [Formulario Móvil OT], [Selección de placa, falla reportada y kilometraje.], [5h], [Vidal / Mallqui], [#text(fill: rgb("#2aac2a"), weight: "bold")[Done]],
+  [US012], [Creación Orden Trabajo], [WI-30], [Apertura OT Backend], [Invocar POST `/api/v1/work-orders` en estado OPEN.], [4h], [Machacca, Aldo], [#text(fill: rgb("#2aac2a"), weight: "bold")[Done]],
+  [US014], [Tareas técnicas OT], [WI-31], [Panel Mecánico], [Controles de inicio, pausa y finalización de tareas.], [6h], [Mamani / Vidal], [#text(fill: rgb("#2aac2a"), weight: "bold")[Done]],
+  [US014], [Tareas técnicas OT], [WI-32], [Sync Tareas PATCH], [PATCH `/api/v1/work-orders/{id}/tasks/{taskId}` en vivo.], [4h], [Machacca, Aldo], [#text(fill: rgb("#2aac2a"), weight: "bold")[Done]],
+  [US017], [Registro vehículo], [WI-33], [Mi Garaje Móvil], [Listado y formulario de vehículos (marca, modelo, VIN).], [4h], [Mallqui, Dhilsen], [#text(fill: rgb("#2aac2a"), weight: "bold")[Done]],
+  [US017], [Registro vehículo], [WI-34], [Pairing OBD-II], [Emparejamiento de hardware telemático por código MAC.], [5h], [Mamani, Alan], [#text(fill: rgb("#2aac2a"), weight: "bold")[Done]],
+)
+#v(0.5em)
+
+---
+
+==== 4.2.2.4. Development Evidence for Sprint Review
+
+Durante el Sprint 2, el equipo TuxLogic centró sus esfuerzos en el desarrollo de la aplicación cliente móvil (`shiftiq-mobile-app`) y la optimización continua de la plataforma backend (`shiftiq-platform`). El repositorio móvil se estructuró con soporte para Android Studio, adoptando Clean Architecture y Jetpack Compose / Material Design 3. A continuación, se presenta la selección de commits representativos de ambos repositorios:
+
+#v(0.5em)
+#align(center)[
+  #text(weight: "bold")[Tabla 42D] \
+  #text(style: "italic")[Hitos clave de desarrollo en GitHub durante el Sprint 2]
+]
+#v(0.3em)
+#table(
+  columns: (22%, 22%, 10%, 12%, 24%, 10%),
+  stroke: 0.4pt + rgb("#cbd5e1"),
+  inset: (x: 4pt, y: 5pt),
+  fill: (x, y) => if y == 0 { rgb("#1e3a8a") } else if calc.even(y) { rgb("#f8fafc") } else { white },
+  table.header(
+    [#text(fill: white, weight: "bold", size: 8pt)[Repository]],
+    [#text(fill: white, weight: "bold", size: 8pt)[Branch]],
+    [#text(fill: white, weight: "bold", size: 8pt)[Commit]],
+    [#text(fill: white, weight: "bold", size: 8pt)[Type]],
+    [#text(fill: white, weight: "bold", size: 8pt)[Message Body]],
+    [#text(fill: white, weight: "bold", size: 8pt)[Date]],
+  ),
+  [`shiftiq-mobile-app`], [`feature/mobile-arch`], [`a39f104`], [feat(core)], [setup Android Clean Architecture, Retrofit & Hilt DI], [2026-10-08],
+  [`shiftiq-mobile-app`], [`feature/iam-mobile`], [`b48c219`], [feat(iam)], [implement login, register views & EncryptedSharedPreferences], [2026-10-12],
+  [`shiftiq-mobile-app`], [`feature/workshop-ui`], [`c77d402`], [feat(workshop)], [workshop profile view, branches & employee roles], [2026-10-16],
+  [`shiftiq-mobile-app`], [`feature/work-orders`], [`d91e550`], [feat(operations)], [work order execution space & task status transitions], [2026-10-21],
+  [`shiftiq-mobile-app`], [`feature/vehicle-obd2`], [`e02a663`], [feat(iot)], [garage list and OBD2 Bluetooth/MAC pairing screen], [2026-10-26],
+  [`shiftiq-platform`], [`feature/cors-harden`], [`f83c114`], [fix(security)], [harden CORS configuration & mobile device headers], [2026-10-28],
+)
+#v(0.5em)
+
+---
+
+==== 4.2.2.5. Testing Suite Evidence for Sprint Review
+
+Para garantizar la fiabilidad del aplicativo móvil y su correcta interacción con los servicios RESTful, durante el Sprint 2 se implementaron baterías de pruebas unitarias sobre la aplicación móvil (JUnit, MockK) y pruebas de regresión sobre el backend (JUnit 5, Mockito).
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    image("assets/chapter-4/sprint-2/mobile_tests_evidence.png", width: 85%),
+    caption: [Ejecución Exitosa de la Suite de Pruebas Unitarias Móviles y Backend.]
+  )
+]
+#v(0.5em)
+
+---
+
+==== 4.2.2.6. Execution Evidence for Sprint Review
+
+En esta sección se presenta la evidencia audiovisual y funcional de la ejecución del producto correspondiente al Sprint 2. El resultado comprende ambas aplicaciones móviles de ShiftIQ operando sobre emuladores y dispositivos físicos Android, conectadas en tiempo real a los microservicios RESTful en Render Cloud:
+
+1. *ShiftIQ Driver App (Segmento 2 - Conductores B2C en Kotlin Nativo / Jetpack Compose):* Demostración del flujo de telemetría en tiempo real, escaneo OBD-II con traducción didáctica de fallas DTC en lenguaje natural, catálogo de talleres afiliados y agendamiento interactivo de citas.
+2. *ShiftIQ Workshop App (Segmento 1 - Talleres B2B en Flutter / Dart):* Demostración del panel de administración del taller, gestión de sucursales, apertura de órdenes de trabajo y espacio de ejecución de tareas mecánicas en tiempo real.
+
+A continuación, se disponen los enlaces a las grabaciones oficiales de navegación y ejecución de ambas aplicaciones:
+- *Video 1: Navegación del Producto en Kotlin (ShiftIQ Driver App - Conductor B2C):* #link("https://upcedupe-my.sharepoint.com/:v:/g/personal/u202224130_upc_edu_pe/IQClS-5I-l3CRqgxRJyKbJIHAXBujJv0SyJuIAusNBzmJ5g?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=UklbiF")[upc-pre-202620-1acc0238-13981-Tux-Logic-productnavigation-av2.mp4] _(Diego Ramos)_
+
+#v(0.3em)
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 6pt,
+      radius: 4pt,
+      image("assets/chapter-4/sprint-2/product-navigation-video-thumbnail.jpg", width: 75%)
+    ),
+    caption: [Video demostrativo en Kotlin (ShiftIQ Driver App).]
+  )
+]
+#v(0.5em)
+
+- *Video 2: Navegación del Producto en Flutter (ShiftIQ Workshop App - Taller B2B):* #link("https://drive.google.com/file/d/1TuoNJeeY1T-oAVaM7BXqTjasaG_TjvEG/view?usp=sharing")[Video Demostrativo en Google Drive] _(Aldo Macchaca)_
+
+#v(0.3em)
+#align(center)[
+  #figure(
+    block(
+      fill: rgb("#ffffff"),
+      stroke: 0.5pt + rgb("#cbd5e1"),
+      inset: 6pt,
+      radius: 4pt,
+      image("assets/chapter-4/sprint-2/flutter_workshop_video_thumbnail.png", width: 75%)
+    ),
+    caption: [Video demostrativo en Flutter (ShiftIQ Workshop App).]
+  )
+]
+#v(0.5em)
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    image("assets/chapter-4/sprint-2/mobile_auth_and_dashboard.png", width: 85%),
+    caption: [Pantallas de Autenticación, Dashboard del Taller y Mi Garaje (Conductor).]
+  )
+]
+#v(0.5em)
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    image("assets/chapter-4/sprint-2/mobile_work_orders_execution.jpg", width: 85%),
+    caption: [Gestión de Órdenes de Trabajo y Espacio de Ejecución del Mecánico.]
+  )
+]
+#v(0.5em)
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    image("assets/chapter-4/sprint-2/mobile_vehicle_iot_pairing.png", width: 85%),
+    caption: [Vinculación Telemática de Vehículo y Monitoreo OBD-II en Tiempo Real.]
+  )
+]
+#v(0.5em)
+
+Enlaces a repositorios oficiales:
+- *Repositorio Driver App (Kotlin):* #link("https://github.com/tux-logic/shiftiq-mobile-app")[github.com/tux-logic/shiftiq-mobile-app]
+- *Repositorio Workshop App (Flutter):* #link("https://github.com/tux-logic/shiftiq-mobile-app-flutter")[github.com/tux-logic/shiftiq-mobile-app-flutter]
+
+---
+
+==== 4.2.2.7. Services Documentation Evidence for Sprint Review
+
+Durante el Sprint 2, se fortaleció la documentación interactiva OpenAPI 3.0 / Swagger UI de los servicios RESTful consumidos por la aplicación móvil.
+
+#v(0.5em)
+#align(center)[
+  #text(weight: "bold")[Tabla 42E] \
+  #text(style: "italic")[Catálogo de endpoints RESTful integrados con la aplicación móvil en el Sprint 2]
+]
+#v(0.3em)
+#table(
+  columns: (32%, 12%, 18%, 38%),
+  stroke: 0.4pt + rgb("#cbd5e1"),
+  inset: (x: 5pt, y: 5pt),
+  fill: (x, y) => if y == 0 { rgb("#1e3a8a") } else if calc.even(y) { rgb("#f8fafc") } else { white },
+  table.header(
+    [#text(fill: white, weight: "bold", size: 8pt)[Endpoint]],
+    [#text(fill: white, weight: "bold", size: 8pt)[Method]],
+    [#text(fill: white, weight: "bold", size: 8pt)[Context]],
+    [#text(fill: white, weight: "bold", size: 8pt)[Propósito / Consumidor Móvil]],
+  ),
+  [`/api/v1/auth/sign-in`], [POST], [IAM], [Autentica credenciales móviles y retorna JWT Bearer Token.],
+  [`/api/v1/workshops/{id}/branches`], [GET / POST], [Core], [Consulta y alta de sucursales operativas para talleres.],
+  [`/api/v1/vehicles`], [POST / GET], [Vehicle], [Registro de vehículo y consulta de historial desde "Mi Garaje".],
+  [`/api/v1/vehicles/{id}/obd2/bind`], [POST], [IoT], [Vincula sensor telemático OBD-II por MAC para telemetría DTC.],
+  [`/api/v1/work-orders/{id}/tasks/{taskId}`], [PATCH], [Operations], [Actualización de estado de tareas técnicas en tiempo real.],
+)
+#v(0.5em)
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    image("assets/chapter-4/sprint-2/backend_swagger_mobile_endpoints.png", width: 85%),
+    caption: [Ejecución e Interacción de Endpoints en Swagger UI para Clientes Móviles.]
+  )
+]
+#v(0.5em)
+
+---
+
+==== 4.2.2.8. Software Deployment Evidence for Sprint Review
+
+En esta sección se documenta el despliegue del producto desarrollado en el Sprint 2, abarcando la distribución de ambas aplicaciones móviles y el backend en producción:
+
+1. *Despliegue de ShiftIQ Workshop App (Flutter B2B):*
+   - *Repositorio:* `tux-logic/shiftiq-mobile-app-flutter`
+   - *Plataforma de Distribución Cloud:* Firebase App Distribution (Google Cloud Platform) para despliegue y pruebas directas en Android.
+   - *Enlace Público Oficial de Descarga:* #link("https://appdistribution.firebase.dev/i/40720f8e62ef7ca4")[Firebase App Distribution - ShiftIQ Workshop App]
+   - *Artefacto:* `shiftiq-workshop-release-v1.0.0.apk` distribuido mediante Firebase.
+
+2. *Despliegue de ShiftIQ Driver App (Kotlin B2C):*
+   - *Repositorio:* `tux-logic/shiftiq-mobile-app`
+   - *Pipeline CI/CD:* GitHub Actions configurado con Android Gradle Build y firma de APK ante tags en `main`.
+   - *GitHub Release Oficial:* #link("https://github.com/tux-logic/shiftiq-mobile-app/releases/tag/v1.0.0")[shiftiq-mobile-app/releases/tag/v1.0.0]
+   - *Artefacto:* `shiftiq-driver-release-v1.0.0.apk` disponible para instalación directa en dispositivos Android.
+
+3. *Despliegue del Backend REST API Platform (Render Cloud):*
+   - *Repositorio:* `tux-logic/shiftiq-platform`
+   - *URL Pública en Producción:* #link("https://shiftiq-platform.onrender.com")[https://shiftiq-platform.onrender.com]
+   - *Documentación Swagger UI:* #link("https://shiftiq-platform.onrender.com/swagger-ui.html")[https://shiftiq-platform.onrender.com/swagger-ui.html]
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    image("assets/chapter-4/sprint-2/mobile_deployment_github_actions.png", width: 85%),
+    caption: [Workflow de CI/CD en GitHub Actions para Compilación y Firma de APKs Móviles.]
+  )
+]
+#v(0.5em)
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    image("assets/chapter-4/sprint-2/flutter_firebase_app_distribution.png", width: 85%),
+    caption: [Despliegue y Distribución de ShiftIQ Workshop App (Flutter) en Firebase App Distribution.]
+  )
+]
+#v(0.5em)
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    image("assets/chapter-4/sprint-2/mobile_github_release_apk.jpg", width: 85%),
+    caption: [GitHub Release con Paquete APK de Kotlin Disponible para Descarga.]
+  )
+]
+#v(0.5em)
+
+---
+
+==== 4.2.2.9. Team Collaboration Insights during Sprint 2
+
+Durante el Sprint 2, el equipo TuxLogic mantuvo una rigurosa coordinación entre el desarrollo móvil en Kotlin y la plataforma backend en Spring Boot. La integración de código se efectuó mediante ramas de características (_feature branches_), Pull Requests obligatorios con revisión de pares y la adopción estricta de la convención _Conventional Commits_.
+
+A continuación, se presentan los analíticos extraídos de GitHub (Insights) que constatan el trabajo colaborativo de los 5 integrantes durante el Sprint 2:
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    image("assets/chapter-4/sprint-2/mobile_contributors_graph.png", width: 85%),
+    caption: [Gráfico de Contribuciones por Miembro del Equipo durante el Sprint 2.]
+  )
+]
+#v(0.5em)
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    image("assets/chapter-4/sprint-2/mobile_pulse_activity.png", width: 85%),
+    caption: [Resumen de Actividad del Repositorio Móvil (GitHub Pulse).]
+  )
+]
+#v(0.5em)
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    image("assets/chapter-4/sprint-2/mobile_closed_pull_requests.png", width: 85%),
+    caption: [Gestión Colaborativa mediante Pull Requests Fusionados en shiftiq-mobile-app.]
+  )
+]
+#v(0.5em)
+
+Los registros confirman la distribución equilibrada de tareas entre diseño visual móvil, integración de servicios HTTP, control de calidad automatizado y despliegue del aplicativo, garantizando la evolución consistente y robusta del producto *ShiftIQ*.
+
+#v(1em)
+
+== 4.3. Validation Interviews
+
+=== 4.3.1. Diseño de Entrevistas
+
+El diseño metodológico de las entrevistas semiestructuradas de validación se orientó a contrastar las dos aplicaciones móviles clientes implementadas frente a usuarios representativos de los dos segmentos objetivo: la *ShiftIQ Workshop App (Flutter)* para el Segmento 1 (Talleres mecánicos B2B) y la *ShiftIQ Driver App (Kotlin nativo)* para el Segmento 2 (Conductores particulares B2C).
+
+=== 4.3.2. Registro de Entrevistas
+
+=== 4.3.3. Evaluaciones según Heurísticas
+
+Para asegurar que las aplicaciones del ecosistema *ShiftIQ* alcancen una alta calidad de interacción, el equipo TuxLogic aplicó una *Evaluación Heurística de Usabilidad* basada en las *10 Heurísticas de Jakob Nielsen (1994)* sobre ambos aplicativos clientes.
+
+==== Metodología y Escala de Severidad de Nielsen
+
+Cada hallazgo fue categorizado según la severidad de Nielsen de 0 a 4: *0 (Sin problema)*, *1 (Cosmético)*, *2 (Problema Menor)*, *3 (Problema Mayor)* y *4 (Catástrofe de Usabilidad)*.
+
+==== Evaluación Heurística: ShiftIQ Workshop App (Flutter - Taller B2B)
+
+#v(0.3em)
+#align(center)[
+  #text(weight: "bold")[Tabla 43A] \
+  #text(style: "italic")[Evaluación según Heurísticas de Usabilidad de Nielsen: ShiftIQ Workshop App (Flutter)]
+]
+#v(0.3em)
+#table(
+  columns: (22%, 18%, 24%, 12%, 24%),
+  stroke: 0.4pt + rgb("#cbd5e1"),
+  inset: (x: 5pt, y: 5pt),
+  fill: (x, y) => if y == 0 { rgb("#1e3a8a") } else if calc.even(y) { rgb("#f8fafc") } else { white },
+  table.header(
+    [#text(fill: white, weight: "bold", size: 8pt)[Heurística]],
+    [#text(fill: white, weight: "bold", size: 8pt)[Componente]],
+    [#text(fill: white, weight: "bold", size: 8pt)[Hallazgo de Usabilidad]],
+    [#text(fill: white, weight: "bold", size: 8pt)[Severidad]],
+    [#text(fill: white, weight: "bold", size: 8pt)[Solución Aplicada]],
+  ),
+  [H1: Visibilidad del estado], [Espacio del Mecánico], [Sin spinner inmediato al cambiar estado de tarea.], [2 (Menor)], [Spinner circular en botón y bloqueo temporal.],
+  [H2: Mundo real], [Lista de Órdenes], [Estados mostrados en inglés técnico (`OPEN`, etc.).], [2 (Menor)], [Traducción: "Abierta", "En Bahía", "Finalizada".],
+  [H3: Control y libertad], [Formulario de OT], [Cierre accidental de pantalla por botón de retroceso.], [3 (Mayor)], [Widget `PopScope` con confirmación de descarte.],
+  [H4: Consistencia], [Módulo Sucursales], [Iconografía no estándar en botones de guardado.], [1 (Cosmético)], [Estandarización bajo Material Design 3.],
+  [H5: Prevención de errores], [Alta de Personal], [Permitía guardar mecánico sin sucursal asignada.], [3 (Mayor)], [Validación síncrona con botón deshabilitado.],
+  [H6: Reconocimiento], [Asignación de Auto], [Digitación manual completa de la placa.], [2 (Menor)], [Campo autocompletable con búsqueda predictiva.],
+  [H7: Flexibilidad], [Tareas de Taller], [Dos toques necesarios para completar cada tarea.], [1 (Cosmético)], [Acción rápida de deslizamiento (Swipe to complete).],
+  [H8: Estética minimalista], [Dashboard Taller], [Saturación de métricas secundarias en pantalla.], [1 (Cosmético)], [Reorganización con tres tarjetas operativas core.],
+  [H9: Manejo de errores], [Login / Auth], [Mensaje genérico "HTTP 401 Unauthorized".], [3 (Mayor)], [SnackBar didáctico con opción de recuperación.],
+  [H10: Documentación], [Onboarding Taller], [Sin guía breve para asociar la primera sucursal.], [2 (Menor)], [Carrusel asistido de 3 pasos de bienvenida.],
+)
+#v(0.5em)
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    image("assets/chapter-4/heuristics/heuristic_flutter_inventory.png", width: 75%),
+    caption: [Evidencia de Usabilidad en ShiftIQ Workshop App (Flutter): Módulo de Inventario & Lotes B2B con clasificación de stock y acciones rápidas.]
+  )
+]
+#v(0.5em)
+
+==== Evaluación Heurística: ShiftIQ Driver App (Kotlin - Conductor B2C)
+
+#v(0.3em)
+#align(center)[
+  #text(weight: "bold")[Tabla 43B] \
+  #text(style: "italic")[Evaluación según Heurísticas de Usabilidad de Nielsen: ShiftIQ Driver App (Kotlin Compose)]
+]
+#v(0.3em)
+#table(
+  columns: (22%, 18%, 24%, 12%, 24%),
+  stroke: 0.4pt + rgb("#cbd5e1"),
+  inset: (x: 5pt, y: 5pt),
+  fill: (x, y) => if y == 0 { rgb("#1e3a8a") } else if calc.even(y) { rgb("#f8fafc") } else { white },
+  table.header(
+    [#text(fill: white, weight: "bold", size: 8pt)[Heurística]],
+    [#text(fill: white, weight: "bold", size: 8pt)[Componente]],
+    [#text(fill: white, weight: "bold", size: 8pt)[Hallazgo de Usabilidad]],
+    [#text(fill: white, weight: "bold", size: 8pt)[Severidad]],
+    [#text(fill: white, weight: "bold", size: 8pt)[Solución Aplicada]],
+  ),
+  [H1: Visibilidad del estado], [Pairing Bluetooth], [Sin animación de búsqueda de hardware OBD-II.], [2 (Menor)], [Animación de onda en Compose y texto en vivo.],
+  [H2: Mundo real], [Diagnóstico DTC], [Código crudo P0171 incomprensible para conductor.], [3 (Mayor)], [Explicación en lenguaje natural y semáforo.],
+  [H3: Control y libertad], [Reserva de Citas], [Sin opción clara para cambiar fecha antes de agendar.], [2 (Menor)], [Botón "Cambiar fecha y hora" en resumen.],
+  [H4: Consistencia], [Barra Inferior], [Iconos discordantes para representar "Mi Garaje".], [1 (Cosmético)], [Unificación a `Icons.Default.DirectionsCar`.],
+  [H5: Prevención de errores], [Registro Vehicular], [Ingreso de placas con formato no estándar.], [2 (Menor)], [Máscara de texto automática en formato `ABC-123`.],
+  [H6: Reconocimiento], [Talleres Afiliados], [Falta de distancia física y tarifas referenciales.], [2 (Menor)], [Badges visibles de distancia en km y estrellas.],
+  [H7: Flexibilidad], [Home Conductor], [Navegación excesiva para ver odómetro y combustible.], [1 (Cosmético)], [Widgets reactivos de acceso directo en el Home.],
+  [H8: Estética minimalista], [Detalle de Falla], [Exceso de tablas crudas del protocolo automotriz.], [2 (Menor)], [Tarjeta limpia con anillo de salud y severidad.],
+  [H9: Manejo de errores], [Conexión Bluetooth], [Pantalla congelada en espera si el OBD2 no responde.], [3 (Mayor)], [Timeout de 10s con mensaje guiado de encendido.],
+  [H10: Documentación], [Escáner OBD-II], [Desconocimiento de la ubicación del puerto OBD2.], [2 (Menor)], [Botón de ayuda con ilustración del habitáculo.],
+)
+#v(0.5em)
+
+#v(0.5em)
+#align(center)[
+  #figure(
+    image("assets/chapter-4/heuristics/heuristic_kotlin_obd2.png", width: 75%),
+    caption: [Evidencia de Usabilidad en ShiftIQ Driver App (Kotlin nativo / Compose): Diagnóstico OBD-II en vivo, escaneo de módulos CAN-BUS e identificación de alerta DTC P0135.]
+  )
+]
+#v(0.5em)
+
+#v(1em)
 ```
