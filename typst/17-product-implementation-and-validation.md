@@ -1671,6 +1671,36 @@ El diseño metodológico de las entrevistas semiestructuradas de validación se 
 
 === 4.3.2. Registro de Entrevistas
 
+*Segmento Objetivo 1: Dueños o Administradores de Talleres Automotrices Independientes (B2B)*
+
+#v(0.3em)
+#align(center)[
+  #table(
+    columns: (30%, 70%),
+    stroke: 0.4pt + rgb("#cbd5e1"),
+    inset: (x: 8pt, y: 6pt),
+    fill: (x, y) => if y == 0 { rgb("#1e3a8a") } else if calc.even(y) { rgb("#f8fafc") } else { white },
+    table.cell(colspan: 2, align: center)[#text(fill: white, weight: "bold")[Entrevista 1: Administrador de Taller Automotriz y Gestión de Órdenes de Trabajo en ShiftIQ Workshop App]],
+    [*Nombre*], [Jaime],
+    [*Apellidos*], [López],
+    [*Edad*], [29 años],
+    [*Distrito*], [Santiago de Surco, Lima],
+    [*Aplicaciones Usadas*], [WhatsApp, Waze, Google Maps, Banca Móvil, Excel],
+    [*Tecnologías*], [Smartphone Samsung Galaxy (Android)],
+    [*Browsers*], [Google Chrome, Microsoft Edge],
+    [*Entrevistador*], [Alan Mamani],
+    [*Evidencia*], [
+      Registro audiovisual de la sesión de validación con Jaime López
+      #v(0.3em)
+      #image("assets/chapter-4/interviews-validation/interview-seg1.png", width: 70%)
+    ],
+    [*Link*], [#link("https://upcedupe-my.sharepoint.com/:v:/g/personal/u20241e299_upc_edu_pe/IQATzt9Ura9eRqvDxLhi-ApAAQ1rDgn0sD9jFSK8PjuWVqs?e=sNnmgx&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D")[Ver entrevista (SharePoint)]],
+    [*Duración*], [08:15 min],
+    [*Resumen*], [Durante la sesión de validación del aplicativo móvil de talleres (ShiftIQ Workshop App), el entrevistado evaluó los flujos operativos desde su rol como administrador de taller mecánico automotriz. Valoró muy positivamente la experiencia general, destacando que el flujo para consultar, manejar, desglosar y dar seguimiento a las órdenes de trabajo y tareas de los mecánicos le resultó sumamente claro e intuitivo. Manifestó que la visualización de los estados de servicio en tiempo real agiliza la toma de decisiones en el taller y brinda certeza técnica frente a los métodos tradicionales en papel o Excel. Como sugerencias de mejora de usabilidad, propuso incorporar una guía interactiva inicial con ventanas o pantallas flotantes (tooltips/onboarding asistido) para capacitar rápidamente al personal técnico del taller, así como optimizar el área de contacto táctil de algunos botones interactivos secundarios. En conclusión, expresó su conformidad y alta disposición de adopción de la solución para la operativa diaria de su establecimiento.],
+  )
+]
+#v(0.5em)
+
 *Segmento Objetivo 2: Conductores de Vehículos Particulares en Lima (B2C)*
 
 #v(0.3em)
@@ -1680,7 +1710,7 @@ El diseño metodológico de las entrevistas semiestructuradas de validación se 
     stroke: 0.4pt + rgb("#cbd5e1"),
     inset: (x: 8pt, y: 6pt),
     fill: (x, y) => if y == 0 { rgb("#1e3a8a") } else if calc.even(y) { rgb("#f8fafc") } else { white },
-    table.cell(colspan: 2, align: center)[#text(fill: white, weight: "bold")[Entrevista 1: Usuario de Vehículo Particular y Hábitos de Mantenimiento]],
+    table.cell(colspan: 2, align: center)[#text(fill: white, weight: "bold")[Entrevista 2: Usuario de Vehículo Particular y Hábitos de Mantenimiento en ShiftIQ Driver App]],
     [*Nombre*], [Fatima],
     [*Apellidos*], [Trujillo Mendoza],
     [*Edad*], [36 años],
@@ -1701,34 +1731,6 @@ El diseño metodológico de las entrevistas semiestructuradas de validación se 
 ]
 #v(0.5em)
 
-
-#v(0.5em)
-#align(center)[
-  #table(
-    columns: (30%, 70%),
-    stroke: 0.4pt + rgb("#cbd5e1"),
-    inset: (x: 8pt, y: 6pt),
-    fill: (x, y) => if y == 0 { rgb("#1e3a8a") } else if calc.even(y) { rgb("#f8fafc") } else { white },
-    table.cell(colspan: 2, align: center)[#text(fill: white, weight: "bold")[Entrevista 2: Conductor Particular y Experiencia de Usuario en la Gestión de Órdenes y Servicios]],
-    [*Nombre*], [Jaime],
-    [*Apellidos*], [López],
-    [*Edad*], [29 años],
-    [*Distrito*], [Santiago de Surco, Lima],
-    [*Aplicaciones Usadas*], [WhatsApp, Waze, Google Maps, Banca Móvil],
-    [*Tecnologías*], [Smartphone Samsung Galaxy (Android)],
-    [*Browsers*], [Google Chrome, Microsoft Edge],
-    [*Entrevistador*], [Alan Mamani],
-    [*Evidencia*], [
-      Registro audiovisual de la sesión de validación con Jaime López
-      #v(0.3em)
-      #image("assets/chapter-4/interviews-validation/interview-seg1.png", width: 70%)
-    ],
-    [*Link*], [#link("https://upcedupe-my.sharepoint.com/:v:/g/personal/u20241e299_upc_edu_pe/IQATzt9Ura9eRqvDxLhi-ApAAQ1rDgn0sD9jFSK8PjuWVqs?e=sNnmgx&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D")[Ver entrevista (SharePoint)]],
-    [*Duración*], [08:15 min],
-    [*Resumen*], [Durante la sesión de validación del aplicativo móvil, el entrevistado valoró muy positivamente la experiencia general, destacando que el flujo para consultar, manejar y dar seguimiento a las órdenes de trabajo le resultó sumamente claro e intuitivo. Manifestó que la visualización de los estados de servicio vehicular ahorra tiempo y brinda certeza técnica. Como sugerencias de mejora de usabilidad, propuso incorporar una guía interactiva inicial con ventanas o pantallas flotantes (tooltips/onboarding guiado) que oriente paso a paso a usuarios primerizos, así como perfeccionar el feedback táctil y tamaño de algunos botones interactivos de acción secundaria. En conclusión, expresó su conformidad y alta disposición de adopción de la plataforma para el monitoreo y mantenimiento de su automóvil.],
-  )
-]
-#v(0.5em)
 === 4.3.3. Evaluaciones según Heurísticas
 
 Para asegurar que las aplicaciones del ecosistema *ShiftIQ* alcancen una alta calidad de interacción, el equipo TuxLogic aplicó una *Evaluación Heurística de Usabilidad* basada en las *10 Heurísticas de Jakob Nielsen (1994)* sobre ambos aplicativos clientes.
