@@ -1524,8 +1524,8 @@ A continuación, se disponen los enlaces a las grabaciones oficiales de navegaci
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter-4/sprint-2/mobile_vehicle_iot_pairing.png", width: 85%),
-    caption: [Vinculación Telemática de Vehículo y Monitoreo OBD-II en Tiempo Real.]
+    image("assets/chapter-4/sprint-2/mobile_auth_and_dashboard.png", width: 85%),
+    caption: [Evidencia 2: ShiftIQ Driver App (Kotlin B2C) - Mi Garaje, Telemetría DTC y Agendamiento de Citas.]
   )
 ]
 #v(0.5em)
