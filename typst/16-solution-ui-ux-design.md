@@ -2399,7 +2399,7 @@ Los *Wireflow Diagrams* integran la arquitectura esquemática de los wireframes 
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter-3/mobile/flowcharts/wf-flowchart-escenario-1.svg", width: 68%),
+    image("assets/chapter-3/mobile/flowcharts/wf-flowchart-escenario-1.svg", width: 50%),
     caption: [Diagrama de Decisión Lógica del Wireflow -- Escenario 1: Recepción, Apertura de OT y Diagnóstico.]
   )
 ]
@@ -2448,7 +2448,7 @@ Los *Wireflow Diagrams* integran la arquitectura esquemática de los wireframes 
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter-3/mobile/flowcharts/wf-flowchart-escenario-2.svg", width: 68%),
+    image("assets/chapter-3/mobile/flowcharts/wf-flowchart-escenario-2.svg", width: 50%),
     caption: [Diagrama de Decisión Lógica del Wireflow -- Escenario 2: Asignación Técnica, Despacho FIFO y Ejecución.]
   )
 ]
@@ -2497,7 +2497,7 @@ Los *Wireflow Diagrams* integran la arquitectura esquemática de los wireframes 
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter-3/mobile/flowcharts/wf-flowchart-escenario-3.svg", width: 68%),
+    image("assets/chapter-3/mobile/flowcharts/wf-flowchart-escenario-3.svg", width: 50%),
     caption: [Diagrama de Decisión Lógica del Wireflow -- Escenario 3: Presupuestación, Liquidación y Facturación PDF.]
   )
 ]
@@ -3704,7 +3704,7 @@ A continuación, se documentan los *tres escenarios clave del conductor*, cada u
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter-3/mobile/flowcharts/uf-flowchart-escenario-1.svg", width: 68%),
+    image("assets/chapter-3/mobile/flowcharts/uf-flowchart-escenario-1.svg", width: 50%),
     caption: [Diagrama de Decisión Lógica del User Flow -- Escenario 1: Monitoreo, Alerta Didáctica y Reserva.]
   )
 ]
@@ -3750,7 +3750,7 @@ A continuación, se documentan los *tres escenarios clave del conductor*, cada u
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter-3/mobile/flowcharts/uf-flowchart-escenario-2.svg", width: 68%),
+    image("assets/chapter-3/mobile/flowcharts/uf-flowchart-escenario-2.svg", width: 50%),
     caption: [Diagrama de Decisión Lógica del User Flow -- Escenario 2: Monitoreo en Bahía, Evidencia y Aprobación.]
   )
 ]
@@ -3796,7 +3796,7 @@ A continuación, se documentan los *tres escenarios clave del conductor*, cada u
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter-3/mobile/flowcharts/uf-flowchart-escenario-3.svg", width: 68%),
+    image("assets/chapter-3/mobile/flowcharts/uf-flowchart-escenario-3.svg", width: 50%),
     caption: [Diagrama de Decisión Lógica del User Flow -- Escenario 3: Liquidación, Checkout Stripe y Comprobante Fiscal.]
   )
 ]

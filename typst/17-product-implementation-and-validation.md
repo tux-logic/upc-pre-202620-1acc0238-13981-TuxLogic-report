@@ -1355,7 +1355,7 @@ El presente Sprint Backlog detalla la descomposición técnica de las historias 
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter-4/sprint-2/sprint2_backlog.png", width: 85%),
+    image("assets/chapter-4/sprint-2/sprint2_backlog.png", width: 70%),
     caption: [Planificación del Sprint 2 en Jira Software (Backlog y Estimación de 42 Story Points).]
   )
 ]
@@ -1364,7 +1364,7 @@ El presente Sprint Backlog detalla la descomposición técnica de las historias 
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter-4/sprint-2/sprint2_board.png", width: 85%),
+    image("assets/chapter-4/sprint-2/sprint2_board.png", width: 70%),
     caption: [Tablero Activo del Sprint 2 en Jira Software (Sprint Board en Columna Done).]
   )
 ]
@@ -1453,7 +1453,7 @@ Para garantizar la fiabilidad del aplicativo móvil y su correcta interacción c
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter-4/sprint-2/mobile_tests_evidence.png", width: 85%),
+    image("assets/chapter-4/sprint-2/mobile_tests_evidence.png", width: 70%),
     caption: [Ejecución Exitosa de la Suite de Pruebas Unitarias Móviles y Backend.]
   )
 ]
@@ -1479,7 +1479,7 @@ A continuación, se disponen los enlaces a las grabaciones oficiales de navegaci
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 6pt,
       radius: 4pt,
-      image("assets/chapter-4/sprint-2/product-navigation-video-thumbnail.jpg", width: 75%)
+      image("assets/chapter-4/sprint-2/product-navigation-video-thumbnail.jpg", width: 60%)
     ),
     caption: [Video demostrativo en Kotlin (ShiftIQ Driver App).]
   )
@@ -1496,7 +1496,7 @@ A continuación, se disponen los enlaces a las grabaciones oficiales de navegaci
       stroke: 0.5pt + rgb("#cbd5e1"),
       inset: 6pt,
       radius: 4pt,
-      image("assets/chapter-4/sprint-2/flutter_workshop_video_thumbnail.png", width: 75%)
+      image("assets/chapter-4/sprint-2/flutter_workshop_video_thumbnail.png", width: 60%)
     ),
     caption: [Video demostrativo en Flutter (ShiftIQ Workshop App).]
   )
@@ -1506,7 +1506,7 @@ A continuación, se disponen los enlaces a las grabaciones oficiales de navegaci
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter-4/sprint-2/mobile_auth_and_dashboard.png", width: 85%),
+    image("assets/chapter-4/sprint-2/mobile_auth_and_dashboard.png", width: 45%),
     caption: [Pantallas de Autenticación, Dashboard del Taller y Mi Garaje (Conductor).]
   )
 ]
@@ -1515,7 +1515,7 @@ A continuación, se disponen los enlaces a las grabaciones oficiales de navegaci
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter-4/sprint-2/mobile_work_orders_execution.jpg", width: 85%),
+    image("assets/chapter-4/sprint-2/mobile_work_orders_execution.jpg", width: 45%),
     caption: [Gestión de Órdenes de Trabajo y Espacio de Ejecución del Mecánico.]
   )
 ]
@@ -1568,7 +1568,7 @@ Durante el Sprint 2, se fortaleció la documentación interactiva OpenAPI 3.0 / 
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter-4/sprint-2/backend_swagger_mobile_endpoints.png", width: 85%),
+    image("assets/chapter-4/sprint-2/backend_swagger_mobile_endpoints.png", width: 70%),
     caption: [Ejecución e Interacción de Endpoints en Swagger UI para Clientes Móviles.]
   )
 ]
@@ -1600,7 +1600,7 @@ En esta sección se documenta el despliegue del producto desarrollado en el Spri
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter-4/sprint-2/mobile_deployment_github_actions.png", width: 85%),
+    image("assets/chapter-4/sprint-2/mobile_deployment_github_actions.png", width: 70%),
     caption: [Workflow de CI/CD en GitHub Actions para Compilación y Firma de APKs Móviles.]
   )
 ]
@@ -1609,7 +1609,7 @@ En esta sección se documenta el despliegue del producto desarrollado en el Spri
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter-4/sprint-2/flutter_firebase_app_distribution.png", width: 85%),
+    image("assets/chapter-4/sprint-2/flutter_firebase_app_distribution.png", width: 70%),
     caption: [Despliegue y Distribución de ShiftIQ Workshop App (Flutter) en Firebase App Distribution.]
   )
 ]
@@ -1618,7 +1618,7 @@ En esta sección se documenta el despliegue del producto desarrollado en el Spri
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter-4/sprint-2/mobile_github_release_apk.jpg", width: 85%),
+    image("assets/chapter-4/sprint-2/mobile_github_release_apk.jpg", width: 70%),
     caption: [GitHub Release con Paquete APK de Kotlin Disponible para Descarga.]
   )
 ]
@@ -1635,7 +1635,7 @@ A continuación, se presentan los analíticos extraídos de GitHub (Insights) qu
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter-4/sprint-2/mobile_contributors_graph.png", width: 85%),
+    image("assets/chapter-4/sprint-2/mobile_contributors_graph.png", width: 70%),
     caption: [Gráfico de Contribuciones por Miembro del Equipo durante el Sprint 2.]
   )
 ]
@@ -1644,7 +1644,7 @@ A continuación, se presentan los analíticos extraídos de GitHub (Insights) qu
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter-4/sprint-2/mobile_pulse_activity.png", width: 85%),
+    image("assets/chapter-4/sprint-2/mobile_pulse_activity.png", width: 70%),
     caption: [Resumen de Actividad del Repositorio Móvil (GitHub Pulse).]
   )
 ]
@@ -1653,7 +1653,7 @@ A continuación, se presentan los analíticos extraídos de GitHub (Insights) qu
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter-4/sprint-2/mobile_closed_pull_requests.png", width: 85%),
+    image("assets/chapter-4/sprint-2/mobile_closed_pull_requests.png", width: 70%),
     caption: [Gestión Colaborativa mediante Pull Requests Fusionados en shiftiq-mobile-app.]
   )
 ]
@@ -1715,7 +1715,7 @@ Cada hallazgo fue categorizado según la severidad de Nielsen de 0 a 4: *0 (Sin 
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter-4/heuristics/heuristic_flutter_inventory.png", width: 75%),
+    image("assets/chapter-4/heuristics/heuristic_flutter_inventory.png", width: 45%),
     caption: [Evidencia de Usabilidad en ShiftIQ Workshop App (Flutter): Módulo de Inventario & Lotes B2B con clasificación de stock y acciones rápidas.]
   )
 ]
@@ -1757,7 +1757,7 @@ Cada hallazgo fue categorizado según la severidad de Nielsen de 0 a 4: *0 (Sin 
 #v(0.5em)
 #align(center)[
   #figure(
-    image("assets/chapter-4/heuristics/heuristic_kotlin_obd2.png", width: 75%),
+    image("assets/chapter-4/heuristics/heuristic_kotlin_obd2.png", width: 45%),
     caption: [Evidencia de Usabilidad en ShiftIQ Driver App (Kotlin nativo / Compose): Diagnóstico OBD-II en vivo, escaneo de módulos CAN-BUS e identificación de alerta DTC P0135.]
   )
 ]

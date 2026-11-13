@@ -11,6 +11,7 @@ A continuación, cada integrante del equipo *TuxLogic* formula un plan de crecim
 #v(0.3em)
 Como se muestra en la Tabla 1, el primer objetivo SMART de Alan Jaivi Mamani Vilca inicia en el presente semestre (24/08/2026) y se orienta a la obtención de la certificación internacional en analítica de datos y computación en la nube para sistemas financieros:
 
+#pagebreak()
 #text(weight: "bold", fill: rgb("#1e3a8a"))[Objetivo SMART 1: Certificación Internacional en Análisis de Datos y Cloud para Sistemas Financieros (AWS Certified Data Analytics / Financial Cloud Specialist)]
 
 #v(0.3em)
@@ -35,6 +36,7 @@ Como se muestra en la Tabla 1, el primer objetivo SMART de Alan Jaivi Mamani Vil
 #v(0.5em)
 De acuerdo con la Tabla 2, el segundo objetivo SMART de Alan Jaivi Mamani Vilca contempla el diseño e implementación de un pipeline de inteligencia financiera y analítica predictiva iniciando en septiembre de 2026:
 
+#pagebreak()
 #text(weight: "bold", fill: rgb("#1e3a8a"))[Objetivo SMART 2: Desarrollo e Implementación de un Pipeline de Análisis de Datos e Inteligencia Financiera]
 
 #v(0.3em)
@@ -62,6 +64,7 @@ De acuerdo con la Tabla 2, el segundo objetivo SMART de Alan Jaivi Mamani Vilca 
 #v(0.3em)
 Como se muestra en la Tabla 3, el primer objetivo SMART de Aldo Jeanfranco Machacca Soto da inicio formal el 24/08/2026 durante el presente semestre, con el fin de certificar competencias arquitectónicas en la nube empresarial:
 
+#pagebreak()
 #text(weight: "bold", fill: rgb("#1e3a8a"))[Objetivo SMART 1: Certificación AWS Certified Solutions Architect -- Associate]
 
 #v(0.3em)
@@ -86,6 +89,7 @@ Como se muestra en la Tabla 3, el primer objetivo SMART de Aldo Jeanfranco Macha
 #v(0.5em)
 De acuerdo con la Tabla 4, el segundo objetivo SMART de Aldo Jeanfranco Machacca Soto arranca el 01/09/2026 dentro del semestre actual, buscando divulgar hallazgos científicos sobre Domain-Driven Design y microservicios:
 
+#pagebreak()
 #text(weight: "bold", fill: rgb("#1e3a8a"))[Objetivo SMART 2: Publicación de Investigación / Artículo Técnico sobre Microservicios y DDD]
 
 #v(0.3em)
@@ -113,6 +117,7 @@ De acuerdo con la Tabla 4, el segundo objetivo SMART de Aldo Jeanfranco Machacca
 #v(0.3em)
 Como se muestra en la Tabla 5, el primer objetivo SMART de Diego Antonio Ramos Hinostroza inicia el 24/08/2026 con el arranque del semestre 2026-20, orientándose a la maestría práctica en orquestación con Kubernetes:
 
+#pagebreak()
 #text(weight: "bold", fill: rgb("#1e3a8a"))[Objetivo SMART 1: Certificación Certified Kubernetes Administrator (CKA)]
 
 #v(0.3em)
@@ -137,6 +142,7 @@ Como se muestra en la Tabla 5, el primer objetivo SMART de Diego Antonio Ramos H
 #v(0.5em)
 De acuerdo con la Tabla 6, el segundo objetivo SMART de Diego Antonio Ramos Hinostroza comienza en octubre de 2026 durante el semestre en curso, enfocándose en un pipeline reutilizable de DevSecOps:
 
+#pagebreak()
 #text(weight: "bold", fill: rgb("#1e3a8a"))[Objetivo SMART 2: Implementación de Pipeline DevSecOps Empresarial]
 
 #v(0.3em)
@@ -164,6 +170,7 @@ De acuerdo con la Tabla 6, el segundo objetivo SMART de Diego Antonio Ramos Hino
 #v(0.3em)
 Como se muestra en la Tabla 7, el primer objetivo SMART de Dhilsen Armil Mallqui Vilca inicia en agosto de 2026 durante el semestre 2026-20, enfocado en la especialización internacional avanzada en ingeniería de automatización de pruebas:
 
+#pagebreak()
 #text(weight: "bold", fill: rgb("#1e3a8a"))[Objetivo SMART 1: Certificación ISTQB Certified Tester Advanced Level -- Test Automation Engineer (CTAL-TAE)]
 
 #v(0.3em)
@@ -188,6 +195,7 @@ Como se muestra en la Tabla 7, el primer objetivo SMART de Dhilsen Armil Mallqui
 #v(0.5em)
 De acuerdo con la Tabla 8, el segundo objetivo SMART de Dhilsen Armil Mallqui Vilca arranca en septiembre de 2026 para desarrollar y publicar un framework de pruebas automatizadas End-to-End:
 
+#pagebreak()
 #text(weight: "bold", fill: rgb("#1e3a8a"))[Objetivo SMART 2: Creación de un Framework de Pruebas Automatizadas E2E]
 
 #v(0.3em)
@@ -215,6 +223,7 @@ De acuerdo con la Tabla 8, el segundo objetivo SMART de Dhilsen Armil Mallqui Vi
 #v(0.3em)
 Como se muestra en la Tabla 9, el primer objetivo SMART de Jareth Beycker Vidal Malaga inicia el 24/08/2026 con el presente ciclo académico, orientado a certificar competencias avanzadas de gestión estratégica del producto y del backlog:
 
+#pagebreak()
 #text(weight: "bold", fill: rgb("#1e3a8a"))[Objetivo SMART 1: Certificación Professional Scrum Product Owner II (PSPO II)]
 
 #v(0.3em)
@@ -239,6 +248,7 @@ Como se muestra en la Tabla 9, el primer objetivo SMART de Jareth Beycker Vidal 
 #v(0.5em)
 De acuerdo con la Tabla 10, el segundo objetivo SMART de Jareth Beycker Vidal Malaga inicia en septiembre de 2026 dentro del semestre actual, buscando certificar dominio técnico en arquitectura y desarrollo de aplicaciones móviles:
 
+#pagebreak()
 #text(weight: "bold", fill: rgb("#1e3a8a"))[Objetivo SMART 2: Certificación Associate Android Developer / Flutter Certified Developer]
 
 #v(0.3em)
@@ -261,3 +271,4 @@ De acuerdo con la Tabla 10, el segundo objetivo SMART de Jareth Beycker Vidal Ma
 )
 #pagebreak()
 ```
+

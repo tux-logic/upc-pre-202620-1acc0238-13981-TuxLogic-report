@@ -1,3 +1,4 @@
+`{=typst}
 = Capítulo I: Presentación del Proyecto
 
 ## 1.1. Startup Profile
@@ -201,3 +202,5 @@ En TuxLogic, tenemos la visión de consolidarnos como la plataforma referente en
 )
 ```
 
+
+`
