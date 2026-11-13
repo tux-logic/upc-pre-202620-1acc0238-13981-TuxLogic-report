@@ -1671,6 +1671,36 @@ El diseño metodológico de las entrevistas semiestructuradas de validación se 
 
 === 4.3.2. Registro de Entrevistas
 
+*Segmento Objetivo 2: Conductores de Vehículos Particulares en Lima (B2C)*
+
+#v(0.3em)
+#align(center)[
+  #table(
+    columns: (30%, 70%),
+    stroke: 0.4pt + rgb("#cbd5e1"),
+    inset: (x: 8pt, y: 6pt),
+    fill: (x, y) => if y == 0 { rgb("#1e3a8a") } else if calc.even(y) { rgb("#f8fafc") } else { white },
+    table.cell(colspan: 2, align: center)[#text(fill: white, weight: "bold")[Entrevista 1: Usuario de Vehículo Particular y Hábitos de Mantenimiento]],
+    [*Nombre*], [Fatima],
+    [*Apellidos*], [Trujillo Mendoza],
+    [*Edad*], [36 años],
+    [*Distrito*], [San Miguel, Lima],
+    [*Aplicaciones Usadas*], [Google Maps, WhatsApp, Yape, banca móvil],
+    [*Tecnologías*], [Smartphone iPhone 12 (iOS)],
+    [*Browsers*], [Safari],
+    [*Entrevistador*], [Jareth Vidal],
+    [*Evidencia*], [
+      Captura de pantalla de la entrevista con Fátima Trujillo Mendoza
+      #v(0.3em)
+      #image("assets/chapter-4/interviews-validation/interview-seg2.PNG", width: 70%)
+    ],
+    [*Link*], [#link("https://drive.google.com/file/d/1NQ-v7RYPOU6eMQghPgucIBd6jVuR7s7T/view?usp=sharing")[Ver entrevista en Google Drive]],
+    [*Duración*], [05:27 min],
+    [*Resumen*], [Durante la sesión de validación, la entrevistada observó el registro de un vehículo y consideró que el proceso era claro, aunque señaló que el VIN requiere más cuidado por sus 17 caracteres. Comprendió mejor la explicación de la falla que el código técnico y sugirió incluir recomendaciones sobre los pasos a seguir. También percibió la navegación como ordenada y rápida; el flujo para elegir taller y fecha le pareció sencillo, aunque consideró importante confirmar claramente si la cita quedó registrada. Indicó que, si tuviera un conector OBD-II, revisaría la aplicación mensualmente y ante una alerta o antes de un viaje. Como mejoras, propuso agregar recordatorios de mantenimiento, estimaciones de costos e historial del vehículo, además de distinguir claramente las lecturas reales de las demostrativas.],
+  )
+]
+#v(0.5em)
+
 === 4.3.3. Evaluaciones según Heurísticas
 
 Para asegurar que las aplicaciones del ecosistema *ShiftIQ* alcancen una alta calidad de interacción, el equipo TuxLogic aplicó una *Evaluación Heurística de Usabilidad* basada en las *10 Heurísticas de Jakob Nielsen (1994)* sobre ambos aplicativos clientes.

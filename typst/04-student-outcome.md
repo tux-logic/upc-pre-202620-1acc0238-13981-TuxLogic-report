@@ -14,12 +14,12 @@ El curso contribuye al cumplimiento del Student Outcome ABET:
 
 #text(weight: "bold")[Criterio:] La capacidad de adquirir y aplicar nuevos conocimientos según sea necesario, utilizando estrategias de aprendizaje apropiadas.
 
-En el siguiente cuadro se describen las acciones realizadas y los enunciados de conclusiones por parte del grupo, que permiten sustentar el haber alcanzado el logro del *ABET -- EAC -- Student Outcome 7* a lo largo de las entregas del proyecto (*AV1* y *TB1*). Como se muestra en la Tabla 1, se detallan por cada participante sus acciones específicas por entrega y las conclusiones acumuladas del equipo:
+En el siguiente cuadro se describen las acciones realizadas y los enunciados de conclusiones por parte del grupo, que permiten sustentar el haber alcanzado el logro del *ABET -- EAC -- Student Outcome 7* a lo largo de las entregas del proyecto (*AV1*, *TB1* y *AV2*). Como se muestra en la Tabla 1, se detallan por cada participante sus acciones específicas por entrega y las conclusiones acumuladas del equipo:
 
 #v(0.4em)
 #align(center)[
   #text(weight: "bold")[Tabla 1] \
-  #text(style: "italic")[Matriz de Student Outcomes por Participante y Entrega (Hitos AV1 y TB1)]
+  #text(style: "italic")[Matriz de Student Outcomes por Participante y Entrega (Hitos AV1, TB1 y AV2)]
 ]
 #v(0.3em)
 #table(
@@ -29,7 +29,7 @@ En el siguiente cuadro se describen las acciones realizadas y los enunciados de 
   fill: (x, y) => if y == 0 { rgb("#1e3a8a") } else if calc.even(y) { rgb("#f8fafc") } else { white },
   table.header(
     [#text(fill: white, weight: "bold")[Criterio específico]],
-    [#text(fill: white, weight: "bold")[Acciones realizadas por integrante (AV1 y TB1)]],
+    [#text(fill: white, weight: "bold")[Acciones realizadas por integrante (AV1, TB1 y AV2)]],
     [#text(fill: white, weight: "bold")[Conclusiones acumuladas]],
   ),
   [
@@ -47,11 +47,13 @@ En el siguiente cuadro se describen las acciones realizadas y los enunciados de 
 
     *Ramos Hinostroza, Diego Antonio:* \
     - *AV1:* Actualizó conocimientos en desarrollo DevOps, inicialización de repositorios estandarizados, metodología GitFlow y definición de perfiles de startup y solución bajo principios Lean UX.
-    - *TB1:* Adquirió y aplicó conocimientos especializados en diseño de interfaces y experiencia de usuario para aplicaciones móviles, desarrollando wireframes en baja y media fidelidad, diagramas de flujo de pantallas wireflow, mockups en alta fidelidad, diagramas de flujo de interacción de usuario y la construcción del prototipo interactivo navegable en Figma orientado a conductores y administradores de talleres. \ \
+    - *TB1:* Adquirió y aplicó conocimientos especializados en diseño de interfaces y experiencia de usuario para aplicaciones móviles, desarrollando wireframes en baja y media fidelidad, diagramas de flujo de pantallas wireflow, mockups en alta fidelidad, diagramas de flujo de interacción de usuario y la construcción del prototipo interactivo navegable en Figma orientado a conductores y administradores de talleres.
+    - *AV2:* Adquirió y aplicó conocimientos en desarrollo de aplicaciones móviles nativas para Android utilizando Kotlin y Jetpack Compose. Investigó e implementó la arquitectura en capas y almacenamiento local para funcionamiento sin conexión, así como el consumo de servicios web para los módulos de registro de usuarios con código de verificación, tablero de telemetría vehicular, catálogo de talleres mecánicos y diagnóstico de fallas del vehículo. \ \
 
     *Mallqui Vilca, Dhilsen Armil:* \
     - *AV1:* Investigó metodologías de Needfinding, diseño de mapas de empatía y la técnica de Impact Mapping para alinear requerimientos técnicos con objetivos de negocio de ambos segmentos.
-    - *TB1:* Actualizó conocimientos en diseño visual de sitios web y gestión de configuración de software. Diseñó los wireframes y mockups responsive para escritorio y dispositivos móviles de la Landing Page comercial. Asimismo, en la gestión de configuración de software, especificó el entorno de desarrollo, las políticas de control de versiones bajo GitFlow, las guías de estilo de código y configuró los despliegues continuos en la nube en Vercel y contenedores Docker. \ \
+    - *TB1:* Actualizó conocimientos en diseño visual de sitios web y gestión de configuración de software. Diseñó los wireframes y mockups responsive para escritorio y dispositivos móviles de la Landing Page comercial. Asimismo, en la gestión de configuración de software, especificó el entorno de desarrollo, las políticas de control de versiones bajo GitFlow, las guías de estilo de código y configuró los despliegues continuos en la nube en Vercel y contenedores Docker.
+    - *AV2:* Adquirió y aplicó conocimientos de desarrollo móvil con Kotlin y Jetpack Compose, e integración full-stack del *bounded context* Inventory: implementó el Módulo 5 en `shiftiq-mobile-app` (catálogo, detalle, alta/edición, ingreso FIFO y ajuste de stock) y alineó el backend en `shiftiq-platform` (protección de borrado por uso en OT, seeder demo y contrato de siete endpoints REST). \ \
 
     *Vidal Malaga, Jareth Beycker:* \
     - *AV1:* Aplicó técnicas de análisis competitivo de mercado, matrices comparativas, priorización del Product Backlog y definición de sesenta historias de usuario bajo el formato INVEST.
@@ -76,11 +78,13 @@ En el siguiente cuadro se describen las acciones realizadas y los enunciados de 
 
     *Ramos Hinostroza, Diego Antonio:* \
     - *AV1:* Comprendió la necesidad de capacitarse constantemente en prácticas de integración y entrega continua, automatización de infraestructura y gestión ágil para acelerar el ciclo de entregas de software.
-    - *TB1:* Reconoció la necesidad de actualización constante en principios de diseño de interacción móvil, pautas de accesibilidad y diseño centrado en el usuario mediante Figma, valorando que el aprendizaje continuo en herramientas de diseño permite traducir requerimientos de usuario complejos en interfaces móviles fluidas y ergonómicas. \ \
+    - *TB1:* Reconoció la necesidad de actualización constante en principios de diseño de interacción móvil, pautas de accesibilidad y diseño centrado en el usuario mediante Figma, valorando que el aprendizaje continuo en herramientas de diseño permite traducir requerimientos de usuario complejos en interfaces móviles fluidas y ergonómicas.
+    - *AV2:* Reconoció la necesidad de un aprendizaje constante en las tecnologías y herramientas del desarrollo móvil en Android, comprendiendo que el dominio de interfaces modernas declarativas y la integración con servicios en la nube son fundamentales para construir aplicaciones fluidas, seguras y de calidad que respondan a las necesidades del conductor. \ \
 
     *Mallqui Vilca, Dhilsen Armil:* \
     - *AV1:* Reconoció la relevancia del aprendizaje continuo en ingeniería de requerimientos, aseguramiento de calidad y metodologías ágiles centradas en el valor del cliente.
-    - *TB1:* Comprendió que la gestión de configuración de software, la estandarización de convenciones de código y la automatización de despliegues en la nube en plataformas como Vercel y Docker son áreas de evolución constante, haciendo imperativo el autoaprendizaje continuo para mantener flujos de desarrollo modernos y confiables. \ \
+    - *TB1:* Comprendió que la gestión de configuración de software, la estandarización de convenciones de código y la automatización de despliegues en la nube en plataformas como Vercel y Docker son áreas de evolución constante, haciendo imperativo el autoaprendizaje continuo para mantener flujos de desarrollo modernos y confiables.
+    - *AV2:* Reconoció que el aprendizaje permanente en arquitectura limpia móvil, consumo seguro de APIs REST y alineación de contratos frontend-backend es indispensable para entregar un *bounded context* completo sin romper el trabajo paralelo del equipo. \ \
 
     *Vidal Malaga, Jareth Beycker:* \
     - *AV1:* Valoró la importancia del aprendizaje permanente en gestión de producto, análisis del mercado tecnológico y estrategia digital para mantener la competitividad de las soluciones móviles.
