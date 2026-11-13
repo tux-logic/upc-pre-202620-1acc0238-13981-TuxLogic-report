@@ -52,7 +52,8 @@ En el siguiente cuadro se describen las acciones realizadas y los enunciados de 
 
     *Mallqui Vilca, Dhilsen Armil:* \
     - *AV1:* Investigó metodologías de Needfinding, diseño de mapas de empatía y la técnica de Impact Mapping para alinear requerimientos técnicos con objetivos de negocio de ambos segmentos.
-    - *TB1:* Actualizó conocimientos en diseño visual de sitios web y gestión de configuración de software. Diseñó los wireframes y mockups responsive para escritorio y dispositivos móviles de la Landing Page comercial. Asimismo, en la gestión de configuración de software, especificó el entorno de desarrollo, las políticas de control de versiones bajo GitFlow, las guías de estilo de código y configuró los despliegues continuos en la nube en Vercel y contenedores Docker. \ \
+    - *TB1:* Actualizó conocimientos en diseño visual de sitios web y gestión de configuración de software. Diseñó los wireframes y mockups responsive para escritorio y dispositivos móviles de la Landing Page comercial. Asimismo, en la gestión de configuración de software, especificó el entorno de desarrollo, las políticas de control de versiones bajo GitFlow, las guías de estilo de código y configuró los despliegues continuos en la nube en Vercel y contenedores Docker.
+    - *AV2:* Adquirió y aplicó conocimientos de desarrollo móvil con Kotlin y Jetpack Compose, e integración full-stack del *bounded context* Inventory: implementó el Módulo 5 en `shiftiq-mobile-app` (catálogo, detalle, alta/edición, ingreso FIFO y ajuste de stock) y alineó el backend en `shiftiq-platform` (protección de borrado por uso en OT, seeder demo y contrato de siete endpoints REST). \ \
 
     *Vidal Malaga, Jareth Beycker:* \
     - *AV1:* Aplicó técnicas de análisis competitivo de mercado, matrices comparativas, priorización del Product Backlog y definición de sesenta historias de usuario bajo el formato INVEST.
@@ -82,7 +83,8 @@ En el siguiente cuadro se describen las acciones realizadas y los enunciados de 
 
     *Mallqui Vilca, Dhilsen Armil:* \
     - *AV1:* Reconoció la relevancia del aprendizaje continuo en ingeniería de requerimientos, aseguramiento de calidad y metodologías ágiles centradas en el valor del cliente.
-    - *TB1:* Comprendió que la gestión de configuración de software, la estandarización de convenciones de código y la automatización de despliegues en la nube en plataformas como Vercel y Docker son áreas de evolución constante, haciendo imperativo el autoaprendizaje continuo para mantener flujos de desarrollo modernos y confiables. \ \
+    - *TB1:* Comprendió que la gestión de configuración de software, la estandarización de convenciones de código y la automatización de despliegues en la nube en plataformas como Vercel y Docker son áreas de evolución constante, haciendo imperativo el autoaprendizaje continuo para mantener flujos de desarrollo modernos y confiables.
+    - *AV2:* Reconoció que el aprendizaje permanente en arquitectura limpia móvil, consumo seguro de APIs REST y alineación de contratos frontend-backend es indispensable para entregar un *bounded context* completo sin romper el trabajo paralelo del equipo. \ \
 
     *Vidal Malaga, Jareth Beycker:* \
     - *AV1:* Valoró la importancia del aprendizaje permanente en gestión de producto, análisis del mercado tecnológico y estrategia digital para mantener la competitividad de las soluciones móviles.
