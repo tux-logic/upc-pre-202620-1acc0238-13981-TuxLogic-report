@@ -139,5 +139,6 @@ De acuerdo con lo establecido en la *Tabla 5*, se concentran las grabaciones y e
   [*Video Navegación del Producto (Kotlin)*], [Ejecución real y navegación en Kotlin sobre emulador API 37 (Hito AV2).], [Diego Ramos], [#link("https://upcedupe-my.sharepoint.com/:v:/g/personal/u202224130_upc_edu_pe/IQClS-5I-l3CRqgxRJyKbJIHAXBujJv0SyJuIAusNBzmJ5g?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=UklbiF")[Ver Video]],
   [*Video Navegación del Taller (Flutter)*], [Navegación del aplicativo Flutter para gestión operativa del taller (Hito AV2).], [Dhilsen Mallqui], [#link("https://drive.google.com/file/d/1TuoNJeeY1T-oAVaM7BXqTjasaG_TjvEG/view?usp=sharing")[Ver en Drive]],
   [*About the Product*], [Exposición del producto ShiftIQ (problema, valor y recorrido) — Hito AV2 / Sprint 2.], [Dhilsen Mallqui], [#link("https://youtu.be/FGZN4CZenyQ")[Ver en YouTube]],
+  [*About the Team*], [Presentación del equipo TuxLogic, roles, dinámicas de trabajo y aportes al ecosistema ShiftIQ (Hito AV2).], [Alan Mamani], [#link("https://youtu.be/rvb4vT84PoM")[Ver en YouTube]],
 )
 ```
